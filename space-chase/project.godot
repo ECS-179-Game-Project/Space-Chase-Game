@@ -11,5 +11,20 @@ config_version=5
 [application]
 
 config/name="Space Chase"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+GameStateManager="*res://scripts/game_state_manager.gd"
+PowerupManager="*res://scripts/powerup_manager.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
