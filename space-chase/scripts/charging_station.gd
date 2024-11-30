@@ -15,6 +15,11 @@ var _energy_charged: float = 0.0 ## Stored energy of the charging station.
 @onready var charger_id = owner_player ## ID of the player that owns the charging station.
 
 
+func _ready() -> void:
+	charge_ok = false
+	GameStateManager.final_zone_entered.connect(_on_final_zone_entered)
+
+
 func _process(delta):
 	if charge_ok:
 		if _energy_charged > WIN_THRESHOLD:
@@ -32,3 +37,7 @@ func charge_energy(x: float) -> float:
 		_energy_charged += x
 	
 	return prev_energy - _energy_charged
+	
+
+func _on_final_zone_entered() -> void:
+	charge_ok = true
