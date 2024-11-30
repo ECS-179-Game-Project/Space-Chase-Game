@@ -21,21 +21,22 @@ enum PlayerID {
 }
 
 
-var _active_camera: Camera2D ## Stored reference to current camera used to disable when switching.
 var _player_points: Vector2i = Vector2i.ZERO ## Player points stored as an integer Vector2.
-var _player_first: PlayerID
-var _total_distance: float = 0.0 ## Total distance of the level. Equal to (Final zone position - Initial position).
-var _camera_position: float = 0.0 ## The x position of the current camera.
-var _level_progress: float = 0.0 ## The ratio of camera position to total distance.
+var _player_first: PlayerID ## The player ahead when the game ends. Used for tiebreaking.
+
+var _active_camera: Camera2D ## Stored reference to current camera used to disable when switching.
+var _camera_position: float = 0.0 ## The x position of the current camera's right bound.
+var _final_position_x: float = 0.0 ## Final right bound x, passed by the camera on ready
+var _total_distance: float = 0.0 ## Total distance to travel, calculated by final - initial
+var _remaining_level_progress: float = 0.0 ## The ratio of remaining level to total distance.
 
 
 ## Resets game state to 0.
 ## All variables are reinitialized to 0 except for _active_camera.
 func clear() -> void:
 	_player_points = Vector2i.ZERO
-	_total_distance = 0.0
 	_camera_position = 0.0
-	_level_progress = 0.0
+	_remaining_level_progress = 0.0
 
 
 ## Sets the active camera to [param new_camera].
@@ -59,15 +60,22 @@ func add_player_energy(energy: int, id: PlayerID) -> void:
 	_player_points[id] += energy
 
 
-## Sets [member _camera_position] to [param new_camera_pos]
+## Sets [member _camera_position] to [param new_camera_pos], called by the camera
 ## Does not affect the actual camera. Is used for updating the HUD and game state.
 func set_camera_pos(new_camera_pos: float) -> void:
 	_camera_position = new_camera_pos
+	_remaining_level_progress = (_final_position_x - _camera_position) / _total_distance
 
 
-## Returns the current level progress of the camera.
+# Initializes the camera data, called by the camera.
+func initialize_camera_pos(init_pos: float, final_pos: float) -> void:
+	_final_position_x = final_pos
+	_total_distance = final_pos - init_pos
+
+
+## Returns the current level progress of the camera as a ratio.
 func get_level_progress() -> float:
-	return _total_distance / _level_progress
+	return _remaining_level_progress
 
 
 ## Returns the winning player based on current score.

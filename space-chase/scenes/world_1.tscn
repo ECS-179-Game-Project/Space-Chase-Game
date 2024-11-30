@@ -178,7 +178,7 @@ position_smoothing_enabled = true
 script = ExtResource("1_eeylw")
 players = [NodePath("../Player")]
 push_line_ratio = 0.8
-autoscroll_speed = 50.0
+autoscroll_speed = -50.0
 end_zone = 500.0
 
 [node name="TilemapLayers" type="Node" parent="."]

@@ -26,20 +26,24 @@ Horizontal auto scroll
 
 ## Stores the length of the viewport with respect to zoom.
 var _viewport_length: float = 0.0
+## Stores the length of half the viewport with respect to zoom.
+var _half_vp_length: float = 0.0
 ## Stores the position of the push line relative to the center of the camera.
 var _push_line_x: float = 0.0
 
 
 func _ready() -> void:
-	limit_right = int(end_zone)
 	_viewport_length = get_viewport_rect().size.x / zoom.x
 	_push_line_x = (push_line_ratio - 0.5) * _viewport_length
+	_half_vp_length = 0.5 * _viewport_length
+	GameStateManager.initialize_camera_pos(global_position.x + _half_vp_length, end_zone)
 	
 
 func _physics_process(delta: float) -> void:
 	if !enabled:
 		pass
 	else:
+		print(GameStateManager.get_level_progress())
 		if debug_lines:
 			draw_debug()
 			
@@ -51,19 +55,19 @@ func _physics_process(delta: float) -> void:
 				global_position.x += player.global_position.x - global_push_line_x
 				
 			# Move player right if player off screen left
-			if player.global_position.x < global_position.x - (0.5 * _viewport_length):
-				player.global_position.x += (global_position.x - (0.5 * _viewport_length)
+			if player.global_position.x < global_position.x - _half_vp_length:
+				player.global_position.x += (global_position.x - _half_vp_length
 											- player.global_position.x)
 				
 		global_position.x += autoscroll_speed * delta
 		
 		# When the right bound of the camera reaches the end_zone,
 		# disable logic for the camera.
-		if global_position.x >= end_zone - (0.5 * _viewport_length):
-			global_position.x = end_zone - (0.5 * _viewport_length)
+		if global_position.x >= end_zone - _half_vp_length:
+			global_position.x = end_zone - _half_vp_length
 			set_physics_process(false)
 		
-		GameStateManager.set_camera_pos(global_position.x)
+		GameStateManager.set_camera_pos(global_position.x + _half_vp_length)
 		
 		
 		
