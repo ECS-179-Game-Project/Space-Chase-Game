@@ -171,10 +171,15 @@ sources/0 = SubResource("TileSetAtlasSource_7opkr")
 
 [node name="World1" type="Node"]
 
-[node name="AutoscrollCameraController" type="Camera2D" parent="."]
+[node name="AutoscrollCameraController" type="Camera2D" parent="." node_paths=PackedStringArray("players")]
 position = Vector2(12, -59)
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
 script = ExtResource("1_eeylw")
+players = [NodePath("../Player")]
+push_line_ratio = 0.8
+autoscroll_speed = 50.0
+end_zone = 500.0
 
 [node name="TilemapLayers" type="Node" parent="."]
 
