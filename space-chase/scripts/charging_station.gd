@@ -6,7 +6,7 @@ const CHARGE_RADIUS: float = 50.0
 
 ## Reference to the player that this charging station
 ## is assigned to.
-@export var owner_player: Player 
+@export var owner_player: Player
 
 var charge_ok := false ## Activation status of the charging station.
 
