@@ -20,11 +20,20 @@ enum PlayerID {
 	PLAYER_2,
 }
 
-var _active_camera: Camera2D
-var _player_points: Vector2i = Vector2i.ZERO
-var _total_distance: float = 0.0
-var _camera_pos: float = 0.0
-var _level_progress: float = 0.0
+
+var _active_camera: Camera2D ## Stored reference to current camera used to disable when switching.
+var _player_points: Vector2i = Vector2i.ZERO ## Player points stored as an integer Vector2.
+var _total_distance: float = 0.0 ## Total distance of the level. Equal to (Final zone position - Initial position).
+var _camera_position: float = 0.0 ## The x position of the current camera.
+var _level_progress: float = 0.0 ## The ratio of camera position to total distance.
+
+## Resets game state to 0.
+## All variables are reinitialized to 0 except for _active_camera.
+func clear() -> void:
+	_player_points = Vector2i.ZERO
+	_total_distance = 0.0
+	_camera_position = 0.0
+	_level_progress = 0.0
 
 
 ## Sets the active camera to [param new_camera].
@@ -48,11 +57,10 @@ func add_player_energy(energy: int, id: PlayerID) -> void:
 	_player_points[id] += energy
 
 
-## Used instead of a camera reference.
-## This is called from the camera instead of using camera ref
-## in process to update.
+## Sets [member _camera_position] to [param new_camera_pos]
+## Does not affect the actual camera. Is used for updating the HUD and game state.
 func set_camera_pos(new_camera_pos: float) -> void:
-	_camera_pos = new_camera_pos
+	_camera_position = new_camera_pos
 
 
 ## Returns the current level progress of the camera.
