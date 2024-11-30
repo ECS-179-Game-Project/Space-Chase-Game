@@ -21,6 +21,10 @@ SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 GameStateManager="*res://scripts/game_state_manager.gd"
 PowerupManager="*res://scripts/powerup_manager.gd"
 
+[display]
+
+window/size/resizable=false
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
