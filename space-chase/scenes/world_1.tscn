@@ -731,6 +731,7 @@ texture = ExtResource("7_2dija")
 
 [sub_resource type="TileSet" id="TileSet_eny05"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_7opkr")
 sources/1 = SubResource("TileSetAtlasSource_7ul40")
 sources/2 = SubResource("TileSetAtlasSource_18d0c")
@@ -814,6 +815,7 @@ tile_set = SubResource("TileSet_eny05")
 [node name="Player" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(12, 38)
+collision_layer = 0
 
 [node name="Platform" parent="." instance=ExtResource("4_2flex")]
 position = Vector2(22, 4)
