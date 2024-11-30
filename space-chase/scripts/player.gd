@@ -8,7 +8,7 @@ Movement mechanics
 - left/right
 - go down platforms
 - jump
-- 8 direction dash
+- 8 direction dash (like celeste)
 Grab mechanics
 - Can grab/throw the other player
 - Can be grabbed/thrown by the other player (bool for grabbed)

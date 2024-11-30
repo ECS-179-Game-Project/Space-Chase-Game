@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=19 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_qd1qe"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="3_korow"]
 [ext_resource type="PackedScene" uid="uid://brro3m5tumnva" path="res://scenes/platform.tscn" id="4_2flex"]
 [ext_resource type="Texture2D" uid="uid://ddo4y88qhgas6" path="res://assets/sprites/Terrain/stringstar fields/stringstar_tileset.png" id="4_6820w"]
+[ext_resource type="PackedScene" uid="uid://8uidvvapiws" path="res://scenes/wall_of_death.tscn" id="5_7ocf3"]
 [ext_resource type="Texture2D" uid="uid://b2jyfobu4xfr" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-1.png" id="5_nw6wv"]
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
@@ -782,6 +783,15 @@ players = [NodePath("../Player")]
 push_line_ratio = 0.8
 autoscroll_speed = 50.0
 end_zone = 500.0
+
+[node name="WallOfDeath" parent="AutoscrollCameraController" instance=ExtResource("5_7ocf3")]
+position = Vector2(-271, -120)
+
+[node name="WallOfDeath2" parent="AutoscrollCameraController" instance=ExtResource("5_7ocf3")]
+position = Vector2(-271, 0)
+
+[node name="WallOfDeath3" parent="AutoscrollCameraController" instance=ExtResource("5_7ocf3")]
+position = Vector2(-271, 120)
 
 [node name="TilemapLayers" type="Node" parent="."]
 
