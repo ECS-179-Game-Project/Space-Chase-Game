@@ -23,9 +23,11 @@ enum PlayerID {
 
 var _active_camera: Camera2D ## Stored reference to current camera used to disable when switching.
 var _player_points: Vector2i = Vector2i.ZERO ## Player points stored as an integer Vector2.
+var _player_first: PlayerID
 var _total_distance: float = 0.0 ## Total distance of the level. Equal to (Final zone position - Initial position).
 var _camera_position: float = 0.0 ## The x position of the current camera.
 var _level_progress: float = 0.0 ## The ratio of camera position to total distance.
+
 
 ## Resets game state to 0.
 ## All variables are reinitialized to 0 except for _active_camera.
@@ -70,4 +72,11 @@ func get_level_progress() -> float:
 
 ## Returns the winning player based on current score.
 func get_player_victory() -> PlayerID:
-	return PlayerID.PLAYER_1 if _player_points[0] > _player_points[1] else PlayerID.PLAYER_2
+	var victor: PlayerID = PlayerID.PLAYER_1
+	
+	if _player_points.x < _player_points.y:
+		victor = PlayerID.PLAYER_2
+	elif _player_points.x == _player_points.y:
+		victor = _player_first
+		
+	return victor
