@@ -14,7 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.67999, 2.92)
 script = ExtResource("1_07eop")
-instant_start = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
