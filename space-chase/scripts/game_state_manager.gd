@@ -1,6 +1,5 @@
 extends Node # No class name because autoloaded script
 
-
 """
 Stores and manages energy between players
 - Held energy (with methods to add/remove energy)
@@ -15,20 +14,29 @@ Initialized when game starts (not needed when game is not playing)
 Autoloaded script
 """
 
+signal final_zone_entered
+signal player_win(id: PlayerID)
+signal request_charge(charger: ChargingStation, id: PlayerID, delta: float)
+
 enum PlayerID {
 	PLAYER_1,
 	PLAYER_2,
 }
 
+const CHARGE_PER_TICK = 0.15
 
-var _player_points: Vector2i = Vector2i.ZERO ## Player points stored as an integer Vector2.
-var _player_first: PlayerID ## The player ahead when the game ends. Used for tiebreaking.
+var _player_points: Vector2 = Vector2.ZERO ## Player points stored as a Vector2.
 
 var _active_camera: Camera2D ## Stored reference to current camera used to disable when switching.
 var _camera_position: float = 0.0 ## The x position of the current camera's right bound.
 var _final_position_x: float = 0.0 ## Final right bound x, passed by the camera on ready
 var _total_distance: float = 0.0 ## Total distance to travel, calculated by final - initial
 var _remaining_level_progress: float = 0.0 ## The ratio of remaining level to total distance.
+
+
+func _ready() -> void:
+	player_win.connect(_on_player_win)
+	request_charge.connect(_on_request_charge)
 
 
 ## Resets game state to 0.
@@ -52,19 +60,28 @@ func set_active_camera(new_camera: Camera2D) -> void:
 
 ## Sets the score of player with ID [param id] to [param energy]
 func set_player_energy(energy: int, id: PlayerID) -> void:
-	_player_points[id] = energy
+	_player_points[id] = float(energy)
 
 
 ## Increases the score of player with ID [param id] by [param energy]
 func add_player_energy(energy: int, id: PlayerID) -> void:
-	_player_points[id] += energy
+	if (_player_points[id] + float(energy) < 0):
+		_player_points[id] = 0.0
+	else:
+		_player_points[id] += energy
 
+
+## Returns the score of player with ID [param id].
+func get_player_energy(id: PlayerID) -> float:
+	return _player_points[id]
 
 ## Sets [member _camera_position] to [param new_camera_pos], called by the camera
 ## Does not affect the actual camera. Is used for updating the HUD and game state.
 func set_camera_pos(new_camera_pos: float) -> void:
 	_camera_position = new_camera_pos
 	_remaining_level_progress = (_final_position_x - _camera_position) / _total_distance
+	if is_zero_approx(_remaining_level_progress):
+		final_zone_entered.emit()
 
 
 # Initializes the camera variables, called by the camera.
@@ -78,13 +95,15 @@ func get_level_progress() -> float:
 	return _remaining_level_progress
 
 
-## Returns the winning player based on current score.
-func get_player_victory() -> PlayerID:
-	var victor: PlayerID = PlayerID.PLAYER_1
-	
-	if _player_points.x < _player_points.y:
-		victor = PlayerID.PLAYER_2
-	elif _player_points.x == _player_points.y:
-		victor = _player_first
-		
-	return victor
+## Starts victory sequence
+## @experimental: Incomplete
+func _on_player_win(id: PlayerID) -> void:
+	return
+
+
+## Give energy to charging station
+## @experimental: Needs testing
+func _on_request_charge(charger: ChargingStation, id: PlayerID, delta) -> void:
+	var charge_exchange = CHARGE_PER_TICK * _player_points[id] * delta
+	charge_exchange = charger.charge_energy(charge_exchange)
+	add_player_energy(charge_exchange, id)

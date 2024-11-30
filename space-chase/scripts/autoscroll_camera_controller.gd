@@ -36,6 +36,7 @@ func _ready() -> void:
 	_viewport_length = get_viewport_rect().size.x / zoom.x
 	_push_line_x = (push_line_ratio - 0.5) * _viewport_length
 	_half_vp_length = 0.5 * _viewport_length
+	GameStateManager.set_active_camera(self)
 	GameStateManager.initialize_camera_pos(global_position.x + _half_vp_length, end_zone)
 	
 
