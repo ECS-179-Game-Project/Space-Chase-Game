@@ -1,17 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://brro3m5tumnva"]
 
-[ext_resource type="Texture2D" uid="uid://cda5usei0bdf6" path="res://assets/sprites/placeholder_platforms.png" id="1_u686f"]
+[ext_resource type="Texture2D" uid="uid://ddo4y88qhgas6" path="res://assets/sprites/Terrain/stringstar fields/stringstar_tileset.png" id="1_x7qg4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsh3e"]
-size = Vector2(32, 8)
+size = Vector2(80, 4)
 
 [node name="Platform" type="AnimatableBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_u686f")
+texture = ExtResource("1_x7qg4")
 region_enabled = true
-region_rect = Rect2(16, 0, 32, 8)
+region_rect = Rect2(80, 64, 80, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_xsh3e")
 one_way_collision = true

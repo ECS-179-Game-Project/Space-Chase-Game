@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw5cb5fe23aa3"]
+[gd_scene load_steps=5 format=3 uid="uid://bw5cb5fe23aa3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6de28"]
-[ext_resource type="Texture2D" uid="uid://0oyawef418j0" path="res://assets/sprites/placeholder_player.png" id="2_l42bu"]
+[ext_resource type="Texture2D" uid="uid://0oyawef418j0" path="res://assets/sprites/placeholders/placeholder_player.png" id="2_l42bu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_65i8e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_psmal"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6de28")
@@ -16,3 +18,6 @@ position = Vector2(0, -2)
 texture = ExtResource("2_l42bu")
 hframes = 8
 vframes = 8
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_psmal")
