@@ -43,7 +43,6 @@ func _physics_process(delta: float) -> void:
 	if !enabled:
 		pass
 	else:
-		print(GameStateManager.get_level_progress())
 		if debug_lines:
 			draw_debug()
 			

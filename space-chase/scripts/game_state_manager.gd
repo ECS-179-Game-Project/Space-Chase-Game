@@ -67,7 +67,7 @@ func set_camera_pos(new_camera_pos: float) -> void:
 	_remaining_level_progress = (_final_position_x - _camera_position) / _total_distance
 
 
-# Initializes the camera data, called by the camera.
+# Initializes the camera variables, called by the camera.
 func initialize_camera_pos(init_pos: float, final_pos: float) -> void:
 	_final_position_x = final_pos
 	_total_distance = final_pos - init_pos
