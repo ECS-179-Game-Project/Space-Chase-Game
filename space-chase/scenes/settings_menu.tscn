@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://5tk8vpgwlokx"]
+[gd_scene load_steps=3 format=3 uid="uid://5tk8vpgwlokx"]
 
 [ext_resource type="Script" path="res://scripts/settings_menu.gd" id="1_orapq"]
+[ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_bof0k"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -19,10 +20,12 @@ layout_mode = 2
 
 [node name="SettingsPlaceholder" type="CheckButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bof0k")
 text = "Placeholder"
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bof0k")
 text = "Back"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
