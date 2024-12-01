@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dis2aagyiixps"
+path="res://.godot/imported/02 Space Riddle.ogg-c11c3364256577bd618d73d41859d56d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/02 Space Riddle.ogg"
+dest_files=["res://.godot/imported/02 Space Riddle.ogg-c11c3364256577bd618d73d41859d56d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
