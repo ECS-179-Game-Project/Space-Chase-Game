@@ -14,6 +14,7 @@ Initialized when game starts (not needed when game is not playing)
 Autoloaded script
 """
 
+signal level_entered
 signal final_zone_entered
 signal player_win(id: PlayerID)
 signal request_charge(charger: ChargingStation, id: PlayerID, delta: float)
