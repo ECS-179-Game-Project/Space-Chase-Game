@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=21 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_qd1qe"]
+[ext_resource type="Script" path="res://scripts/world_audio.gd" id="1_t0e68"]
 [ext_resource type="Texture2D" uid="uid://bs4r5iub0pmra" path="res://assets/sprites/placeholders/placeholder_world_tileset.png" id="2_m5lnp"]
 [ext_resource type="Texture2D" uid="uid://qio8qrcblxkf" path="res://assets/sprites/Terrain/stringstar fields/background_1.png" id="2_ta0tv"]
 [ext_resource type="Texture2D" uid="uid://dwbl63wf2gv10" path="res://assets/sprites/Terrain/stringstar fields/background_2.png" id="3_5md8k"]
@@ -744,6 +745,9 @@ sources/4 = SubResource("TileSetAtlasSource_gj23c")
 
 [node name="World1" type="Node"]
 
+[node name="WorldAudio" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("1_t0e68")
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -821,6 +825,7 @@ tile_map_data = PackedByteArray("AADx/wQAAgAEAAQAAADy/wQAAgABAAQAAADy/wUAAgAEAAU
 tile_set = SubResource("TileSet_eny05")
 
 [node name="Background" type="TileMapLayer" parent="TilemapLayers"]
+modulate = Color(0.529067, 0.529067, 0.529067, 1)
 z_index = -5
 texture_filter = 3
 tile_map_data = PackedByteArray("AAD5//7/AgAIAAQAAAD5////AgAIAAUAAAD5/wAAAgAIAAYAAAD5/wEAAgAIAAcAAAD5/wIAAgAIAAgAAAD5/wMAAgAIAAkAAAD6//7/AgAJAAQAAAD6////AgAJAAUAAAD6/wAAAgAJAAYAAAD6/wEAAgAJAAcAAAD6/wIAAgAJAAgAAAD6/wMAAgAJAAkAAAD7//7/AgAKAAQAAAD7////AgAKAAUAAAD7/wAAAgAKAAYAAAD7/wEAAgAKAAcAAAD7/wIAAgAKAAgAAAD7/wMAAgAKAAkAAAAHAP7/AgAIAAQAAAAHAP//AgAIAAUAAAAHAAAAAgAIAAYAAAAHAAEAAgAIAAcAAAAHAAIAAgAIAAgAAAAHAAMAAgAIAAkAAAAIAP7/AgAJAAQAAAAIAP//AgAJAAUAAAAIAAAAAgAJAAYAAAAIAAEAAgAJAAcAAAAIAAIAAgAJAAgAAAAIAAMAAgAJAAkAAAAJAP7/AgAKAAQAAAAJAP//AgAKAAUAAAAJAAAAAgAKAAYAAAAJAAEAAgAKAAcAAAAJAAIAAgAKAAgAAAAJAAMAAgAKAAkAAAA=")

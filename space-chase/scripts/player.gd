@@ -44,7 +44,7 @@ var _dash_timer: Timer
 var _ground_dash_cooldown_timer: Timer
 var _thrown_stun_delay: Timer # Timer to wait until player can move after being thrown
 
-@onready var _movement_animation_player: AnimationPlayer = $MovementAnimationPlayer
+@onready var _main_animation_player: AnimationPlayer = $MovementAnimationPlayer
 @onready var _status_animation_player: AnimationPlayer = $StatusAnimationPlayer
 
 
@@ -112,6 +112,10 @@ func _physics_process(delta: float) -> void:
 func _start_jump() -> void:
 	velocity.y = -jump_force
 	_refill_dash()
+
+
+func _gets_grabbed() -> void:
+	_main_animation_player.play("is_grabbed")
 
 
 func _start_dash(delta: float) -> void:
