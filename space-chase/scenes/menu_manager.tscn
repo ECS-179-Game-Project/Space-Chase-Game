@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dojks3vldqq2a"]
+
+[ext_resource type="Script" path="res://scripts/menu_manager.gd" id="1_6bse5"]
+[ext_resource type="PackedScene" uid="uid://bkgl5v8ijl362" path="res://scenes/main_menu.tscn" id="2_wapdf"]
+[ext_resource type="PackedScene" uid="uid://5tk8vpgwlokx" path="res://scenes/settings_menu.tscn" id="3_qt5lj"]
+[ext_resource type="AudioStream" uid="uid://c0aneki06jy5a" path="res://assets/Audio/DavidKBD - Cosmic Pack 01 - Cosmic Journey-full.ogg" id="4_shyfh"]
+[ext_resource type="AudioStream" uid="uid://khkjpvojqda7" path="res://assets/Sound Effects/Click copy.wav" id="5_fbxgp"]
+
+[node name="MenuManager" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6bse5")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_wapdf")]
+visible = false
+layout_mode = 1
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_qt5lj")]
+visible = false
+layout_mode = 1
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("4_shyfh")
+volume_db = -15.0
+autoplay = true
+
+[node name="Click" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("5_fbxgp")
+volume_db = -11.886
