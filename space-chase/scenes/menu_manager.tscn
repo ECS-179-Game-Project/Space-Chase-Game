@@ -24,6 +24,8 @@ layout_mode = 1
 [node name="SettingsMenu" parent="." instance=ExtResource("3_qt5lj")]
 visible = false
 layout_mode = 1
+scale = Vector2(2, 2)
+size_flags_vertical = 1
 
 [node name="Audio" type="Node" parent="."]
 

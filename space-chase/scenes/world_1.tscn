@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b2jyfobu4xfr" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-1.png" id="5_nw6wv"]
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
-[ext_resource type="PackedScene" uid="uid://dxmqc26d75feq" path="res://scenes/player_banner.tscn" id="15_65r4o"]
+[ext_resource type="PackedScene" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hydm7"]
 friction = 0.0
