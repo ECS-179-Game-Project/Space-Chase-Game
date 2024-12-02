@@ -794,7 +794,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("1_eeylw")
 players = [NodePath("../Player1"), NodePath("../Player2")]
-players = [NodePath("../Player1"), NodePath("../Player2")]
 push_line_ratio = 0.8
 autoscroll_speed = 50.0
 end_zone = 1000.0
@@ -825,13 +824,11 @@ position = Vector2(-271, 120)
 texture_filter = 3
 position = Vector2(12, 38)
 player_color = Color(0, 0.45, 1, 1)
-player_color = Color(0, 0.45, 1, 1)
 
 [node name="Player2" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(58, 38)
 player_id = 1
-player_color = Color(1, 0, 0.0166664, 1)
 player_color = Color(1, 0, 0.0166664, 1)
 
 [node name="TilemapLayers" type="Node" parent="."]
