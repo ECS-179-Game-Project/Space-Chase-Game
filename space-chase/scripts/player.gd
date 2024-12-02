@@ -21,14 +21,20 @@ enum Facing {
 	RIGHT,
 }
 
+## Time in seconds in which jumping is possible
+## after no longer being on the floor
+const COYOTE_TIME_WINDOW: float = 0.06
+
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
+@export var player_color: Color = Color.BLACK
 @export var speed: float = 200.0
 @export var jump_force: float = 350.0
 @export var max_dashes: int = 1
 @export var dash_speed_factor: float = 130.0
 @export var dash_time: float = 0.15
-@export var ground_dash_cooldown: float = 1.0
+@export var ground_dash_cooldown: float = 0.7
 @export_range (0, 1800) var gravity: float = 1600.0
+@export var terminal_velocity: float = 400.0
 @export_range (1.0, 5.0) var fast_fall_factor: float = 2.0
 @export_range (0.0, 1.0) var hold_jump_gravity_reduction: float = 0.5
 
@@ -37,11 +43,14 @@ var dashes: int = max_dashes
 var is_dashing: bool = false
 var is_grabbing: bool = false # Currently grabbing/holding the othe player
 var is_grabbed: bool = false # Currently grabbed/held by the other player
+var is_fast_falling: bool = false
+var is_holding_jump: bool = false
 
 var _controls: PlayerControls # Initialized based on player_id
 var _dir: Vector2 # Stores direction of 8-way input
 var _dash_timer: Timer
 var _ground_dash_cooldown_timer: Timer
+var _coyote_timer: Timer
 var _thrown_stun_delay: Timer # Timer to wait until player can move after being thrown
 
 @onready var _main_animation_player: AnimationPlayer = $MovementAnimationPlayer
@@ -57,6 +66,10 @@ func _ready() -> void:
 	else:
 		print("ERROR: INVALID PLAYER_ID, CANNOT SET CONTROLS")
 	
+	# Set player color
+	if has_node("Sprite2D"):
+		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
+	
 	# Initialize timers
 	_dash_timer = Timer.new()
 	_dash_timer.one_shot = true
@@ -64,6 +77,9 @@ func _ready() -> void:
 	_ground_dash_cooldown_timer = Timer.new()
 	_ground_dash_cooldown_timer.one_shot = true
 	add_child(_ground_dash_cooldown_timer)
+	_coyote_timer = Timer.new()
+	_coyote_timer.one_shot = true
+	add_child(_coyote_timer)
 
 
 func _physics_process(delta: float) -> void:
@@ -75,27 +91,37 @@ func _physics_process(delta: float) -> void:
 	_handle_facing()
 	
 	# Handle gravity
-	if _is_in_normal_state():
+	if _is_in_normal_state() and (not is_on_floor()):
 		var apply_gravity: float = gravity * delta
-		if Input.is_action_pressed(_controls.down): # Fast fall
+		var acting_terminal_velocity: float = terminal_velocity
+		is_fast_falling = Input.is_action_pressed(_controls.down)
+		is_holding_jump = Input.is_action_pressed(_controls.up) and velocity.y < 0
+		if is_fast_falling:
 			apply_gravity *= fast_fall_factor
-		elif Input.is_action_pressed(_controls.up): # Hold jump
+			acting_terminal_velocity *= fast_fall_factor
+		elif is_holding_jump:
 			apply_gravity *= hold_jump_gravity_reduction
-		velocity.y += apply_gravity
+		velocity.y = min(velocity.y + apply_gravity, acting_terminal_velocity)
+	else:
+		is_fast_falling = false
+		is_holding_jump = false
 	
 	# Handle left and right movement
 	if _is_in_normal_state():
 		velocity.x = horizontal_dir * speed
+		
+	if is_on_floor():
+		_coyote_timer.start(COYOTE_TIME_WINDOW)
 
 	# Handle jumping
-	if _is_in_normal_state() and Input.is_action_pressed(_controls.up) and is_on_floor():
+	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.up) and (not _coyote_timer.is_stopped()):
 		_start_jump()
 	
 	# Handle going down platforms
 	var collide_with_platforms: bool = not Input.is_action_pressed(_controls.down)
 	set_collision_mask_value(2, collide_with_platforms)
 	
-	# Handle dashing		
+	# Handle dashing
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash) and dashes > 0 and _ground_dash_cooldown_timer.is_stopped():
 		_start_dash(delta)
 	elif is_dashing and _dash_timer.is_stopped():
@@ -111,6 +137,7 @@ func _physics_process(delta: float) -> void:
 
 func _start_jump() -> void:
 	velocity.y = -jump_force
+	_coyote_timer.stop()
 	_refill_dash()
 
 
@@ -130,7 +157,7 @@ func _start_dash(delta: float) -> void:
 
 func _end_dash() -> void:
 	is_dashing = false
-	velocity = Vector2.ZERO
+	velocity.y *= 0.4
 	if is_on_floor():
 		_ground_dash_cooldown_timer.start(ground_dash_cooldown)
 

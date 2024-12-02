@@ -749,7 +749,7 @@ sources/4 = SubResource("TileSetAtlasSource_gj23c")
 
 [node name="WorldAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_hpo4n")
-autoplay = true
+bus = &"MUSIC"
 script = ExtResource("1_t0e68")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -793,10 +793,10 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("1_eeylw")
-players = [NodePath("../Player1")]
+players = [NodePath("../Player1"), NodePath("../Player2")]
 push_line_ratio = 0.8
 autoscroll_speed = 50.0
-end_zone = 5000.0
+end_zone = 1000.0
 
 [node name="PlayerBanner" parent="AutoscrollCameraController" instance=ExtResource("15_65r4o")]
 z_index = 1
@@ -823,11 +823,13 @@ position = Vector2(-271, 120)
 [node name="Player1" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(12, 38)
+player_color = Color(0, 0.45, 1, 1)
 
 [node name="Player2" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(58, 38)
 player_id = 1
+player_color = Color(1, 0, 0.0166664, 1)
 
 [node name="TilemapLayers" type="Node" parent="."]
 

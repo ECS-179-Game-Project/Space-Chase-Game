@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_07eop"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_4vmwg"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="2_mneb7"]
-[ext_resource type="Shader" path="res://scenes/scroll.gdshader" id="2_u77s2"]
+[ext_resource type="Shader" path="res://scripts/shaders/scroll.gdshader" id="2_u77s2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_an5hx"]
 shader = ExtResource("2_u77s2")
@@ -28,27 +28,23 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -213.434
-offset_top = -150.685
-offset_right = 216.566
-offset_bottom = 169.315
+offset_left = -216.0
+offset_top = -152.0
+offset_right = 217.0
+offset_bottom = 169.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_mneb7")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -64.0
-offset_top = -40.0
 offset_right = 64.0
-offset_bottom = 40.0
+offset_bottom = 80.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -69,13 +65,23 @@ theme_override_fonts/font = ExtResource("2_4vmwg")
 text = "Quit"
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = -82.8361
-offset_top = -77.3973
-offset_right = 85.1639
-offset_bottom = -54.3973
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -157.5
+offset_top = -75.0
+offset_right = 157.5
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_4vmwg")
+theme_override_font_sizes/font_size = 30
 text = "SPACE CHASE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
