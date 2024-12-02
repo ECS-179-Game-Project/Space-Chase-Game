@@ -42,6 +42,8 @@ var dashes: int = max_dashes
 var is_dashing: bool = false
 var is_grabbing: bool = false # Currently grabbing/holding the othe player
 var is_grabbed: bool = false # Currently grabbed/held by the other player
+var is_fast_falling: bool = false
+var is_holding_jump: bool = false
 
 var _controls: PlayerControls # Initialized based on player_id
 var _dir: Vector2 # Stores direction of 8-way input
@@ -84,15 +86,20 @@ func _physics_process(delta: float) -> void:
 	_handle_facing()
 	
 	# Handle gravity
-	if _is_in_normal_state():
+	if _is_in_normal_state() and (not is_on_floor()):
 		var apply_gravity: float = gravity * delta
 		var acting_terminal_velocity: float = terminal_velocity
-		if Input.is_action_pressed(_controls.down): # Fast fall
+		is_fast_falling = Input.is_action_pressed(_controls.down)
+		is_holding_jump = Input.is_action_pressed(_controls.up) and velocity.y < 0
+		if is_fast_falling:
 			apply_gravity *= fast_fall_factor
 			acting_terminal_velocity *= fast_fall_factor
-		elif Input.is_action_pressed(_controls.up) and velocity.y < 0: # Hold jump
+		elif is_holding_jump:
 			apply_gravity *= hold_jump_gravity_reduction
 		velocity.y = min(velocity.y + apply_gravity, acting_terminal_velocity)
+	else:
+		is_fast_falling = false
+		is_holding_jump = false
 	
 	# Handle left and right movement
 	if _is_in_normal_state():
@@ -102,16 +109,14 @@ func _physics_process(delta: float) -> void:
 		_coyote_timer.start(COYOTE_TIME_WINDOW)
 
 	# Handle jumping
-	if (_is_in_normal_state() and Input.is_action_just_pressed(_controls.up) 
-		and !_coyote_timer.is_stopped()):
-		_coyote_timer.stop()
+	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.up) and (not _coyote_timer.is_stopped()):
 		_start_jump()
 	
 	# Handle going down platforms
 	var collide_with_platforms: bool = not Input.is_action_pressed(_controls.down)
 	set_collision_mask_value(2, collide_with_platforms)
 	
-	# Handle dashing		
+	# Handle dashing
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash) and dashes > 0 and _ground_dash_cooldown_timer.is_stopped():
 		_start_dash(delta)
 	elif is_dashing and _dash_timer.is_stopped():
@@ -127,6 +132,7 @@ func _physics_process(delta: float) -> void:
 
 func _start_jump() -> void:
 	velocity.y = -jump_force
+	_coyote_timer.stop()
 	_refill_dash()
 
 
