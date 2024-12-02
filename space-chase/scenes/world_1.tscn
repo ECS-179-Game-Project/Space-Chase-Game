@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=22 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
+[ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_qd1qe"]
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="1_t0e68"]
 [ext_resource type="Texture2D" uid="uid://bs4r5iub0pmra" path="res://assets/sprites/placeholders/placeholder_world_tileset.png" id="2_m5lnp"]
@@ -746,6 +747,8 @@ sources/4 = SubResource("TileSetAtlasSource_gj23c")
 [node name="World1" type="Node"]
 
 [node name="WorldAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_hpo4n")
+autoplay = true
 script = ExtResource("1_t0e68")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
