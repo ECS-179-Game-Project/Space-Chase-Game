@@ -26,7 +26,7 @@ enum Facing {
 const COYOTE_TIME_WINDOW: float = 0.06
 
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
-@export var player_color: Color
+@export var player_color: Color = Color.BLACK
 @export var speed: float = 200.0
 @export var jump_force: float = 350.0
 @export var max_dashes: int = 1
@@ -65,6 +65,10 @@ func _ready() -> void:
 		_controls = PlayerControls.get_p2_controls()
 	else:
 		print("ERROR: INVALID PLAYER_ID, CANNOT SET CONTROLS")
+	
+	# Set player color
+	if has_node("Sprite2D"):
+		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
 	
 	# Initialize timers
 	_dash_timer = Timer.new()
