@@ -32,6 +32,8 @@ func _ready() -> void:
 	background_music.global_position = get_viewport_rect().size / 2
 	click_sound.global_position = get_viewport_rect().size / 2
 	
+	background_music.finished.connect(_on_bg_music_finished)
+	
 	if not background_music.playing:
 		background_music.play()
 	
@@ -71,3 +73,7 @@ func leave_menu(menu_option: MenuOption, skip_transition: bool = false):
 
 func button_click():
 	click_sound.play(0.152)
+
+
+func _on_bg_music_finished() -> void:
+	background_music.play()

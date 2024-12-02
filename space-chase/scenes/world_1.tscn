@@ -1,13 +1,15 @@
-[gd_scene load_steps=23 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=26 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_qd1qe"]
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="1_t0e68"]
+[ext_resource type="Texture2D" uid="uid://britdfev6wq7a" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_corona.png" id="2_83ewc"]
 [ext_resource type="Texture2D" uid="uid://bs4r5iub0pmra" path="res://assets/sprites/placeholders/placeholder_world_tileset.png" id="2_m5lnp"]
 [ext_resource type="Texture2D" uid="uid://qio8qrcblxkf" path="res://assets/sprites/Terrain/stringstar fields/background_1.png" id="2_ta0tv"]
 [ext_resource type="Texture2D" uid="uid://dwbl63wf2gv10" path="res://assets/sprites/Terrain/stringstar fields/background_2.png" id="3_5md8k"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="3_korow"]
+[ext_resource type="Shader" path="res://scripts/shaders/scrolling_overlay.gdshader" id="3_xi84d"]
 [ext_resource type="PackedScene" uid="uid://brro3m5tumnva" path="res://scenes/platform.tscn" id="4_2flex"]
 [ext_resource type="Texture2D" uid="uid://ddo4y88qhgas6" path="res://assets/sprites/Terrain/stringstar fields/stringstar_tileset.png" id="4_6820w"]
 [ext_resource type="PackedScene" uid="uid://8uidvvapiws" path="res://scenes/wall_of_death.tscn" id="5_7ocf3"]
@@ -15,6 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mtm7a"]
+shader = ExtResource("3_xi84d")
+shader_parameter/weight = -0.1
+shader_parameter/speed = 0.02
+shader_parameter/overlay_texture = ExtResource("2_83ewc")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hydm7"]
 friction = 0.0
@@ -756,6 +764,8 @@ motion_scale = Vector2(0.25, 1)
 motion_mirroring = Vector2(576, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 3
+material = SubResource("ShaderMaterial_mtm7a")
 scale = Vector2(2, 2)
 texture = ExtResource("1_qd1qe")
 centered = false
@@ -844,7 +854,7 @@ tile_map_data = PackedByteArray("AADx/wQAAgAEAAQAAADy/wQAAgABAAQAAADy/wUAAgAEAAU
 tile_set = SubResource("TileSet_eny05")
 
 [node name="Background" type="TileMapLayer" parent="TilemapLayers"]
-modulate = Color(0.529067, 0.529067, 0.529067, 1)
+modulate = Color(0.37, 0.37, 0.37, 1)
 z_index = -5
 texture_filter = 3
 tile_map_data = PackedByteArray("AAD5//7/AgAIAAQAAAD5////AgAIAAUAAAD5/wAAAgAIAAYAAAD5/wEAAgAIAAcAAAD5/wIAAgAIAAgAAAD5/wMAAgAIAAkAAAD6//7/AgAJAAQAAAD6////AgAJAAUAAAD6/wAAAgAJAAYAAAD6/wEAAgAJAAcAAAD6/wIAAgAJAAgAAAD6/wMAAgAJAAkAAAD7//7/AgAKAAQAAAD7////AgAKAAUAAAD7/wAAAgAKAAYAAAD7/wEAAgAKAAcAAAD7/wIAAgAKAAgAAAD7/wMAAgAKAAkAAAAHAP7/AgAIAAQAAAAHAP//AgAIAAUAAAAHAAAAAgAIAAYAAAAHAAEAAgAIAAcAAAAHAAIAAgAIAAgAAAAHAAMAAgAIAAkAAAAIAP7/AgAJAAQAAAAIAP//AgAJAAUAAAAIAAAAAgAJAAYAAAAIAAEAAgAJAAcAAAAIAAIAAgAJAAgAAAAIAAMAAgAJAAkAAAAJAP7/AgAKAAQAAAAJAP//AgAKAAUAAAAJAAAAAgAKAAYAAAAJAAEAAgAKAAcAAAAJAAIAAgAKAAgAAAAJAAMAAgAKAAkAAAA=")
