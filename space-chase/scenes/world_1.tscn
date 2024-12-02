@@ -824,12 +824,13 @@ position = Vector2(-271, 120)
 [node name="Player1" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(12, 38)
+player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 
 [node name="Player2" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(58, 38)
 player_id = 1
-player_color = Color(0, 0.245365, 0.58115, 1)
+player_color = Color(0, 0.208508, 0.503089, 1)
 
 [node name="TilemapLayers" type="Node" parent="."]
 
