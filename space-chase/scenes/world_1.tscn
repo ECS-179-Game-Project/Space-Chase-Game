@@ -824,7 +824,6 @@ position = Vector2(-271, 120)
 [node name="Player1" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(12, 38)
-player_color = Color(0.526793, 1.2153e-06, 3.85046e-07, 1)
 
 [node name="Player2" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
