@@ -26,6 +26,7 @@ enum Facing {
 const COYOTE_TIME_WINDOW: float = 0.06
 
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
+@export var player_color: Color
 @export var speed: float = 200.0
 @export var jump_force: float = 350.0
 @export var max_dashes: int = 1
@@ -73,6 +74,10 @@ func _ready() -> void:
 	_coyote_timer = Timer.new()
 	_coyote_timer.one_shot = true
 	add_child(_coyote_timer)
+	
+	# Initialize color
+	if has_node("Sprite2D"):
+		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
 
 
 func _physics_process(delta: float) -> void:
