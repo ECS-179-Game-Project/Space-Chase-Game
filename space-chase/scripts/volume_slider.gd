@@ -7,6 +7,7 @@ var _bus_index: int
 func _ready() -> void:
 	value_changed.connect(_on_value_changed)
 	_bus_index = AudioServer.get_bus_index(bus)
+	value = AudioServer.get_bus_volume_db(_bus_index)
 	
 
 func _on_value_changed(new_value: float) -> void:

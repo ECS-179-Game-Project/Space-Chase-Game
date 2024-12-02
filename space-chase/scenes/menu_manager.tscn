@@ -38,6 +38,6 @@ parameters/looping = false
 
 [node name="Click" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("5_fbxgp")
-volume_db = -11.886
+volume_db = -18.0
 attenuation = 0.138696
 bus = &"SFX"

@@ -749,6 +749,7 @@ sources/4 = SubResource("TileSetAtlasSource_gj23c")
 
 [node name="WorldAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_hpo4n")
+volume_db = -8.0
 bus = &"MUSIC"
 script = ExtResource("1_t0e68")
 
