@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dau1eweqh1b1d"]
+[gd_scene load_steps=6 format=3 uid="uid://dojks3vldqq2a"]
 
 [ext_resource type="Script" path="res://scripts/menu_manager.gd" id="1_6bse5"]
 [ext_resource type="PackedScene" uid="uid://bkgl5v8ijl362" path="res://scenes/main_menu.tscn" id="2_wapdf"]
@@ -33,11 +33,9 @@ size_flags_vertical = 1
 stream = ExtResource("4_shyfh")
 volume_db = -15.0
 autoplay = true
-bus = &"MUSIC"
 parameters/looping = false
 
 [node name="Click" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("5_fbxgp")
 volume_db = -18.0
 attenuation = 0.138696
-bus = &"SFX"
