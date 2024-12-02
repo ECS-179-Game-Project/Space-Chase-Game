@@ -30,10 +30,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -215.0
-offset_top = -160.0
-offset_right = 215.0
-offset_bottom = 160.0
+offset_left = -213.434
+offset_top = -150.685
+offset_right = 216.566
+offset_bottom = 169.315
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_mneb7")
@@ -80,6 +80,15 @@ autoplay = true
 [node name="click" type="AudioStreamPlayer2D" parent="Music"]
 stream = ExtResource("4_6wybf")
 volume_db = -6.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -82.8361
+offset_top = -77.3973
+offset_right = 85.1639
+offset_bottom = -54.3973
+theme_override_fonts/font = ExtResource("2_4vmwg")
+text = "SPACE CHASE"
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
