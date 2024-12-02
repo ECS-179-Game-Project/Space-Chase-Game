@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bw5cb5fe23aa3"]
+[gd_scene load_steps=17 format=3 uid="uid://bw5cb5fe23aa3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6de28"]
 [ext_resource type="Script" path="res://scripts/dash_trail.gd" id="2_7oxdq"]
 [ext_resource type="Texture2D" uid="uid://cm32x0x4u0o0q" path="res://assets/sprites/Space Runner Assets/Astronaut/Astronaut_Idle.png" id="2_m3u3l"]
 [ext_resource type="Script" path="res://scripts/fast_fall_trail.gd" id="3_bkdlx"]
+[ext_resource type="Shader" path="res://scripts/shaders/player.gdshader" id="4_myf1c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fve6h"]
 radius = 7.0
@@ -19,6 +20,11 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0.470588, 0, 1, 1, 1, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_slsm3"]
 resource_local_to_scene = true
+shader = ExtResource("4_myf1c")
+shader_parameter/inputColor = Color(1, 0, 0, 1)
+shader_parameter/intensity = 0.6
+shader_parameter/blendOriginal = 0.9
+shader_parameter/tintColor = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_gf0q1"]
 length = 0.001
