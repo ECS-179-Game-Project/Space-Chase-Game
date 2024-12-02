@@ -18,9 +18,11 @@ grow_vertical = 2
 script = ExtResource("1_6bse5")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_wapdf")]
+visible = false
 layout_mode = 1
 
 [node name="SettingsMenu" parent="." instance=ExtResource("3_qt5lj")]
+visible = false
 layout_mode = 1
 scale = Vector2(2, 2)
 size_flags_vertical = 1
