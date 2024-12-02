@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkgl5v8ijl362"]
+[gd_scene load_steps=3 format=3 uid="uid://bkgl5v8ijl362"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_07eop"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_4vmwg"]
-[ext_resource type="AudioStream" uid="uid://c0aneki06jy5a" path="res://assets/Audio/DavidKBD - Cosmic Pack 01 - Cosmic Journey-full.ogg" id="3_qthxb"]
-[ext_resource type="AudioStream" uid="uid://khkjpvojqda7" path="res://assets/Sound Effects/Click copy.wav" id="4_6wybf"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -48,17 +46,6 @@ text = "Settings"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4vmwg")
 text = "Quit"
-
-[node name="Music" type="Node" parent="."]
-
-[node name="backgroundmusic" type="AudioStreamPlayer2D" parent="Music"]
-stream = ExtResource("3_qthxb")
-volume_db = -15.0
-autoplay = true
-
-[node name="click" type="AudioStreamPlayer2D" parent="Music"]
-stream = ExtResource("4_6wybf")
-volume_db = -11.886
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
