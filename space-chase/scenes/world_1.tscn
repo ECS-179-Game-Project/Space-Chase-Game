@@ -796,7 +796,7 @@ script = ExtResource("1_eeylw")
 players = [NodePath("../Player1"), NodePath("../Player2")]
 push_line_ratio = 0.8
 autoscroll_speed = 50.0
-end_zone = 500.0
+end_zone = 1000.0
 
 [node name="PlayerBanner" parent="AutoscrollCameraController" instance=ExtResource("15_65r4o")]
 z_index = 1

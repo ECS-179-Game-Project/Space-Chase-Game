@@ -21,6 +21,10 @@ enum Facing {
 	RIGHT,
 }
 
+## Time in seconds in which jumping is possible
+## after no longer being on the floor
+const COYOTE_TIME_WINDOW: float = 0.06
+
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
 @export var speed: float = 200.0
 @export var jump_force: float = 350.0
@@ -43,6 +47,7 @@ var _controls: PlayerControls # Initialized based on player_id
 var _dir: Vector2 # Stores direction of 8-way input
 var _dash_timer: Timer
 var _ground_dash_cooldown_timer: Timer
+var _coyote_timer: Timer
 var _thrown_stun_delay: Timer # Timer to wait until player can move after being thrown
 
 @onready var _main_animation_player: AnimationPlayer = $MovementAnimationPlayer
@@ -65,6 +70,9 @@ func _ready() -> void:
 	_ground_dash_cooldown_timer = Timer.new()
 	_ground_dash_cooldown_timer.one_shot = true
 	add_child(_ground_dash_cooldown_timer)
+	_coyote_timer = Timer.new()
+	_coyote_timer.one_shot = true
+	add_child(_coyote_timer)
 
 
 func _physics_process(delta: float) -> void:
@@ -89,9 +97,14 @@ func _physics_process(delta: float) -> void:
 	# Handle left and right movement
 	if _is_in_normal_state():
 		velocity.x = horizontal_dir * speed
+		
+	if is_on_floor():
+		_coyote_timer.start(COYOTE_TIME_WINDOW)
 
 	# Handle jumping
-	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.up) and is_on_floor():
+	if (_is_in_normal_state() and Input.is_action_just_pressed(_controls.up) 
+		and !_coyote_timer.is_stopped()):
+		_coyote_timer.stop()
 		_start_jump()
 	
 	# Handle going down platforms
@@ -113,7 +126,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _start_jump() -> void:
-	velocity.y += -jump_force
+	velocity.y = -jump_force
 	_refill_dash()
 
 
