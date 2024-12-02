@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dojks3vldqq2a"]
+[gd_scene load_steps=6 format=3 uid="uid://dau1eweqh1b1d"]
 
 [ext_resource type="Script" path="res://scripts/menu_manager.gd" id="1_6bse5"]
 [ext_resource type="PackedScene" uid="uid://bkgl5v8ijl362" path="res://scenes/main_menu.tscn" id="2_wapdf"]
@@ -18,11 +18,9 @@ grow_vertical = 2
 script = ExtResource("1_6bse5")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_wapdf")]
-visible = false
 layout_mode = 1
 
 [node name="SettingsMenu" parent="." instance=ExtResource("3_qt5lj")]
-visible = false
 layout_mode = 1
 scale = Vector2(2, 2)
 size_flags_vertical = 1
@@ -33,9 +31,11 @@ size_flags_vertical = 1
 stream = ExtResource("4_shyfh")
 volume_db = -15.0
 autoplay = true
+bus = &"MUSIC"
 parameters/looping = false
 
 [node name="Click" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("5_fbxgp")
 volume_db = -18.0
 attenuation = 0.138696
+bus = &"SFX"
