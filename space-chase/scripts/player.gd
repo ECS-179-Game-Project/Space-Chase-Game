@@ -55,6 +55,8 @@ var _thrown_stun_delay: Timer # Timer to wait until player can move after being 
 
 @onready var _main_animation_player: AnimationPlayer = $MovementAnimationPlayer
 @onready var _status_animation_player: AnimationPlayer = $StatusAnimationPlayer
+@onready var jump_sound: AudioStreamPlayer2D = $Audio/Jump
+@onready var run_sound: AudioStreamPlayer2D = $Audio/Run
 
 
 func _ready() -> void:
@@ -109,6 +111,11 @@ func _physics_process(delta: float) -> void:
 	# Handle left and right movement
 	if _is_in_normal_state():
 		velocity.x = horizontal_dir * speed
+		if is_on_floor() and velocity.x != 0:
+			if not run_sound.playing:
+				run_sound.play()
+		else:
+			run_sound.stop()
 		
 	if is_on_floor():
 		_coyote_timer.start(COYOTE_TIME_WINDOW)
@@ -116,6 +123,8 @@ func _physics_process(delta: float) -> void:
 	# Handle jumping
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.up) and (not _coyote_timer.is_stopped()):
 		_start_jump()
+		# Play jump sound
+		jump_sound.play()
 	
 	# Handle going down platforms
 	var collide_with_platforms: bool = not Input.is_action_pressed(_controls.down)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bc01ilmm548m6"
+path="res://.godot/imported/Hurt.ogg-ddac89f4c30f011415b42a88a3a60f31.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Game/Hurt.ogg"
+dest_files=["res://.godot/imported/Hurt.ogg-ddac89f4c30f011415b42a88a3a60f31.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

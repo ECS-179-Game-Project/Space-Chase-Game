@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dypkdd1kqhee7"
+path="res://.godot/imported/retroclick.ogg-3a68f7e4cb21ed13c5a578ecc524203f.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Game/retroclick.ogg"
+dest_files=["res://.godot/imported/retroclick.ogg-3a68f7e4cb21ed13c5a578ecc524203f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
