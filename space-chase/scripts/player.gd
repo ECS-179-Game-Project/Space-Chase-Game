@@ -29,6 +29,7 @@ enum Facing {
 @export var dash_time: float = 0.15
 @export var ground_dash_cooldown: float = 1.0
 @export_range (0, 1800) var gravity: float = 1600.0
+@export var terminal_velocity: float = 400.0
 @export_range (1.0, 5.0) var fast_fall_factor: float = 2.0
 @export_range (0.0, 1.0) var hold_jump_gravity_reduction: float = 0.5
 
@@ -77,18 +78,20 @@ func _physics_process(delta: float) -> void:
 	# Handle gravity
 	if _is_in_normal_state():
 		var apply_gravity: float = gravity * delta
+		var acting_terminal_velocity: float = terminal_velocity
 		if Input.is_action_pressed(_controls.down): # Fast fall
 			apply_gravity *= fast_fall_factor
-		elif Input.is_action_pressed(_controls.up): # Hold jump
+			acting_terminal_velocity *= fast_fall_factor
+		elif Input.is_action_pressed(_controls.up) and velocity.y < 0: # Hold jump
 			apply_gravity *= hold_jump_gravity_reduction
-		velocity.y += apply_gravity
+		velocity.y = min(velocity.y + apply_gravity, acting_terminal_velocity)
 	
 	# Handle left and right movement
 	if _is_in_normal_state():
 		velocity.x = horizontal_dir * speed
 
 	# Handle jumping
-	if _is_in_normal_state() and Input.is_action_pressed(_controls.up) and is_on_floor():
+	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.up) and is_on_floor():
 		_start_jump()
 	
 	# Handle going down platforms
@@ -110,7 +113,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _start_jump() -> void:
-	velocity.y = -jump_force
+	velocity.y += -jump_force
 	_refill_dash()
 
 
@@ -130,7 +133,7 @@ func _start_dash(delta: float) -> void:
 
 func _end_dash() -> void:
 	is_dashing = false
-	velocity = Vector2.ZERO
+	velocity.y *= 0.4
 	if is_on_floor():
 		_ground_dash_cooldown_timer.start(ground_dash_cooldown)
 
