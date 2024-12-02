@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b2jyfobu4xfr" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-1.png" id="5_nw6wv"]
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
-[ext_resource type="PackedScene" path="res://scenes/player_banner.tscn" id="15_65r4o"]
+[ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hydm7"]
 friction = 0.0
@@ -797,7 +797,6 @@ end_zone = 1000.0
 position = Vector2(-10, 23)
 stream = ExtResource("1_hpo4n")
 volume_db = -8.0
-bus = &"MUSIC"
 script = ExtResource("1_t0e68")
 
 [node name="PlayerBanner" parent="AutoscrollCameraController" instance=ExtResource("15_65r4o")]
@@ -825,13 +824,13 @@ position = Vector2(-271, 120)
 [node name="Player1" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(12, 38)
-player_color = Color(0, 0.45, 1, 1)
+player_color = Color(0.526793, 1.2153e-06, 3.85046e-07, 1)
 
 [node name="Player2" parent="." instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(58, 38)
 player_id = 1
-player_color = Color(1, 0, 0.0166664, 1)
+player_color = Color(0, 0.245365, 0.58115, 1)
 
 [node name="TilemapLayers" type="Node" parent="."]
 

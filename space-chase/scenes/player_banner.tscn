@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxmqc26d75feq"]
+[gd_scene load_steps=4 format=3 uid="uid://bkhtaki0c3a6t"]
 
 [ext_resource type="Texture2D" uid="uid://xm7atcl0g8nw" path="res://assets/sprites/Pixel UI pack/Player1Banner.png" id="1_cas51"]
 [ext_resource type="Texture2D" uid="uid://dtnmvhx6a1p6f" path="res://assets/sprites/Pixel UI pack/Player2Banner.png" id="2_uefe5"]
@@ -46,7 +46,7 @@ texture = ExtResource("1_cas51")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0301075
-anchor_top = 0.00462962
+anchor_top = 0.00462961
 anchor_right = 0.0301075
 anchor_bottom = 0.00462961
 offset_left = 58.0
