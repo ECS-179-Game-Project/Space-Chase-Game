@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=23 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b2jyfobu4xfr" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-1.png" id="5_nw6wv"]
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
+[ext_resource type="PackedScene" uid="uid://dxmqc26d75feq" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hydm7"]
 friction = 0.0
@@ -796,6 +797,19 @@ players = [NodePath("../Player1")]
 push_line_ratio = 0.8
 autoscroll_speed = 50.0
 end_zone = 5000.0
+
+[node name="PlayerBanner" parent="AutoscrollCameraController" instance=ExtResource("15_65r4o")]
+z_index = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 155.0
+offset_right = 19.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="WallOfDeath" parent="AutoscrollCameraController" instance=ExtResource("5_7ocf3")]
 position = Vector2(-271, -120)
