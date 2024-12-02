@@ -28,6 +28,10 @@ var _world_1: String = "res://scenes/world_1.tscn"
 func _ready() -> void:
 	change_menu(MenuState.MAIN)
 	
+	# Center the audio players
+	background_music.global_position = get_viewport_rect().size / 2
+	click_sound.global_position = get_viewport_rect().size / 2
+	
 	if not background_music.playing:
 		background_music.play()
 	
@@ -66,4 +70,4 @@ func leave_menu(menu_option: MenuOption, skip_transition: bool = false):
 
 
 func button_click():
-	click_sound.play()
+	click_sound.play(0.152)

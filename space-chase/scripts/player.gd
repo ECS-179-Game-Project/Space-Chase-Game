@@ -80,10 +80,6 @@ func _ready() -> void:
 	_coyote_timer = Timer.new()
 	_coyote_timer.one_shot = true
 	add_child(_coyote_timer)
-	
-	# Initialize color
-	if has_node("Sprite2D"):
-		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
 
 
 func _physics_process(delta: float) -> void:

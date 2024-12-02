@@ -20,7 +20,7 @@ void vertex() {
 void fragment() {
 	vec4 pixelColor = texture(TEXTURE, UV);
 	float greyscale = (pixelColor.r + pixelColor.g + pixelColor.b) / 3.0;
-	vec3 shiftedColor = vec3(greyscale) + (1.0 - pow(greyscale, 2.0)) * (intensity) * inputColor.rgb;
+	vec3 shiftedColor = vec3(greyscale) + (1.0 - pow(greyscale, 3.0)) * (intensity) * inputColor.rgb;
 	vec3 finalColor = mix(pixelColor.rgb, shiftedColor, blendOriginal);
 	finalColor = finalColor * tintColor.rgb;
 	//COLOR = color;

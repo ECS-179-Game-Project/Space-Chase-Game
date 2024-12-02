@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_07eop"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_4vmwg"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="2_mneb7"]
-[ext_resource type="Shader" path="res://scenes/scroll.gdshader" id="2_u77s2"]
+[ext_resource type="Shader" path="res://scripts/shaders/scroll.gdshader" id="2_u77s2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_an5hx"]
 shader = ExtResource("2_u77s2")
@@ -28,10 +28,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -213.434
-offset_top = -150.685
-offset_right = 216.566
-offset_bottom = 169.315
+offset_left = -216.0
+offset_top = -152.0
+offset_right = 217.0
+offset_bottom = 169.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_mneb7")
