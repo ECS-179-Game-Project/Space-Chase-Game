@@ -206,7 +206,7 @@ func _physics_process(delta: float) -> void:
 # -------------------- Public functions --------------------
 
 func instakill() -> void: # Called by hitbox
-	if is_dead:
+	if is_dead or is_ghost:
 		return
 	
 	is_dead = true
@@ -437,6 +437,7 @@ func _enable_interactions() -> void:
 func _disable_interactions() -> void:
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(2, false)
+	# Keep mask for bit 6 (world border)
 	# Disable all Area2D
 	for child in get_children():
 		if child is Area2D:
