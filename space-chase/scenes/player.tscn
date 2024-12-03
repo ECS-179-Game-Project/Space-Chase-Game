@@ -108,6 +108,38 @@ tracks/5/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_ew2cl"]
+resource_name = "dash"
+
+[sub_resource type="Animation" id="Animation_w3kns"]
+resource_name = "grab"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GrabBox/GrabBoxShape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
 [sub_resource type="Animation" id="Animation_f6scb"]
 resource_name = "idle"
 length = 0.6
@@ -168,34 +200,8 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_w3kns"]
-resource_name = "grab"
-length = 0.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:skew")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.785398, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GrabBox/GrabBoxShape:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
+[sub_resource type="Animation" id="Animation_uiiho"]
+resource_name = "jump"
 
 [sub_resource type="Animation" id="Animation_e3cah"]
 resource_name = "thrown"
@@ -240,12 +246,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_x7ik1"]
 resource_name = "run"
-
-[sub_resource type="Animation" id="Animation_uiiho"]
-resource_name = "jump"
-
-[sub_resource type="Animation" id="Animation_ew2cl"]
-resource_name = "dash"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_miii5"]
 _data = {
