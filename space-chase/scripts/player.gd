@@ -16,10 +16,10 @@ If dies, give the other player energy (through game state manager)
 If close to respective charging station, slowly charge up the station (through game state manager)
 """
 
-
-
 const COYOTE_TIME_WINDOW: float = 0.06 # Time in seconds in which jumping is possible after no longer being on the floor
 const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
+const RESPAWN_TIME: float = 2.0 # How long for player to respawn as a ghost
+const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
 @export var player_color: Color = Color.BLACK
@@ -33,6 +33,7 @@ const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
 @export var terminal_velocity: float = 400.0
 @export_range (1.0, 5.0) var fast_fall_factor: float = 2.0
 @export_range (0.0, 1.0) var hold_jump_gravity_reduction: float = 0.5
+@export var respawn_pos: Node2D = null
 
 var facing: Direction.Facing = Direction.Facing.RIGHT
 var is_stunned = false # During knockback from being thrown, dash stuns, and grab techs
@@ -42,13 +43,17 @@ var is_grabbing: bool = false # Currently grabbing/holding the othe player
 var is_grabbed: bool = false # Currently grabbed/held by the other player
 var is_fast_falling: bool = false
 var is_holding_jump: bool = false
+var is_dead: bool = false # Mutually exclusive to is_ghost
+var is_ghost: bool = false
 
 var _controls: PlayerControls # Initialized based on player_id
 var _dir: Vector2 # Stores direction of 8-way input
 var _dash_timer: Timer
 var _ground_dash_cooldown_timer: Timer
 var _coyote_timer: Timer
-var _stun_timer: Timer # Timer to wait while player is stunned from knockback
+var _stun_timer: Timer # Wait while player is stunned from knockback
+var _respawn_timer: Timer # Wait until player respawns as a ghost
+var _ghost_timer: Timer # Wait until player stops being a ghost
 var _held_target: Node2D = null
 
 @onready var _main_animation_player: AnimationPlayer = $MainAnimationPlayer
@@ -65,6 +70,10 @@ func _ready() -> void:
 		_controls = PlayerControls.get_p2_controls()
 	else:
 		print("ERROR: INVALID PLAYER_ID, CANNOT SET CONTROLS")
+	
+	# Check for respawn pos
+	if respawn_pos == null:
+		print("ERROR: respawn_pos must be set!")
 	
 	# Set player color
 	if has_node("Sprite2D"):
@@ -84,16 +93,33 @@ func _ready() -> void:
 	_stun_timer.one_shot = true
 	_stun_timer.timeout.connect(_stop_knockback)
 	add_child(_stun_timer)
+	_respawn_timer = Timer.new()
+	_respawn_timer.one_shot = true
+	_respawn_timer.timeout.connect(_start_ghost)
+	add_child(_respawn_timer)
+	_ghost_timer = Timer.new()
+	_ghost_timer.one_shot = true
+	_ghost_timer.timeout.connect(_stop_ghost)
+	add_child(_ghost_timer)
 
 
 func _physics_process(delta: float) -> void:
+	# Return early if dead (ghost players aren't considered dead)
+	if is_dead:
+		return
+	
 	# Get input direction
 	var horizontal_dir := Input.get_axis(_controls.left, _controls.right)
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
 	_dir = Vector2(horizontal_dir, vertical_dir).normalized()
 	
-	_handle_ordering()
-	_handle_facing()
+	_handle_ordering() # Z-index
+	_handle_facing() # Looking left/right
+	
+	# Ghost movement (return early to prevent normal movement)
+	if is_ghost:
+		_move_as_ghost(delta)
+		return
 	
 	# Handle gravity
 	if _can_move() and (not is_on_floor()):
@@ -119,13 +145,12 @@ func _physics_process(delta: float) -> void:
 				run_sound.play()
 		else:
 			run_sound.stop()
-		
-	if is_on_floor():
-		_coyote_timer.start(COYOTE_TIME_WINDOW)
 
 	# Handle jumping
 	if _can_move() and Input.is_action_just_pressed(_controls.up) and (not _coyote_timer.is_stopped()):
 		_start_jump()
+	if is_on_floor():
+		_coyote_timer.start(COYOTE_TIME_WINDOW)
 	
 	# Handle going down platforms
 	var collide_with_platforms: bool = not Input.is_action_pressed(_controls.down)
@@ -159,6 +184,18 @@ func _physics_process(delta: float) -> void:
 
 
 # -------------------- Public functions --------------------
+
+func instakill() -> void: # Called by hitbox
+	if is_dead:
+		return
+	
+	is_dead = true
+	_main_animation_player.play("death")
+	
+	_disable_interactions()
+	
+	_respawn_timer.start(RESPAWN_TIME)
+
 
 func hold(target: Node2D) -> void: # Called by grabbox
 	is_grabbing = true
@@ -211,6 +248,41 @@ func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 
 
 # -------------------- Private functions --------------------
+
+func _start_ghost() -> void:
+	is_dead = false
+	is_ghost = true
+	_main_animation_player.play("respawn_as_ghost")
+	global_position = respawn_pos.global_position
+	_ghost_timer.start(GHOST_TIME)
+
+
+func _stop_ghost() -> void: # Respawn as normal player
+	is_ghost = false
+	
+	_main_animation_player.play("respawn_as_normal")
+	
+	_enable_interactions()
+	
+	# Kill the player if inside solid ground
+	if test_move(global_transform, Vector2.ZERO):
+		instakill()
+		return
+
+
+func _move_as_ghost(delta: float) -> void:
+	# Ghost 8-way movement
+	if not is_dashing:
+		velocity = _dir * speed
+	
+	# Ghost dash
+	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash):
+		_start_dash(delta)
+	elif is_dashing and _dash_timer.is_stopped():
+		_end_dash()
+	
+	move_and_slide()
+
 
 # Used to apply knockback (during which the player is stunned)
 func _start_knockback(force: Vector2, stun_time: float) -> void:
@@ -286,7 +358,9 @@ func _refill_dash() -> void:
 
 
 func _handle_ordering() -> void:
-	if is_grabbed:
+	if is_ghost:
+		z_index = 1
+	elif is_grabbed:
 		z_index = -1
 	else:
 		z_index = 0
@@ -318,3 +392,21 @@ func _get_dash_dir(dir: Vector2) -> Vector2:
 		return Vector2(default_dir_x, 0.0)
 	else:
 		return dir
+
+
+func _enable_interactions() -> void:
+	set_collision_mask_value(1, true)
+	set_collision_mask_value(2, true)
+	# Enable all Area2D
+	for child in get_children():
+		if child is Area2D:
+			child.monitoring = true
+
+
+func _disable_interactions() -> void:
+	set_collision_mask_value(1, false)
+	set_collision_mask_value(2, false)
+	# Disable all Area2D
+	for child in get_children():
+		if child is Area2D:
+			child.monitoring = false
