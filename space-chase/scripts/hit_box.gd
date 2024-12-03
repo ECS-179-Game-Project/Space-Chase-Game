@@ -6,8 +6,8 @@ Everything in the game is instakill
 """
 
 func _init() -> void:
-	collision_layer = 0
-	collision_mask = 8
+	set_collision_layer_value(4, true)
+	set_collision_mask_value(3, true) # Detect hurtboxes
 	area_entered.connect(_on_hurtbox_entered)
 
 

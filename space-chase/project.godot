@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 GameStateManager="*res://scripts/game_state_manager.gd"
 PowerupManager="*res://scripts/powerup_manager.gd"
+Direction="*res://scripts/direction.gd"
 
 [display]
 
