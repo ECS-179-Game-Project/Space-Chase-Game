@@ -122,7 +122,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# Handle gravity
-	if _can_move() and (not is_on_floor()):
+	if (not is_dashing) and (not is_grabbed) and (not is_on_floor()):
 		var apply_gravity: float = gravity * delta
 		var acting_terminal_velocity: float = terminal_velocity
 		is_fast_falling = Input.is_action_pressed(_controls.down)
@@ -207,12 +207,13 @@ func got_grabbed() -> void: # Called by grabbox
 	_main_animation_player.play("is_grabbed")
 
 
-func thrown(direction: Direction.Facing) -> void:
+func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
 	is_grabbed = false
 	var x_force: float = 300.0
-	var y_force_damping: float = 0.7
-	var force := Vector2(Direction.get_sign_factor(direction) * x_force, y_force_damping * -x_force)
-	_start_knockback(force, 0.2)
+	var y_force_damping: float = 1.0
+	var high_throw_factor: float = 1.5 if high_throw else 1.0
+	var force := Vector2(Direction.get_sign_factor(direction) * x_force, high_throw_factor * y_force_damping * -x_force)
+	_start_knockback(force, 0.4)
 
 
 func released() -> void:
@@ -313,7 +314,8 @@ func _try_grab() -> void:
 
 func _throw() -> void: # Held target is thrown ahead
 	is_grabbing = false
-	_held_target.thrown(facing)
+	var high_throw: bool = Input.is_action_pressed(_controls.up)
+	_held_target.thrown(facing, high_throw)
 	_held_target = null
 
 

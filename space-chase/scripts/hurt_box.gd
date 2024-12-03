@@ -13,5 +13,8 @@ func _init() -> void:
 func _on_hurtbox_entered(hurtbox:HurtBox) -> void:
 	var target := hurtbox.owner
 	
+	if target is Player and target.is_ghost:
+		return
+	
 	if hurt_owner.is_dashing and target.has_method("dash_stun"):
 		target.dash_stun(hurt_owner.facing)
