@@ -60,7 +60,6 @@ func leave_menu(menu_option: MenuOption, skip_transition: bool = false):
 				"pattern": "squares",
 				"skip_fade_out": skip_transition,
 				"skip_fade_in": skip_transition,
-				"on_fade_in": GameStateManager.level_entered.emit,
 			})
 		MenuOption.QUIT:
 			SceneManager.fade_out({

@@ -16,6 +16,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6bse5")
+instant_start = true
 
 [node name="MainMenu" parent="." instance=ExtResource("2_wapdf")]
 visible = false

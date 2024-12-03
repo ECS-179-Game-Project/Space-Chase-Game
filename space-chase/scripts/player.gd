@@ -16,14 +16,10 @@ If dies, give the other player energy (through game state manager)
 If close to respective charging station, slowly charge up the station (through game state manager)
 """
 
-enum Facing {
-	LEFT,
-	RIGHT,
-}
 
-## Time in seconds in which jumping is possible
-## after no longer being on the floor
-const COYOTE_TIME_WINDOW: float = 0.06
+
+const COYOTE_TIME_WINDOW: float = 0.06 # Time in seconds in which jumping is possible after no longer being on the floor
+const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
 
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
 @export var player_color: Color = Color.BLACK
@@ -38,7 +34,8 @@ const COYOTE_TIME_WINDOW: float = 0.06
 @export_range (1.0, 5.0) var fast_fall_factor: float = 2.0
 @export_range (0.0, 1.0) var hold_jump_gravity_reduction: float = 0.5
 
-var facing: Facing = Facing.RIGHT
+var facing: Direction.Facing = Direction.Facing.RIGHT
+var is_stunned = false # During knockback from being thrown, dash stuns, and grab techs
 var dashes: int = max_dashes
 var is_dashing: bool = false
 var is_grabbing: bool = false # Currently grabbing/holding the othe player
@@ -51,9 +48,10 @@ var _dir: Vector2 # Stores direction of 8-way input
 var _dash_timer: Timer
 var _ground_dash_cooldown_timer: Timer
 var _coyote_timer: Timer
-var _thrown_stun_delay: Timer # Timer to wait until player can move after being thrown
+var _stun_timer: Timer # Timer to wait while player is stunned from knockback
+var _held_target: Node2D = null
 
-@onready var _main_animation_player: AnimationPlayer = $MovementAnimationPlayer
+@onready var _main_animation_player: AnimationPlayer = $MainAnimationPlayer
 @onready var _status_animation_player: AnimationPlayer = $StatusAnimationPlayer
 @onready var jump_sound: AudioStreamPlayer2D = $Audio/Jump
 @onready var run_sound: AudioStreamPlayer2D = $Audio/Run
@@ -82,6 +80,10 @@ func _ready() -> void:
 	_coyote_timer = Timer.new()
 	_coyote_timer.one_shot = true
 	add_child(_coyote_timer)
+	_stun_timer = Timer.new()
+	_stun_timer.one_shot = true
+	_stun_timer.timeout.connect(_stop_knockback)
+	add_child(_stun_timer)
 
 
 func _physics_process(delta: float) -> void:
@@ -90,10 +92,11 @@ func _physics_process(delta: float) -> void:
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
 	_dir = Vector2(horizontal_dir, vertical_dir).normalized()
 	
+	_handle_ordering()
 	_handle_facing()
 	
 	# Handle gravity
-	if _is_in_normal_state() and (not is_on_floor()):
+	if _can_move() and (not is_on_floor()):
 		var apply_gravity: float = gravity * delta
 		var acting_terminal_velocity: float = terminal_velocity
 		is_fast_falling = Input.is_action_pressed(_controls.down)
@@ -109,7 +112,7 @@ func _physics_process(delta: float) -> void:
 		is_holding_jump = false
 	
 	# Handle left and right movement
-	if _is_in_normal_state():
+	if _can_move():
 		velocity.x = horizontal_dir * speed
 		if is_on_floor() and velocity.x != 0:
 			if not run_sound.playing:
@@ -121,14 +124,25 @@ func _physics_process(delta: float) -> void:
 		_coyote_timer.start(COYOTE_TIME_WINDOW)
 
 	# Handle jumping
-	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.up) and (not _coyote_timer.is_stopped()):
+	if _can_move() and Input.is_action_just_pressed(_controls.up) and (not _coyote_timer.is_stopped()):
 		_start_jump()
-		# Play jump sound
-		jump_sound.play()
 	
 	# Handle going down platforms
 	var collide_with_platforms: bool = not Input.is_action_pressed(_controls.down)
 	set_collision_mask_value(2, collide_with_platforms)
+	
+	# Handle grabbing
+	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.grab):
+		_try_grab()
+	# Handle throwing
+	if is_grabbing and (not Input.is_action_pressed(_controls.grab)):
+		if Input.is_action_pressed(_controls.down):
+			_release()
+		else:
+			_throw()
+	# Move the held player relatively
+	if is_grabbing and _held_target:
+		_move_held_target()
 	
 	# Handle dashing
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash) and dashes > 0 and _ground_dash_cooldown_timer.is_stopped():
@@ -144,14 +158,107 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+# -------------------- Public functions --------------------
+
+func hold(target: Node2D) -> void: # Called by grabbox
+	is_grabbing = true
+	_held_target = target
+
+
+func got_grabbed() -> void: # Called by grabbox
+	is_grabbed = true
+	_main_animation_player.play("is_grabbed")
+
+
+func thrown() -> void:
+	print("thrown")
+	is_grabbed = false
+	var x_force: float = 300.0
+	var y_force_damping: float = 0.7
+	var force := Vector2(Direction.get_sign_factor(facing) * x_force, y_force_damping * -x_force)
+	_start_knockback(force, 0.2)
+
+
+func released() -> void:
+	is_grabbed = false
+	var x_force: float = 100
+	var force := Vector2(Direction.get_sign_factor(facing) * x_force, x_force)
+	_start_knockback(force, 0.2)
+
+
+func grab_tech() -> void: # Called by grabbox
+	# BUG: When grab teching the grabboxes are still enabled
+	# Players are also being thrown instead of just grab teching
+	
+	# Backwards knockback
+	is_grabbing = false
+	is_grabbed = false
+	var x_force: float = 10.0
+	var x_force_sign: float = Direction.get_sign_factor(Direction.get_opposite_faing(facing))
+	var y_force_damping: float = 0.7
+	var force := Vector2(x_force_sign * x_force, y_force_damping * -x_force)
+	_start_knockback(force, 0.5)
+
+
+func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
+	# Backwards knockback
+	is_grabbed = false
+	_end_dash()
+	var x_force: float = 100.0
+	var x_force_sign: float = Direction.get_sign_factor(direction)
+	var y_force_damping: float = 0.5
+	var force := Vector2(x_force_sign * x_force, y_force_damping * -x_force)
+	_start_knockback(force, 0.3)
+
+
+# -------------------- Private functions --------------------
+
+# Used to apply knockback (during which the player is stunned)
+func _start_knockback(force: Vector2, stun_time: float) -> void:
+	is_stunned = true
+	_main_animation_player.play("knockback")
+	
+	velocity = force
+	
+	_stun_timer.start(stun_time)
+
+
+func _stop_knockback():
+	is_stunned = false
+	_main_animation_player.stop()
+
+
 func _start_jump() -> void:
 	velocity.y = -jump_force
 	_coyote_timer.stop()
 	_refill_dash()
+	jump_sound.play()
 
 
-func _gets_grabbed() -> void:
-	_main_animation_player.play("is_grabbed")
+func _try_grab() -> void:
+	_main_animation_player.play("grab") # Temporarily enables grabbox
+	# Grab logic handled by grabbox
+
+
+func _throw() -> void: # Held target is thrown ahead
+	is_grabbing = false
+	_held_target.thrown()
+	_held_target = null
+
+
+func _release() -> void: # Held target is released from the grab
+	is_grabbing = false
+	_held_target.released()
+	_held_target = null
+
+
+func _move_held_target() -> void:
+	_held_target.global_position = global_position + Vector2(0, -HELD_POS_HEIGHT)
+	if velocity.x > 0.0:
+		_held_target.facing = Direction.Facing.RIGHT
+	elif velocity.x < 0.0:
+		_held_target.facing = Direction.Facing.LEFT
+	Direction.flip_horizontal(_held_target, facing)
 
 
 func _start_dash(delta: float) -> void:
@@ -179,25 +286,33 @@ func _refill_dash() -> void:
 		_status_animation_player.play("dash_recharge")
 
 
+func _handle_ordering() -> void:
+	if is_grabbed:
+		z_index = -1
+	else:
+		z_index = 0
+
+
 func _handle_facing() -> void:
 	if velocity.x > 0.0:
-		facing = Facing.RIGHT
-		rotation_degrees = 0
-		scale.y = abs(scale.y)
+		facing = Direction.Facing.RIGHT
 	elif velocity.x < 0.0:
-		facing = Facing.LEFT
-		rotation_degrees = 180
-		scale.y = -1.0 * abs(scale.y)
+		facing = Direction.Facing.LEFT
+	Direction.flip_horizontal(self, facing)
 
 
 func _is_in_normal_state() -> bool:
-	return (not is_dashing) and (not is_grabbing) and (not is_grabbed)
+	return (not is_dashing) and (not is_grabbing) and (not is_grabbed) and (not is_stunned)
+
+
+func _can_move() -> bool:
+	return (not is_dashing) and (not is_grabbed) and (not is_stunned)
 
 
 func _get_dash_dir(dir: Vector2) -> Vector2:
 	if dir == Vector2.ZERO:
 		var default_dir_x: float
-		if facing == Facing.RIGHT:
+		if facing == Direction.Facing.RIGHT:
 			default_dir_x = 1.0
 		else:
 			default_dir_x = -1.0
