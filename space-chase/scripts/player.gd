@@ -171,7 +171,6 @@ func got_grabbed() -> void: # Called by grabbox
 
 
 func thrown() -> void:
-	print("thrown")
 	is_grabbed = false
 	var x_force: float = 300.0
 	var y_force_damping: float = 0.7
