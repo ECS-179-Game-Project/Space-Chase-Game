@@ -18,6 +18,8 @@ If close to respective charging station, slowly charge up the station (through g
 
 const COYOTE_TIME_WINDOW: float = 0.06 # Time in seconds in which jumping is possible after no longer being on the floor
 const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
+const HOLD_TIME: float = 5.0 # How long a player is able to hold
+const HOLD_TIMER_REDUCTION: float = 0.5 # How much to reduce the hold timer for each button mashed by held player
 const RESPAWN_TIME: float = 2.0 # How long for player to respawn as a ghost
 const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 
@@ -48,6 +50,7 @@ var is_ghost: bool = false
 
 var _controls: PlayerControls # Initialized based on player_id
 var _dir: Vector2 # Stores direction of 8-way input
+var _hold_timer: Timer
 var _dash_timer: Timer
 var _ground_dash_cooldown_timer: Timer
 var _coyote_timer: Timer
@@ -63,6 +66,8 @@ var _held_target: Node2D = null
 
 
 func _ready() -> void:
+	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
+	
 	# Set contrls based on player_id
 	if player_id == GameStateManager.PlayerID.PLAYER_1:
 		_controls = PlayerControls.get_p1_controls()
@@ -80,6 +85,9 @@ func _ready() -> void:
 		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
 	
 	# Initialize timers
+	_hold_timer = Timer.new()
+	_hold_timer.one_shot = true
+	add_child(_hold_timer)
 	_dash_timer = Timer.new()
 	_dash_timer.one_shot = true
 	add_child(_dash_timer)
@@ -159,15 +167,27 @@ func _physics_process(delta: float) -> void:
 	# Handle grabbing
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.grab):
 		_try_grab()
+	# Handle forced release
+	if is_grabbing and _hold_timer.is_stopped():
+		_release()
 	# Handle throwing
-	if is_grabbing and (not Input.is_action_pressed(_controls.grab)):
+	elif is_grabbing and (not Input.is_action_pressed(_controls.grab)):
+		# Voluntary release
 		if Input.is_action_pressed(_controls.down):
 			_release()
+		# Normal or high throw
 		else:
-			_throw()
+			var high_throw: bool = Input.is_action_pressed(_controls.up)
+			_throw(high_throw)
+	
 	# Move the held player relatively
 	if is_grabbing and _held_target:
 		_move_held_target()
+	
+	# Allow held player to mash out
+	if is_grabbed and _controls.any_control_just_pressed():
+		_status_animation_player.play("mashing_while_held")
+		GameStateManager.player_mashing_while_held.emit()
 	
 	# Handle dashing
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash) and dashes > 0 and _ground_dash_cooldown_timer.is_stopped():
@@ -200,6 +220,7 @@ func instakill() -> void: # Called by hitbox
 func hold(target: Node2D) -> void: # Called by grabbox
 	is_grabbing = true
 	_held_target = target
+	_hold_timer.start(HOLD_TIME)
 
 
 func got_grabbed() -> void: # Called by grabbox
@@ -224,8 +245,7 @@ func released() -> void:
 
 
 func grab_tech() -> void: # Called by grabbox
-	# BUG: When grab teching the grabboxes are still enabled
-	# Players are also being thrown instead of just grab teching
+	# BUG: When grab teching the grabboxes are still enabled. Players are also being thrown instead of just grab teching
 	
 	# Backwards knockback
 	is_grabbing = false
@@ -312,9 +332,8 @@ func _try_grab() -> void:
 	# Grab logic handled by grabbox
 
 
-func _throw() -> void: # Held target is thrown ahead
+func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
 	is_grabbing = false
-	var high_throw: bool = Input.is_action_pressed(_controls.up)
 	_held_target.thrown(facing, high_throw)
 	_held_target = null
 
@@ -332,6 +351,16 @@ func _move_held_target() -> void:
 	elif velocity.x < 0.0:
 		_held_target.facing = Direction.Facing.LEFT
 	Direction.flip_horizontal(_held_target, facing)
+
+
+func _reduce_hold_timer() -> void:
+	if _hold_timer.is_stopped() or is_zero_approx(_hold_timer.time_left):
+		return
+	var new_hold_time = _hold_timer.time_left - HOLD_TIMER_REDUCTION
+	if new_hold_time <= 0:
+		_hold_timer.stop()
+	else:
+		_hold_timer.start(new_hold_time)
 
 
 func _start_dash(delta: float) -> void:
