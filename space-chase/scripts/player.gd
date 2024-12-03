@@ -170,11 +170,11 @@ func got_grabbed() -> void: # Called by grabbox
 	_main_animation_player.play("is_grabbed")
 
 
-func thrown() -> void:
+func thrown(direction: Direction.Facing) -> void:
 	is_grabbed = false
 	var x_force: float = 300.0
 	var y_force_damping: float = 0.7
-	var force := Vector2(Direction.get_sign_factor(facing) * x_force, y_force_damping * -x_force)
+	var force := Vector2(Direction.get_sign_factor(direction) * x_force, y_force_damping * -x_force)
 	_start_knockback(force, 0.2)
 
 
@@ -241,7 +241,7 @@ func _try_grab() -> void:
 
 func _throw() -> void: # Held target is thrown ahead
 	is_grabbing = false
-	_held_target.thrown()
+	_held_target.thrown(facing)
 	_held_target = null
 
 
