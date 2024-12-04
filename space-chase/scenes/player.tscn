@@ -529,12 +529,11 @@ libraries = {
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("6_jxy51")
-volume_db = -16.0
-pitch_scale = 0.6
+volume_db = -20.0
+pitch_scale = 1.5
 bus = &"SFX"
 
 [node name="Run" type="AudioStreamPlayer2D" parent="Audio"]
-volume_db = 24.0
 bus = &"SFX"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
