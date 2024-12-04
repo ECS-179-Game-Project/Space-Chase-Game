@@ -3,6 +3,7 @@ extends Control
 
 enum MenuState {
 	MAIN,
+	CONTROLS,
 	SETTINGS,
 }
 
@@ -20,6 +21,7 @@ var _world_1: String = "res://scenes/world_1.tscn"
 @onready var menu_states := {
 	MenuState.MAIN: $MainMenu,
 	MenuState.SETTINGS: $SettingsMenu,
+	MenuState.CONTROLS: $ControlsMenu,
 }
 @onready var background_music: AudioStreamPlayer2D = $Audio/BackgroundMusic
 @onready var click_sound: AudioStreamPlayer2D = $Audio/Click
@@ -36,7 +38,7 @@ func _ready() -> void:
 		background_music.play()
 	
 	if instant_start:
-		leave_menu(MenuOption.START, true)
+		leave_menu(MenuOption.START, false)
 
 
 func change_menu(new_menu: MenuState):
@@ -60,7 +62,6 @@ func leave_menu(menu_option: MenuOption, skip_transition: bool = false):
 				"pattern": "squares",
 				"skip_fade_out": skip_transition,
 				"skip_fade_in": skip_transition,
-				"on_fade_in": GameStateManager.level_entered.emit,
 			})
 		MenuOption.QUIT:
 			SceneManager.fade_out({

@@ -49,6 +49,8 @@ func _physics_process(delta: float) -> void:
 			
 		var global_push_line_x: float = global_position.x + _push_line_x
 		for player in players:
+			if player.is_ghost:
+				continue
 			
 			# Push right if player crosses the line
 			if player.global_position.x > global_push_line_x:

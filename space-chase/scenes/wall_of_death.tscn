@@ -69,14 +69,15 @@ _data = {
 "chase": SubResource("Animation_1h4tm")
 }
 
-[node name="WallOfDeath" type="Area2D"]
+[node name="WallOfDeathHitBox" type="Area2D"]
 z_index = 10
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_o62r1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HitBoxShape" type="CollisionShape2D" parent="."]
 shape = SubResource("WorldBoundaryShape2D_u2fpk")
+debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_dnn4c")

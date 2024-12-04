@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkgl5v8ijl362"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_07eop"]
+[ext_resource type="Script" path="res://scripts/Menu scripts/main_menu.gd" id="1_07eop"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_4vmwg"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="2_mneb7"]
 [ext_resource type="Shader" path="res://scripts/shaders/scroll.gdshader" id="2_u77s2"]
@@ -59,6 +59,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4vmwg")
 text = "Settings"
 
+[node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4vmwg")
+text = "Controls"
+
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_4vmwg")
@@ -86,4 +91,5 @@ vertical_alignment = 1
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
