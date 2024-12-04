@@ -18,6 +18,8 @@ If close to respective charging station, slowly charge up the station (through g
 
 const COYOTE_TIME_WINDOW: float = 0.06 # Time in seconds in which jumping is possible after no longer being on the floor
 const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
+const HOLD_TIME: float = 5.0 # How long a player is able to hold
+const HOLD_TIMER_REDUCTION: float = 0.5 # How much to reduce the hold timer for each button mashed by held player
 const RESPAWN_TIME: float = 2.0 # How long for player to respawn as a ghost
 const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 
@@ -48,6 +50,7 @@ var is_ghost: bool = false
 
 var _controls: PlayerControls # Initialized based on player_id
 var _dir: Vector2 # Stores direction of 8-way input
+var _hold_timer: Timer
 var _dash_timer: Timer
 var _ground_dash_cooldown_timer: Timer
 var _coyote_timer: Timer
@@ -63,6 +66,8 @@ var _held_target: Node2D = null
 
 
 func _ready() -> void:
+	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
+	
 	# Set contrls based on player_id
 	if player_id == GameStateManager.PlayerID.PLAYER_1:
 		_controls = PlayerControls.get_p1_controls()
@@ -80,6 +85,9 @@ func _ready() -> void:
 		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
 	
 	# Initialize timers
+	_hold_timer = Timer.new()
+	_hold_timer.one_shot = true
+	add_child(_hold_timer)
 	_dash_timer = Timer.new()
 	_dash_timer.one_shot = true
 	add_child(_dash_timer)
@@ -122,7 +130,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# Handle gravity
-	if _can_move() and (not is_on_floor()):
+	if (not is_dashing) and (not is_grabbed) and (not is_on_floor()):
 		var apply_gravity: float = gravity * delta
 		var acting_terminal_velocity: float = terminal_velocity
 		is_fast_falling = Input.is_action_pressed(_controls.down)
@@ -159,15 +167,27 @@ func _physics_process(delta: float) -> void:
 	# Handle grabbing
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.grab):
 		_try_grab()
+	# Handle forced release
+	if is_grabbing and _hold_timer.is_stopped():
+		_release()
 	# Handle throwing
-	if is_grabbing and (not Input.is_action_pressed(_controls.grab)):
+	elif is_grabbing and (not Input.is_action_pressed(_controls.grab)):
+		# Voluntary release
 		if Input.is_action_pressed(_controls.down):
 			_release()
+		# Normal or high throw
 		else:
-			_throw()
+			var high_throw: bool = Input.is_action_pressed(_controls.up)
+			_throw(high_throw)
+	
 	# Move the held player relatively
 	if is_grabbing and _held_target:
 		_move_held_target()
+	
+	# Allow held player to mash out
+	if is_grabbed and _controls.any_control_just_pressed():
+		_status_animation_player.play("mashing_while_held")
+		GameStateManager.player_mashing_while_held.emit()
 	
 	# Handle dashing
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash) and dashes > 0 and _ground_dash_cooldown_timer.is_stopped():
@@ -186,8 +206,10 @@ func _physics_process(delta: float) -> void:
 # -------------------- Public functions --------------------
 
 func instakill() -> void: # Called by hitbox
-	if is_dead:
+	if is_dead or is_ghost:
 		return
+	
+	_reset_status() # Safety check incase of incorrect statuses
 	
 	is_dead = true
 	_main_animation_player.play("death")
@@ -200,6 +222,7 @@ func instakill() -> void: # Called by hitbox
 func hold(target: Node2D) -> void: # Called by grabbox
 	is_grabbing = true
 	_held_target = target
+	_hold_timer.start(HOLD_TIME)
 
 
 func got_grabbed() -> void: # Called by grabbox
@@ -207,12 +230,13 @@ func got_grabbed() -> void: # Called by grabbox
 	_main_animation_player.play("is_grabbed")
 
 
-func thrown(direction: Direction.Facing) -> void:
+func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
 	is_grabbed = false
 	var x_force: float = 300.0
-	var y_force_damping: float = 0.7
-	var force := Vector2(Direction.get_sign_factor(direction) * x_force, y_force_damping * -x_force)
-	_start_knockback(force, 0.2)
+	var y_force_damping: float = 1.0
+	var high_throw_factor: float = 1.5 if high_throw else 1.0
+	var force := Vector2(Direction.get_sign_factor(direction) * x_force, high_throw_factor * y_force_damping * -x_force)
+	_start_knockback(force, 0.4)
 
 
 func released() -> void:
@@ -223,8 +247,7 @@ func released() -> void:
 
 
 func grab_tech() -> void: # Called by grabbox
-	# BUG: When grab teching the grabboxes are still enabled
-	# Players are also being thrown instead of just grab teching
+	# BUG: When grab teching the grabboxes are still enabled. Players are also being thrown instead of just grab teching
 	
 	# Backwards knockback
 	is_grabbing = false
@@ -276,7 +299,7 @@ func _move_as_ghost(delta: float) -> void:
 		velocity = _dir * speed
 	
 	# Ghost dash
-	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash):
+	if (not is_dashing) and Input.is_action_just_pressed(_controls.dash):
 		_start_dash(delta)
 	elif is_dashing and _dash_timer.is_stopped():
 		_end_dash()
@@ -311,9 +334,9 @@ func _try_grab() -> void:
 	# Grab logic handled by grabbox
 
 
-func _throw() -> void: # Held target is thrown ahead
+func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
 	is_grabbing = false
-	_held_target.thrown(facing)
+	_held_target.thrown(facing, high_throw)
 	_held_target = null
 
 
@@ -330,6 +353,16 @@ func _move_held_target() -> void:
 	elif velocity.x < 0.0:
 		_held_target.facing = Direction.Facing.LEFT
 	Direction.flip_horizontal(_held_target, facing)
+
+
+func _reduce_hold_timer() -> void:
+	if _hold_timer.is_stopped() or is_zero_approx(_hold_timer.time_left):
+		return
+	var new_hold_time = _hold_timer.time_left - HOLD_TIMER_REDUCTION
+	if new_hold_time <= 0:
+		_hold_timer.stop()
+	else:
+		_hold_timer.start(new_hold_time)
 
 
 func _start_dash(delta: float) -> void:
@@ -375,7 +408,7 @@ func _handle_facing() -> void:
 
 
 func _is_in_normal_state() -> bool:
-	return (not is_dashing) and (not is_grabbing) and (not is_grabbed) and (not is_stunned)
+	return (not is_dashing) and (not is_grabbing) and (not is_grabbed) and (not is_stunned) and (not is_ghost)
 
 
 func _can_move() -> bool:
@@ -406,7 +439,19 @@ func _enable_interactions() -> void:
 func _disable_interactions() -> void:
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(2, false)
+	# Keep mask for bit 6 (world border)
 	# Disable all Area2D
 	for child in get_children():
 		if child is Area2D:
 			child.monitoring = false
+
+
+func _reset_status() -> void:
+	is_stunned = false
+	is_dashing = false
+	is_grabbing = false
+	is_grabbed = false
+	is_fast_falling = false
+	is_holding_jump = false
+	is_dead = false
+	is_ghost = false

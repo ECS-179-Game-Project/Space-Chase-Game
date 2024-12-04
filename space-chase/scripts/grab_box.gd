@@ -23,6 +23,9 @@ func _on_grabbox_entered(grabbox: GrabBox) -> void:
 func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
 	var target := hurtbox.owner
 	
-	if target.has_method("got_grabbed") and grab_owner != target:
+	if target is Player and target.is_ghost:
+		return
+	
+	if grab_owner != target and target.has_method("got_grabbed"):
 		target.got_grabbed()
 		grab_owner.hold(target)
