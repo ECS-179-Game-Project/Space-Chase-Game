@@ -39,7 +39,7 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 		PowerupType.ENERGY_GAIN:
 			player.energy += 5 # This is permanent
 
-	active_powerups[player][type] = true
+	active_powerups[player.player_id][type] = true
 	print("Applied power-up: %s to player %s" % [type, player])
 
 	# If temporary, set a timer to automatically unapply
@@ -48,7 +48,7 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 
 func unapply_powerup(type: PowerupType, player: Player) -> void:
 	# Apply to active powerups
-	if not active_powerups[player][type] == false:
+	if not active_powerups[player.player_id][type] == false:
 		return
 
 	# Remove the specific powerups effect

@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
-[ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/Speed.tscn" id="16_t3m13"]
+[ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="16_t3m13"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]
 normal = Vector2(1, 0)

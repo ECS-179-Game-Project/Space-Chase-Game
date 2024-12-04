@@ -1,5 +1,5 @@
-
-extends CharacterBody2D
+class_name BasePowerup
+extends Area2D
 
 """
 Custom powerup types should extend this class
@@ -12,11 +12,14 @@ Gives abilities to the player (through powerup manager)
 @export var duration: float = 5.0  
 @export var type: PowerupManager.PowerupType
 
-func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
-	if body is Player:
-		PowerupManager.apply_powerup(type, body, duration)
+func _init() -> void:
+	set_collision_mask_value(3, true) # Detect hurtboxes (specifically players)
+	area_entered.connect(_on_hurtbox_entered)
+
+
+func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
+	var target := hurtbox.owner
+
+	if target is Player and (not target.is_grabbed) and (not target.is_ghost):
+		PowerupManager.apply_powerup(type, target, duration)
 		queue_free()  # Destroy the power-up after use
-
-
-func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	pass # Replace with function body.
