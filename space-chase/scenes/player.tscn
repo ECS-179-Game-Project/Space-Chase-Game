@@ -461,7 +461,7 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_8vdbd"),
 "dash_recharge": SubResource("Animation_chjii"),
-"mashing_while_held": SubResource("Animation_4uhxg")
+"input_mash": SubResource("Animation_4uhxg")
 }
 
 [node name="Player" type="CharacterBody2D"]
