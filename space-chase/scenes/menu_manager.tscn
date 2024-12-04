@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dojks3vldqq2a"]
+[gd_scene load_steps=7 format=3 uid="uid://dojks3vldqq2a"]
 
-[ext_resource type="Script" path="res://scripts/menu_manager.gd" id="1_6bse5"]
+[ext_resource type="Script" path="res://scripts/Menu scripts/menu_manager.gd" id="1_6bse5"]
 [ext_resource type="PackedScene" uid="uid://bkgl5v8ijl362" path="res://scenes/main_menu.tscn" id="2_wapdf"]
 [ext_resource type="PackedScene" uid="uid://5tk8vpgwlokx" path="res://scenes/settings_menu.tscn" id="3_qt5lj"]
+[ext_resource type="PackedScene" uid="uid://cija2nagxry7u" path="res://scenes/controls_menu.tscn" id="4_13nhb"]
 [ext_resource type="AudioStream" uid="uid://c0aneki06jy5a" path="res://assets/Audio/DavidKBD - Cosmic Pack 01 - Cosmic Journey-full.ogg" id="4_shyfh"]
 [ext_resource type="AudioStream" uid="uid://dypkdd1kqhee7" path="res://assets/Sound Effects/Game/retroclick.ogg" id="5_6l65f"]
 
@@ -26,6 +27,10 @@ visible = false
 layout_mode = 1
 scale = Vector2(2, 2)
 size_flags_vertical = 1
+
+[node name="ControlsMenu" parent="." instance=ExtResource("4_13nhb")]
+visible = false
+layout_mode = 1
 
 [node name="Audio" type="Node" parent="."]
 
