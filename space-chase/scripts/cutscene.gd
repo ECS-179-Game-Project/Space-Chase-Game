@@ -11,6 +11,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if SceneManager.is_transitioning:
+		return
+	
 	if Input.is_anything_pressed():
 		end_cutscene()
 
@@ -20,6 +23,7 @@ func end_cutscene() -> void:
 		"pattern": "circle",
 		"skip_fade_out": skip_cutscene,
 		"skip_fade_in": skip_cutscene,
+		"on_fade_out": cutscene_animation_player.play.bind("RESET")
 	})
 
 
@@ -28,3 +32,4 @@ func _on_cutscene_entered() -> void:
 		end_cutscene()
 	else:
 		cutscene_animation_player.play("start_cutscene") # Will eventually call end_cutscene()
+		
