@@ -1082,7 +1082,6 @@ position = Vector2(26, 4)
 sprite_frames = SubResource("SpriteFrames_h82ap")
 animation = &"no_shoot"
 autoplay = "no_shoot"
-frame_progress = 0.0627008
 
 [node name="RedFire" type="AnimatedSprite2D" parent="RedShip"]
 position = Vector2(-17.1429, -6.95714)
@@ -1119,7 +1118,6 @@ position = Vector2(0, -72)
 sprite_frames = SubResource("SpriteFrames_vq826")
 animation = &"no_explode"
 autoplay = "no_explode"
-frame_progress = 0.708468
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

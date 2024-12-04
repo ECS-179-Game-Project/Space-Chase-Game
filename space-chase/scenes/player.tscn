@@ -483,7 +483,6 @@ disabled = true
 debug_color = Color(0.825493, 0.00159736, 0.954931, 0.42)
 
 [node name="HurtBox" type="Area2D" parent="."]
-visible = false
 script = ExtResource("3_ran2h")
 
 [node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
