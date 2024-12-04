@@ -37,6 +37,7 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 @export_range (0.0, 1.0) var hold_jump_gravity_reduction: float = 0.5
 @export var respawn_pos: Node2D = null
 
+var energy: float = 0
 var facing: Direction.Facing = Direction.Facing.RIGHT
 var is_stunned = false # During knockback from being thrown, dash stuns, and grab techs
 var dashes: int = max_dashes

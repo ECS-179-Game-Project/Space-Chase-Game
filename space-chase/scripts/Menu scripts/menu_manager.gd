@@ -7,7 +7,7 @@ enum MenuState {
 	SETTINGS,
 }
 
-enum MenuOption {
+enum ExitOption {
 	START,
 	QUIT,
 }
@@ -38,7 +38,7 @@ func _ready() -> void:
 		background_music.play()
 	
 	if instant_start:
-		leave_menu(MenuOption.START, false)
+		leave_menu(ExitOption.START, false)
 
 
 func change_menu(new_menu: MenuState):
@@ -51,19 +51,19 @@ func change_menu(new_menu: MenuState):
 	cur_menu = new_menu
 
 
-func leave_menu(menu_option: MenuOption, skip_transition: bool = false):
-	if not menu_option in MenuOption.values():
-		print("ERROR: Invalid menu option")
+func leave_menu(exit_option: ExitOption, skip_transition: bool = false):
+	if not exit_option in ExitOption.values():
+		print("ERROR: Invalid exit option")
 		return
 	
-	match menu_option:
-		MenuOption.START:
+	match exit_option:
+		ExitOption.START:
 			SceneManager.change_scene(_world_1, {
 				"pattern": "squares",
 				"skip_fade_out": skip_transition,
 				"skip_fade_in": skip_transition,
 			})
-		MenuOption.QUIT:
+		ExitOption.QUIT:
 			SceneManager.fade_out({
 				"pattern": "curtains",
 				"on_fade_out": get_tree().quit
