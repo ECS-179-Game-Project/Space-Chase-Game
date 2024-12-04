@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm32x0x4u0o0q"
-path="res://.godot/imported/Astronaut_Idle.png-800cb718288aa0a9e1a16887d37bf0eb.ctex"
+uid="uid://brucpoaywsjrp"
+path="res://.godot/imported/Astronaut_Jump.png-0bd39fd3403251e86f34f2c3873d5e64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space Runner Assets/Astronaut/Astronaut_Idle.png"
-dest_files=["res://.godot/imported/Astronaut_Idle.png-800cb718288aa0a9e1a16887d37bf0eb.ctex"]
+source_file="res://assets/sprites/player/Astronaut/Astronaut_Jump.png"
+dest_files=["res://.godot/imported/Astronaut_Jump.png-0bd39fd3403251e86f34f2c3873d5e64.ctex"]
 
 [params]
 

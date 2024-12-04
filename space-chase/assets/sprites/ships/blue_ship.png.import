@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf4oxrohh5dph"
-path="res://.godot/imported/Alien_run.png-06a36334b5d9fc748f1265bafa1046b0.ctex"
+uid="uid://5221bbh7d5vs"
+path="res://.godot/imported/blue_ship.png-9013db42a632f59d328b056855bc925a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space Runner Assets/Alien/Alien_run.png"
-dest_files=["res://.godot/imported/Alien_run.png-06a36334b5d9fc748f1265bafa1046b0.ctex"]
+source_file="res://assets/sprites/ships/blue_ship.png"
+dest_files=["res://.godot/imported/blue_ship.png-9013db42a632f59d328b056855bc925a.ctex"]
 
 [params]
 
