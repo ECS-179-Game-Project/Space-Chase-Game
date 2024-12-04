@@ -17,7 +17,6 @@ Autoloaded script
 signal level_entered
 signal final_zone_entered
 signal player_win(id: PlayerID)
-signal player_mashing_while_held
 signal request_charge(charger: ChargingStation, id: PlayerID, delta: float)
 
 enum PlayerID {

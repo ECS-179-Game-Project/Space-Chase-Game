@@ -19,8 +19,7 @@ config/icon="res://icon.svg"
 
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 GameStateManager="*res://scripts/game_state_manager.gd"
-PowerupManager="*res://scripts/powerup_manager.gd"
-Direction="*res://scripts/direction.gd"
+PowerupManager="*res://scripts/Powerups/powerup_manager.gd"
 
 [display]
 
@@ -28,7 +27,7 @@ window/size/resizable=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg", "res://addons/trail_2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
 
 [input]
 
@@ -100,7 +99,6 @@ p2_dash={
 2d_physics/layer_3="Hurtbox"
 2d_physics/layer_4="Hitbox"
 2d_physics/layer_5="Grabbox"
-2d_physics/layer_6="Impassable by ghost players"
 
 [rendering]
 
