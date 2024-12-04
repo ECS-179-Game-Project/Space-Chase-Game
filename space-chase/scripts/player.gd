@@ -64,6 +64,7 @@ var _held_target: Node2D = null
 @onready var _status_animation_player: AnimationPlayer = $StatusAnimationPlayer
 @onready var jump_sound: AudioStreamPlayer2D = $Audio/Jump
 @onready var run_sound: AudioStreamPlayer2D = $Audio/Run
+@onready var dash_sound: AudioStreamPlayer2D = $Audio/Dash
 
 
 func _ready() -> void:
@@ -378,6 +379,8 @@ func _start_dash(delta: float) -> void:
 	
 	var dash_dir: Vector2 = _get_dash_dir(_dir)
 	velocity = dash_dir * dash_speed_factor * speed * delta
+	
+	dash_sound.play()
 
 
 func _end_dash() -> void:

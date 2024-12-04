@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bw5cb5fe23aa3"]
+[gd_scene load_steps=31 format=3 uid="uid://bw5cb5fe23aa3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6de28"]
 [ext_resource type="Script" path="res://scripts/dash_trail.gd" id="2_7oxdq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="3_ran2h"]
 [ext_resource type="Shader" path="res://scripts/shaders/player.gdshader" id="4_myf1c"]
 [ext_resource type="AudioStream" uid="uid://bfubov0twa536" path="res://assets/Sound Effects/Player/Jump2.ogg" id="6_jxy51"]
+[ext_resource type="AudioStream" uid="uid://54rvsi41cps1" path="res://assets/Sound Effects/Player/Player-Dash.ogg" id="9_8fqmr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fve6h"]
 radius = 7.0
@@ -536,5 +537,9 @@ bus = &"SFX"
 [node name="Run" type="AudioStreamPlayer2D" parent="Audio"]
 volume_db = 24.0
 bus = &"SFX"
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("9_8fqmr")
+volume_db = -22.286
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
