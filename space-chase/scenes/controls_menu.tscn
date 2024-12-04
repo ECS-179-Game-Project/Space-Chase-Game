@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cija2nagxry7u"]
 
-[ext_resource type="Script" path="res://scripts/controls_menu.gd" id="1_s0e62"]
+[ext_resource type="Script" path="res://scripts/Menu scripts/controls_menu.gd" id="1_s0e62"]
 [ext_resource type="Shader" path="res://scripts/shaders/settingscroll.gdshader" id="2_kqf02"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="3_8yabj"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_35fqx"]
