@@ -12,9 +12,9 @@ enum PowerupType {
 }
 
 
-func apply_powerup() -> void: # Add param for player
+func apply_powerup(type:PowerupType, player:Player) -> void: # Add param for player
 	pass
 
 
-func unapply_powerup() -> void: # Add param for player
+func unapply_powerup(type:PowerupType, player:Player) -> void: # Add param for player
 	pass
