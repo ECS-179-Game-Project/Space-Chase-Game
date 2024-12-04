@@ -180,14 +180,14 @@ func _physics_process(delta: float) -> void:
 			var high_throw: bool = Input.is_action_pressed(_controls.up)
 			_throw(high_throw)
 	
-	# Move the held player relatively
-	if is_grabbing and _held_target:
-		_move_held_target()
-	
 	# Allow held player to mash out
 	if is_grabbed and _controls.any_control_just_pressed():
 		_status_animation_player.play("mashing_while_held")
 		GameStateManager.player_mashing_while_held.emit()
+	
+	# Move the held player relatively
+	if is_grabbing and _held_target:
+		_move_held_target()
 	
 	# Handle dashing
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash) and dashes > 0 and _ground_dash_cooldown_timer.is_stopped():
@@ -208,6 +208,10 @@ func _physics_process(delta: float) -> void:
 func instakill() -> void: # Called by hitbox
 	if is_dead or is_ghost:
 		return
+	
+	# Release grabbed plyer
+	if is_grabbing:
+		_release()
 	
 	_reset_status() # Safety check incase of incorrect statuses
 	
@@ -446,7 +450,7 @@ func _disable_interactions() -> void:
 			child.monitoring = false
 
 
-func _reset_status() -> void:
+func _reset_status() -> void:	
 	is_stunned = false
 	is_dashing = false
 	is_grabbing = false
