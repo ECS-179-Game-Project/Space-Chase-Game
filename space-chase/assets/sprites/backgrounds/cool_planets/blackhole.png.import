@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fgres5fl3gp7"
-path="res://.godot/imported/Astronaut_Run.png-d2f3a943f944ad9d397232fb81ed6e7f.ctex"
+uid="uid://cl425vxllroca"
+path="res://.godot/imported/blackhole.png-c49c67887726885c24b1d6874963abd4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space Runner Assets/Astronaut/Astronaut_Run.png"
-dest_files=["res://.godot/imported/Astronaut_Run.png-d2f3a943f944ad9d397232fb81ed6e7f.ctex"]
+source_file="res://assets/sprites/backgrounds/cool_planets/blackhole.png"
+dest_files=["res://.godot/imported/blackhole.png-c49c67887726885c24b1d6874963abd4.ctex"]
 
 [params]
 

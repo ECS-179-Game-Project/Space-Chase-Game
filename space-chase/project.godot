@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PowerupManager="*res://scripts/Powerups/powerup_manager.gd"
-SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 GameStateManager="*res://scripts/game_state_manager.gd"
+GameScene="*res://scripts/game_scene.gd"
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+PowerupManager="*res://scripts/powerup_manager.gd"
 Direction="*res://scripts/direction.gd"
 
 [display]

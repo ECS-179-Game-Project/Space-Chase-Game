@@ -1,13 +1,16 @@
-[gd_scene load_steps=30 format=3 uid="uid://bw5cb5fe23aa3"]
+[gd_scene load_steps=33 format=3 uid="uid://bw5cb5fe23aa3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6de28"]
 [ext_resource type="Script" path="res://scripts/dash_trail.gd" id="2_7oxdq"]
 [ext_resource type="Script" path="res://scripts/grab_box.gd" id="2_fxl1h"]
-[ext_resource type="Texture2D" uid="uid://cm32x0x4u0o0q" path="res://assets/sprites/Space Runner Assets/Astronaut/Astronaut_Idle.png" id="2_m3u3l"]
+[ext_resource type="Texture2D" uid="uid://cm32x0x4u0o0q" path="res://assets/sprites/player/Astronaut/Astronaut_Idle.png" id="2_m3u3l"]
 [ext_resource type="Script" path="res://scripts/fast_fall_trail.gd" id="3_bkdlx"]
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="3_ran2h"]
 [ext_resource type="Shader" path="res://scripts/shaders/player.gdshader" id="4_myf1c"]
 [ext_resource type="AudioStream" uid="uid://bfubov0twa536" path="res://assets/Sound Effects/Player/Jump2.ogg" id="6_jxy51"]
+[ext_resource type="AudioStream" uid="uid://54rvsi41cps1" path="res://assets/Sound Effects/Player/Player-Dash.ogg" id="9_8fqmr"]
+[ext_resource type="AudioStream" uid="uid://do8v4n71w03p2" path="res://assets/Sound Effects/Player/dash_refill.ogg" id="10_qjs53"]
+[ext_resource type="AudioStream" uid="uid://b02e3md2bodq7" path="res://assets/Sound Effects/Player/Respawn.ogg" id="11_gxo3f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fve6h"]
 radius = 7.0
@@ -215,23 +218,19 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false, true]
 }
-
-[sub_resource type="Animation" id="Animation_f6scb"]
-resource_name = "idle"
-length = 0.6
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_status"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_xjabn"]
@@ -274,6 +273,24 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_f6scb"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
 }
 
 [sub_resource type="Animation" id="Animation_uiiho"]
@@ -399,8 +416,8 @@ _data = {
 "dash": SubResource("Animation_ew2cl"),
 "death": SubResource("Animation_73ud4"),
 "grab": SubResource("Animation_w3kns"),
+"held": SubResource("Animation_xjabn"),
 "idle": SubResource("Animation_f6scb"),
-"is_grabbed": SubResource("Animation_xjabn"),
 "jump": SubResource("Animation_uiiho"),
 "knockback": SubResource("Animation_e3cah"),
 "respawn_as_ghost": SubResource("Animation_cno8d"),
@@ -461,7 +478,7 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_8vdbd"),
 "dash_recharge": SubResource("Animation_chjii"),
-"mashing_while_held": SubResource("Animation_4uhxg")
+"input_mash": SubResource("Animation_4uhxg")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -534,6 +551,21 @@ pitch_scale = 0.6
 bus = &"SFX"
 
 [node name="Run" type="AudioStreamPlayer2D" parent="Audio"]
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("9_8fqmr")
+volume_db = -22.286
+bus = &"SFX"
+
+[node name="DashRefill" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("10_qjs53")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="Respawn" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_gxo3f")
 volume_db = 24.0
 bus = &"SFX"
 

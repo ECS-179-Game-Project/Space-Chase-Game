@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b63grfc0exf18"
-path="res://.godot/imported/Alien_jump.png-ad3e9e50358681545f35477cd34b10ee.ctex"
+uid="uid://t4fa77fatblp"
+path="res://.godot/imported/Red Effect Bullet Impact Explosion 32x32.png-20d963f55809ca8c67d85eff397a80f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space Runner Assets/Alien/Alien_jump.png"
-dest_files=["res://.godot/imported/Alien_jump.png-ad3e9e50358681545f35477cd34b10ee.ctex"]
+source_file="res://assets/sprites/explosions/Red Effect Bullet Impact Explosion 32x32.png"
+dest_files=["res://.godot/imported/Red Effect Bullet Impact Explosion 32x32.png-20d963f55809ca8c67d85eff397a80f4.ctex"]
 
 [params]
 

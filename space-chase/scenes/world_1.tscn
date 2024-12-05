@@ -825,15 +825,12 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="WallOfDeath" parent="AutoscrollCameraController" instance=ExtResource("5_7ocf3")]
-visible = false
 position = Vector2(-271, -120)
 
 [node name="WallOfDeath2" parent="AutoscrollCameraController" instance=ExtResource("5_7ocf3")]
-visible = false
 position = Vector2(-271, 0)
 
 [node name="WallOfDeath3" parent="AutoscrollCameraController" instance=ExtResource("5_7ocf3")]
-visible = false
 position = Vector2(-271, 120)
 
 [node name="LeftWorldBorder" type="StaticBody2D" parent="AutoscrollCameraController"]
