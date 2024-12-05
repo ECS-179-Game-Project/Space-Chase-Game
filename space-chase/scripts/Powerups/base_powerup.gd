@@ -20,6 +20,6 @@ func _init() -> void:
 func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
 	var target := hurtbox.owner
 
-	if target is Player and (not target.is_grabbed) and (not target.is_ghost):
+	if target is Player and (not target.is_held) and (not target.is_ghost):
 		PowerupManager.apply_powerup(type, target, duration)
 		queue_free()  # Destroy the power-up after use
