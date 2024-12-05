@@ -65,6 +65,7 @@ var _held_target: Node2D = null
 @onready var jump_sound: AudioStreamPlayer2D = $Audio/Jump
 @onready var run_sound: AudioStreamPlayer2D = $Audio/Run
 @onready var dash_sound: AudioStreamPlayer2D = $Audio/Dash
+@onready var dash_refill_sound: AudioStreamPlayer2D = $Audio/DashRefill
 
 
 func _ready() -> void:
@@ -372,6 +373,8 @@ func _reduce_hold_timer() -> void:
 
 
 func _start_dash(delta: float) -> void:
+	dash_sound.play()
+	
 	is_dashing = true
 	dashes -= 1
 	clamp(dashes, 0, max_dashes - 1)
@@ -379,8 +382,6 @@ func _start_dash(delta: float) -> void:
 	
 	var dash_dir: Vector2 = _get_dash_dir(_dir)
 	velocity = dash_dir * dash_speed_factor * speed * delta
-	
-	dash_sound.play()
 
 
 func _end_dash() -> void:
@@ -388,6 +389,8 @@ func _end_dash() -> void:
 	velocity.y *= 0.4
 	if is_on_floor():
 		_ground_dash_cooldown_timer.start(ground_dash_cooldown)
+		# Dash refill sound
+		
 
 
 func _refill_dash() -> void:
@@ -396,6 +399,7 @@ func _refill_dash() -> void:
 	
 	if prev_dashes < max_dashes and _ground_dash_cooldown_timer.is_stopped():
 		_status_animation_player.play("dash_recharge")
+		dash_refill_sound.play()
 
 
 func _handle_ordering() -> void:
