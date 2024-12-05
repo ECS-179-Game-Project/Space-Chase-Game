@@ -67,7 +67,7 @@ var _held_target: Node2D = null
 @onready var run_sound: AudioStreamPlayer2D = $Audio/Run
 @onready var dash_sound: AudioStreamPlayer2D = $Audio/Dash
 @onready var dash_refill_sound: AudioStreamPlayer2D = $Audio/DashRefill
-
+@onready var respawn_sound: AudioStreamPlayer2D = $Audio/Respawn
 
 func _ready() -> void:
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
@@ -297,9 +297,14 @@ func _start_ghost() -> void:
 	_main_animation_player.play("respawn_as_ghost")
 	global_position = respawn_pos.global_position
 	_ghost_timer.start(GHOST_TIME)
+	
+	# Respawn sound effect
+	respawn_sound.play()
 
 
 func _stop_ghost() -> void: # Respawn as normal player
+	
+	
 	is_ghost = false
 	
 	_main_animation_player.play("respawn_as_normal")
