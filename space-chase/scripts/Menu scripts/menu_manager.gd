@@ -8,6 +8,7 @@ enum MenuState {
 }
 
 enum ExitOption {
+	INTRO,
 	START,
 	QUIT,
 }
@@ -15,8 +16,6 @@ enum ExitOption {
 @export var instant_start:bool = false # Skips the main menu and instantly starts the game
 
 var cur_menu: MenuState = MenuState.MAIN
-
-var _world_1: String = "res://scenes/world_1.tscn"
 
 @onready var menu_states := {
 	MenuState.MAIN: $MainMenu,
@@ -57,8 +56,14 @@ func leave_menu(exit_option: ExitOption, skip_transition: bool = false):
 		return
 	
 	match exit_option:
+		ExitOption.INTRO:
+			SceneManager.change_scene(GameScene.intro_cutscene, {
+				"pattern": "squares",
+				"skip_fade_out": skip_transition,
+				"skip_fade_in": skip_transition,
+			})
 		ExitOption.START:
-			SceneManager.change_scene(_world_1, {
+			SceneManager.change_scene(GameScene.world_1, {
 				"pattern": "squares",
 				"skip_fade_out": skip_transition,
 				"skip_fade_in": skip_transition,

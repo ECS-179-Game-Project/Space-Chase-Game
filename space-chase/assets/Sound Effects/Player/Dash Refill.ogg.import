@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://lhu5nx5xgesv"
+path="res://.godot/imported/Dash Refill.ogg-582e3e21cd92f7dd405e719a55453057.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Player/Dash Refill.ogg"
+dest_files=["res://.godot/imported/Dash Refill.ogg-582e3e21cd92f7dd405e719a55453057.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

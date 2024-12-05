@@ -6,7 +6,7 @@ extends Control
 
 func _on_start_pressed() -> void:
 	menu_manager.button_click()
-	menu_manager.leave_menu(MenuManager.ExitOption.START)
+	menu_manager.leave_menu(MenuManager.ExitOption.INTRO)
 
 
 func _on_settings_pressed() -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpllpnfsts60a"
-path="res://.godot/imported/Astronaut_Death.png-1768b2c6299ab16cbfc00aa794071215.ctex"
+uid="uid://dase8c6mjtsvf"
+path="res://.godot/imported/Yellow Effect Bullet Impact Explosion 32x32.png-84f0fac2f7a8bfa1e3f63bcd895f265f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space Runner Assets/Astronaut/Astronaut_Death.png"
-dest_files=["res://.godot/imported/Astronaut_Death.png-1768b2c6299ab16cbfc00aa794071215.ctex"]
+source_file="res://assets/sprites/explosions/Yellow Effect Bullet Impact Explosion 32x32.png"
+dest_files=["res://.godot/imported/Yellow Effect Bullet Impact Explosion 32x32.png-84f0fac2f7a8bfa1e3f63bcd895f265f.ctex"]
 
 [params]
 
