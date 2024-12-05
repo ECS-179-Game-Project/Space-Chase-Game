@@ -42,8 +42,9 @@ var facing: Direction.Facing = Direction.Facing.RIGHT
 var is_stunned = false # During knockback from being thrown, dash stuns, and grab techs
 var dashes: int = max_dashes
 var is_dashing: bool = false
-var is_grabbing: bool = false # Currently grabbing/holding the othe player
-var is_grabbed: bool = false # Currently grabbed/held by the other player
+var is_grabbing: bool = false # Currently in the grab animation
+var is_holding: bool = false # Currently grabbing/holding the othe player
+var is_held: bool = false # Currently grabbed/held by the other player
 var is_fast_falling: bool = false
 var is_holding_jump: bool = false
 var is_dead: bool = false # Mutually exclusive to is_ghost
@@ -133,7 +134,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# Handle gravity
-	if (not is_dashing) and (not is_grabbed) and (not is_on_floor()):
+	if (not is_dashing) and (not is_held) and (not is_on_floor()):
 		var apply_gravity: float = gravity * delta
 		var acting_terminal_velocity: float = terminal_velocity
 		is_fast_falling = Input.is_action_pressed(_controls.down)
@@ -171,10 +172,10 @@ func _physics_process(delta: float) -> void:
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.grab):
 		_try_grab()
 	# Handle forced release
-	if is_grabbing and _hold_timer.is_stopped():
+	if is_holding and _hold_timer.is_stopped():
 		_release()
 	# Handle throwing
-	elif is_grabbing and (not Input.is_action_pressed(_controls.grab)):
+	elif is_holding and (not Input.is_action_pressed(_controls.grab)):
 		# Voluntary release
 		if Input.is_action_pressed(_controls.down):
 			_release()
@@ -184,12 +185,12 @@ func _physics_process(delta: float) -> void:
 			_throw(high_throw)
 	
 	# Allow held player to mash out
-	if is_grabbed and _controls.any_control_just_pressed():
+	if is_held and _controls.any_control_just_pressed():
 		_status_animation_player.play("input_mash")
 		GameStateManager.player_mashing_while_held.emit()
 	
 	# Move the held player relatively
-	if is_grabbing and _held_target:
+	if is_holding and _held_target:
 		_move_held_target()
 	
 	# Handle dashing
@@ -212,11 +213,11 @@ func instakill() -> void: # Called by hitbox
 	if is_dead or is_ghost:
 		return
 	
-	# Release grabbed plyer
-	if is_grabbing:
+	# Release the held player
+	if is_holding:
 		_release()
 	
-	_reset_status() # Safety check incase of incorrect statuses
+	reset_status() # Safety check incase of incorrect statuses
 	
 	is_dead = true
 	_main_animation_player.play("death")
@@ -227,18 +228,18 @@ func instakill() -> void: # Called by hitbox
 
 
 func hold(target: Node2D) -> void: # Called by grabbox
-	is_grabbing = true
+	is_holding = true
 	_held_target = target
 	_hold_timer.start(HOLD_TIME)
 
 
 func got_grabbed() -> void: # Called by grabbox
-	is_grabbed = true
-	_main_animation_player.play("is_grabbed")
+	is_held = true
+	_main_animation_player.play("held")
 
 
 func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
-	is_grabbed = false
+	is_held = false
 	var x_force: float = 300.0
 	var y_force_damping: float = 1.0
 	var high_throw_factor: float = 1.5 if high_throw else 1.0
@@ -247,7 +248,7 @@ func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
 
 
 func released() -> void:
-	is_grabbed = false
+	is_held = false
 	var x_force: float = 100
 	var force := Vector2(Direction.get_sign_factor(facing) * x_force, x_force)
 	_start_knockback(force, 0.2)
@@ -257,8 +258,8 @@ func grab_tech() -> void: # Called by grabbox
 	# BUG: When grab teching the grabboxes are still enabled. Players are also being thrown instead of just grab teching
 	
 	# Backwards knockback
-	is_grabbing = false
-	is_grabbed = false
+	is_holding = false
+	is_held = false
 	var x_force: float = 10.0
 	var x_force_sign: float = Direction.get_sign_factor(Direction.get_opposite_faing(facing))
 	var y_force_damping: float = 0.7
@@ -268,7 +269,7 @@ func grab_tech() -> void: # Called by grabbox
 
 func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 	# Backwards knockback
-	is_grabbed = false
+	is_held = false
 	_end_dash()
 	var x_force: float = 100.0
 	var x_force_sign: float = Direction.get_sign_factor(direction)
@@ -276,6 +277,17 @@ func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 	var force := Vector2(x_force_sign * x_force, y_force_damping * -x_force)
 	_start_knockback(force, 0.3)
 
+
+func reset_status() -> void:
+	is_stunned = false
+	is_dashing = false
+	is_grabbing = false
+	is_holding = false
+	is_held = false
+	is_fast_falling = false
+	is_holding_jump = false
+	is_dead = false
+	is_ghost = false
 
 # -------------------- Private functions --------------------
 
@@ -342,13 +354,13 @@ func _try_grab() -> void:
 
 
 func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
-	is_grabbing = false
+	is_holding = false
 	_held_target.thrown(facing, high_throw)
 	_held_target = null
 
 
 func _release() -> void: # Held target is released from the grab
-	is_grabbing = false
+	is_holding = false
 	_held_target.released()
 	_held_target = null
 
@@ -405,7 +417,7 @@ func _refill_dash() -> void:
 func _handle_ordering() -> void:
 	if is_ghost:
 		z_index = 1
-	elif is_grabbed:
+	elif is_held:
 		z_index = -1
 	else:
 		z_index = 0
@@ -420,11 +432,11 @@ func _handle_facing() -> void:
 
 
 func _is_in_normal_state() -> bool:
-	return (not is_dashing) and (not is_grabbing) and (not is_grabbed) and (not is_stunned) and (not is_ghost)
+	return (not is_dashing) and (not is_holding) and (not is_held) and (not is_stunned) and (not is_ghost)
 
 
 func _can_move() -> bool:
-	return (not is_dashing) and (not is_grabbed) and (not is_stunned)
+	return (not is_dashing) and (not is_held) and (not is_stunned)
 
 
 func _get_dash_dir(dir: Vector2) -> Vector2:
@@ -456,14 +468,3 @@ func _disable_interactions() -> void:
 	for child in get_children():
 		if child is Area2D:
 			child.monitoring = false
-
-
-func _reset_status() -> void:	
-	is_stunned = false
-	is_dashing = false
-	is_grabbing = false
-	is_grabbed = false
-	is_fast_falling = false
-	is_holding_jump = false
-	is_dead = false
-	is_ghost = false
