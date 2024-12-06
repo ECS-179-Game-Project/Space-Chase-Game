@@ -343,6 +343,7 @@ func _start_jump() -> void:
 
 
 func _start_grab() -> void:
+	is_grabbing = true
 	_main_animation_player.play("grab") # Temporarily enables grabbox
 	# Grab logic handled by grabbox
 	# At the end of the grab, the grab animation calls _stop_grab()
