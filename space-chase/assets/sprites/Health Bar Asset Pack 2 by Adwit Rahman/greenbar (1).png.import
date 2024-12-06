@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dep4xjdghm6ab"
-path="res://.godot/imported/bluebar.png-bb3ebf92ffa0ddd090291917f95ff88c.ctex"
+uid="uid://chbpy7xrblwm0"
+path="res://.godot/imported/greenbar (1).png-d36c6ea9048e2e58eba97aded7dbfa4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Pixel UI pack/bluebar.png"
-dest_files=["res://.godot/imported/bluebar.png-bb3ebf92ffa0ddd090291917f95ff88c.ctex"]
+source_file="res://assets/sprites/Health Bar Asset Pack 2 by Adwit Rahman/greenbar (1).png"
+dest_files=["res://.godot/imported/greenbar (1).png-d36c6ea9048e2e58eba97aded7dbfa4d.ctex"]
 
 [params]
 

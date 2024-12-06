@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=30 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -13,8 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://8uidvvapiws" path="res://scenes/wall_of_death.tscn" id="5_7ocf3"]
 [ext_resource type="Texture2D" uid="uid://b2jyfobu4xfr" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-1.png" id="5_nw6wv"]
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
+[ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/blue_charging_bar.tscn" id="7_0c82v"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
-[ext_resource type="PackedScene" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
+[ext_resource type="PackedScene" uid="uid://ckaeapk1wv30w" path="res://scenes/red_charging_bar.tscn" id="7_bo1o2"]
+[ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]
@@ -810,6 +812,21 @@ position = Vector2(-10, 23)
 stream = ExtResource("1_hpo4n")
 volume_db = -15.0
 script = ExtResource("1_t0e68")
+
+[node name="BlueChargingBar" parent="AutoscrollCameraController" instance=ExtResource("7_0c82v")]
+offset_left = 414.0
+offset_top = 88.0
+offset_right = 414.0
+offset_bottom = 88.0
+
+[node name="RedChargingBar" parent="AutoscrollCameraController" instance=ExtResource("7_bo1o2")]
+anchors_preset = 13
+anchor_bottom = 1.0
+offset_left = 325.0
+offset_top = 88.0
+offset_right = 325.0
+offset_bottom = 88.0
+grow_vertical = 2
 
 [node name="LevelProgressBar" parent="AutoscrollCameraController" instance=ExtResource("7_g8m0g")]
 offset_left = 252.0
