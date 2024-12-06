@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b2jyfobu4xfr" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-1.png" id="5_nw6wv"]
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
-[ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
+[ext_resource type="PackedScene" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]

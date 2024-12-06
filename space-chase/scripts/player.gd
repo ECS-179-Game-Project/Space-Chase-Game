@@ -170,7 +170,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle grabbing
 	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.grab):
-		_try_grab()
+		_start_grab()
 	# Handle forced release
 	if is_holding and _hold_timer.is_stopped():
 		_release()
@@ -217,7 +217,7 @@ func instakill() -> void: # Called by hitbox
 	if is_holding:
 		_release()
 	
-	reset_status() # Safety check incase of incorrect statuses
+	_reset_status() # Safety check incase of incorrect statuses
 	
 	is_dead = true
 	_main_animation_player.play("death")
@@ -277,17 +277,6 @@ func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 	var force := Vector2(x_force_sign * x_force, y_force_damping * -x_force)
 	_start_knockback(force, 0.3)
 
-
-func reset_status() -> void:
-	is_stunned = false
-	is_dashing = false
-	is_grabbing = false
-	is_holding = false
-	is_held = false
-	is_fast_falling = false
-	is_holding_jump = false
-	is_dead = false
-	is_ghost = false
 
 # -------------------- Private functions --------------------
 
@@ -353,9 +342,14 @@ func _start_jump() -> void:
 	jump_sound.play()
 
 
-func _try_grab() -> void:
+func _start_grab() -> void:
 	_main_animation_player.play("grab") # Temporarily enables grabbox
 	# Grab logic handled by grabbox
+	# At the end of the grab, the grab animation calls _stop_grab()
+
+
+func _stop_grab() -> void: # Called at the end of teh grab animation
+	is_grabbing = false
 
 
 func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
@@ -473,3 +467,15 @@ func _disable_interactions() -> void:
 	for child in get_children():
 		if child is Area2D:
 			child.monitoring = false
+
+
+func _reset_status() -> void:
+	is_stunned = false
+	is_dashing = false
+	is_grabbing = false
+	is_holding = false
+	is_held = false
+	is_fast_falling = false
+	is_holding_jump = false
+	is_dead = false
+	is_ghost = false
