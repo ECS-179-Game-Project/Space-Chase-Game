@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bw5cb5fe23aa3"]
+[gd_scene load_steps=34 format=3 uid="uid://bw5cb5fe23aa3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6de28"]
 [ext_resource type="Script" path="res://scripts/dash_trail.gd" id="2_7oxdq"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://54rvsi41cps1" path="res://assets/Sound Effects/Player/Player-Dash.ogg" id="9_8fqmr"]
 [ext_resource type="AudioStream" uid="uid://do8v4n71w03p2" path="res://assets/Sound Effects/Player/dash_refill.ogg" id="10_qjs53"]
 [ext_resource type="AudioStream" uid="uid://b02e3md2bodq7" path="res://assets/Sound Effects/Player/Respawn.ogg" id="11_gxo3f"]
+[ext_resource type="Script" path="res://scenes/powerups/label.gd" id="12_k2a54"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fve6h"]
 radius = 7.0
@@ -570,3 +571,8 @@ volume_db = 24.0
 bus = &"SFX"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("12_k2a54")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=29 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 [ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="16_t3m13"]
+[ext_resource type="PackedScene" uid="uid://oq7dsvxm3qi7" path="res://scenes/powerups/jump_powerup.tscn" id="17_fgkj1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]
 normal = Vector2(1, 0)
@@ -908,6 +909,10 @@ position = Vector2(257, 2)
 position = Vector2(138, -58)
 
 [node name="powerup" parent="." instance=ExtResource("16_t3m13")]
+position = Vector2(612, 65)
 
 [node name="powerup2" parent="." instance=ExtResource("16_t3m13")]
-position = Vector2(233, 51)
+position = Vector2(710, 68)
+
+[node name="SpeedPowerup" parent="." instance=ExtResource("17_fgkj1")]
+position = Vector2(661, 67)

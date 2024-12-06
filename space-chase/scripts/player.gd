@@ -116,7 +116,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# Return early if dead (ghost players aren't considered dead)
+	print(speed)
+	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
 		return
 	
