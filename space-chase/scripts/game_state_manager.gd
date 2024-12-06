@@ -94,7 +94,7 @@ func initialize_camera_pos(init_pos: float, final_pos: float) -> void:
 
 ## Returns the current level progress of the camera as a ratio.
 func get_level_progress() -> float:
-	return _remaining_level_progress
+	return  1.0 - _remaining_level_progress
 
 
 ## Starts victory sequence
