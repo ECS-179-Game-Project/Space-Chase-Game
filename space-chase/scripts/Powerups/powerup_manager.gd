@@ -13,7 +13,8 @@ enum PowerupType {
 	SHIELD,
 	POWER_BOOST,
 	FLOATY_JUMP,
-	ENERGY_GAIN
+	ENERGY_GAIN,
+	GET_BIG,
 }
 
 # { Player_Id: { SPEED_BOOST: { active: true, timer: Timer }, JUMP_BOOST: { active: true, timer: Timer } } }
@@ -37,6 +38,9 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 				player.throw_strength *= 1.5
 			PowerupType.FLOATY_JUMP:
 				player.gravity *= 0.5
+			PowerupType.GET_BIG:
+				player.scale *= 2
+				player.position.y *= 2
 			PowerupType.ENERGY_GAIN:
 				player.energy += 5  # Permanent, no timer needed
 				
@@ -64,6 +68,9 @@ func unapply_powerup(type: PowerupType, player: Player) -> void:
 				player.shield_active = false
 			PowerupType.POWER_BOOST:
 				player.throw_strength /= 1.5
+			PowerupType.GET_BIG:
+				player.scale /= 2
+				player.position.y /= 2
 			PowerupType.FLOATY_JUMP:
 				player.gravity *= 0.5
 
