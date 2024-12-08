@@ -519,4 +519,6 @@ func update_animation_parameters():
 		animation_tree["parameters/conditions/grab"] = true
 	else:
 		animation_tree["parameters/conditions/grab"] = false
+		
+		# Ghost animation left
 	
