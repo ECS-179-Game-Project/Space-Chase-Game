@@ -509,7 +509,14 @@ func update_animation_parameters():
 		animation_tree["parameters/conditions/is_running"] = true # Set moving to false
 	
 	# dash animation tree
-	if Input.is_action_just_pressed("p1_dash"):
+	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash) and dashes > 0 and _ground_dash_cooldown_timer.is_stopped():
 		animation_tree["parameters/conditions/dash"] = true
 	else:
 		animation_tree["parameters/conditions/dash"] = true
+	
+	# grab animation
+	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.grab):
+		animation_tree["parameters/conditions/grab"] = true
+	else:
+		animation_tree["parameters/conditions/grab"] = false
+	
