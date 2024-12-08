@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c1teq7ewoo4jv"
-path="res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-04c5bd1429f03fd85f0f76298c292168.ctex"
+path="res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-310d7412941eefd217b72c169e47976e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/explosions/Green Effect Bullet Impact Explosion 32x32.png"
-dest_files=["res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-04c5bd1429f03fd85f0f76298c292168.ctex"]
+source_file="res://assets/sprites/Green Effect Bullet Impact Explosion 32x32.png"
+dest_files=["res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-310d7412941eefd217b72c169e47976e.ctex"]
 
 [params]
 
