@@ -6,6 +6,7 @@ extends Label
 func _process(_delta: float) -> void:
 	# Clear the text first
 	text = "Active Powerups:\n"
+	text += str($"..".throw_strength)
 	
 	# Iterate through the active powerups to display their details
 	for player_id in PowerupManager.active_powerups.keys():

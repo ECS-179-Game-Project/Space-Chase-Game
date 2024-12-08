@@ -9,7 +9,7 @@ If player collects it, gives the player energy (through game state manager)
 Gives abilities to the player (through powerup manager)
 """
 
-@export var duration: float = 5.0  
+@export var duration: float = 15.0  
 @export var type: PowerupManager.PowerupType
 
 func _init() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=35 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -13,13 +13,16 @@
 [ext_resource type="PackedScene" uid="uid://8uidvvapiws" path="res://scenes/wall_of_death.tscn" id="5_7ocf3"]
 [ext_resource type="Texture2D" uid="uid://b2jyfobu4xfr" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-1.png" id="5_nw6wv"]
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
-[ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/blue_charging_bar.tscn" id="7_0c82v"]
+[ext_resource type="PackedScene" path="res://scenes/blue_charging_bar.tscn" id="7_0c82v"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
-[ext_resource type="PackedScene" uid="uid://ckaeapk1wv30w" path="res://scenes/red_charging_bar.tscn" id="7_bo1o2"]
-[ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
+[ext_resource type="PackedScene" path="res://scenes/red_charging_bar.tscn" id="7_bo1o2"]
+[ext_resource type="PackedScene" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 [ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="16_t3m13"]
 [ext_resource type="PackedScene" uid="uid://oq7dsvxm3qi7" path="res://scenes/powerups/jump_powerup.tscn" id="17_fgkj1"]
+[ext_resource type="PackedScene" uid="uid://bwhn6h0pahu0k" path="res://scenes/powerups/get_big.tscn" id="21_f1tdy"]
+[ext_resource type="PackedScene" uid="uid://w2c2l5tojnte" path="res://scenes/powerups/strength_powerup.tscn" id="22_up5h1"]
+[ext_resource type="PackedScene" uid="uid://iwoxsd7c60qm" path="res://scenes/powerups/energy_gain.tscn" id="23_noxf7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]
 normal = Vector2(1, 0)
@@ -938,5 +941,14 @@ position = Vector2(612, 65)
 [node name="powerup2" parent="." instance=ExtResource("16_t3m13")]
 position = Vector2(710, 68)
 
-[node name="SpeedPowerup" parent="." instance=ExtResource("17_fgkj1")]
+[node name="JumpBoost" parent="." instance=ExtResource("17_fgkj1")]
 position = Vector2(661, 67)
+
+[node name="getBig" parent="." instance=ExtResource("21_f1tdy")]
+position = Vector2(572, 66)
+
+[node name="StrengthPowerup" parent="." instance=ExtResource("22_up5h1")]
+position = Vector2(386, -10)
+
+[node name="Energy_Gain" parent="." instance=ExtResource("23_noxf7")]
+position = Vector2(285, 54)

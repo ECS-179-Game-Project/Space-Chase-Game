@@ -35,14 +35,11 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 			PowerupType.SHIELD:
 				player.shield_active = true
 			PowerupType.POWER_BOOST:
-				player.throw_strength *= 1.5
-			PowerupType.FLOATY_JUMP:
-				player.gravity *= 0.5
+				player.setter(2)
 			PowerupType.GET_BIG:
 				player.scale *= 2
-				player.position.y *= 2
 			PowerupType.ENERGY_GAIN:
-				player.energy += 5  # Permanent, no timer needed
+				player._add_energy(5) # Permanent, no timer needed
 				
 		print("Applied power-up: %s to player %s" % [type, player])
 
@@ -67,12 +64,9 @@ func unapply_powerup(type: PowerupType, player: Player) -> void:
 			PowerupType.SHIELD:
 				player.shield_active = false
 			PowerupType.POWER_BOOST:
-				player.throw_strength /= 1.5
+				player.throw_strength /= 2
 			PowerupType.GET_BIG:
 				player.scale /= 2
-				player.position.y /= 2
-			PowerupType.FLOATY_JUMP:
-				player.gravity *= 0.5
 
 		# Stop and remove the timer
 		var powerup_data = active_powerups[player.player_id][type]
@@ -96,3 +90,9 @@ func _increase_timer(timer: Timer, duration: float) -> void:
 
 func _on_timer_timeout(type: PowerupType, player: Player) -> void:
 	unapply_powerup(type, player)
+
+func _clear_all_buffs(player: Player) -> void:
+	
+	for player_id in PowerupManager.active_powerups.keys():
+		for powerup_type in PowerupManager.active_powerups[player_id].keys():
+			unapply_powerup(powerup_type, player)

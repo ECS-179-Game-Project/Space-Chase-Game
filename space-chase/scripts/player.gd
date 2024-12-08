@@ -26,6 +26,7 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
 @export var player_color: Color = Color.BLACK
 @export var speed: float = 200.0
+@export var throw_strength: float = 1 # This is the multiplier used to created a strength power up.
 @export var jump_force: float = 350.0
 @export var max_dashes: int = 1
 @export var dash_speed_factor: float = 130.0
@@ -37,7 +38,7 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 @export_range (0.0, 1.0) var hold_jump_gravity_reduction: float = 0.5
 @export var respawn_pos: Node2D = null
 
-var energy: float = 0
+var energy: float
 var facing: Direction.Facing = Direction.Facing.RIGHT
 var is_stunned = false # During knockback from being thrown, dash stuns, and grab techs
 var dashes: int = max_dashes
@@ -70,6 +71,7 @@ var _held_target: Node2D = null
 @onready var respawn_sound: AudioStreamPlayer2D = $Audio/Respawn
 
 func _ready() -> void:
+	energy = 0
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
 	
 	# Set contrls based on player_id
@@ -116,7 +118,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(speed)
+	print(energy)
 	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
 		return
@@ -212,6 +214,7 @@ func _physics_process(delta: float) -> void:
 
 func instakill() -> void: # Called by hitbox
 	if is_dead or is_ghost:
+		PowerupManager._clear_all_buffs(self)
 		return
 	
 	# Release the held player
@@ -241,11 +244,15 @@ func got_grabbed() -> void: # Called by grabbox
 
 func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
 	is_held = false
-	var x_force: float = 300.0
+	var x_force: float = 300.0 
 	var y_force_damping: float = 1.0
 	var high_throw_factor: float = 1.5 if high_throw else 1.0
 	var force := Vector2(Direction.get_sign_factor(direction) * x_force, high_throw_factor * y_force_damping * -x_force)
-	_start_knockback(force, 0.4)
+	_start_knockback(force * throw_strength , 0.4)
+	
+
+func setter(value:int)-> void:
+	throw_strength = value
 
 
 func released() -> void:
@@ -405,6 +412,9 @@ func _end_dash() -> void:
 		# Dash refill sound
 		
 
+func _add_energy(energy:float) -> void:
+	self.energy += energy
+
 
 func _refill_dash() -> void:
 	var prev_dashes = dashes
@@ -430,6 +440,7 @@ func _handle_facing() -> void:
 	elif velocity.x < 0.0:
 		facing = Direction.Facing.LEFT
 	Direction.flip_horizontal(self, facing)
+
 
 
 func _is_in_normal_state() -> bool:
