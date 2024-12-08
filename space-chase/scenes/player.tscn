@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bw5cb5fe23aa3"]
+[gd_scene load_steps=44 format=3 uid="uid://bw5cb5fe23aa3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6de28"]
 [ext_resource type="Script" path="res://scripts/dash_trail.gd" id="2_7oxdq"]
@@ -482,6 +482,46 @@ _data = {
 "input_mash": SubResource("Animation_4uhxg")
 }
 
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3awen"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qoin8"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_rqdu5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lkvq4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j1lt2"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hrjnf"]
+advance_mode = 2
+advance_condition = &"dash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xhhog"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tguov"]
+advance_mode = 2
+advance_condition = &"dash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3oauh"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hhhdk"]
+states/Dash/node = SubResource("AnimationNodeBlendSpace2D_3awen")
+states/Dash/position = Vector2(446, 207.5)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_qoin8")
+states/Idle/position = Vector2(348.5, 101.5)
+states/Run/node = SubResource("AnimationNodeBlendSpace2D_rqdu5")
+states/Run/position = Vector2(534, 99.5)
+states/Start/position = Vector2(171, 99.75)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_lkvq4"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_j1lt2"), "Run", "Dash", SubResource("AnimationNodeStateMachineTransition_hrjnf"), "Dash", "Run", SubResource("AnimationNodeStateMachineTransition_xhhog"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_tguov"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_3oauh")]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 35
@@ -570,9 +610,17 @@ stream = ExtResource("11_gxo3f")
 volume_db = 24.0
 bus = &"SFX"
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("12_k2a54")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_hhhdk")
+anim_player = NodePath("../MainAnimationPlayer")
+parameters/conditions/dash = false
+parameters/conditions/is_idle = false
+parameters/conditions/is_running = false
+parameters/Dash/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Run/blend_position = Vector2(0, 0)

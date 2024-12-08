@@ -69,10 +69,14 @@ var _held_target: Node2D = null
 @onready var dash_sound: AudioStreamPlayer2D = $Audio/Dash
 @onready var dash_refill_sound: AudioStreamPlayer2D = $Audio/DashRefill
 @onready var respawn_sound: AudioStreamPlayer2D = $Audio/Respawn
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready() -> void:
 	energy = 0
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
+	
+	# start animation tree
+	animation_tree.active = true
 	
 	# Set contrls based on player_id
 	if player_id == GameStateManager.PlayerID.PLAYER_1:
@@ -209,6 +213,8 @@ func _physics_process(delta: float) -> void:
 	# Move the character
 	move_and_slide()
 
+func _process(delta: float) -> void:
+	update_animation_parameters()
 
 # -------------------- Public functions --------------------
 
@@ -492,3 +498,18 @@ func _reset_status() -> void:
 	is_holding_jump = false
 	is_dead = false
 	is_ghost = false
+
+func update_animation_parameters():
+	
+	if velocity == Vector2.ZERO: # if idle
+		animation_tree["parameters/conditions/is_idle"] = true 
+		animation_tree["parameters/conditions/is_running"] = false # Set moving to false
+	else: # We are not idle
+		animation_tree["parameters/conditions/is_idle"] = false 
+		animation_tree["parameters/conditions/is_running"] = true # Set moving to false
+	
+	# dash animation tree
+	if Input.is_action_just_pressed("p1_dash"):
+		animation_tree["parameters/conditions/dash"] = true
+	else:
+		animation_tree["parameters/conditions/dash"] = true
