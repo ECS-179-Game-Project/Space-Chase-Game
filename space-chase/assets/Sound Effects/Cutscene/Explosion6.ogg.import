@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bler46whnp5yl"
+path="res://.godot/imported/Explosion6.ogg-c6360c6efdc421956ab56f465d9b5aa3.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Cutscene/Explosion6.ogg"
+dest_files=["res://.godot/imported/Explosion6.ogg-c6360c6efdc421956ab56f465d9b5aa3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

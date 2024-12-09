@@ -122,6 +122,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	update_animation_parameters()
+	
 	print(energy)
 	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
@@ -213,8 +215,8 @@ func _physics_process(delta: float) -> void:
 	# Move the character
 	move_and_slide()
 
-func _process(delta: float) -> void:
-	update_animation_parameters()
+#func _process(delta: float) -> void:
+	#update_animation_parameters()
 
 # -------------------- Public functions --------------------
 
@@ -520,5 +522,10 @@ func update_animation_parameters():
 	else:
 		animation_tree["parameters/conditions/grab"] = false
 		
-		# Ghost animation left
+	# Ghost animation left
+	if is_ghost:
+		animation_tree["parameters/conditions/ghost"] = true
+	else:
+		animation_tree["parameters/conditions/ghost"] = false
+	
 	
