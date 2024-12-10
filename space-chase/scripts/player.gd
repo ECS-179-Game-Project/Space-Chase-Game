@@ -272,7 +272,7 @@ func hold(target: Node2D) -> void: # Called by grabbox
 	target.got_grabbed()
 
 
-func got_grabbed() -> void: # Called by grabbox
+func got_grabbed() -> void: # Called by hold function
 	is_held = true
 	is_holding = false
 
