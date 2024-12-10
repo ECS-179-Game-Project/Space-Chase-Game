@@ -50,10 +50,18 @@ func change_menu(new_menu: MenuState):
 	cur_menu = new_menu
 
 
+static func enter_menu():
+	SceneManager.change_scene(GameScene.menu_manager, {
+		"pattern": "curtains",
+	})
+
+
 func leave_menu(exit_option: ExitOption, skip_transition: bool = false):
 	if not exit_option in ExitOption.values():
 		print("ERROR: Invalid exit option")
 		return
+	
+	cur_menu = MenuState.MAIN # Reset to default menu so we can return to it
 	
 	match exit_option:
 		ExitOption.INTRO:

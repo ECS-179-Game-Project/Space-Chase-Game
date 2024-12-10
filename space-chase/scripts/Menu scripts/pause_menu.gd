@@ -1,14 +1,17 @@
+class_name PauseMenu
 extends Control
 
 
 func resume():
 	get_tree().paused = false 
 	$".".visible = false  
-	
+
+
 func pause():
 	get_tree().paused = true
 	$".".visible = true
-	
+
+
 func testEsc():
 	if Input.is_action_just_pressed("esc") and get_tree().paused == false:
 		pause()
@@ -25,7 +28,8 @@ func _on_restart_pressed() -> void:
 
 
 func _on_quit_pressed() -> void:
-	get_tree().quit()
+	MenuManager.enter_menu()
+
 
 func _process(delta):
 	testEsc()
