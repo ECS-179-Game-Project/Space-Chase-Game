@@ -882,13 +882,15 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoscrollCameraController/RightWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_v7676")
 
-[node name="TopWorldBorder" type="StaticBody2D" parent="AutoscrollCameraController"]
+[node name="DISABLED-TopWorldBorder" type="StaticBody2D" parent="AutoscrollCameraController"]
+visible = false
 position = Vector2(-10, -162)
 collision_layer = 32
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoscrollCameraController/TopWorldBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoscrollCameraController/DISABLED-TopWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_th0pi")
+disabled = true
 
 [node name="BottomWorldBorder" type="StaticBody2D" parent="AutoscrollCameraController"]
 position = Vector2(-10, 162)
@@ -953,10 +955,10 @@ position = Vector2(661, 67)
 position = Vector2(572, 66)
 
 [node name="StrengthPowerup" parent="." instance=ExtResource("22_up5h1")]
-position = Vector2(386, -10)
+position = Vector2(394, -84)
 
 [node name="Energy_Gain" parent="." instance=ExtResource("23_noxf7")]
-position = Vector2(285, 54)
+position = Vector2(261, -33)
 
 [node name="Platform4" parent="." instance=ExtResource("4_2flex")]
 position = Vector2(987, 10)

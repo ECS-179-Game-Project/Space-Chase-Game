@@ -115,7 +115,7 @@ esc={
 
 [layer_names]
 
-2d_physics/layer_1="Solid ground"
+2d_physics/layer_1="Solid ground (ghosts can pass)"
 2d_physics/layer_2="Platforms"
 2d_physics/layer_3="Hurtbox"
 2d_physics/layer_4="Hitbox"

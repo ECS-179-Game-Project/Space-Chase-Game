@@ -264,12 +264,16 @@ func got_grabbed() -> void: # Called by grabbox
 
 func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
 	is_held = false
-	var x_force: float = 300.0 
-	var y_force_damping: float = 1.0
-	var high_throw_factor: float = 1.5 if high_throw else 1.0
-	var force := Vector2(Direction.get_sign_factor(direction) * x_force, high_throw_factor * y_force_damping * -x_force)
-	_start_knockback(force * throw_strength , 0.4)
+	var force_amount: float = 300.0 # In main direction
 	
+	var force: Vector2
+	if high_throw:
+		force = Vector2(Direction.get_sign_factor(direction) * force_amount * 0.4, -force_amount * 1.5)
+	else:
+		force = Vector2(Direction.get_sign_factor(direction) * force_amount, -force_amount)
+	
+	_start_knockback(force * throw_strength , 0.5)
+
 
 func setter(value:int)-> void:
 	throw_strength = value
