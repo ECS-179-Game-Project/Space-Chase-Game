@@ -304,12 +304,10 @@ func grab_tech() -> void: # Called by grabbox
 
 
 func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
-	# Backwards knockback
-	is_held = false
 	_end_dash()
-	var x_force: float = 100.0
+	var x_force: float = 125.0
 	var x_force_sign: float = Direction.get_sign_factor(direction)
-	var y_force_damping: float = 0.5
+	var y_force_damping: float = 1.2
 	var force := Vector2(x_force_sign * x_force, y_force_damping * -x_force)
 	_start_knockback(force, 0.3)
 
@@ -437,8 +435,8 @@ func _end_dash() -> void:
 	velocity.y *= 0.4
 	if is_on_floor():
 		_ground_dash_cooldown_timer.start(ground_dash_cooldown)
-		# Dash refill sound
-		
+		# Dash refill sound goes here
+
 
 func _refill_dash() -> void:
 	var prev_dashes = dashes
