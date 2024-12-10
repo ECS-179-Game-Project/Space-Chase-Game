@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://ee21x70j1ijt"]
+
+[ext_resource type="Texture2D" uid="uid://b6g65w81g6e47" path="res://assets/sprites/Space Runner Assets/Effects/sparkle-effect.png" id="1_m87gy"]
+[ext_resource type="Script" path="res://scripts/oneshot_particles.gd" id="2_3flfy"]
+
+[sub_resource type="Gradient" id="Gradient_6x4et"]
+colors = PackedColorArray(1, 1, 1, 1, 0.3528, 0.46908, 0.72, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2krpt"]
+gradient = SubResource("Gradient_6x4et")
+
+[sub_resource type="Curve" id="Curve_4d032"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.838145, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4f3d5"]
+curve = SubResource("Curve_4d032")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yndfh"]
+angle_min = 1.07288e-05
+angle_max = 720.0
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 220.43
+initial_velocity_max = 263.44
+gravity = Vector3(0, 98, 0)
+scale_min = 0.6
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_4f3d5")
+color_ramp = SubResource("GradientTexture1D_2krpt")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4epm"]
+atlas = ExtResource("1_m87gy")
+region = Rect2(48, 0, 16, 16)
+
+[node name="PlayerDeath" type="GPUParticles2D"]
+amount = 34
+process_material = SubResource("ParticleProcessMaterial_yndfh")
+texture = SubResource("AtlasTexture_f4epm")
+lifetime = 0.7
+explosiveness = 0.95
+script = ExtResource("2_3flfy")

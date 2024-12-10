@@ -1,10 +1,10 @@
 class_name OneShotParticles
-extends GPUParticles2D
+extends TrackedParticles
 
 
 func _ready():
 	one_shot = true
-	emitting = true
+	restart()
 	finished.connect(_on_finished)
 	
 
