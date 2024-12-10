@@ -259,6 +259,7 @@ func instakill() -> void: # Called by hitbox
 
 
 func hold(target: Node2D) -> void: # Called by grabbox
+	is_grabbing = false
 	is_holding = true
 	_held_target = target
 	_hold_timer.start(HOLD_TIME)
