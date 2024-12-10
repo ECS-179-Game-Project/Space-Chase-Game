@@ -287,7 +287,7 @@ func thrown(throw_direction: Vector2, thrower_throw_strength: float) -> void:
 	if force.y == 0.0:
 		force.y = -force_amount * 1.1
 	
-	_start_knockback(force * thrower_throw_strength , 0.5)
+	_start_knockback(force * thrower_throw_strength , 0.45)
 
 
 func released() -> void:
