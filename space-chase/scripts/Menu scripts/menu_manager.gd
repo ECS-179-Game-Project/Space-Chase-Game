@@ -37,7 +37,7 @@ func _ready() -> void:
 		background_music.play()
 	
 	if instant_start:
-		leave_menu(ExitOption.START, false)
+		leave_menu(ExitOption.START, true)
 
 
 func change_menu(new_menu: MenuState):

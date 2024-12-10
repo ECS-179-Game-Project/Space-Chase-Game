@@ -38,7 +38,7 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 @export_range (0.0, 1.0) var hold_jump_gravity_reduction: float = 0.5
 @export var respawn_pos: Node2D = null
 
-var energy: float
+var energy: float = 0
 var facing: Direction.Facing = Direction.Facing.RIGHT
 var dashes: int = max_dashes
 
@@ -54,7 +54,7 @@ var is_holding_jump: bool = false
 var is_jumping: bool = false
 var is_dead: bool = false # Mutually exclusive to is_ghost
 var is_ghost: bool = false
-var is_spawning: bool # if spawning whether that be (dead to ghost) or (ghost to normal)
+var is_respawning: bool # if spawning whether that be (dead to ghost) or (ghost to normal)
 
 var _controls: PlayerControls # Initialized based on player_id
 var _dir: Vector2 # Stores direction of 8-way input
@@ -67,6 +67,7 @@ var _respawn_timer: Timer # Wait until player respawns as a ghost
 var _ghost_timer: Timer # Wait until player stops being a ghost
 var _held_target: Node2D = null
 
+@onready var animation_tree: AnimationTree = $AnimationTree
 @onready var main_animation_player: AnimationPlayer = $MainAnimationPlayer
 @onready var status_animation_player: AnimationPlayer = $StatusAnimationPlayer
 
@@ -78,7 +79,7 @@ var _held_target: Node2D = null
 @onready var death_sound: AudioStreamPlayer2D = $Audio/Death
 
 func _ready() -> void:
-	energy = 0
+	# Signals
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
 	
 	# Set contrls based on player_id
@@ -96,6 +97,9 @@ func _ready() -> void:
 	# Set player color
 	if has_node("Sprite2D"):
 		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
+	
+	# Start animation tree
+	animation_tree.active = true
 	
 	# Initialize timers
 	_hold_timer = Timer.new()
@@ -134,7 +138,7 @@ func _physics_process(delta: float) -> void:
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
 	_dir = Vector2(horizontal_dir, vertical_dir).normalized()
 	
-	is_jumping = velocity.y < 0.0
+	is_jumping = not is_on_floor()
 	is_idle = is_zero_approx(velocity.x)
 	is_running = not is_zero_approx(velocity.x)
 	
@@ -256,7 +260,6 @@ func hold(target: Node2D) -> void: # Called by grabbox
 
 func got_grabbed() -> void: # Called by grabbox
 	is_held = true
-	#main_animation_player.play("held")
 
 
 func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
@@ -308,7 +311,8 @@ func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 func _start_ghost() -> void:
 	is_dead = false
 	is_ghost = true
-	main_animation_player.play("respawn_as_ghost")
+	is_respawning = true
+	#main_animation_player.play("respawn_as_ghost")
 	
 	global_position = respawn_pos.global_position
 	_ghost_timer.start(GHOST_TIME)
@@ -318,10 +322,8 @@ func _start_ghost() -> void:
 
 
 func _stop_ghost() -> void: # Respawn as normal player
-	
-	
 	is_ghost = false
-	
+	is_respawning = true
 	#main_animation_player.play("respawn_as_normal")
 	
 	_enable_interactions()
@@ -349,7 +351,6 @@ func _move_as_ghost(delta: float) -> void:
 # Used to apply knockback (during which the player is stunned)
 func _start_knockback(force: Vector2, stun_time: float) -> void:
 	is_stunned = true
-	#main_animation_player.play("knockback")
 	
 	velocity = force
 	
@@ -358,7 +359,7 @@ func _start_knockback(force: Vector2, stun_time: float) -> void:
 
 func _stop_knockback():
 	is_stunned = false
-	#main_animation_player.stop()
+	#main_animation_player.stop() # Stop knockback animation
 
 
 func _start_jump() -> void:
@@ -370,7 +371,7 @@ func _start_jump() -> void:
 
 func _start_grab() -> void:
 	is_grabbing = true
-	main_animation_player.play("grab") # Temporarily enables grabbox
+	#main_animation_player.play("grab") # Temporarily enables grabbox
 	# Grab logic handled by grabbox
 	# At the end of the grab, the grab animation calls _stop_grab()
 
@@ -383,6 +384,7 @@ func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
 	is_holding = false
 	_held_target.thrown(facing, high_throw)
 	_held_target = null
+	#main_animation_player.stop() # Stop held animation
 
 
 func _release() -> void: # Held target is released from the grab
@@ -501,11 +503,11 @@ func _disable_interactions() -> void:
 
 
 func _started_respawning() -> void: # Called at the start of respawn animations
-	is_spawning = true
+	is_respawning = true
 
 
 func _stopped_respawning() -> void: # Called at the end of respawn animations
-	is_spawning = false
+	is_respawning = false
 
 
 func _reset_status() -> void:
@@ -520,24 +522,26 @@ func _reset_status() -> void:
 	is_ghost = false
 
 
-func _update_main_animation() -> void:	
-	if is_dead or is_spawning or is_grabbing:
-		return
-	elif is_ghost:
-		main_animation_player.play("ghost")
-	elif is_stunned:
-		main_animation_player.play("stunned")
-	elif is_held:
-		main_animation_player.play("held")
-	elif is_holding:
-		main_animation_player.play("holding")
-	elif is_dashing:
-		main_animation_player.play("dashing")
-	elif is_fast_falling:
-		main_animation_player.play("fast_falling")
-	elif is_jumping:
-		main_animation_player.play("jumping")
-	elif is_running:
-		main_animation_player.play("running")
-	elif is_idle:
-		main_animation_player.play("idle")
+func _update_main_animation() -> void:		
+	animation_tree["parameters/conditions/is_idle"] = is_idle
+	animation_tree["parameters/conditions/is_running"] = is_running
+	animation_tree["parameters/conditions/is_jumping"] = is_jumping
+	animation_tree["parameters/conditions/not_jumping"] = not is_jumping
+	animation_tree["parameters/conditions/is_fast_falling"] = is_fast_falling
+	animation_tree["parameters/conditions/not_fast_falling"] = not is_fast_falling
+	animation_tree["parameters/conditions/is_dashing"] = is_dashing
+	animation_tree["parameters/conditions/not_dashing"] = not is_dashing
+	
+	animation_tree["parameters/conditions/is_grabbing"] = is_grabbing
+	
+	animation_tree["parameters/conditions/is_holding"] = is_holding
+	animation_tree["parameters/conditions/not_holding"] = not is_holding
+	animation_tree["parameters/conditions/is_held"] = is_held
+	animation_tree["parameters/conditions/not_held"] = not is_held
+	
+	animation_tree["parameters/conditions/is_stunned"] = is_stunned
+	animation_tree["parameters/conditions/not_stunned"] = not is_stunned
+	
+	animation_tree["parameters/conditions/is_ghost"] = is_ghost
+	animation_tree["parameters/conditions/not_ghost"] = not is_ghost
+	animation_tree["parameters/conditions/is_dead"] = is_dead
