@@ -1,6 +1,8 @@
 class_name PauseMenu
 extends Control
 
+@onready var game_state_manager = $/root/GameStateManager
+const PlayerID = GameStateManager.PlayerID
 
 func resume():
 	get_tree().paused = false 
@@ -15,6 +17,8 @@ func restart():
 	get_tree().paused = false 
 	$".".visible = false  
 	get_tree().reload_current_scene()
+	game_state_manager.set_player_energy(PlayerID.PLAYER_1,0)
+	game_state_manager.set_player_energy(PlayerID.PLAYER_2,0)
 
 func pause():
 	get_tree().paused = true

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Menu scripts/settings_menu.gd" id="1_orapq"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_bof0k"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="2_mswtm"]
-[ext_resource type="Shader" path="res://scripts/shaders/settingscroll.gdshader" id="2_tq67w"]
+[ext_resource type="Shader" path="res://shaders/settingscroll.gdshader" id="2_tq67w"]
 [ext_resource type="Script" path="res://scripts/Menu scripts/volume_slider.gd" id="5_rq8q7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7uwf"]
