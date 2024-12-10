@@ -13,19 +13,19 @@
 [ext_resource type="PackedScene" uid="uid://8uidvvapiws" path="res://scenes/wall_of_death.tscn" id="5_7ocf3"]
 [ext_resource type="Texture2D" uid="uid://b2jyfobu4xfr" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-1.png" id="5_nw6wv"]
 [ext_resource type="Texture2D" uid="uid://islp8j3ejvu1" path="res://assets/sprites/Space Runner Assets/Tiles/RunnerTileSet.png" id="6_ji5rt"]
-[ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/blue_charging_bar.tscn" id="7_0c82v"]
+[ext_resource type="PackedScene" path="res://scenes/blue_charging_bar.tscn" id="7_0c82v"]
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/pause_menu.tscn" id="7_6v1f6"]
-[ext_resource type="PackedScene" uid="uid://ckaeapk1wv30w" path="res://scenes/red_charging_bar.tscn" id="7_bo1o2"]
-[ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
+[ext_resource type="PackedScene" path="res://scenes/red_charging_bar.tscn" id="7_bo1o2"]
+[ext_resource type="PackedScene" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="13_1negu"]
 [ext_resource type="Gradient" uid="uid://dbnd1k3dylhvl" path="res://resources/blue_gradient.tres" id="14_nkvsa"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 [ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="16_t3m13"]
 [ext_resource type="PackedScene" uid="uid://oq7dsvxm3qi7" path="res://scenes/powerups/jump_powerup.tscn" id="17_fgkj1"]
-[ext_resource type="PackedScene" uid="uid://bwhn6h0pahu0k" path="res://scenes/powerups/get_big_powerup.tscn" id="21_f1tdy"]
-[ext_resource type="PackedScene" uid="uid://dd3fxo2cwtjy3" path="res://scenes/powerups/get_small_powerup.tscn" id="21_irisx"]
-[ext_resource type="PackedScene" uid="uid://iwoxsd7c60qm" path="res://scenes/powerups/energy_gain_powerup.tscn" id="23_noxf7"]
+[ext_resource type="PackedScene" uid="uid://cys41hv7stagy" path="res://scenes/powerups/get_big.tscn" id="21_f1tdy"]
+[ext_resource type="PackedScene" uid="uid://bardjjvc8oq4y" path="res://scenes/powerups/get_small_powerup.tscn" id="21_irisx"]
+[ext_resource type="PackedScene" uid="uid://t81yuipd6ncw" path="res://scenes/powerups/energy_gain.tscn" id="23_noxf7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]
 normal = Vector2(1, 0)
@@ -948,11 +948,13 @@ position = Vector2(257, 2)
 [node name="Platform3" parent="." instance=ExtResource("4_2flex")]
 position = Vector2(138, -58)
 
-[node name="EnergyGain" parent="." instance=ExtResource("23_noxf7")]
-position = Vector2(264, -28)
+[node name="GetBig2" parent="." instance=ExtResource("21_f1tdy")]
+position = Vector2(464, 54)
+type = 4
 
-[node name="GetBig" parent="." instance=ExtResource("21_f1tdy")]
-position = Vector2(232, -26)
+[node name="Energy_Gain" parent="." instance=ExtResource("23_noxf7")]
+position = Vector2(120, 276)
+type = 3
 
 [node name="GetSmall" parent="." instance=ExtResource("21_irisx")]
 position = Vector2(257, -45)
