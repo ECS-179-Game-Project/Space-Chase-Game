@@ -19,7 +19,7 @@ enum PowerupType {
 
 # { Player_Id: { SPEED_BOOST: { active: true, timer: Timer }, JUMP_BOOST: { active: true, timer: Timer } } }
 var active_powerups: Dictionary = {}
-
+@onready var game_state_manager = $/root/GameStateManager
 func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 	# Initialize player's active power-ups if not already set
 	if not active_powerups.has(player.player_id):
@@ -39,7 +39,7 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 			PowerupType.GET_BIG:
 				player.scale *= 2
 			PowerupType.ENERGY_GAIN:
-				GameStateManager.add_player_energy(5, player.player_id) # Permanent, no timer needed
+				game_state_manager.add_player_energy(25, player.player_id) # Permanent, no timer needed
 				
 		print("Applied power-up: %s to player %s" % [type, player])
 
