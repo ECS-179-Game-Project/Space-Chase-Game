@@ -6,6 +6,15 @@ func resume():
 	get_tree().paused = false 
 	$".".visible = false  
 
+func quit():
+	get_tree().paused = false 
+	$".".visible = false  
+	MenuManager.enter_menu()
+	
+func restart():
+	get_tree().paused = false 
+	$".".visible = false  
+	get_tree().reload_current_scene()
 
 func pause():
 	get_tree().paused = true
@@ -24,11 +33,11 @@ func _on_resume_pressed() -> void:
 
 
 func _on_restart_pressed() -> void:
-	get_tree().reload_current_scene()
+	restart()
 
 
 func _on_quit_pressed() -> void:
-	MenuManager.enter_menu()
+	quit()
 
 
 func _process(delta):
