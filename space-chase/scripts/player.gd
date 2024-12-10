@@ -269,6 +269,7 @@ func hold(target: Node2D) -> void: # Called by grabbox
 	is_held = false
 	_held_target = target
 	_hold_timer.start(HOLD_TIME)
+	target.got_grabbed()
 
 
 func got_grabbed() -> void: # Called by grabbox
