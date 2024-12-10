@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ee21x70j1ijt"]
+
+[node name="PlayerDeath" type="GPUParticles2D"]
