@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://csp6dyan08ll8"]
+[gd_scene load_steps=5 format=3 uid="uid://csp6dyan08ll8"]
 
 [ext_resource type="Texture2D" uid="uid://t4rq3mr68b3k" path="res://assets/sprites/Health Bar Asset Pack 2 by Adwit Rahman/rpg (2).png" id="1_832xr"]
+[ext_resource type="Script" path="res://scripts/blue_energy_bar.gd" id="2_uesg2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ecvag"]
 
@@ -41,3 +42,4 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_ecvag")
 theme_override_styles/fill = SubResource("StyleBoxFlat_5vwmf")
 value = 100.0
 show_percentage = false
+script = ExtResource("2_uesg2")
