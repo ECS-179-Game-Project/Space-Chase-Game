@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1teq7ewoo4jv"
-path="res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-04c5bd1429f03fd85f0f76298c292168.ctex"
+uid="uid://chbpy7xrblwm0"
+path="res://.godot/imported/greenbar (1).png-d36c6ea9048e2e58eba97aded7dbfa4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/explosions/Green Effect Bullet Impact Explosion 32x32.png"
-dest_files=["res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-04c5bd1429f03fd85f0f76298c292168.ctex"]
+source_file="res://assets/sprites/Health Bar Asset Pack 2 by Adwit Rahman/greenbar (1).png"
+dest_files=["res://.godot/imported/greenbar (1).png-d36c6ea9048e2e58eba97aded7dbfa4d.ctex"]
 
 [params]
 
