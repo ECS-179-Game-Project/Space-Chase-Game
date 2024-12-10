@@ -15,13 +15,19 @@ func _init() -> void:
 func _on_grabbox_entered(grabbox: GrabBox) -> void:
 	var target := grabbox.owner
 	
-	if target.has_method("grab_tech"):
+	if grab_owner.is_stunned:
+		return
+	
+	if target is Player and target.has_method("grab_tech"):
 		target.grab_tech()
 		grab_owner.grab_tech()
 
 
 func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
 	var target := hurtbox.owner
+	
+	if grab_owner.is_stunned:
+		return
 	
 	if target is Player and target.is_ghost:
 		return

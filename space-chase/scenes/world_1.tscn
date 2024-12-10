@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=37 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://d0sl2gjako8cl" path="res://assets/sprites/Terrain/Environment/Layers/cave_tileset-2.png" id="7_2dija"]
 [ext_resource type="PackedScene" uid="uid://ckaeapk1wv30w" path="res://scenes/red_charging_bar.tscn" id="7_bo1o2"]
 [ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
+[ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="13_1negu"]
+[ext_resource type="Gradient" uid="uid://dbnd1k3dylhvl" path="res://resources/blue_gradient.tres" id="14_nkvsa"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 [ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="16_t3m13"]
 [ext_resource type="PackedScene" uid="uid://oq7dsvxm3qi7" path="res://scenes/powerups/jump_powerup.tscn" id="17_fgkj1"]
@@ -899,6 +901,7 @@ shape = SubResource("WorldBoundaryShape2D_0ohnb")
 texture_filter = 3
 position = Vector2(12, 38)
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
+dash_color_gradient = ExtResource("13_1negu")
 respawn_pos = NodePath("../AutoscrollCameraController")
 
 [node name="Player2" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("3_korow")]
@@ -906,6 +909,7 @@ texture_filter = 3
 position = Vector2(58, 38)
 player_id = 1
 player_color = Color(0, 0.208508, 0.503089, 1)
+dash_color_gradient = ExtResource("14_nkvsa")
 respawn_pos = NodePath("../AutoscrollCameraController")
 
 [node name="TilemapLayers" type="Node" parent="."]
@@ -938,16 +942,16 @@ position = Vector2(257, 2)
 position = Vector2(138, -58)
 
 [node name="EnergyGain" parent="." instance=ExtResource("23_noxf7")]
-position = Vector2(337, 41)
+position = Vector2(264, -28)
 
 [node name="GetBig" parent="." instance=ExtResource("21_f1tdy")]
-position = Vector2(500, 43)
+position = Vector2(232, -26)
 
 [node name="GetSmall" parent="." instance=ExtResource("21_irisx")]
-position = Vector2(555, 59)
+position = Vector2(257, -45)
 
 [node name="JumpPowerup" parent="." instance=ExtResource("17_fgkj1")]
-position = Vector2(611, 54)
+position = Vector2(285, -19)
 
 [node name="SpeedPowerup" parent="." instance=ExtResource("16_t3m13")]
-position = Vector2(658, 54)
+position = Vector2(276, -49)

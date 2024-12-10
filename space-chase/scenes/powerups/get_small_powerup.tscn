@@ -20,4 +20,4 @@ scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_qoed2")
 hframes = 9
 vframes = 4
-frame = 32
+frame = 21

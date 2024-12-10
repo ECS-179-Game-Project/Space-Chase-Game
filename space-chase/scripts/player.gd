@@ -30,6 +30,7 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
 @export var player_color: Color = Color.BLACK
+@export var dash_color_gradient: Gradient = load("res://resources/red_gradient.tres")
 @export var speed: float = DEFAULT_SPEED
 @export var throw_strength: float = DEFAULT_THROW_STRENGTH
 @export var jump_force: float = DEFAULT_JUMP_FORCE
@@ -104,6 +105,10 @@ func _ready() -> void:
 	if has_node("Sprite2D"):
 		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
 	
+	# Set dash trail color
+	if has_node("DashTrail"):
+		$DashTrail.gradient = dash_color_gradient
+	
 	# Start animation tree
 	animation_tree.active = true
 	
@@ -134,7 +139,7 @@ func _ready() -> void:
 	add_child(_ghost_timer)
 
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
 	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
 		return
@@ -204,7 +209,7 @@ func _physics_process(delta: float) -> void:
 			_release()
 		# Normal or high throw
 		else:
-			var high_throw: bool = Input.is_action_pressed(_controls.up)
+			var high_throw: bool = vertical_dir < 0.0
 			_throw(high_throw)
 	
 	# Allow held player to mash out
@@ -261,24 +266,26 @@ func instakill() -> void: # Called by hitbox
 func hold(target: Node2D) -> void: # Called by grabbox
 	is_grabbing = false
 	is_holding = true
+	is_held = false
 	_held_target = target
 	_hold_timer.start(HOLD_TIME)
 
 
 func got_grabbed() -> void: # Called by grabbox
 	is_held = true
+	is_holding = false
 
 
 # Called by the thrower player on the thrown player
-func thrown(direction: Direction.Facing, thrower_throw_strength: float, high_throw: bool = false) -> void:
+func thrown(throw_direction: Vector2, thrower_throw_strength: float) -> void:
 	is_held = false
-	var force_amount: float = 300.0 # In main direction
+	var force_amount: float = 270.0
 	
-	var force: Vector2
-	if high_throw:
-		force = Vector2(Direction.get_sign_factor(direction) * force_amount * 0.4, -force_amount * 1.5)
-	else:
-		force = Vector2(Direction.get_sign_factor(direction) * force_amount, -force_amount)
+	var force := throw_direction.sign() * Vector2(force_amount, force_amount * 1.5)
+	if force.x == 0.0:
+		force.y *= 1.2
+	if force.y == 0.0:
+		force.y = -force_amount * 1.1
 	
 	_start_knockback(force * thrower_throw_strength , 0.5)
 
@@ -294,12 +301,12 @@ func grab_tech() -> void: # Called by grabbox
 	# BUG: When grab teching the grabboxes are still enabled. Players are also being thrown instead of just grab teching
 	
 	# Backwards knockback
+	is_grabbing = false
 	is_holding = false
 	is_held = false
-	var x_force: float = 10.0
+	var x_force: float = 100.0
 	var x_force_sign: float = Direction.get_sign_factor(Direction.get_opposite_faing(facing))
-	var y_force_damping: float = 0.7
-	var force := Vector2(x_force_sign * x_force, y_force_damping * -x_force)
+	var force := Vector2(x_force_sign * x_force, 1.2 * -x_force)
 	_start_knockback(force, 0.5)
 
 
@@ -307,8 +314,7 @@ func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 	_end_dash()
 	var x_force: float = 125.0
 	var x_force_sign: float = Direction.get_sign_factor(direction)
-	var y_force_damping: float = 1.2
-	var force := Vector2(x_force_sign * x_force, y_force_damping * -x_force)
+	var force := Vector2(x_force_sign * x_force, 1.2 * -x_force)
 	_start_knockback(force, 0.3)
 
 
@@ -355,7 +361,7 @@ func _move_as_ghost(delta: float) -> void:
 
 
 # Used to apply knockback (during which the player is stunned)
-func _start_knockback(force: Vector2, stun_time: float) -> void:
+func _start_knockback(force: Vector2, stun_time: float) -> void:	
 	is_stunned = true
 	
 	velocity = force
@@ -388,7 +394,7 @@ func _stop_grab() -> void: # Called at the end of teh grab animation
 
 func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
 	is_holding = false
-	_held_target.thrown(facing, throw_strength, high_throw)
+	_held_target.thrown(_get_action_dir(_dir), throw_strength)
 	_held_target = null
 	#main_animation_player.stop() # Stop held animation
 
@@ -426,7 +432,7 @@ func _start_dash(delta: float) -> void:
 	clamp(dashes, 0, max_dashes - 1)
 	_dash_timer.start(dash_time)
 	
-	var dash_dir: Vector2 = _get_dash_dir(_dir)
+	var dash_dir: Vector2 = _get_action_dir(_dir)
 	velocity = dash_dir * dash_speed
 
 
@@ -473,7 +479,7 @@ func _can_move() -> bool:
 	return (not is_dashing) and (not is_held) and (not is_stunned)
 
 
-func _get_dash_dir(dir: Vector2) -> Vector2:
+func _get_action_dir(dir: Vector2) -> Vector2: # For dashes and throws
 	if dir == Vector2.ZERO:
 		var default_dir_x: float
 		if facing == Direction.Facing.RIGHT:

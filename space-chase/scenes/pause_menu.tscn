@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgj22fj2tp1re"]
 
-[ext_resource type="Shader" path="res://scripts/shaders/pause_menu.gdshader" id="1_1hy65"]
+[ext_resource type="Shader" path="res://shaders/pause_menu.gdshader" id="1_1hy65"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_inbe0"]
 [ext_resource type="Script" path="res://scripts/Menu scripts/pause_menu.gd" id="1_owssn"]
 
