@@ -64,7 +64,7 @@ func unapply_powerup(type: PowerupType, player: Player) -> void:
 			PowerupType.SHIELD:
 				player.shield_active = false
 			PowerupType.POWER_BOOST:
-				player.apply_strong_throw_powerup()
+				player.throw_strength = 2
 			PowerupType.GET_BIG:
 				player.scale /= 2
 
