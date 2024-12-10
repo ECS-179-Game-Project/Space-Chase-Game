@@ -69,6 +69,7 @@ var _held_target: Node2D = null
 @onready var dash_sound: AudioStreamPlayer2D = $Audio/Dash
 @onready var dash_refill_sound: AudioStreamPlayer2D = $Audio/DashRefill
 @onready var respawn_sound: AudioStreamPlayer2D = $Audio/Respawn
+@onready var death_sound: AudioStreamPlayer2D = $Audio/Death
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready() -> void:
@@ -237,6 +238,9 @@ func instakill() -> void: # Called by hitbox
 	_disable_interactions()
 	
 	_respawn_timer.start(RESPAWN_TIME)
+	
+	# play death sound
+	death_sound.play()
 
 
 func hold(target: Node2D) -> void: # Called by grabbox
@@ -522,7 +526,9 @@ func update_animation_parameters():
 	else:
 		animation_tree["parameters/conditions/grab"] = false
 		
-	# Ghost animation left
+	# Dash refill animation
+	
+	# Ghost animation
 	if is_ghost:
 		animation_tree["parameters/conditions/ghost"] = true
 	else:
