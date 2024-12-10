@@ -151,6 +151,11 @@ func _physics_process(delta: float) -> void:
 		_move_as_ghost(delta)
 		return
 	
+	if is_strong_throw:
+		throw_strength = 2
+	else:
+		throw_strength = 1
+	
 	# Handle gravity
 	if (not is_dashing) and (not is_held) and (not is_on_floor()):
 		var apply_gravity: float = gravity * delta
