@@ -42,6 +42,7 @@ var energy: float
 var facing: Direction.Facing = Direction.Facing.RIGHT
 var is_stunned = false # During knockback from being thrown, dash stuns, and grab techs
 var dashes: int = max_dashes
+var is_strong_throw: bool = false
 var is_dashing: bool = false
 var is_grabbing: bool = false # Currently in the grab animation
 var is_holding: bool = false # Currently grabbing/holding the othe player
@@ -71,9 +72,7 @@ var _held_target: Node2D = null
 @onready var respawn_sound: AudioStreamPlayer2D = $Audio/Respawn
 
 func _ready() -> void:
-	energy = 0
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
-	
 	# Set contrls based on player_id
 	if player_id == GameStateManager.PlayerID.PLAYER_1:
 		_controls = PlayerControls.get_p1_controls()
@@ -118,7 +117,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(energy)
 	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
 		return
@@ -250,10 +248,6 @@ func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
 	var force := Vector2(Direction.get_sign_factor(direction) * x_force, high_throw_factor * y_force_damping * -x_force)
 	_start_knockback(force * throw_strength , 0.4)
 	
-
-func setter(value:int)-> void:
-	throw_strength = value
-
 
 func released() -> void:
 	is_held = false
@@ -412,10 +406,6 @@ func _end_dash() -> void:
 		# Dash refill sound
 		
 
-func _add_energy(energy:float) -> void:
-	self.energy += energy
-
-
 func _refill_dash() -> void:
 	var prev_dashes = dashes
 	dashes = max_dashes
@@ -492,3 +482,11 @@ func _reset_status() -> void:
 	is_holding_jump = false
 	is_dead = false
 	is_ghost = false
+
+
+func set_throw_strength(value: float) -> void:
+	throw_strength = value
+	
+func apply_strong_throw_powerup() -> void:
+	is_strong_throw = true
+	set_throw_strength(2.0)

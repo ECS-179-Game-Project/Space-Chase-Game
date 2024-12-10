@@ -35,11 +35,11 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 			PowerupType.SHIELD:
 				player.shield_active = true
 			PowerupType.POWER_BOOST:
-				player.setter(2)
+				player.is_strong_throw = true
 			PowerupType.GET_BIG:
 				player.scale *= 2
 			PowerupType.ENERGY_GAIN:
-				player._add_energy(5) # Permanent, no timer needed
+				GameStateManager.add_player_energy(5, player.player_id) # Permanent, no timer needed
 				
 		print("Applied power-up: %s to player %s" % [type, player])
 
@@ -64,7 +64,7 @@ func unapply_powerup(type: PowerupType, player: Player) -> void:
 			PowerupType.SHIELD:
 				player.shield_active = false
 			PowerupType.POWER_BOOST:
-				player.throw_strength /= 2
+				player.apply_strong_throw_powerup()
 			PowerupType.GET_BIG:
 				player.scale /= 2
 
