@@ -40,16 +40,21 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 
 var energy: float
 var facing: Direction.Facing = Direction.Facing.RIGHT
-var is_stunned = false # During knockback from being thrown, dash stuns, and grab techs
 var dashes: int = max_dashes
+
+var is_idle: bool = true
+var is_running: bool = false
+var is_stunned: bool = false # During knockback from being thrown, dash stuns, and grab techs
 var is_dashing: bool = false
 var is_grabbing: bool = false # Currently in the grab animation
 var is_holding: bool = false # Currently grabbing/holding the othe player
 var is_held: bool = false # Currently grabbed/held by the other player
 var is_fast_falling: bool = false
 var is_holding_jump: bool = false
+var is_jumping: bool = false
 var is_dead: bool = false # Mutually exclusive to is_ghost
 var is_ghost: bool = false
+var is_spawning: bool # if spawning whether that be (dead to ghost) or (ghost to normal)
 
 var _controls: PlayerControls # Initialized based on player_id
 var _dir: Vector2 # Stores direction of 8-way input
@@ -62,22 +67,19 @@ var _respawn_timer: Timer # Wait until player respawns as a ghost
 var _ghost_timer: Timer # Wait until player stops being a ghost
 var _held_target: Node2D = null
 
-@onready var _main_animation_player: AnimationPlayer = $MainAnimationPlayer
-@onready var _status_animation_player: AnimationPlayer = $StatusAnimationPlayer
+@onready var main_animation_player: AnimationPlayer = $MainAnimationPlayer
+@onready var status_animation_player: AnimationPlayer = $StatusAnimationPlayer
+
 @onready var jump_sound: AudioStreamPlayer2D = $Audio/Jump
 @onready var run_sound: AudioStreamPlayer2D = $Audio/Run
 @onready var dash_sound: AudioStreamPlayer2D = $Audio/Dash
 @onready var dash_refill_sound: AudioStreamPlayer2D = $Audio/DashRefill
 @onready var respawn_sound: AudioStreamPlayer2D = $Audio/Respawn
 @onready var death_sound: AudioStreamPlayer2D = $Audio/Death
-@onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready() -> void:
 	energy = 0
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
-	
-	# start animation tree
-	animation_tree.active = true
 	
 	# Set contrls based on player_id
 	if player_id == GameStateManager.PlayerID.PLAYER_1:
@@ -122,10 +124,7 @@ func _ready() -> void:
 	add_child(_ghost_timer)
 
 
-func _physics_process(delta: float) -> void:
-	update_animation_parameters()
-	
-	print(energy)
+func _physics_process(delta: float) -> void:	
 	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
 		return
@@ -134,6 +133,10 @@ func _physics_process(delta: float) -> void:
 	var horizontal_dir := Input.get_axis(_controls.left, _controls.right)
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
 	_dir = Vector2(horizontal_dir, vertical_dir).normalized()
+	
+	is_jumping = velocity.y < 0.0
+	is_idle = is_zero_approx(velocity.x)
+	is_running = not is_zero_approx(velocity.x)
 	
 	_handle_ordering() # Z-index
 	_handle_facing() # Looking left/right
@@ -196,7 +199,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Allow held player to mash out
 	if is_held and _controls.any_control_just_pressed():
-		_status_animation_player.play("input_mash")
+		status_animation_player.play("input_mash")
 		GameStateManager.player_mashing_while_held.emit()
 	
 	# Move the held player relatively
@@ -216,8 +219,10 @@ func _physics_process(delta: float) -> void:
 	# Move the character
 	move_and_slide()
 
-#func _process(delta: float) -> void:
-	#update_animation_parameters()
+
+func _process(delta: float) -> void:
+	_update_main_animation()
+	
 
 # -------------------- Public functions --------------------
 
@@ -233,7 +238,7 @@ func instakill() -> void: # Called by hitbox
 	_reset_status() # Safety check incase of incorrect statuses
 	
 	is_dead = true
-	_main_animation_player.play("death")
+	#main_animation_player.play("death")
 	
 	_disable_interactions()
 	
@@ -251,7 +256,7 @@ func hold(target: Node2D) -> void: # Called by grabbox
 
 func got_grabbed() -> void: # Called by grabbox
 	is_held = true
-	_main_animation_player.play("held")
+	#main_animation_player.play("held")
 
 
 func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
@@ -303,7 +308,8 @@ func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 func _start_ghost() -> void:
 	is_dead = false
 	is_ghost = true
-	_main_animation_player.play("respawn_as_ghost")
+	main_animation_player.play("respawn_as_ghost")
+	
 	global_position = respawn_pos.global_position
 	_ghost_timer.start(GHOST_TIME)
 	
@@ -316,7 +322,7 @@ func _stop_ghost() -> void: # Respawn as normal player
 	
 	is_ghost = false
 	
-	_main_animation_player.play("respawn_as_normal")
+	#main_animation_player.play("respawn_as_normal")
 	
 	_enable_interactions()
 	
@@ -343,7 +349,7 @@ func _move_as_ghost(delta: float) -> void:
 # Used to apply knockback (during which the player is stunned)
 func _start_knockback(force: Vector2, stun_time: float) -> void:
 	is_stunned = true
-	_main_animation_player.play("knockback")
+	#main_animation_player.play("knockback")
 	
 	velocity = force
 	
@@ -352,7 +358,7 @@ func _start_knockback(force: Vector2, stun_time: float) -> void:
 
 func _stop_knockback():
 	is_stunned = false
-	_main_animation_player.stop()
+	#main_animation_player.stop()
 
 
 func _start_jump() -> void:
@@ -364,7 +370,7 @@ func _start_jump() -> void:
 
 func _start_grab() -> void:
 	is_grabbing = true
-	_main_animation_player.play("grab") # Temporarily enables grabbox
+	main_animation_player.play("grab") # Temporarily enables grabbox
 	# Grab logic handled by grabbox
 	# At the end of the grab, the grab animation calls _stop_grab()
 
@@ -433,7 +439,7 @@ func _refill_dash() -> void:
 	dashes = max_dashes
 	
 	if prev_dashes < max_dashes and _ground_dash_cooldown_timer.is_stopped():
-		_status_animation_player.play("dash_recharge")
+		status_animation_player.play("dash_recharge")
 		dash_refill_sound.play()
 
 
@@ -494,6 +500,14 @@ func _disable_interactions() -> void:
 			child.monitoring = false
 
 
+func _started_respawning() -> void: # Called at the start of respawn animations
+	is_spawning = true
+
+
+func _stopped_respawning() -> void: # Called at the end of respawn animations
+	is_spawning = false
+
+
 func _reset_status() -> void:
 	is_stunned = false
 	is_dashing = false
@@ -505,33 +519,25 @@ func _reset_status() -> void:
 	is_dead = false
 	is_ghost = false
 
-func update_animation_parameters():
-	
-	if velocity == Vector2.ZERO: # if idle
-		animation_tree["parameters/conditions/is_idle"] = true 
-		animation_tree["parameters/conditions/is_running"] = false # Set moving to false
-	else: # We are not idle
-		animation_tree["parameters/conditions/is_idle"] = false 
-		animation_tree["parameters/conditions/is_running"] = true # Set moving to false
-	
-	# dash animation tree
-	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash) and dashes > 0 and _ground_dash_cooldown_timer.is_stopped():
-		animation_tree["parameters/conditions/dash"] = true
-	else:
-		animation_tree["parameters/conditions/dash"] = true
-	
-	# grab animation
-	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.grab):
-		animation_tree["parameters/conditions/grab"] = true
-	else:
-		animation_tree["parameters/conditions/grab"] = false
-		
-	# Dash refill animation
-	
-	# Ghost animation
-	if is_ghost:
-		animation_tree["parameters/conditions/ghost"] = true
-	else:
-		animation_tree["parameters/conditions/ghost"] = false
-	
-	
+
+func _update_main_animation() -> void:	
+	if is_dead or is_spawning or is_grabbing:
+		return
+	elif is_ghost:
+		main_animation_player.play("ghost")
+	elif is_stunned:
+		main_animation_player.play("stunned")
+	elif is_held:
+		main_animation_player.play("held")
+	elif is_holding:
+		main_animation_player.play("holding")
+	elif is_dashing:
+		main_animation_player.play("dashing")
+	elif is_fast_falling:
+		main_animation_player.play("fast_falling")
+	elif is_jumping:
+		main_animation_player.play("jumping")
+	elif is_running:
+		main_animation_player.play("running")
+	elif is_idle:
+		main_animation_player.play("idle")

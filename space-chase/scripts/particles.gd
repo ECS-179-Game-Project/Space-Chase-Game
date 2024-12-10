@@ -15,7 +15,7 @@ func _ready():
 
 func load_particle(particle_path: String) -> int:
 	if not particle_path.is_absolute_path():
-		push_error("Invalid path.")
+		push_error(particle_path, "is not a valid path.")
 		return -1
 	else:
 		var particle_scene = load(particle_path) as PackedScene
