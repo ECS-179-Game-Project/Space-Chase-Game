@@ -16,6 +16,6 @@ type = 1
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_3qdtf")
 
-[node name="Jump" type="Sprite2D" parent="."]
+[node name="PowerupSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
 texture = ExtResource("2_ctdjg")

@@ -12,7 +12,7 @@ Gives abilities to the player (through powerup manager)
 const HOVER_AMPLITUDE:float = 5.0
 const HOVER_SPEED: float = 2.0
 
-@export var duration: float = 15.0  
+@export var duration: float = 10.0
 @export var type: PowerupManager.PowerupType
 
 var _hover_time: float = 0.0

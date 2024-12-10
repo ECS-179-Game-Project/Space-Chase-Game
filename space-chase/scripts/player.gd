@@ -16,6 +16,11 @@ If dies, give the other player energy (through game state manager)
 If close to respective charging station, slowly charge up the station (through game state manager)
 """
 
+const DEFAULT_SPEED: float = 200.0
+const DEFAULT_JUMP_FORCE: float = 350.0
+const DEFAULT_THROW_STRENGTH: float = 1.0
+const DEFAULT_DASH_SPEED: float = 430.0
+
 const COYOTE_TIME_WINDOW: float = 0.06 # Time in seconds in which jumping is possible after no longer being on the floor
 const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
 const HOLD_TIME: float = 5.0 # How long a player is able to hold
@@ -25,11 +30,11 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
 @export var player_color: Color = Color.BLACK
-@export var speed: float = 200.0
-@export var throw_strength: float = 1 # This is the multiplier used to created a strength power up.
-@export var jump_force: float = 350.0
+@export var speed: float = DEFAULT_SPEED
+@export var throw_strength: float = DEFAULT_THROW_STRENGTH
+@export var jump_force: float = DEFAULT_JUMP_FORCE
 @export var max_dashes: int = 1
-@export var dash_speed_factor: float = 130.0
+@export var dash_speed: float = DEFAULT_DASH_SPEED
 @export var dash_time: float = 0.15
 @export var ground_dash_cooldown: float = 0.7
 @export_range (0, 1800) var gravity: float = 1600.0
@@ -41,7 +46,7 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 var energy: float = 0
 var facing: Direction.Facing = Direction.Facing.RIGHT
 var dashes: int = max_dashes
-var is_strong_throw: bool = false
+var active_shield: bool = false
 
 var is_idle: bool = true
 var is_running: bool = false
@@ -150,11 +155,6 @@ func _physics_process(delta: float) -> void:
 	if is_ghost:
 		_move_as_ghost(delta)
 		return
-	
-	if is_strong_throw:
-		throw_strength = 2
-	else:
-		throw_strength = 1
 	
 	# Handle gravity
 	if (not is_dashing) and (not is_held) and (not is_on_floor()):
@@ -268,7 +268,8 @@ func got_grabbed() -> void: # Called by grabbox
 	is_held = true
 
 
-func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
+# Called by the thrower player on the thrown player
+func thrown(direction: Direction.Facing, thrower_throw_strength: float, high_throw: bool = false) -> void:
 	is_held = false
 	var force_amount: float = 300.0 # In main direction
 	
@@ -278,7 +279,7 @@ func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
 	else:
 		force = Vector2(Direction.get_sign_factor(direction) * force_amount, -force_amount)
 	
-	_start_knockback(force * throw_strength , 0.5)
+	_start_knockback(force * thrower_throw_strength , 0.5)
 
 
 func released() -> void:
@@ -388,7 +389,7 @@ func _stop_grab() -> void: # Called at the end of teh grab animation
 
 func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
 	is_holding = false
-	_held_target.thrown(facing, high_throw)
+	_held_target.thrown(facing, throw_strength, high_throw)
 	_held_target = null
 	#main_animation_player.stop() # Stop held animation
 
@@ -427,7 +428,7 @@ func _start_dash(delta: float) -> void:
 	_dash_timer.start(dash_time)
 	
 	var dash_dir: Vector2 = _get_dash_dir(_dir)
-	velocity = dash_dir * dash_speed_factor * speed * delta
+	velocity = dash_dir * dash_speed
 
 
 func _end_dash() -> void:

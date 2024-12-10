@@ -6,15 +6,18 @@ Applies and unapplies powerup for a player (unapplying is for temporary powerups
 Uses a powerup enum (autoload this script so powerup scenes have access to this enum)
 """
 
+const SPEED_MULTIPLIER: float = 1.5
+const JUMP_MULTIPLIER: float = 1.5
+const THROW_MULTIPLIER: float = 1.5
+const SCALE_MULTIPLIER: float = 1.5
 
 enum PowerupType {
 	SPEED_BOOST,
 	JUMP_BOOST,
 	SHIELD,
-	POWER_BOOST,
-	FLOATY_JUMP,
 	ENERGY_GAIN,
 	GET_BIG,
+	GET_SMALL,
 }
 
 # { Player_Id: { SPEED_BOOST: { active: true, timer: Timer }, JUMP_BOOST: { active: true, timer: Timer } } }
@@ -29,15 +32,17 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 	if not active_powerups[player.player_id].has(type) or not active_powerups[player.player_id][type]["active"]:
 		match type:
 			PowerupType.SPEED_BOOST:
-				player.speed *= 1.5
+				player.speed *= SPEED_MULTIPLIER
 			PowerupType.JUMP_BOOST:
-				player.jump_force *= 1.5
+				player.jump_force *= JUMP_MULTIPLIER
 			PowerupType.SHIELD:
-				player.shield_active = true
-			PowerupType.POWER_BOOST:
-				player.is_strong_throw = true
+				player.active_shield = true
 			PowerupType.GET_BIG:
-				player.scale *= 2
+				player.scale *= SCALE_MULTIPLIER
+				player.throw_strength *= THROW_MULTIPLIER
+			PowerupType.GET_SMALL:
+				player.scale /= SCALE_MULTIPLIER
+				player.max_dashes = 2
 			PowerupType.ENERGY_GAIN:
 				game_state_manager.add_player_energy(25, player.player_id) # Permanent, no timer needed
 				
@@ -58,15 +63,17 @@ func unapply_powerup(type: PowerupType, player: Player) -> void:
 		# Remove the power-up effect
 		match type:
 			PowerupType.SPEED_BOOST:
-				player.speed /= 1.5
+				player.speed /= SPEED_MULTIPLIER
 			PowerupType.JUMP_BOOST:
-				player.jump_force /= 1.5
+				player.jump_force /= JUMP_MULTIPLIER
 			PowerupType.SHIELD:
-				player.shield_active = false
-			PowerupType.POWER_BOOST:
-				player.throw_strength = 2
+				player.active_shield = false
 			PowerupType.GET_BIG:
-				player.scale /= 2
+				player.throw_strength /= THROW_MULTIPLIER
+				player.scale /= SCALE_MULTIPLIER
+			PowerupType.GET_SMALL:
+				player.scale *= SCALE_MULTIPLIER
+				player.max_dashes = 1
 
 		# Stop and remove the timer
 		var powerup_data = active_powerups[player.player_id][type]
