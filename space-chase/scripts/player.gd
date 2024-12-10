@@ -25,8 +25,8 @@ const COYOTE_TIME_WINDOW: float = 0.06 # Time in seconds in which jumping is pos
 const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
 const HOLD_TIME: float = 5.0 # How long a player is able to hold
 const HOLD_TIMER_REDUCTION: float = 0.5 # How much to reduce the hold timer for each button mashed by held player
-const RESPAWN_TIME: float = 2.0 # How long for player to respawn as a ghost
-const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
+const RESPAWN_TIME: float = 1.5 # How long for player to respawn as a ghost
+const GHOST_TIME: float = 2.0 # How long for player to stop being a ghost
 
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
 @export var player_color: Color = Color.BLACK
