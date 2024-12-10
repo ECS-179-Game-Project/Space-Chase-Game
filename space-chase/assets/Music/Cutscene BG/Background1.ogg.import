@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ddktq1gg1gt7x"
+path="res://.godot/imported/Background1.ogg-c7657db859f68a40b6c73daf163261f8.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Music/Cutscene BG/Background1.ogg"
+dest_files=["res://.godot/imported/Background1.ogg-c7657db859f68a40b6c73daf163261f8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

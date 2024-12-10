@@ -70,9 +70,15 @@ var _held_target: Node2D = null
 @onready var dash_sound: AudioStreamPlayer2D = $Audio/Dash
 @onready var dash_refill_sound: AudioStreamPlayer2D = $Audio/DashRefill
 @onready var respawn_sound: AudioStreamPlayer2D = $Audio/Respawn
+@onready var death_sound: AudioStreamPlayer2D = $Audio/Death
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready() -> void:
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
+	
+	# start animation tree
+	animation_tree.active = true
+	
 	# Set contrls based on player_id
 	if player_id == GameStateManager.PlayerID.PLAYER_1:
 		_controls = PlayerControls.get_p1_controls()
@@ -117,6 +123,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	update_animation_parameters()
+	
+	print(energy)
 	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
 		return
@@ -207,6 +216,8 @@ func _physics_process(delta: float) -> void:
 	# Move the character
 	move_and_slide()
 
+#func _process(delta: float) -> void:
+	#update_animation_parameters()
 
 # -------------------- Public functions --------------------
 
@@ -227,6 +238,9 @@ func instakill() -> void: # Called by hitbox
 	_disable_interactions()
 	
 	_respawn_timer.start(RESPAWN_TIME)
+	
+	# play death sound
+	death_sound.play()
 
 
 func hold(target: Node2D) -> void: # Called by grabbox
@@ -483,10 +497,33 @@ func _reset_status() -> void:
 	is_dead = false
 	is_ghost = false
 
-
-func set_throw_strength(value: float) -> void:
-	throw_strength = value
+func update_animation_parameters():
 	
-func apply_strong_throw_powerup() -> void:
-	is_strong_throw = true
-	set_throw_strength(2.0)
+	if velocity == Vector2.ZERO: # if idle
+		animation_tree["parameters/conditions/is_idle"] = true 
+		animation_tree["parameters/conditions/is_running"] = false # Set moving to false
+	else: # We are not idle
+		animation_tree["parameters/conditions/is_idle"] = false 
+		animation_tree["parameters/conditions/is_running"] = true # Set moving to false
+	
+	# dash animation tree
+	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.dash) and dashes > 0 and _ground_dash_cooldown_timer.is_stopped():
+		animation_tree["parameters/conditions/dash"] = true
+	else:
+		animation_tree["parameters/conditions/dash"] = true
+	
+	# grab animation
+	if _is_in_normal_state() and Input.is_action_just_pressed(_controls.grab):
+		animation_tree["parameters/conditions/grab"] = true
+	else:
+		animation_tree["parameters/conditions/grab"] = false
+		
+	# Dash refill animation
+	
+	# Ghost animation
+	if is_ghost:
+		animation_tree["parameters/conditions/ghost"] = true
+	else:
+		animation_tree["parameters/conditions/ghost"] = false
+	
+	
