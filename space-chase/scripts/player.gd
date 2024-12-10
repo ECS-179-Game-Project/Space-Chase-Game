@@ -41,6 +41,7 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 var energy: float = 0
 var facing: Direction.Facing = Direction.Facing.RIGHT
 var dashes: int = max_dashes
+var is_strong_throw: bool = false
 
 var is_idle: bool = true
 var is_running: bool = false
@@ -149,6 +150,11 @@ func _physics_process(delta: float) -> void:
 	if is_ghost:
 		_move_as_ghost(delta)
 		return
+	
+	if is_strong_throw:
+		throw_strength = 2
+	else:
+		throw_strength = 1
 	
 	# Handle gravity
 	if (not is_dashing) and (not is_held) and (not is_on_floor()):
@@ -270,10 +276,6 @@ func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
 	var force := Vector2(Direction.get_sign_factor(direction) * x_force, high_throw_factor * y_force_damping * -x_force)
 	_start_knockback(force * throw_strength , 0.4)
 	
-
-func setter(value:int)-> void:
-	throw_strength = value
-
 
 func released() -> void:
 	is_held = false
@@ -431,10 +433,6 @@ func _end_dash() -> void:
 		_ground_dash_cooldown_timer.start(ground_dash_cooldown)
 		# Dash refill sound
 		
-
-func _add_energy(energy:float) -> void:
-	self.energy += energy
-
 
 func _refill_dash() -> void:
 	var prev_dashes = dashes

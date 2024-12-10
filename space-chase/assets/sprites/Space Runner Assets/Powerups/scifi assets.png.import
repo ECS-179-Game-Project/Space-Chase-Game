@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cme1qee5rhn50"
-path="res://.godot/imported/GlassShards.png-0ae0fa9bd5f4bcb74dc308e9a76cf355.ctex"
+uid="uid://dh1d84pheuti6"
+path="res://.godot/imported/scifi assets.png-42449180a25e878aeb32ad09f751df10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space Runner Assets/Other sprites/GlassShards.png"
-dest_files=["res://.godot/imported/GlassShards.png-0ae0fa9bd5f4bcb74dc308e9a76cf355.ctex"]
+source_file="res://assets/sprites/Space Runner Assets/Powerups/scifi assets.png"
+dest_files=["res://.godot/imported/scifi assets.png-42449180a25e878aeb32ad09f751df10.ctex"]
 
 [params]
 

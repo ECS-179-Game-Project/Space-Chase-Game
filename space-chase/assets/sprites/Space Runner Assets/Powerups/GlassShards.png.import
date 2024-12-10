@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chvrlmjmfo11o"
-path="res://.godot/imported/RockShards.png-8266cfcf5731428d7305502491fe0340.ctex"
+uid="uid://cme1qee5rhn50"
+path="res://.godot/imported/GlassShards.png-b2091c2201c17f8bef991252b06f50ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space Runner Assets/Other sprites/RockShards.png"
-dest_files=["res://.godot/imported/RockShards.png-8266cfcf5731428d7305502491fe0340.ctex"]
+source_file="res://assets/sprites/Space Runner Assets/Powerups/GlassShards.png"
+dest_files=["res://.godot/imported/GlassShards.png-b2091c2201c17f8bef991252b06f50ad.ctex"]
 
 [params]
 
