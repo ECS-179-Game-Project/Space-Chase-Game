@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://mybu87j2w85x"]
+
+[ext_resource type="Texture2D" uid="uid://b8b3hcrmvnhbc" path="res://assets/sprites/ships/red_ship.png" id="1_r1dy7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euj8t"]
+atlas = ExtResource("1_r1dy7")
+region = Rect2(0, 0, 53, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arjq2"]
+atlas = ExtResource("1_r1dy7")
+region = Rect2(53, 0, 53, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nwv5"]
+atlas = ExtResource("1_r1dy7")
+region = Rect2(106, 0, 53, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7skj6"]
+atlas = ExtResource("1_r1dy7")
+region = Rect2(159, 0, 53, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca05b"]
+atlas = ExtResource("1_r1dy7")
+region = Rect2(212, 0, 53, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_487tq"]
+atlas = ExtResource("1_r1dy7")
+region = Rect2(265, 0, 53, 27)
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euj8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arjq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nwv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7skj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca05b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_487tq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nwv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arjq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euj8t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]

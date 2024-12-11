@@ -456,7 +456,7 @@ func _refill_dash() -> void:
 
 func _handle_ordering() -> void:
 	if is_ghost:
-		z_index = 1
+		z_index = 2
 	elif is_held:
 		z_index = -1
 	else:
