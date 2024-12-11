@@ -174,7 +174,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoscrollCameraController/BottomWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_0ohnb")
-disabled = true
 
 [node name="Player1" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("3_korow")]
 texture_filter = 3
