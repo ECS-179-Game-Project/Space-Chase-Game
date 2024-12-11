@@ -30,9 +30,12 @@ const HOLD_TIMER_REDUCTION: float = 0.5 # How much to reduce the hold timer for 
 const RESPAWN_TIME: float = 1.5 # How long for player to respawn as a ghost
 const GHOST_TIME: float = 2.0 # How long for player to stop being a ghost
 
+@export_category("Main Settings")
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
+@export var use_up_as_jump: bool = false # Sets jump input to the up input
 @export var player_color: Color = Color.BLACK
 @export var dash_color_gradient: Gradient = load("res://resources/red_gradient.tres")
+@export_category("Physics Settings")
 @export var speed: float = DEFAULT_SPEED
 @export var throw_strength: float = DEFAULT_THROW_STRENGTH
 @export var jump_force: float = DEFAULT_JUMP_FORCE
@@ -100,6 +103,8 @@ func _ready() -> void:
 		_controls = PlayerControls.get_p2_controls()
 	else:
 		print("ERROR: INVALID PLAYER_ID, CANNOT SET CONTROLS")
+	if use_up_as_jump:
+		_controls.jump = _controls.up
 	
 	# Check for respawn pos
 	if respawn_pos == null:
@@ -170,7 +175,7 @@ func _physics_process(delta: float) -> void:
 		var apply_gravity: float = gravity * delta
 		var acting_terminal_velocity: float = terminal_velocity
 		is_fast_falling = Input.is_action_pressed(_controls.down)
-		is_holding_jump = Input.is_action_pressed(_controls.up) and velocity.y < 0
+		is_holding_jump = Input.is_action_pressed(_controls.jump) and velocity.y < 0
 		if is_fast_falling:
 			apply_gravity *= fast_fall_factor
 			acting_terminal_velocity *= fast_fall_factor
@@ -191,7 +196,7 @@ func _physics_process(delta: float) -> void:
 			run_sound.stop()
 
 	# Handle jumping
-	if _can_move() and Input.is_action_just_pressed(_controls.up) and (not _coyote_timer.is_stopped()):
+	if _can_move() and Input.is_action_just_pressed(_controls.jump) and (not _coyote_timer.is_stopped()):
 		_start_jump()
 	if is_on_floor():
 		_coyote_timer.start(COYOTE_TIME_WINDOW)
