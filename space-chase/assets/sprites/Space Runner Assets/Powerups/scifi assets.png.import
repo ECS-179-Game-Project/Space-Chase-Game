@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://708rpplj2dsf"
-path="res://.godot/imported/Diamond.png-b2c18bf2f066a4fd6e09ea6547dc2ea1.ctex"
+uid="uid://dh1d84pheuti6"
+path="res://.godot/imported/scifi assets.png-42449180a25e878aeb32ad09f751df10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space Runner Assets/Other sprites/Diamond.png"
-dest_files=["res://.godot/imported/Diamond.png-b2c18bf2f066a4fd6e09ea6547dc2ea1.ctex"]
+source_file="res://assets/sprites/Space Runner Assets/Powerups/scifi assets.png"
+dest_files=["res://.godot/imported/scifi assets.png-42449180a25e878aeb32ad09f751df10.ctex"]
 
 [params]
 

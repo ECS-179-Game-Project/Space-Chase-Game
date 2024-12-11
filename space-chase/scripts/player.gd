@@ -16,20 +16,26 @@ If dies, give the other player energy (through game state manager)
 If close to respective charging station, slowly charge up the station (through game state manager)
 """
 
+const DEFAULT_SPEED: float = 200.0
+const DEFAULT_JUMP_FORCE: float = 350.0
+const DEFAULT_THROW_STRENGTH: float = 1.0
+const DEFAULT_DASH_SPEED: float = 430.0
+
 const COYOTE_TIME_WINDOW: float = 0.06 # Time in seconds in which jumping is possible after no longer being on the floor
 const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
 const HOLD_TIME: float = 5.0 # How long a player is able to hold
 const HOLD_TIMER_REDUCTION: float = 0.5 # How much to reduce the hold timer for each button mashed by held player
-const RESPAWN_TIME: float = 2.0 # How long for player to respawn as a ghost
-const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
+const RESPAWN_TIME: float = 1.5 # How long for player to respawn as a ghost
+const GHOST_TIME: float = 2.0 # How long for player to stop being a ghost
 
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
 @export var player_color: Color = Color.BLACK
-@export var speed: float = 200.0
-@export var throw_strength: float = 1 # This is the multiplier used to created a strength power up.
-@export var jump_force: float = 350.0
+@export var dash_color_gradient: Gradient = load("res://resources/red_gradient.tres")
+@export var speed: float = DEFAULT_SPEED
+@export var throw_strength: float = DEFAULT_THROW_STRENGTH
+@export var jump_force: float = DEFAULT_JUMP_FORCE
 @export var max_dashes: int = 1
-@export var dash_speed_factor: float = 130.0
+@export var dash_speed: float = DEFAULT_DASH_SPEED
 @export var dash_time: float = 0.15
 @export var ground_dash_cooldown: float = 0.7
 @export_range (0, 1800) var gravity: float = 1600.0
@@ -38,9 +44,10 @@ const GHOST_TIME: float = 4.0 # How long for player to stop being a ghost
 @export_range (0.0, 1.0) var hold_jump_gravity_reduction: float = 0.5
 @export var respawn_pos: Node2D = null
 
-var energy: float
+var energy: float = 0
 var facing: Direction.Facing = Direction.Facing.RIGHT
 var dashes: int = max_dashes
+var active_shield: bool = false
 
 var is_idle: bool = true
 var is_running: bool = false
@@ -54,7 +61,7 @@ var is_holding_jump: bool = false
 var is_jumping: bool = false
 var is_dead: bool = false # Mutually exclusive to is_ghost
 var is_ghost: bool = false
-var is_spawning: bool # if spawning whether that be (dead to ghost) or (ghost to normal)
+var is_respawning: bool # if spawning whether that be (dead to ghost) or (ghost to normal)
 
 var _controls: PlayerControls # Initialized based on player_id
 var _dir: Vector2 # Stores direction of 8-way input
@@ -67,6 +74,7 @@ var _respawn_timer: Timer # Wait until player respawns as a ghost
 var _ghost_timer: Timer # Wait until player stops being a ghost
 var _held_target: Node2D = null
 
+@onready var animation_tree: AnimationTree = $AnimationTree
 @onready var main_animation_player: AnimationPlayer = $MainAnimationPlayer
 @onready var status_animation_player: AnimationPlayer = $StatusAnimationPlayer
 
@@ -76,9 +84,11 @@ var _held_target: Node2D = null
 @onready var dash_refill_sound: AudioStreamPlayer2D = $Audio/DashRefill
 @onready var respawn_sound: AudioStreamPlayer2D = $Audio/Respawn
 @onready var death_sound: AudioStreamPlayer2D = $Audio/Death
+@onready var grabbed_sound: AudioStreamPlayer2D = $Audio/Grabbed
+@onready var thrown_sound: AudioStreamPlayer2D = $Audio/Thrown
 
 func _ready() -> void:
-	energy = 0
+	# Signals
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
 	
 	# Set contrls based on player_id
@@ -96,6 +106,13 @@ func _ready() -> void:
 	# Set player color
 	if has_node("Sprite2D"):
 		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
+	
+	# Set dash trail color
+	if has_node("DashTrail"):
+		$DashTrail.gradient = dash_color_gradient
+	
+	# Start animation tree
+	animation_tree.active = true
 	
 	# Initialize timers
 	_hold_timer = Timer.new()
@@ -124,7 +141,7 @@ func _ready() -> void:
 	add_child(_ghost_timer)
 
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
 	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
 		return
@@ -134,7 +151,7 @@ func _physics_process(delta: float) -> void:
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
 	_dir = Vector2(horizontal_dir, vertical_dir).normalized()
 	
-	is_jumping = velocity.y < 0.0
+	is_jumping = not is_on_floor()
 	is_idle = is_zero_approx(velocity.x)
 	is_running = not is_zero_approx(velocity.x)
 	
@@ -194,7 +211,7 @@ func _physics_process(delta: float) -> void:
 			_release()
 		# Normal or high throw
 		else:
-			var high_throw: bool = Input.is_action_pressed(_controls.up)
+			var high_throw: bool = vertical_dir < 0.0
 			_throw(high_throw)
 	
 	# Allow held player to mash out
@@ -221,7 +238,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(delta: float) -> void:
-	_update_main_animation()
+	_update_animation_tree()
 	
 
 # -------------------- Public functions --------------------
@@ -249,27 +266,35 @@ func instakill() -> void: # Called by hitbox
 
 
 func hold(target: Node2D) -> void: # Called by grabbox
+	is_grabbing = false
 	is_holding = true
+	is_held = false
 	_held_target = target
 	_hold_timer.start(HOLD_TIME)
+	target.got_grabbed()
 
 
-func got_grabbed() -> void: # Called by grabbox
+func got_grabbed() -> void: # Called by hold function
 	is_held = true
-	#main_animation_player.play("held")
-
-
-func thrown(direction: Direction.Facing, high_throw: bool = false) -> void:
-	is_held = false
-	var x_force: float = 300.0 
-	var y_force_damping: float = 1.0
-	var high_throw_factor: float = 1.5 if high_throw else 1.0
-	var force := Vector2(Direction.get_sign_factor(direction) * x_force, high_throw_factor * y_force_damping * -x_force)
-	_start_knockback(force * throw_strength , 0.4)
+	is_holding = false
 	
+	grabbed_sound.play()
 
-func setter(value:int)-> void:
-	throw_strength = value
+
+# Called by the thrower player on the thrown player
+func thrown(throw_direction: Vector2, thrower_throw_strength: float) -> void:
+	is_held = false
+	var force_amount: float = 270.0
+	
+	var force := throw_direction.sign() * Vector2(force_amount, force_amount * 1.5)
+	if force.x == 0.0:
+		force.y *= 1.2
+	if force.y == 0.0:
+		force.y = -force_amount * 1.1
+	
+	_start_knockback(force * thrower_throw_strength , 0.45)
+	
+	thrown_sound.play()
 
 
 func released() -> void:
@@ -283,23 +308,20 @@ func grab_tech() -> void: # Called by grabbox
 	# BUG: When grab teching the grabboxes are still enabled. Players are also being thrown instead of just grab teching
 	
 	# Backwards knockback
+	is_grabbing = false
 	is_holding = false
 	is_held = false
-	var x_force: float = 10.0
+	var x_force: float = 100.0
 	var x_force_sign: float = Direction.get_sign_factor(Direction.get_opposite_faing(facing))
-	var y_force_damping: float = 0.7
-	var force := Vector2(x_force_sign * x_force, y_force_damping * -x_force)
+	var force := Vector2(x_force_sign * x_force, 1.2 * -x_force)
 	_start_knockback(force, 0.5)
 
 
 func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
-	# Backwards knockback
-	is_held = false
 	_end_dash()
-	var x_force: float = 100.0
+	var x_force: float = 125.0
 	var x_force_sign: float = Direction.get_sign_factor(direction)
-	var y_force_damping: float = 0.5
-	var force := Vector2(x_force_sign * x_force, y_force_damping * -x_force)
+	var force := Vector2(x_force_sign * x_force, 1.2 * -x_force)
 	_start_knockback(force, 0.3)
 
 
@@ -308,7 +330,8 @@ func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 func _start_ghost() -> void:
 	is_dead = false
 	is_ghost = true
-	main_animation_player.play("respawn_as_ghost")
+	is_respawning = true
+	#main_animation_player.play("respawn_as_ghost")
 	
 	global_position = respawn_pos.global_position
 	_ghost_timer.start(GHOST_TIME)
@@ -318,10 +341,8 @@ func _start_ghost() -> void:
 
 
 func _stop_ghost() -> void: # Respawn as normal player
-	
-	
 	is_ghost = false
-	
+	is_respawning = true
 	#main_animation_player.play("respawn_as_normal")
 	
 	_enable_interactions()
@@ -347,9 +368,8 @@ func _move_as_ghost(delta: float) -> void:
 
 
 # Used to apply knockback (during which the player is stunned)
-func _start_knockback(force: Vector2, stun_time: float) -> void:
+func _start_knockback(force: Vector2, stun_time: float) -> void:	
 	is_stunned = true
-	#main_animation_player.play("knockback")
 	
 	velocity = force
 	
@@ -358,7 +378,7 @@ func _start_knockback(force: Vector2, stun_time: float) -> void:
 
 func _stop_knockback():
 	is_stunned = false
-	#main_animation_player.stop()
+	#main_animation_player.stop() # Stop knockback animation
 
 
 func _start_jump() -> void:
@@ -370,7 +390,7 @@ func _start_jump() -> void:
 
 func _start_grab() -> void:
 	is_grabbing = true
-	main_animation_player.play("grab") # Temporarily enables grabbox
+	#main_animation_player.play("grab") # Temporarily enables grabbox
 	# Grab logic handled by grabbox
 	# At the end of the grab, the grab animation calls _stop_grab()
 
@@ -381,8 +401,9 @@ func _stop_grab() -> void: # Called at the end of teh grab animation
 
 func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
 	is_holding = false
-	_held_target.thrown(facing, high_throw)
+	_held_target.thrown(_get_action_dir(_dir), throw_strength)
 	_held_target = null
+	#main_animation_player.stop() # Stop held animation
 
 
 func _release() -> void: # Held target is released from the grab
@@ -418,8 +439,8 @@ func _start_dash(delta: float) -> void:
 	clamp(dashes, 0, max_dashes - 1)
 	_dash_timer.start(dash_time)
 	
-	var dash_dir: Vector2 = _get_dash_dir(_dir)
-	velocity = dash_dir * dash_speed_factor * speed * delta
+	var dash_dir: Vector2 = _get_action_dir(_dir)
+	velocity = dash_dir * dash_speed
 
 
 func _end_dash() -> void:
@@ -427,11 +448,7 @@ func _end_dash() -> void:
 	velocity.y *= 0.4
 	if is_on_floor():
 		_ground_dash_cooldown_timer.start(ground_dash_cooldown)
-		# Dash refill sound
-		
-
-func _add_energy(energy:float) -> void:
-	self.energy += energy
+		# Dash refill sound goes here
 
 
 func _refill_dash() -> void:
@@ -469,7 +486,7 @@ func _can_move() -> bool:
 	return (not is_dashing) and (not is_held) and (not is_stunned)
 
 
-func _get_dash_dir(dir: Vector2) -> Vector2:
+func _get_action_dir(dir: Vector2) -> Vector2: # For dashes and throws
 	if dir == Vector2.ZERO:
 		var default_dir_x: float
 		if facing == Direction.Facing.RIGHT:
@@ -501,11 +518,11 @@ func _disable_interactions() -> void:
 
 
 func _started_respawning() -> void: # Called at the start of respawn animations
-	is_spawning = true
+	is_respawning = true
 
 
 func _stopped_respawning() -> void: # Called at the end of respawn animations
-	is_spawning = false
+	is_respawning = false
 
 
 func _reset_status() -> void:
@@ -520,24 +537,26 @@ func _reset_status() -> void:
 	is_ghost = false
 
 
-func _update_main_animation() -> void:	
-	if is_dead or is_spawning or is_grabbing:
-		return
-	elif is_ghost:
-		main_animation_player.play("ghost")
-	elif is_stunned:
-		main_animation_player.play("stunned")
-	elif is_held:
-		main_animation_player.play("held")
-	elif is_holding:
-		main_animation_player.play("holding")
-	elif is_dashing:
-		main_animation_player.play("dashing")
-	elif is_fast_falling:
-		main_animation_player.play("fast_falling")
-	elif is_jumping:
-		main_animation_player.play("jumping")
-	elif is_running:
-		main_animation_player.play("running")
-	elif is_idle:
-		main_animation_player.play("idle")
+func _update_animation_tree() -> void:		
+	animation_tree["parameters/conditions/is_idle"] = is_idle
+	animation_tree["parameters/conditions/is_running"] = is_running
+	animation_tree["parameters/conditions/is_jumping"] = is_jumping
+	animation_tree["parameters/conditions/not_jumping"] = not is_jumping
+	animation_tree["parameters/conditions/is_fast_falling"] = is_fast_falling
+	animation_tree["parameters/conditions/not_fast_falling"] = not is_fast_falling
+	animation_tree["parameters/conditions/is_dashing"] = is_dashing
+	animation_tree["parameters/conditions/not_dashing"] = not is_dashing
+	
+	animation_tree["parameters/conditions/is_grabbing"] = is_grabbing
+	
+	animation_tree["parameters/conditions/is_holding"] = is_holding
+	animation_tree["parameters/conditions/not_holding"] = not is_holding
+	animation_tree["parameters/conditions/is_held"] = is_held
+	animation_tree["parameters/conditions/not_held"] = not is_held
+	
+	animation_tree["parameters/conditions/is_stunned"] = is_stunned
+	animation_tree["parameters/conditions/not_stunned"] = not is_stunned
+	
+	animation_tree["parameters/conditions/is_ghost"] = is_ghost
+	animation_tree["parameters/conditions/not_ghost"] = not is_ghost
+	animation_tree["parameters/conditions/is_dead"] = is_dead

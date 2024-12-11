@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bk3k70e3mymoo"
+path="res://.godot/imported/Thrown.ogg-8b1a8478dff1ec28cbf490dec637610f.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Player/Thrown.ogg"
+dest_files=["res://.godot/imported/Thrown.ogg-8b1a8478dff1ec28cbf490dec637610f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

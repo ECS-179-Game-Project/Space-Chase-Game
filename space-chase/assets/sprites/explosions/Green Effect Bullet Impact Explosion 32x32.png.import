@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cme1qee5rhn50"
-path="res://.godot/imported/GlassShards.png-0ae0fa9bd5f4bcb74dc308e9a76cf355.ctex"
+uid="uid://c1teq7ewoo4jv"
+path="res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-04c5bd1429f03fd85f0f76298c292168.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space Runner Assets/Other sprites/GlassShards.png"
-dest_files=["res://.godot/imported/GlassShards.png-0ae0fa9bd5f4bcb74dc308e9a76cf355.ctex"]
+source_file="res://assets/sprites/explosions/Green Effect Bullet Impact Explosion 32x32.png"
+dest_files=["res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-04c5bd1429f03fd85f0f76298c292168.ctex"]
 
 [params]
 

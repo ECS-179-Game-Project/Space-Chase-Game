@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwhn6h0pahu0k"]
+
+[ext_resource type="Script" path="res://scripts/Powerups/base_powerup.gd" id="1_g0ue5"]
+[ext_resource type="Texture2D" uid="uid://dh1d84pheuti6" path="res://assets/sprites/Space Runner Assets/Powerups/scifi assets.png" id="3_r62mh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fg8ly"]
+radius = 6.0
+
+[node name="GetBig" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_g0ue5")
+type = 4
+
+[node name="PowerupShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fg8ly")
+
+[node name="PowerupSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_r62mh")
+hframes = 9
+vframes = 4
+frame = 32

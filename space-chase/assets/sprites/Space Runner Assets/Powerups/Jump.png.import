@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1teq7ewoo4jv"
-path="res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-310d7412941eefd217b72c169e47976e.ctex"
+uid="uid://bvx482uaen6dc"
+path="res://.godot/imported/Jump.png-1b65c6f81bade2819a2175c38b07efdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Green Effect Bullet Impact Explosion 32x32.png"
-dest_files=["res://.godot/imported/Green Effect Bullet Impact Explosion 32x32.png-310d7412941eefd217b72c169e47976e.ctex"]
+source_file="res://assets/sprites/Space Runner Assets/Powerups/Jump.png"
+dest_files=["res://.godot/imported/Jump.png-1b65c6f81bade2819a2175c38b07efdb.ctex"]
 
 [params]
 
