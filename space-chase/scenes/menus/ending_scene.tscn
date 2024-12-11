@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqldxnn6wgspy"]
+[gd_scene load_steps=8 format=3 uid="uid://bqldxnn6wgspy"]
 
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="1_lpl2j"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_tmbgw"]
 [ext_resource type="Shader" path="res://shaders/settingscroll.gdshader" id="2_4g6wk"]
 [ext_resource type="Texture2D" uid="uid://britdfev6wq7a" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_corona.png" id="2_jjlua"]
-[ext_resource type="Script" path="res://scripts/ending_scene.gd" id="5_sfe7v"]
-[ext_resource type="Script" path="res://scripts/end_scene_return.gd" id="6_ktyvy"]
+[ext_resource type="Script" path="res://scenes/menus/ending_scene.gd" id="2_sdhko"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ewi3a"]
 shader = ExtResource("1_lpl2j")
@@ -25,6 +24,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_sdhko")
+winning_score = 50.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_1yalr")
@@ -60,13 +61,11 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_tmbgw")
 text = "text here"
-script = ExtResource("5_sfe7v")
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_tmbgw")
 text = "QUIT"
-script = ExtResource("6_ktyvy")
 
-[connection signal="pressed" from="VBoxContainer/quit" to="VBoxContainer/quit" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
