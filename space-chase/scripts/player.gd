@@ -140,12 +140,19 @@ func _ready() -> void:
 	_ghost_timer.timeout.connect(_stop_ghost)
 	add_child(_ghost_timer)
 
+@onready var game_state_manager = $/root/GameStateManager
+const PlayerID = GameStateManager.PlayerID
 
 func _physics_process(delta: float) -> void:
 	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
 		return
 	
+
+		
+		
+		
+		
 	# Get input direction
 	var horizontal_dir := Input.get_axis(_controls.left, _controls.right)
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
