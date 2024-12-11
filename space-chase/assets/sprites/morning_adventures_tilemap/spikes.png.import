@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3hixa1fdxui0"
-path="res://.godot/imported/morning_adventures_tileset_16x16.png-9b93debeb8b4ae1c1ee19c05441cc3f6.ctex"
+path="res://.godot/imported/spikes.png-c1ae71f073632e1f771249334bbcbe87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/morning_adventures_tilemap/morning_adventures_tilemap/morning_adventures_tileset_16x16.png"
-dest_files=["res://.godot/imported/morning_adventures_tileset_16x16.png-9b93debeb8b4ae1c1ee19c05441cc3f6.ctex"]
+source_file="res://assets/sprites/morning_adventures_tilemap/spikes.png"
+dest_files=["res://.godot/imported/spikes.png-c1ae71f073632e1f771249334bbcbe87.ctex"]
 
 [params]
 

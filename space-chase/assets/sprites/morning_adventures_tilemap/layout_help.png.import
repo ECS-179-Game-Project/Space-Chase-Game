@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clstdqdwf6mwi"
-path="res://.godot/imported/example_scene.png-1df03e60af5351559355ac517408e834.ctex"
+uid="uid://bdvewgd1qfwbb"
+path="res://.godot/imported/layout_help.png-b8df51195672c2333da11e7575cadf81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/morning_adventures_tilemap/morning_adventures_tilemap/example_scene.png"
-dest_files=["res://.godot/imported/example_scene.png-1df03e60af5351559355ac517408e834.ctex"]
+source_file="res://assets/sprites/morning_adventures_tilemap/layout_help.png"
+dest_files=["res://.godot/imported/layout_help.png-b8df51195672c2333da11e7575cadf81.ctex"]
 
 [params]
 
