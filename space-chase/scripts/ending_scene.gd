@@ -5,6 +5,7 @@ const PlayerID = GameStateManager.PlayerID
 
 func pause():
 	#figure out a way to detect if the player is charing 
+	#should be another if statement? 
 	if  GameStateManager.get_player_energy(PlayerID.PLAYER_1) >= ChargingStation.WIN_THRESHOLD:
 		get_tree().paused = true
 		$AutoscrollCameraController/EndingScene.visible = true

@@ -65,7 +65,8 @@ script = ExtResource("5_sfe7v")
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "quit"
+theme_override_fonts/font = ExtResource("1_tmbgw")
+text = "QUIT"
 script = ExtResource("6_ktyvy")
 
 [connection signal="pressed" from="VBoxContainer/quit" to="VBoxContainer/quit" method="_on_pressed"]
