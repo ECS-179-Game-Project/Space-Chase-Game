@@ -1,13 +1,13 @@
-[gd_scene load_steps=111 format=3 uid="uid://dmoyoyuclhlel"]
+[gd_scene load_steps=97 format=3 uid="uid://dmoyoyuclhlel"]
 
 [ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_anfho"]
 [ext_resource type="Texture2D" uid="uid://c8ijr4ebc7geq" path="res://assets/sprites/backgrounds/space_background.png" id="1_l07oe"]
-[ext_resource type="Texture2D" uid="uid://b8b3hcrmvnhbc" path="res://assets/sprites/ships/red_ship.png" id="3_f5ii1"]
-[ext_resource type="Texture2D" uid="uid://5221bbh7d5vs" path="res://assets/sprites/ships/blue_ship.png" id="4_re1h2"]
+[ext_resource type="SpriteFrames" uid="uid://mybu87j2w85x" path="res://resources/red_ship.tres" id="4_vcnkh"]
 [ext_resource type="Texture2D" uid="uid://chanvjysgjltd" path="res://assets/sprites/backgrounds/cool_planets/blue_planet.png" id="5_bcnbw"]
 [ext_resource type="Texture2D" uid="uid://ccnyil8ka0rxr" path="res://assets/sprites/ships/red_shoot.png" id="5_ra8i8"]
 [ext_resource type="Texture2D" uid="uid://dase8c6mjtsvf" path="res://assets/sprites/explosions/Yellow Effect Bullet Impact Explosion 32x32.png" id="6_cac0b"]
 [ext_resource type="Texture2D" uid="uid://bwa4h5iso1iaa" path="res://assets/sprites/ships/blue_shoot.png" id="7_5amxm"]
+[ext_resource type="SpriteFrames" uid="uid://c3dkyucjospdp" path="res://resources/blue_ship.tres" id="7_ifmv0"]
 
 [sub_resource type="Animation" id="Animation_gh03m"]
 length = 0.001
@@ -659,65 +659,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_euj8t"]
-atlas = ExtResource("3_f5ii1")
-region = Rect2(0, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_arjq2"]
-atlas = ExtResource("3_f5ii1")
-region = Rect2(53, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3nwv5"]
-atlas = ExtResource("3_f5ii1")
-region = Rect2(106, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7skj6"]
-atlas = ExtResource("3_f5ii1")
-region = Rect2(159, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ca05b"]
-atlas = ExtResource("3_f5ii1")
-region = Rect2(212, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_487tq"]
-atlas = ExtResource("3_f5ii1")
-region = Rect2(265, 0, 53, 27)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lu43r"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_euj8t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_arjq2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3nwv5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7skj6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ca05b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_487tq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3nwv5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_arjq2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_euj8t")
-}],
-"loop": true,
-"name": &"default",
-"speed": 15.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3cr8r"]
 atlas = ExtResource("5_ra8i8")
 region = Rect2(0, 0, 15, 9)
@@ -853,65 +794,6 @@ animations = [{
 "loop": true,
 "name": &"no_fire",
 "speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1f6x"]
-atlas = ExtResource("4_re1h2")
-region = Rect2(0, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7r80"]
-atlas = ExtResource("4_re1h2")
-region = Rect2(53, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5exqd"]
-atlas = ExtResource("4_re1h2")
-region = Rect2(106, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_txujx"]
-atlas = ExtResource("4_re1h2")
-region = Rect2(159, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k8hlv"]
-atlas = ExtResource("4_re1h2")
-region = Rect2(212, 0, 53, 27)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_llawv"]
-atlas = ExtResource("4_re1h2")
-region = Rect2(265, 0, 53, 27)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bcxb5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k1f6x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s7r80")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5exqd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_txujx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k8hlv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_llawv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5exqd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s7r80")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k1f6x")
-}],
-"loop": true,
-"name": &"default",
-"speed": 15.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eoyxa"]
@@ -1073,7 +955,7 @@ frame_progress = 0.146432
 
 [node name="RedShip" type="AnimatedSprite2D" parent="."]
 position = Vector2(-332, -107)
-sprite_frames = SubResource("SpriteFrames_lu43r")
+sprite_frames = ExtResource("4_vcnkh")
 autoplay = "default"
 frame_progress = 0.516746
 
@@ -1095,7 +977,7 @@ autoplay = "no_fire"
 position = Vector2(331, 0)
 rotation = 3.14159
 scale = Vector2(1, -1)
-sprite_frames = SubResource("SpriteFrames_bcxb5")
+sprite_frames = ExtResource("7_ifmv0")
 autoplay = "default"
 frame_progress = 0.123223
 

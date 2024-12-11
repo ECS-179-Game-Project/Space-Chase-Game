@@ -12,7 +12,7 @@ var charge_ok := false ## Activation status of the charging station.
 
 var _energy_charged: float = 0.0 ## Stored energy of the charging station.
 
-@onready var charger_id = owner_player ## ID of the player that owns the charging station.
+@onready var charger_id = owner_player.player_id ## ID of the player that owns the charging station.
 
 
 func _ready() -> void:
