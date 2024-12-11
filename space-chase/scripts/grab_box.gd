@@ -33,5 +33,4 @@ func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
 		return
 	
 	if grab_owner != target and target.has_method("got_grabbed"):
-		target.got_grabbed()
 		grab_owner.hold(target)
