@@ -12,6 +12,7 @@ enum MenuState {
 enum ExitOption {
 	INTRO,
 	START,
+	PLAYGROUND,
 	QUIT,
 }
 
@@ -77,6 +78,12 @@ func leave_menu(exit_option: ExitOption, skip_transition: bool = false):
 		ExitOption.START:
 			SceneManager.change_scene(GameScene.world_1, {
 				"pattern": "squares",
+				"skip_fade_out": skip_transition,
+				"skip_fade_in": skip_transition,
+			})
+		ExitOption.PLAYGROUND:
+			SceneManager.change_scene(GameScene.playground, {
+				"pattern": "circle",
 				"skip_fade_out": skip_transition,
 				"skip_fade_in": skip_transition,
 			})
