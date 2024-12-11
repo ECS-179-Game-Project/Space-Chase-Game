@@ -127,6 +127,7 @@ esc={
 2d_physics/layer_4="Hitbox"
 2d_physics/layer_5="Grabbox"
 2d_physics/layer_6="Impassable by ghost players"
+2d_physics/layer_7="Traps"
 
 [rendering]
 

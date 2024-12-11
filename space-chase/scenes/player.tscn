@@ -1053,3 +1053,5 @@ visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("12_k2a54")
+
+[connection signal="body_entered" from="HurtBox" to="HurtBox" method="_on_body_entered"]
