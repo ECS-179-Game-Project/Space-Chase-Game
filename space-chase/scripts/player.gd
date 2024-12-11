@@ -236,7 +236,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(delta: float) -> void:
-	_update_main_animation()
+	_update_animation_tree()
 	
 
 # -------------------- Public functions --------------------
@@ -531,7 +531,7 @@ func _reset_status() -> void:
 	is_ghost = false
 
 
-func _update_main_animation() -> void:		
+func _update_animation_tree() -> void:		
 	animation_tree["parameters/conditions/is_idle"] = is_idle
 	animation_tree["parameters/conditions/is_running"] = is_running
 	animation_tree["parameters/conditions/is_jumping"] = is_jumping
