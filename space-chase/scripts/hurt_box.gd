@@ -26,5 +26,6 @@ func _on_hurtbox_entered(hurtbox:HurtBox) -> void:
 			target.dash_stun(hurt_owner.facing)
 
 
-func _on_body_entered(body: Node2D) -> void:
+# Detect collision of trap tiles
+func _on_body_entered(body: TrapTileMapLayer) -> void:
 	hurt_owner.instakill()
