@@ -1,14 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://jbgv7amd1esl"]
+[gd_scene load_steps=15 format=3 uid="uid://jbgv7amd1esl"]
 
 [ext_resource type="Script" path="res://scripts/Menu scripts/controls_menu.gd" id="1_s0e62"]
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_xnojn"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="3_8yabj"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_35fqx"]
+[ext_resource type="Texture2D" uid="uid://dqo0le2fklfat" path="res://assets/sprites/buttons/j.png" id="5_0q1mh"]
+[ext_resource type="Texture2D" uid="uid://c7mlpqsgie41l" path="res://assets/sprites/buttons/arrows.png" id="5_5vgjy"]
 [ext_resource type="Texture2D" uid="uid://dxa0ulxc22vhp" path="res://assets/sprites/buttons/wasd.png" id="5_orqqr"]
 [ext_resource type="Texture2D" uid="uid://d1gvs8i0sojbm" path="res://assets/sprites/buttons/dpad.png" id="6_ojg1u"]
 [ext_resource type="Texture2D" uid="uid://baakggf4ouquo" path="res://assets/sprites/buttons/x.png" id="7_dvns2"]
-[ext_resource type="Texture2D" uid="uid://xgodog78vkth" path="res://assets/sprites/buttons/gdb-playstation-2.png" id="8_vwkak"]
-[ext_resource type="Texture2D" uid="uid://558jtcotqsua" path="res://assets/sprites/buttons/jk.png" id="9_cqi48"]
+[ext_resource type="Texture2D" uid="uid://ffubl8ytgkt3" path="res://assets/sprites/buttons/r1.png" id="9_etws2"]
+[ext_resource type="Texture2D" uid="uid://b5ch8no14cbpu" path="res://assets/sprites/buttons/k.png" id="10_ngfhr"]
+[ext_resource type="Texture2D" uid="uid://c1pt70nl1m75x" path="res://assets/sprites/buttons/keyx.png" id="12_f4kff"]
+[ext_resource type="Texture2D" uid="uid://dyd80afkqbmph" path="res://assets/sprites/buttons/z.png" id="13_iw34n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_an5hx"]
 shader = ExtResource("2_xnojn")
@@ -33,10 +37,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -220.523
-offset_top = -152.74
-offset_right = 212.477
-offset_bottom = 168.26
+offset_left = -219.777
+offset_top = -148.973
+offset_right = 213.223
+offset_bottom = 172.027
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_8yabj")
@@ -60,23 +64,23 @@ text = "CONTROLS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="wasd" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = -95.5227
-offset_top = -42.1233
-offset_right = -47.5227
-offset_bottom = -2.12329
-texture = ExtResource("5_orqqr")
+[node name="jk" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 61.5674
+offset_top = -55.8219
+offset_right = 98.5674
+offset_bottom = -20.8219
+texture = ExtResource("5_0q1mh")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -64.0
-offset_top = 56.0
-offset_right = 64.0
-offset_bottom = 80.0
+offset_left = -72.3883
+offset_top = 87.6712
+offset_right = 55.6117
+offset_bottom = 111.671
 grow_horizontal = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -87,81 +91,104 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_35fqx")
 text = "Back"
 
-[node name="keyboard" type="Label" parent="."]
-layout_mode = 0
-offset_left = -201.12
-offset_top = -26.0274
-offset_right = -127.12
-offset_bottom = -3.0274
-text = "Keyboard"
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = -210.075
+offset_top = -58.2192
+offset_right = -60.0754
+offset_bottom = 39.7808
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(22.3881, 22.9452)
 
-[node name="controller" type="Label" parent="."]
-layout_mode = 1
-offset_left = -200.747
-offset_top = 18.8356
-offset_right = -121.747
-offset_bottom = 41.8356
-text = "Controller
-"
+[node name="keyboard" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_35fqx")
+text = "Keyboard P1
 
-[node name="movement" type="Label" parent="."]
-layout_mode = 0
-offset_left = -114.18
-offset_top = -77.3973
-offset_right = -30.1795
-offset_bottom = -54.3973
-text = "movement
-"
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = -92.1645
-offset_top = 4.10959
-offset_right = -52.1645
-offset_bottom = 44.1096
+
+Keyboard P2
+
+
+
+Controller"
+
+[node name="wasd" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = -32.0897
+offset_top = -58.9041
+offset_right = 15.9103
+offset_bottom = -18.9041
+texture = ExtResource("5_orqqr")
+
+[node name="dpad" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = -24.627
+offset_top = 46.2329
+offset_right = 6.37304
+offset_bottom = 79.2329
 texture = ExtResource("6_ojg1u")
 
-[node name="grab" type="Label" parent="."]
-layout_mode = 0
-offset_left = -4.85076
-offset_top = -77.3973
-offset_right = 35.1492
-offset_bottom = -54.3973
-text = "Grab
-"
-
-[node name="dash" type="Label" parent="."]
-layout_mode = 0
-offset_left = 45.8957
-offset_top = -77.0548
-offset_right = 85.8957
-offset_bottom = -28.0548
-text = "Dash
-
-"
-
 [node name="x" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 47.7614
-offset_top = 5.13699
-offset_right = 87.7614
-offset_bottom = 45.137
+layout_mode = 2
+offset_left = 150.001
+offset_top = 51.3699
+offset_right = 182.001
+offset_bottom = 84.3699
 texture = ExtResource("7_dvns2")
 
 [node name="r1" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = -14.1792
-offset_top = 7.19178
-offset_right = 22.8208
-offset_bottom = 42.1918
-texture = ExtResource("8_vwkak")
+layout_mode = 2
+offset_left = 60.0748
+offset_top = 47.2603
+offset_right = 101.075
+offset_bottom = 80.2603
+texture = ExtResource("9_etws2")
 
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 2.23881
-offset_top = -47.2603
-offset_right = 67.2388
-offset_bottom = -6.26027
-texture = ExtResource("9_cqi48")
+offset_left = -105.224
+offset_top = -80.137
+offset_right = 216.776
+offset_bottom = -40.137
+scale = Vector2(0.75, 0.75)
+
+[node name="movement" type="Label" parent="HBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_35fqx")
+text = "	        Movement   Grab     Dash
+"
+
+[node name="k" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 143.0
+offset_top = -55.0
+offset_right = 184.0
+offset_bottom = -20.0
+texture = ExtResource("10_ngfhr")
+
+[node name="arrows" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -32.4628
+offset_top = -13.6986
+offset_right = 15.5372
+offset_bottom = 26.3014
+texture = ExtResource("5_5vgjy")
+
+[node name="keyx" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 144.03
+offset_top = -11.3014
+offset_right = 185.03
+offset_bottom = 28.6986
+texture = ExtResource("12_f4kff")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 62.6868
+offset_top = -9.58904
+offset_right = 102.687
+offset_bottom = 30.411
+texture = ExtResource("13_iw34n")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
