@@ -1,24 +1,31 @@
 class_name PauseMenu
 extends Control
 
-@onready var game_state_manager = $/root/GameStateManager
 const PlayerID = GameStateManager.PlayerID
 
+@onready var game_state_manager: GameStateManager = $/root/GameStateManager
+
+
 func resume():
-	get_tree().paused = false 
-	$".".visible = false  
+	get_tree().paused = false
+	$".".visible = false
+
 
 func quit():
-	get_tree().paused = false 
-	$".".visible = false  
+	get_tree().paused = false
+	$".".visible = false
 	MenuManager.enter_menu()
-	
+
+
 func restart():
-	get_tree().paused = false 
-	$".".visible = false  
+	get_tree().paused = false
+	await SceneManager.fade_out({"pattern": "circle", "speed": 4})
+	$".".visible = false
 	get_tree().reload_current_scene()
-	game_state_manager.set_player_energy(PlayerID.PLAYER_1,0)
-	game_state_manager.set_player_energy(PlayerID.PLAYER_2,0)
+	game_state_manager.set_player_energy(PlayerID.PLAYER_1, 0)
+	game_state_manager.set_player_energy(PlayerID.PLAYER_2, 0)
+	SceneManager.fade_in({"pattern": "circle"})
+
 
 func pause():
 	get_tree().paused = true

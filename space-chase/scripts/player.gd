@@ -16,6 +16,8 @@ If dies, give the other player energy (through game state manager)
 If close to respective charging station, slowly charge up the station (through game state manager)
 """
 
+const PlayerID = GameStateManager.PlayerID
+
 const DEFAULT_SPEED: float = 200.0
 const DEFAULT_JUMP_FORCE: float = 350.0
 const DEFAULT_THROW_STRENGTH: float = 1.0
@@ -140,8 +142,6 @@ func _ready() -> void:
 	_ghost_timer.timeout.connect(_stop_ghost)
 	add_child(_ghost_timer)
 
-@onready var game_state_manager = $/root/GameStateManager
-const PlayerID = GameStateManager.PlayerID
 
 func _physics_process(delta: float) -> void:
 	# Return early if dead (ghost players aren't considered dead
@@ -247,16 +247,17 @@ func _process(delta: float) -> void:
 
 func instakill() -> void: # Called by hitbox
 	if is_dead or is_ghost:
-		var opposite_player_id = 1 if player_id == 0 else 0
-		game_state_manager.add_player_energy(2, opposite_player_id)
-		print("Energy P1" ,game_state_manager.get_player_energy(opposite_player_id))
-		PowerupManager._clear_all_buffs(self)
 		return
+	
+	var opposite_player_id = 1 if player_id == 0 else 0
+	var energy_lost: float = GameStateManager.remove_player_energy(10, player_id)
+	GameStateManager.add_player_energy(energy_lost, opposite_player_id)
 	
 	# Release the held player
 	if is_holding:
 		_release()
 	
+	PowerupManager._clear_all_buffs(self)
 	_reset_status() # Safety check incase of incorrect statuses
 	
 	is_dead = true

@@ -65,12 +65,24 @@ func set_player_energy(energy: int, id: PlayerID) -> void:
 	_player_points[id] = float(energy)
 
 
-## Increases the score of player with ID [param id] by [param energy]
-func add_player_energy(energy: int, id: PlayerID) -> void:
-	if (_player_points[id] + float(energy) < 0):
+## Increases the score of player with ID [param id] by [param energy]. Returns the change in score
+func add_player_energy(energy: int, id: PlayerID) -> float:
+	if (_player_points[id] + float(energy) < 0.0):
 		_player_points[id] = 0.0
+		return 0.0
 	else:
 		_player_points[id] += energy
+		return energy
+
+
+## Decreases the score of player with ID [param id] by [param energy]. Returns the change in score
+func remove_player_energy(energy: int, id: PlayerID) -> float:
+	if (_player_points[id] - float(energy) < 0.0):
+		_player_points[id] = 0.0
+		return 0.0
+	else:
+		_player_points[id] -= energy
+		return energy
 
 
 ## Returns the score of player with ID [param id].
