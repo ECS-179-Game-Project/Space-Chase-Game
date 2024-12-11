@@ -7,6 +7,7 @@ extends Area2D
 func _init() -> void: 
 	set_collision_layer_value(3, true)
 	set_collision_mask_value(3, true) # Detect hurtboxes
+	set_collision_mask_value(7, true) # Detect traps
 	area_entered.connect(_on_hurtbox_entered)
 
 
@@ -23,3 +24,7 @@ func _on_hurtbox_entered(hurtbox:HurtBox) -> void:
 			hurt_owner.dash_stun(target.facing)
 		else:
 			target.dash_stun(hurt_owner.facing)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	hurt_owner.instakill()
