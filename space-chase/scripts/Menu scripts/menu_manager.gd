@@ -13,7 +13,7 @@ enum ExitOption {
 	QUIT,
 }
 
-@export var instant_start:bool = false # Skips the main menu and instantly starts the game
+@export var instant_start:bool = true # Skips the main menu and instantly starts the game
 
 var cur_menu: MenuState = MenuState.MAIN
 
@@ -35,10 +35,10 @@ func _ready() -> void:
 	
 	if not background_music.playing:
 		background_music.play()
-	
+		
 	if instant_start:
 		leave_menu(ExitOption.START, true)
-
+	
 
 func change_menu(new_menu: MenuState):
 	if not new_menu in MenuState.values():
