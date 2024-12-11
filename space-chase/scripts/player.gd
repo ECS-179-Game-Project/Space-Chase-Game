@@ -236,7 +236,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(delta: float) -> void:
-	_update_main_animation()
+	_update_animation_tree()
 	
 
 # -------------------- Public functions --------------------
@@ -269,9 +269,10 @@ func hold(target: Node2D) -> void: # Called by grabbox
 	is_held = false
 	_held_target = target
 	_hold_timer.start(HOLD_TIME)
+	target.got_grabbed()
 
 
-func got_grabbed() -> void: # Called by grabbox
+func got_grabbed() -> void: # Called by hold function
 	is_held = true
 	is_holding = false
 
@@ -530,7 +531,7 @@ func _reset_status() -> void:
 	is_ghost = false
 
 
-func _update_main_animation() -> void:		
+func _update_animation_tree() -> void:		
 	animation_tree["parameters/conditions/is_idle"] = is_idle
 	animation_tree["parameters/conditions/is_running"] = is_running
 	animation_tree["parameters/conditions/is_jumping"] = is_jumping
