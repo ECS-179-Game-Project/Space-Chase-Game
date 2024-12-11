@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://scripts/Powerups/base_powerup.gd" id="1_i3nv4"]
 [ext_resource type="Texture2D" uid="uid://bvx482uaen6dc" path="res://assets/sprites/Space Runner Assets/Powerups/Jump.png" id="2_ctdjg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qdtf"]
-size = Vector2(8, 14)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i8l2x"]
+radius = 5.0
+height = 16.0
 
 [node name="JumpPowerup" type="Area2D"]
 collision_layer = 0
@@ -12,9 +13,10 @@ collision_mask = 0
 script = ExtResource("1_i3nv4")
 type = 1
 
-[node name="PowerupShape" type="CollisionShape2D" parent="."]
+[node name="PowerupShape2" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_3qdtf")
+scale = Vector2(1, 0.95)
+shape = SubResource("CapsuleShape2D_i8l2x")
 
 [node name="PowerupSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1)

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dh1d84pheuti6" path="res://assets/sprites/Space Runner Assets/Powerups/scifi assets.png" id="2_qoed2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fg8ly"]
-radius = 6.0
+radius = 7.0
 
 [node name="GetSmall" type="Area2D"]
 collision_layer = 0
@@ -20,4 +20,4 @@ scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_qoed2")
 hframes = 9
 vframes = 4
-frame = 21
+frame = 3

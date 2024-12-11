@@ -451,7 +451,7 @@ func _start_dash(delta: float) -> void:
 func _end_dash() -> void:
 	is_dashing = false
 	velocity.y *= 0.4
-	if is_on_floor():
+	if is_on_floor() and dashes <= 0.0:
 		_ground_dash_cooldown_timer.start(ground_dash_cooldown)
 		# Dash refill sound goes here
 
