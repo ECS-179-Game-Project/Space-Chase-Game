@@ -91,7 +91,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("1_eeylw")
 players = [NodePath("../Player1"), NodePath("../Player2")]
-push_line_ratio = 0.8
+push_line_ratio = 1.0
+speedup_zone_width = 80.0
 autoscroll_speed = 50.0
 end_zone = 100000.0
 
