@@ -25,7 +25,8 @@ enum PlayerID {
 	PLAYER_2,
 }
 
-const CHARGE_PER_TICK = 0.15
+const CHARGE_PER_TICK: float = 0.15
+const WINNING_THRESHOLD: float = 200.0
 
 var _player_points: Vector2 = Vector2.ZERO ## Player points stored as a Vector2.
 
