@@ -148,11 +148,6 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 	
-
-		
-		
-		
-		
 	# Get input direction
 	var horizontal_dir := Input.get_axis(_controls.left, _controls.right)
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
@@ -252,6 +247,9 @@ func _process(delta: float) -> void:
 
 func instakill() -> void: # Called by hitbox
 	if is_dead or is_ghost:
+		var opposite_player_id = 1 if player_id == 0 else 0
+		game_state_manager.add_player_energy(2, opposite_player_id)
+		print("Energy P1" ,game_state_manager.get_player_energy(opposite_player_id))
 		PowerupManager._clear_all_buffs(self)
 		return
 	
