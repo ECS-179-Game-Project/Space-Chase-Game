@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4vsslono7kk7"
+path="res://.godot/imported/grab.mp3-949c45a7742a2e555462d56ea500df73.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Player/grab.mp3"
+dest_files=["res://.godot/imported/grab.mp3-949c45a7742a2e555462d56ea500df73.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

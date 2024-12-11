@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://csa1kkoi3cbhr"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_2bkmb"]
+[ext_resource type="Texture2D" uid="uid://ta5hmjpt0bl6" path="res://assets/sprites/enemies/Crystal Snail/SpriteSheets/move.png" id="2_tkdrc"]
+[ext_resource type="Script" path="res://scripts/hit_box.gd" id="3_3o77e"]
+[ext_resource type="Script" path="res://scripts/hurt_box.gd" id="4_kisvt"]
+
+[sub_resource type="Animation" id="Animation_w25y6"]
+resource_name = "walking"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_htj71"]
+_data = {
+"walking": SubResource("Animation_w25y6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_um074"]
+size = Vector2(25, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1v3vp"]
+size = Vector2(38, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fs0y3"]
+size = Vector2(31, 30)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_2bkmb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tkdrc")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_htj71")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 20)
+shape = SubResource("RectangleShape2D_um074")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_3o77e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-2, 4.5)
+shape = SubResource("RectangleShape2D_1v3vp")
+debug_color = Color(0.98, 0, 0, 0.419608)
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("4_kisvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-1.5, 15)
+shape = SubResource("RectangleShape2D_fs0y3")
+debug_color = Color(1, 0.883333, 0, 0.419608)
