@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=37 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="3_korow"]
 [ext_resource type="PackedScene" uid="uid://brro3m5tumnva" path="res://scenes/platform.tscn" id="4_2flex"]
 [ext_resource type="PackedScene" uid="uid://8uidvvapiws" path="res://scenes/wall_of_death.tscn" id="5_7ocf3"]
-[ext_resource type="PackedScene" uid="uid://bqldxnn6wgspy" path="res://scenes/menus/ending_scene.tscn" id="5_cwchy"]
 [ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/blue_charging_bar.tscn" id="7_0c82v"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_6v1f6"]
 [ext_resource type="PackedScene" uid="uid://ckaeapk1wv30w" path="res://scenes/red_charging_bar.tscn" id="7_bo1o2"]
@@ -96,14 +95,6 @@ push_line_ratio = 0.9
 speedup_zone_width = 80.0
 autoscroll_speed = 50.0
 end_zone = 100000.0
-
-[node name="EndingScene" parent="AutoscrollCameraController" instance=ExtResource("5_cwchy")]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 
 [node name="PlayerRespawnLocation" type="Node2D" parent="AutoscrollCameraController"]
 position = Vector2(30, 0)
@@ -197,6 +188,7 @@ shape = SubResource("WorldBoundaryShape2D_0ohnb")
 [node name="Player1" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("3_korow")]
 texture_filter = 3
 position = Vector2(12, 38)
+use_up_as_jump = true
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("13_1negu")
 respawn_pos = NodePath("../AutoscrollCameraController/PlayerRespawnLocation")
@@ -205,6 +197,7 @@ respawn_pos = NodePath("../AutoscrollCameraController/PlayerRespawnLocation")
 texture_filter = 3
 position = Vector2(58, 38)
 player_id = 1
+use_up_as_jump = true
 player_color = Color(0, 0.208508, 0.503089, 1)
 dash_color_gradient = ExtResource("14_nkvsa")
 respawn_pos = NodePath("../AutoscrollCameraController/PlayerRespawnLocation")
