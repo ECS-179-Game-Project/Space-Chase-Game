@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqldxnn6wgspy"]
+[gd_scene load_steps=9 format=3 uid="uid://bqldxnn6wgspy"]
 
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="1_lpl2j"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_tmbgw"]
 [ext_resource type="Shader" path="res://shaders/settingscroll.gdshader" id="2_4g6wk"]
 [ext_resource type="Texture2D" uid="uid://britdfev6wq7a" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_corona.png" id="2_jjlua"]
 [ext_resource type="Script" path="res://scripts/ending_scene.gd" id="5_sfe7v"]
+[ext_resource type="Script" path="res://scripts/end_scene_return.gd" id="6_ktyvy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ewi3a"]
 shader = ExtResource("1_lpl2j")
@@ -41,19 +42,30 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_jjlua")
 
-[node name="Label" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -11.5
-offset_right = 160.0
-offset_bottom = 11.5
+offset_left = -66.0
+offset_top = -25.5
+offset_right = 66.0
+offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_tmbgw")
 text = "text here"
 script = ExtResource("5_sfe7v")
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "quit"
+script = ExtResource("6_ktyvy")
+
+[connection signal="pressed" from="VBoxContainer/quit" to="VBoxContainer/quit" method="_on_pressed"]
