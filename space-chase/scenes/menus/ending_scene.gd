@@ -5,7 +5,7 @@ extends Control
 const PlayerID = GameStateManager.PlayerID
 @export var winning_score:float 
 func pause():
-	#figure out a way to detect if the player is charing 
+	#figure out a way to detect if the player is charging 
 	#should be another if statement? 
 	if  GameStateManager.get_player_energy(PlayerID.PLAYER_1) >= winning_score:
 	#ChargingStation.WIN_THRESHOLD:
@@ -17,15 +17,12 @@ func pause():
 		get_tree().paused = true
 		$".".visible = true
 		$VBoxContainer/Label.text = "PLAYER 2 WINS"
-
-func quit():
-	get_tree().paused = false
-	$".".visible = false
-	MenuManager.enter_menu()
-	
+		
 func _process(delta):
 	pause()
 
 
 func _on_quit_pressed() -> void:
-	quit()
+	get_tree().paused = false
+	$".".visible = false
+	MenuManager.enter_menu()
