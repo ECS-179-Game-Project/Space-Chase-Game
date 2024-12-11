@@ -4,4 +4,4 @@ extends ProgressBar
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	value = game_state_manager.get_level_progress() * 100
+	value = game_state_manager.get_level_progress() * 500
