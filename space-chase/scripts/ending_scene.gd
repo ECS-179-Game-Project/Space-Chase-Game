@@ -1,12 +1,12 @@
 extends Label
 
-@onready var winner = $"."
+@onready var game_state_manager = $/root/GameStateManager
+const PlayerID = GameStateManager.PlayerID
 
-@export var charging_station: ChargingStation
-#this is untested 
-func _process(delta: float) -> void:
-	
-	if charging_station.charge_ok:
-		if charging_station._energy_charged >= charging_station.WIN_THRESHOLD:
-			winner.text = "Player %d Wins" % charging_station.charger_id 
-		
+func pause():
+	#figure out a way to detect which player wins 
+	#should via player score 
+	#also add an option to return back to main menu
+	get_tree().paused = true
+	$AutoscrollCameraController/EndingScene.visible = true
+	 
