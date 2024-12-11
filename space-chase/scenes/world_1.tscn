@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=37 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -10,9 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://brro3m5tumnva" path="res://scenes/platform.tscn" id="4_2flex"]
 [ext_resource type="PackedScene" uid="uid://8uidvvapiws" path="res://scenes/wall_of_death.tscn" id="5_7ocf3"]
 [ext_resource type="PackedScene" uid="uid://bqldxnn6wgspy" path="res://scenes/menus/ending_scene.tscn" id="5_cwchy"]
-[ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/blue_charging_bar.tscn" id="7_0c82v"]
+[ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/energy_bar.tscn" id="7_0c82v"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_6v1f6"]
-[ext_resource type="PackedScene" uid="uid://ckaeapk1wv30w" path="res://scenes/red_charging_bar.tscn" id="7_bo1o2"]
 [ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="13_1negu"]
 [ext_resource type="Gradient" uid="uid://dbnd1k3dylhvl" path="res://resources/blue_gradient.tres" id="14_nkvsa"]
@@ -99,7 +98,7 @@ end_zone = 100000.0
 
 [node name="EndingScene" parent="AutoscrollCameraController" instance=ExtResource("5_cwchy")]
 visible = false
-winning_score = 10.0
+winning_score = 5000.0
 
 [node name="PlayerRespawnLocation" type="Node2D" parent="AutoscrollCameraController"]
 position = Vector2(30, 0)
@@ -112,21 +111,6 @@ script = ExtResource("1_t0e68")
 
 [node name="PauseMenu" parent="AutoscrollCameraController" instance=ExtResource("7_6v1f6")]
 visible = false
-
-[node name="BlueChargingBar" parent="AutoscrollCameraController" instance=ExtResource("7_0c82v")]
-offset_left = 414.0
-offset_top = 88.0
-offset_right = 414.0
-offset_bottom = 88.0
-
-[node name="RedChargingBar" parent="AutoscrollCameraController" instance=ExtResource("7_bo1o2")]
-anchors_preset = 13
-anchor_bottom = 1.0
-offset_left = 325.0
-offset_top = 88.0
-offset_right = 325.0
-offset_bottom = 88.0
-grow_vertical = 2
 
 [node name="LevelProgressBar" parent="AutoscrollCameraController" instance=ExtResource("7_g8m0g")]
 offset_left = 252.0
@@ -190,13 +174,26 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoscrollCameraController/BottomWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_0ohnb")
 
-[node name="Player1" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("3_korow")]
-texture_filter = 3
-position = Vector2(12, 38)
-use_up_as_jump = true
-player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
-dash_color_gradient = ExtResource("13_1negu")
-respawn_pos = NodePath("../AutoscrollCameraController/PlayerRespawnLocation")
+[node name="ChargingBar1" parent="AutoscrollCameraController" instance=ExtResource("7_0c82v")]
+offset_left = 325.0
+offset_top = 88.0
+offset_right = 325.0
+offset_bottom = 88.0
+
+[node name="ChargingBar2" parent="AutoscrollCameraController" instance=ExtResource("7_0c82v")]
+offset_left = 414.0
+offset_top = 88.0
+offset_right = 414.0
+offset_bottom = 88.0
+owner_player = 1
+
+[node name="FloorOfDeath" type="Area2D" parent="."]
+position = Vector2(0, 121)
+rotation = -1.5708
+script = ExtResource("25_vvwau")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorOfDeath"]
+shape = SubResource("WorldBoundaryShape2D_p8aqr")
 
 [node name="Player2" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("3_korow")]
 texture_filter = 3
@@ -207,13 +204,13 @@ player_color = Color(0, 0.208508, 0.503089, 1)
 dash_color_gradient = ExtResource("14_nkvsa")
 respawn_pos = NodePath("../AutoscrollCameraController/PlayerRespawnLocation")
 
-[node name="FloorOfDeath" type="Area2D" parent="."]
-position = Vector2(0, 121)
-rotation = -1.5708
-script = ExtResource("25_vvwau")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorOfDeath"]
-shape = SubResource("WorldBoundaryShape2D_p8aqr")
+[node name="Player1" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("3_korow")]
+texture_filter = 3
+position = Vector2(12, 38)
+use_up_as_jump = true
+player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
+dash_color_gradient = ExtResource("13_1negu")
+respawn_pos = NodePath("../AutoscrollCameraController/PlayerRespawnLocation")
 
 [node name="TilemapLayers" type="Node" parent="."]
 

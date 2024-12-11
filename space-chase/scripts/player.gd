@@ -113,6 +113,7 @@ func _ready() -> void:
 	# Set player color
 	if has_node("Sprite2D"):
 		$Sprite2D.material.set("shader_parameter/inputColor", player_color)
+		GameStateManager.player_colors[player_id] = player_color
 	
 	# Set dash trail color
 	if has_node("DashTrail"):
@@ -146,6 +147,8 @@ func _ready() -> void:
 	_ghost_timer.one_shot = true
 	_ghost_timer.timeout.connect(_stop_ghost)
 	add_child(_ghost_timer)
+	
+	GameStateManager.player_ready.emit(player_id)
 
 
 func _physics_process(delta: float) -> void:

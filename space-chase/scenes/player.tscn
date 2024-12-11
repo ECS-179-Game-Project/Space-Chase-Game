@@ -1011,7 +1011,7 @@ parameters/conditions/not_holding = false
 parameters/conditions/not_jumping = false
 parameters/conditions/not_stunned = false
 
-[node name="Audio" type="Node" parent="."]
+[node name="Audio" type="Node2D" parent="."]
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("6_jxy51")

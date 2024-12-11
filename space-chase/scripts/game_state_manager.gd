@@ -16,6 +16,7 @@ Autoloaded script
 
 signal level_entered
 signal final_zone_entered
+signal player_ready(id: PlayerID)
 signal player_win(id: PlayerID)
 signal player_mashing_while_held
 signal request_charge(charger: ChargingStation, id: PlayerID, delta: float)
@@ -28,6 +29,8 @@ enum PlayerID {
 const CHARGE_PER_TICK: float = 0.15
 const WINNING_THRESHOLD: float = 200.0
 
+var player_colors: Array[Color] = [Color.WHITE, Color.WHITE]
+
 var _player_points: Vector2 = Vector2.ZERO ## Player points stored as a Vector2.
 
 var _active_camera: Camera2D ## Stored reference to current camera used to disable when switching.
@@ -38,6 +41,7 @@ var _remaining_level_progress: float = 0.0 ## The ratio of remaining level to to
 
 
 func _ready() -> void:
+	player_ready.connect(_on_player_ready)
 	player_win.connect(_on_player_win)
 	request_charge.connect(_on_request_charge)
 
@@ -115,6 +119,10 @@ func get_level_progress() -> float:
 func _on_player_win(id: PlayerID) -> void:
 	return
 
+
+func _on_player_ready(id: PlayerID) -> void:
+	print("asdfasdf")
+	return
 
 ## Give energy to charging station
 ## @experimental: Needs testing

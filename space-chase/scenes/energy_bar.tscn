@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://csp6dyan08ll8"]
+
+[ext_resource type="Texture2D" uid="uid://t4rq3mr68b3k" path="res://assets/sprites/Health Bar Asset Pack 2 by Adwit Rahman/rpg (2).png" id="1_832xr"]
+[ext_resource type="Script" path="res://scripts/energy_bar.gd" id="1_tx75j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmfip"]
+resource_local_to_scene = true
+bg_color = Color(1, 1, 1, 1)
+
+[node name="ChargingBar" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 146.0
+offset_top = 4.0
+offset_right = 146.0
+offset_bottom = 4.0
+grow_horizontal = 2
+script = ExtResource("1_tx75j")
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -421.0
+offset_top = 44.0
+offset_right = -341.0
+offset_bottom = 53.0
+texture = ExtResource("1_832xr")
+
+[node name="PlayerEnergy" type="ProgressBar" parent="Texture"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 2.0
+offset_right = 151.0
+offset_bottom = 16.0
+grow_horizontal = 2
+scale = Vector2(0.35, 0.35)
+theme_override_styles/fill = SubResource("StyleBoxFlat_nmfip")
+value = 100.0
+show_percentage = false
