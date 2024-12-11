@@ -84,6 +84,8 @@ var _held_target: Node2D = null
 @onready var dash_refill_sound: AudioStreamPlayer2D = $Audio/DashRefill
 @onready var respawn_sound: AudioStreamPlayer2D = $Audio/Respawn
 @onready var death_sound: AudioStreamPlayer2D = $Audio/Death
+@onready var grabbed_sound: AudioStreamPlayer2D = $Audio/Grabbed
+@onready var thrown_sound: AudioStreamPlayer2D = $Audio/Thrown
 
 func _ready() -> void:
 	# Signals
@@ -138,12 +140,19 @@ func _ready() -> void:
 	_ghost_timer.timeout.connect(_stop_ghost)
 	add_child(_ghost_timer)
 
+@onready var game_state_manager = $/root/GameStateManager
+const PlayerID = GameStateManager.PlayerID
 
 func _physics_process(delta: float) -> void:
 	# Return early if dead (ghost players aren't considered dead
 	if is_dead:
 		return
 	
+
+		
+		
+		
+		
 	# Get input direction
 	var horizontal_dir := Input.get_axis(_controls.left, _controls.right)
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
@@ -275,6 +284,8 @@ func hold(target: Node2D) -> void: # Called by grabbox
 func got_grabbed() -> void: # Called by hold function
 	is_held = true
 	is_holding = false
+	
+	grabbed_sound.play()
 
 
 # Called by the thrower player on the thrown player
@@ -289,6 +300,8 @@ func thrown(throw_direction: Vector2, thrower_throw_strength: float) -> void:
 		force.y = -force_amount * 1.1
 	
 	_start_knockback(force * thrower_throw_strength , 0.45)
+	
+	thrown_sound.play()
 
 
 func released() -> void:

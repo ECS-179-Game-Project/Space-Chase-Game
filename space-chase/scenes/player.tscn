@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://bw5cb5fe23aa3"]
+[gd_scene load_steps=98 format=3 uid="uid://bw5cb5fe23aa3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6de28"]
 [ext_resource type="Script" path="res://scripts/dash_trail.gd" id="2_7oxdq"]
@@ -17,6 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://b02e3md2bodq7" path="res://assets/Sound Effects/Player/Respawn.ogg" id="11_gxo3f"]
 [ext_resource type="Script" path="res://scenes/powerups/powerup_label.gd" id="12_k2a54"]
 [ext_resource type="AudioStream" uid="uid://crmrg7y601pdi" path="res://assets/Sound Effects/Player/death.ogg" id="12_q7dcy"]
+[ext_resource type="AudioStream" uid="uid://88y32xutfg4x" path="res://assets/Sound Effects/Player/grab.mp3" id="17_t73pq"]
+[ext_resource type="AudioStream" uid="uid://bk3k70e3mymoo" path="res://assets/Sound Effects/Player/Thrown.ogg" id="18_5teqp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fve6h"]
 radius = 7.0
@@ -922,7 +924,7 @@ states/running/position = Vector2(412, 172)
 states/stunned/node = SubResource("AnimationNodeAnimation_dh4xg")
 states/stunned/position = Vector2(404, 329)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_o65ll"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_6ocq1"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_ruxyf"), "idle", "jumping", SubResource("AnimationNodeStateMachineTransition_tcfiw"), "running", "jumping", SubResource("AnimationNodeStateMachineTransition_kdxis"), "jumping", "idle", SubResource("AnimationNodeStateMachineTransition_a1xuo"), "dashing", "idle", SubResource("AnimationNodeStateMachineTransition_2yk3n"), "jumping", "dashing", SubResource("AnimationNodeStateMachineTransition_45s72"), "running", "dashing", SubResource("AnimationNodeStateMachineTransition_nld5d"), "idle", "dashing", SubResource("AnimationNodeStateMachineTransition_6cgj5"), "jumping", "fast_falling", SubResource("AnimationNodeStateMachineTransition_ykj3x"), "fast_falling", "idle", SubResource("AnimationNodeStateMachineTransition_qe4nd"), "fast_falling", "die", SubResource("AnimationNodeStateMachineTransition_6ji23"), "dashing", "die", SubResource("AnimationNodeStateMachineTransition_grdgg"), "jumping", "die", SubResource("AnimationNodeStateMachineTransition_regue"), "running", "die", SubResource("AnimationNodeStateMachineTransition_if8q1"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_swuo7"), "die", "respawn_as_ghost", SubResource("AnimationNodeStateMachineTransition_bhlul"), "respawn_as_ghost", "ghost", SubResource("AnimationNodeStateMachineTransition_1trvq"), "ghost", "respawn_as_normal", SubResource("AnimationNodeStateMachineTransition_r76wi"), "respawn_as_normal", "idle", SubResource("AnimationNodeStateMachineTransition_4t8pt"), "idle", "grab", SubResource("AnimationNodeStateMachineTransition_wgnuw"), "jumping", "grab", SubResource("AnimationNodeStateMachineTransition_87eon"), "running", "grab", SubResource("AnimationNodeStateMachineTransition_o4jvy"), "fast_falling", "grab", SubResource("AnimationNodeStateMachineTransition_5c4ou"), "grab", "idle", SubResource("AnimationNodeStateMachineTransition_wx6im"), "grab", "holding", SubResource("AnimationNodeStateMachineTransition_oqulo"), "holding", "idle", SubResource("AnimationNodeStateMachineTransition_dhfee"), "running", "held", SubResource("AnimationNodeStateMachineTransition_l8o6j"), "idle", "held", SubResource("AnimationNodeStateMachineTransition_70l8h"), "jumping", "held", SubResource("AnimationNodeStateMachineTransition_3x74y"), "fast_falling", "held", SubResource("AnimationNodeStateMachineTransition_r44ce"), "dashing", "held", SubResource("AnimationNodeStateMachineTransition_vt8qi"), "dashing", "stunned", SubResource("AnimationNodeStateMachineTransition_xso5f"), "jumping", "stunned", SubResource("AnimationNodeStateMachineTransition_flpaa"), "idle", "stunned", SubResource("AnimationNodeStateMachineTransition_au6ju"), "running", "stunned", SubResource("AnimationNodeStateMachineTransition_wige1"), "fast_falling", "stunned", SubResource("AnimationNodeStateMachineTransition_atask"), "grab", "stunned", SubResource("AnimationNodeStateMachineTransition_e4ytv"), "stunned", "idle", SubResource("AnimationNodeStateMachineTransition_bsj04"), "held", "idle", SubResource("AnimationNodeStateMachineTransition_mqj8c")]
-graph_offset = Vector2(-173, -201)
+graph_offset = Vector2(-47, 19)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(20, 0)
@@ -1037,6 +1039,14 @@ bus = &"SFX"
 [node name="Death" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("12_q7dcy")
 volume_db = 15.0
+
+[node name="Grabbed" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("18_5teqp")
+volume_db = 5.0
+
+[node name="Thrown" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("17_t73pq")
+volume_db = -5.0
 
 [node name="Label" type="Label" parent="."]
 visible = false
