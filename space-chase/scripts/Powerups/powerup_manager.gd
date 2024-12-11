@@ -42,7 +42,7 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 				player.throw_strength *= THROW_MULTIPLIER
 			PowerupType.GET_SMALL:
 				player.scale /= SCALE_MULTIPLIER
-				player.max_dashes = 2
+				player.max_dashes += 1
 			PowerupType.ENERGY_GAIN:
 				game_state_manager.add_player_energy(25, player.player_id) # Permanent, no timer needed
 				
@@ -73,7 +73,7 @@ func unapply_powerup(type: PowerupType, player: Player) -> void:
 				player.scale /= SCALE_MULTIPLIER
 			PowerupType.GET_SMALL:
 				player.scale *= SCALE_MULTIPLIER
-				player.max_dashes = 1
+				player.max_dashes -= 1
 
 		# Stop and remove the timer
 		var powerup_data = active_powerups[player.player_id][type]

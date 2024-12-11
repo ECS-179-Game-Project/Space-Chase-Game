@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cija2nagxry7u"]
+[gd_scene load_steps=6 format=3 uid="uid://b7r1xee6kbntu"]
 
-[ext_resource type="Script" path="res://scripts/Menu scripts/controls_menu.gd" id="1_s0e62"]
-[ext_resource type="Shader" path="res://shaders/settingscroll.gdshader" id="2_kqf02"]
-[ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="3_8yabj"]
-[ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_35fqx"]
+[ext_resource type="Script" path="res://scripts/Menu scripts/controls_menu.gd" id="1_m5lvw"]
+[ext_resource type="Shader" path="res://shaders/settingscroll.gdshader" id="2_u7dcs"]
+[ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="3_hx5bt"]
+[ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_j3qi6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7uwf"]
-shader = ExtResource("2_kqf02")
+shader = ExtResource("2_u7dcs")
 shader_parameter/speed = 0.05
 
 [node name="ControlsMenu" type="Control"]
@@ -23,7 +23,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
-script = ExtResource("1_s0e62")
+script = ExtResource("1_m5lvw")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
@@ -38,7 +38,7 @@ offset_right = 557.0
 offset_bottom = 305.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_8yabj")
+texture = ExtResource("3_hx5bt")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -60,12 +60,12 @@ size_flags_vertical = 4
 
 [node name="SettingsPlaceholder" type="CheckButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_35fqx")
+theme_override_fonts/font = ExtResource("4_j3qi6")
 text = "Placeholder"
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_35fqx")
+theme_override_fonts/font = ExtResource("4_j3qi6")
 text = "Back"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

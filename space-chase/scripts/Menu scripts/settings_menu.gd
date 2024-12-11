@@ -4,6 +4,16 @@ extends Control
 @onready var menu_manager: MenuManager = $".."
 
 
+func _on_controls_pressed() -> void:
+	menu_manager.button_click()
+	menu_manager.change_menu(MenuManager.MenuState.CONTROLS)
+
+
+func _on_volume_pressed() -> void:
+	menu_manager.button_click()
+	menu_manager.change_menu(MenuManager.MenuState.VOLUME)
+
+
 func _on_back_pressed() -> void:
 	menu_manager.button_click()
 	menu_manager.change_menu(MenuManager.MenuState.MAIN)

@@ -1,4 +1,4 @@
-class_name ControlsMenu
+class_name ExtrasMenu
 extends Control
 
 @onready var menu_manager: MenuManager = $".."
@@ -6,4 +6,4 @@ extends Control
 
 func _on_back_pressed() -> void:
 	menu_manager.button_click()
-	menu_manager.change_menu(MenuManager.MenuState.SETTINGS)
+	menu_manager.change_menu(MenuManager.MenuState.MAIN)

@@ -1,4 +1,4 @@
-class_name ControlsMenu
+class_name VolumeMenu
 extends Control
 
 @onready var menu_manager: MenuManager = $".."

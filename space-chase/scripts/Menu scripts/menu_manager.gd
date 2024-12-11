@@ -3,8 +3,10 @@ extends Control
 
 enum MenuState {
 	MAIN,
-	CONTROLS,
 	SETTINGS,
+	CONTROLS,
+	VOLUME,
+	EXTRAS,
 }
 
 enum ExitOption {
@@ -21,6 +23,8 @@ var cur_menu: MenuState = MenuState.MAIN
 	MenuState.MAIN: $MainMenu,
 	MenuState.SETTINGS: $SettingsMenu,
 	MenuState.CONTROLS: $ControlsMenu,
+	MenuState.VOLUME: $VolumeMenu,
+	MenuState.EXTRAS: $ExtrasMenu,
 }
 @onready var background_music: AudioStreamPlayer2D = $Audio/BackgroundMusic
 @onready var click_sound: AudioStreamPlayer2D = $Audio/Click

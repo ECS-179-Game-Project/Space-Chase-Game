@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://brro3m5tumnva" path="res://scenes/platform.tscn" id="4_2flex"]
 [ext_resource type="PackedScene" uid="uid://8uidvvapiws" path="res://scenes/wall_of_death.tscn" id="5_7ocf3"]
 [ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/blue_charging_bar.tscn" id="7_0c82v"]
-[ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/pause_menu.tscn" id="7_6v1f6"]
+[ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_6v1f6"]
 [ext_resource type="PackedScene" uid="uid://ckaeapk1wv30w" path="res://scenes/red_charging_bar.tscn" id="7_bo1o2"]
 [ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="13_1negu"]
@@ -91,7 +91,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("1_eeylw")
 players = [NodePath("../Player1"), NodePath("../Player2")]
-push_line_ratio = 1.0
+push_line_ratio = 0.9
 speedup_zone_width = 80.0
 autoscroll_speed = 50.0
 end_zone = 100000.0
