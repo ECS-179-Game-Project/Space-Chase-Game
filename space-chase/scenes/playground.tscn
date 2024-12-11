@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dcuokery2ipy0"]
+[gd_scene load_steps=34 format=4 uid="uid://dcuokery2ipy0"]
 
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_4bf42"]
 [ext_resource type="Texture2D" uid="uid://qio8qrcblxkf" path="res://assets/sprites/Terrain/stringstar fields/background_1.png" id="2_bkfp7"]
@@ -6,8 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="5_sq4op"]
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="6_1f7ch"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_kixqf"]
-[ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/blue_charging_bar.tscn" id="8_dpu0h"]
-[ext_resource type="PackedScene" uid="uid://ckaeapk1wv30w" path="res://scenes/red_charging_bar.tscn" id="9_0oxcl"]
+[ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/energy_bar.tscn" id="8_dpu0h"]
 [ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="10_68snv"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="11_ygpoc"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="13_mxlg4"]
@@ -104,15 +103,14 @@ offset_left = 425.0
 offset_top = 88.0
 offset_right = 425.0
 offset_bottom = 88.0
+owner_player = 1
 
-[node name="RedChargingBar" parent="StaticCamera" instance=ExtResource("9_0oxcl")]
-anchors_preset = 13
-anchor_bottom = 1.0
+[node name="RedChargingBar" parent="StaticCamera" instance=ExtResource("8_dpu0h")]
+custom_minimum_size = Vector2(336, 88)
 offset_left = 336.0
 offset_top = 88.0
-offset_right = 336.0
-offset_bottom = 88.0
-grow_vertical = 2
+offset_right = 672.0
+offset_bottom = 176.0
 
 [node name="LevelProgressBar" parent="StaticCamera" instance=ExtResource("10_68snv")]
 offset_left = 263.0
@@ -170,6 +168,7 @@ shape = SubResource("WorldBoundaryShape2D_0ohnb")
 [node name="Player1" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("13_mxlg4")]
 texture_filter = 3
 position = Vector2(-33, 64)
+use_up_as_jump = true
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("14_w5fo5")
 respawn_pos = NodePath("../StaticCamera/PlayerRespawnLocation")
@@ -178,6 +177,7 @@ respawn_pos = NodePath("../StaticCamera/PlayerRespawnLocation")
 texture_filter = 3
 position = Vector2(19, 63)
 player_id = 1
+use_up_as_jump = true
 player_color = Color(0, 0.208508, 0.503089, 1)
 dash_color_gradient = ExtResource("15_6utsq")
 respawn_pos = NodePath("../StaticCamera/PlayerRespawnLocation")
