@@ -78,6 +78,7 @@ texture = ExtResource("3_5md8k")
 centered = false
 
 [node name="AutoscrollCameraController" type="Camera2D" parent="." node_paths=PackedStringArray("players")]
+z_index = 5
 position = Vector2(10, -23)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
