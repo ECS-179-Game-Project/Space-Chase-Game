@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://dmoyoyuclhlel"]
+[gd_scene load_steps=101 format=3 uid="uid://dmoyoyuclhlel"]
 
 [ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_anfho"]
 [ext_resource type="Texture2D" uid="uid://c8ijr4ebc7geq" path="res://assets/sprites/backgrounds/space_background.png" id="1_l07oe"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dase8c6mjtsvf" path="res://assets/sprites/explosions/Yellow Effect Bullet Impact Explosion 32x32.png" id="6_cac0b"]
 [ext_resource type="Texture2D" uid="uid://bwa4h5iso1iaa" path="res://assets/sprites/ships/blue_shoot.png" id="7_5amxm"]
 [ext_resource type="SpriteFrames" uid="uid://c3dkyucjospdp" path="res://resources/blue_ship.tres" id="7_ifmv0"]
+[ext_resource type="AudioStream" uid="uid://dfqssj4kpkb7k" path="res://assets/Music/Cutscene BG/vgm-atmospheric-nebula.mp3" id="9_a7f6p"]
+[ext_resource type="AudioStream" uid="uid://dwkf25hap323y" path="res://assets/Sound Effects/Cutscene/Laser_Shoot9.ogg" id="10_l54ry"]
+[ext_resource type="AudioStream" uid="uid://cnvwx08c66xvb" path="res://assets/Sound Effects/Cutscene/Explosion2.ogg" id="10_oil0r"]
+[ext_resource type="AudioStream" uid="uid://c2u6oi2x7beo0" path="res://assets/Sound Effects/Player/Laser.ogg" id="11_ken7b"]
 
 [sub_resource type="Animation" id="Animation_gh03m"]
 length = 0.001
@@ -292,6 +296,84 @@ tracks/11/keys = {
 "values": [{
 "args": [],
 "method": &"end_cutscene"
+}]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Explosion/Explosion")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("RedShip/RedFire/LazerRedShip")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(6.5, 7, 7.5, 8, 8.5, 9, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("BlueShip/BlueFire/LazerBlueShip")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(6.5, 7.25, 7.5, 8, 8.5, 9, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
 }]
 }
 
@@ -973,6 +1055,13 @@ sprite_frames = SubResource("SpriteFrames_rvax2")
 animation = &"no_fire"
 autoplay = "no_fire"
 
+[node name="LazerRedShip" type="AudioStreamPlayer2D" parent="RedShip/RedFire"]
+position = Vector2(-698.285, 227.916)
+rotation = 3.14159
+scale = Vector2(2, -2)
+stream = ExtResource("10_l54ry")
+volume_db = -10.0
+
 [node name="BlueShip" type="AnimatedSprite2D" parent="."]
 position = Vector2(331, 0)
 rotation = 3.14159
@@ -995,13 +1084,32 @@ sprite_frames = SubResource("SpriteFrames_rvax2")
 animation = &"no_fire"
 autoplay = "no_fire"
 
+[node name="LazerBlueShip" type="AudioStreamPlayer2D" parent="BlueShip/BlueFire"]
+position = Vector2(-698, 15.9966)
+scale = Vector2(2, 2)
+stream = ExtResource("11_ken7b")
+volume_db = -10.0
+
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -72)
 sprite_frames = SubResource("SpriteFrames_vq826")
 animation = &"no_explode"
 autoplay = "no_explode"
 
+[node name="Explosion" type="AudioStreamPlayer2D" parent="Explosion"]
+position = Vector2(0, 72)
+stream = ExtResource("10_oil0r")
+bus = &"SFX"
+
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("9_a7f6p")
+volume_db = 10.0
+
+[node name="Spaceship" type="AudioStreamPlayer2D" parent="Audio"]

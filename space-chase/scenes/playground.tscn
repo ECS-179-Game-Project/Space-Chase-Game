@@ -228,6 +228,7 @@ tile_set = ExtResource("22_iyu0f")
 position = Vector2(214, 61)
 rotation = 2.65551
 owner_player = NodePath("../Player1")
+override_chargeability = true
 
 [node name="Fire" parent="RedChargingStation" index="0"]
 position = Vector2(-11.6447, 0.633307)
@@ -243,6 +244,7 @@ rotation = -6.16202
 scale = Vector2(1, -1)
 texture = ExtResource("23_l77bm")
 owner_player = NodePath("../Player2")
+override_chargeability = true
 
 [node name="Fire" parent="BlueChargingStation" index="0"]
 position = Vector2(-8.81316, -2.08045)
