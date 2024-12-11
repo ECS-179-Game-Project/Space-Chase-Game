@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_tmbgw"]
 [ext_resource type="Shader" path="res://shaders/settingscroll.gdshader" id="2_4g6wk"]
 [ext_resource type="Texture2D" uid="uid://britdfev6wq7a" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_corona.png" id="2_jjlua"]
-[ext_resource type="Script" path="res://scenes/menus/ending_scene.gd" id="2_sdhko"]
+[ext_resource type="Script" path="res://scripts/Menu scripts/ending_scene.gd" id="2_sdhko"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ewi3a"]
 shader = ExtResource("1_lpl2j")
