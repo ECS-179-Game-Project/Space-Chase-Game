@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=37 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -29,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://iwoxsd7c60qm" path="res://scenes/powerups/energy_gain_powerup.tscn" id="23_noxf7"]
 [ext_resource type="Script" path="res://scripts/hit_box.gd" id="25_vvwau"]
 [ext_resource type="PackedScene" uid="uid://dcn6by0w5pb03" path="res://scenes/powerups/strength_powerup.tscn" id="29_1jwpq"]
+[ext_resource type="PackedScene" uid="uid://b4vv5fqlihk5i" path="res://scenes/blue_ship_charging_station.tscn" id="30_2exlm"]
+[ext_resource type="PackedScene" uid="uid://cgn1s0ga0v0p8" path="res://scenes/charging_station.tscn" id="31_6a2xa"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]
 normal = Vector2(1, 0)
@@ -367,3 +369,11 @@ position = Vector2(8701, 87)
 
 [node name="Platform20" parent="." instance=ExtResource("4_2flex")]
 position = Vector2(8867, 23)
+
+[node name="ChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("30_2exlm")]
+position = Vector2(9802, -93)
+owner_player = NodePath("../Player2")
+
+[node name="ChargingStation2" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_6a2xa")]
+position = Vector2(9673, -95)
+owner_player = NodePath("../Player1")
