@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://jbgv7amd1esl"]
+[gd_scene load_steps=11 format=3 uid="uid://jbgv7amd1esl"]
 
 [ext_resource type="Script" path="res://scripts/Menu scripts/controls_menu.gd" id="1_s0e62"]
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_xnojn"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="3_8yabj"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_35fqx"]
+[ext_resource type="Texture2D" uid="uid://dxa0ulxc22vhp" path="res://assets/sprites/buttons/wasd.png" id="5_orqqr"]
+[ext_resource type="Texture2D" uid="uid://d1gvs8i0sojbm" path="res://assets/sprites/buttons/dpad.png" id="6_ojg1u"]
+[ext_resource type="Texture2D" uid="uid://baakggf4ouquo" path="res://assets/sprites/buttons/x.png" id="7_dvns2"]
+[ext_resource type="Texture2D" uid="uid://xgodog78vkth" path="res://assets/sprites/buttons/gdb-playstation-2.png" id="8_vwkak"]
+[ext_resource type="Texture2D" uid="uid://558jtcotqsua" path="res://assets/sprites/buttons/jk.png" id="9_cqi48"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_an5hx"]
 shader = ExtResource("2_xnojn")
@@ -28,10 +33,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -216.0
-offset_top = -152.0
-offset_right = 217.0
-offset_bottom = 169.0
+offset_left = -220.523
+offset_top = -152.74
+offset_right = 212.477
+offset_bottom = 168.26
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_8yabj")
@@ -43,10 +48,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -157.5
-offset_top = -73.9726
-offset_right = 157.5
-offset_bottom = -43.9726
+offset_left = -156.344
+offset_top = -110.274
+offset_right = 158.656
+offset_bottom = -80.274
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_35fqx")
@@ -55,10 +60,13 @@ text = "CONTROLS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="wasd" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -95.5227
+offset_top = -42.1233
+offset_right = -47.5227
+offset_bottom = -2.12329
+texture = ExtResource("5_orqqr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -78,5 +86,82 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_35fqx")
 text = "Back"
+
+[node name="keyboard" type="Label" parent="."]
+layout_mode = 0
+offset_left = -201.12
+offset_top = -26.0274
+offset_right = -127.12
+offset_bottom = -3.0274
+text = "Keyboard"
+
+[node name="controller" type="Label" parent="."]
+layout_mode = 1
+offset_left = -200.747
+offset_top = 18.8356
+offset_right = -121.747
+offset_bottom = 41.8356
+text = "Controller
+"
+
+[node name="movement" type="Label" parent="."]
+layout_mode = 0
+offset_left = -114.18
+offset_top = -77.3973
+offset_right = -30.1795
+offset_bottom = -54.3973
+text = "movement
+"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -92.1645
+offset_top = 4.10959
+offset_right = -52.1645
+offset_bottom = 44.1096
+texture = ExtResource("6_ojg1u")
+
+[node name="grab" type="Label" parent="."]
+layout_mode = 0
+offset_left = -4.85076
+offset_top = -77.3973
+offset_right = 35.1492
+offset_bottom = -54.3973
+text = "Grab
+"
+
+[node name="dash" type="Label" parent="."]
+layout_mode = 0
+offset_left = 45.8957
+offset_top = -77.0548
+offset_right = 85.8957
+offset_bottom = -28.0548
+text = "Dash
+
+"
+
+[node name="x" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 47.7614
+offset_top = 5.13699
+offset_right = 87.7614
+offset_bottom = 45.137
+texture = ExtResource("7_dvns2")
+
+[node name="r1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -14.1792
+offset_top = 7.19178
+offset_right = 22.8208
+offset_bottom = 42.1918
+texture = ExtResource("8_vwkak")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 2.23881
+offset_top = -47.2603
+offset_right = 67.2388
+offset_bottom = -6.26027
+texture = ExtResource("9_cqi48")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
