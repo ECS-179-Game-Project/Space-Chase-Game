@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dsm55w46oqr7h"
+path="res://.godot/imported/Spin.ogg-8d05494097b9fb2826ca36aeedce7ea8.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Cutscene/Spin.ogg"
+dest_files=["res://.godot/imported/Spin.ogg-8d05494097b9fb2826ca36aeedce7ea8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
