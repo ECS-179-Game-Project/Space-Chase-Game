@@ -1,9 +1,10 @@
 class_name WallOfDeath
 extends Node2D
 
+@export var facing: Direction.Facing = Direction.Facing.RIGHT
 @export_range(0, 1) var reach_chance: float = 0.001
 @export_category("Reach Speed")
-@export_range(0, 20) var min_speed: float = 0.1
+@export_range(0, 20) var min_speed: float = 1
 @export_range(0, 20) var max_speed: float = 5
 @export_category("Reach Distance")
 @export_range(0, 300) var min_reach: float = 25
@@ -25,6 +26,9 @@ func _ready() -> void:
 		enemy.reach_pos = Vector2.ZERO
 		enemy.speed = 0.0
 		_enemies.append(enemy)
+	if facing == Direction.Facing.LEFT:
+		global_rotation_degrees = 180
+		scale.y *= -1
 
 
 func _physics_process(delta: float) -> void:
