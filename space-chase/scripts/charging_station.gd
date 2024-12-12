@@ -40,6 +40,7 @@ func _process(delta):
 	if charge_ok or override_chargeability:
 		if _energy_charged >= win_threshold:
 			GameStateManager.player_win.emit(charger_id)
+			
 		elif global_position.distance_to(owner_player.global_position) < CHARGE_RADIUS:
 			GameStateManager.request_charge.emit(self, charger_id, delta)
 		

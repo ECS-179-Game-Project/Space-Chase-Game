@@ -21,3 +21,5 @@ shape = SubResource("CapsuleShape2D_i8l2x")
 [node name="PowerupSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
 texture = ExtResource("2_ctdjg")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

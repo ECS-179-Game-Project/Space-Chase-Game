@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bx1ewkgwbl3e2"
+path="res://.godot/imported/Getbig.ogg-5ae386c530e0771fd55738d1edf05552.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Powerups/Getbig.ogg"
+dest_files=["res://.godot/imported/Getbig.ogg-5ae386c530e0771fd55738d1edf05552.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

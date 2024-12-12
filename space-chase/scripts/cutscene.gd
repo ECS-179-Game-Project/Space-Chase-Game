@@ -1,4 +1,4 @@
-class_name Cutscene
+class_name IntroCutscene
 extends Node
 
 @export var skip_cutscene: bool = false
@@ -8,7 +8,6 @@ extends Node
 @onready var explosion_sound: AudioStreamPlayer2D = $Explosion/Explosion
 @onready var red_lazer_sound: AudioStreamPlayer2D = $RedShip/RedFire/LazerRedShip
 @onready var blue_lazer_sound: AudioStreamPlayer2D = $GreenShip/BlueFire/LazerBlueShip
-
 
 
 func _ready() -> void:

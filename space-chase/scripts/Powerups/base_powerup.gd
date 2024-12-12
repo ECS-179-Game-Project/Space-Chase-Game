@@ -18,6 +18,16 @@ const HOVER_SPEED: float = 2.0
 var _hover_time: float = 0.0
 var _original_pos: Vector2
 
+@onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio_files = {
+	PowerupManager.PowerupType.SPEED_BOOST: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	PowerupManager.PowerupType.JUMP_BOOST: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	PowerupManager.PowerupType.SHIELD: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	PowerupManager.PowerupType.ENERGY_GAIN: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	PowerupManager.PowerupType.GET_BIG: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	PowerupManager.PowerupType.GET_SMALL: preload("res://assets/Sound Effects/Powerups/Getbig.ogg")
+}
+
 
 func _init() -> void:
 	set_collision_mask_value(3, true) # Detect hurtboxes (specifically players)
@@ -26,6 +36,10 @@ func _init() -> void:
 
 func _ready() -> void:
 	_original_pos = global_position
+	
+	
+	
+
 
 
 func _physics_process(delta: float) -> void:
@@ -38,4 +52,16 @@ func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
 
 	if target is Player and (not target.is_held) and (not target.is_ghost):
 		PowerupManager.apply_powerup(type, target, duration)
+		
+		var audio_player = AudioStreamPlayer.new()
+		add_child(audio_player)
+		audio_player.stream = preload("res://assets/Sound Effects/Powerups/Getbig.ogg")
+		audio_player.volume_db = 0
+		audio_player.play()
+		
+		sound.play()
+			
+			# Queue free the player after the audio finishes
+			#audio_player.connect("finished", audio_player, "queue_free")
+
 		queue_free()  # Destroy the power-up after use
