@@ -247,9 +247,18 @@ tracks/8/path = NodePath("Planet/Explosion/Explosion")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
 "args": [0.0],
 "method": &"play"
 }]
@@ -261,12 +270,9 @@ tracks/9/path = NodePath("Audio/Spaceship")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 2.875),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [0.0],
-"method": &"play"
-}, {
 "args": [0.0],
 "method": &"play"
 }]
@@ -278,12 +284,9 @@ tracks/10/path = NodePath("Audio/SpaceshipSpin")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(1, 4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [0.0],
-"method": &"play"
-}, {
 "args": [0.0],
 "method": &"play"
 }]
@@ -1359,6 +1362,7 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_vq826")
 animation = &"no_explode"
 autoplay = "no_explode"
+frame_progress = 0.579763
 
 [node name="Explosion" type="AudioStreamPlayer2D" parent="Planet/Explosion"]
 position = Vector2(0, 72)

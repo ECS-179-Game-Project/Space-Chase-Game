@@ -18,7 +18,6 @@ func _ready() -> void:
 	SceneManager.scene_loaded.connect(_on_cutscene_entered)
 	background_music.play()
 	end_ui.visible = false
-	print("ready")
 
 
 func _process(_delta: float) -> void:
@@ -40,7 +39,6 @@ func end_cutscene() -> void:
 
 
 func _on_cutscene_entered() -> void:
-	print("entered")
 	if skip_cutscene:
 		end_cutscene()
 	else:

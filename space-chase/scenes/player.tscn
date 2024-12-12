@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bw5cb5fe23aa3"]
+[gd_scene load_steps=109 format=3 uid="uid://bw5cb5fe23aa3"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6de28"]
 [ext_resource type="Script" path="res://scripts/dash_trail.gd" id="2_7oxdq"]
@@ -934,6 +934,25 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
+[sub_resource type="Curve" id="Curve_n01ie"]
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_767ww"]
+curve = SubResource("Curve_n01ie")
+
+[sub_resource type="Gradient" id="Gradient_hkcut"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h2c5b"]
+gradient = SubResource("Gradient_hkcut")
+width = 257
+
+[sub_resource type="Gradient" id="Gradient_p6cbb"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dytjr"]
+gradient = SubResource("Gradient_p6cbb")
+
 [sub_resource type="Curve" id="Curve_i2cbi"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.233333, 0.879121), 0.0, 0.0, 0, 0, Vector2(0.513333, 1), 0.0, 0.0, 0, 0, Vector2(0.753333, 0.857143), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.727214, 0.0, 0, 0]
 point_count = 5
@@ -944,12 +963,24 @@ curve = SubResource("Curve_i2cbi")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nn3ex"]
 particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+inherit_velocity_ratio = 4.0
 angular_velocity_min = -240.0
 angular_velocity_max = -240.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.8
 scale_max = 0.8
 scale_curve = SubResource("CurveTexture_l5i3t")
+color_ramp = SubResource("GradientTexture1D_dytjr")
+color_initial_ramp = SubResource("GradientTexture1D_h2c5b")
+anim_speed_max = 2.0
+anim_speed_curve = SubResource("CurveTexture_767ww")
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(20, 0)
