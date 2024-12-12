@@ -11,6 +11,8 @@ const JUMP_MULTIPLIER: float = 1.5
 const THROW_MULTIPLIER: float = 1.5
 const SCALE_MULTIPLIER: float = 1.5
 
+
+
 enum PowerupType {
 	SPEED_BOOST,
 	JUMP_BOOST,
