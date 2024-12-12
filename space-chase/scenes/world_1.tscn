@@ -97,7 +97,7 @@ script = ExtResource("1_eeylw")
 players = [NodePath("../Player1"), NodePath("../Player2")]
 push_line_ratio = 0.9
 speedup_zone_width = 80.0
-autoscroll_speed = 50000.0
+autoscroll_speed = 50.0
 end_zone = 10000.0
 
 [node name="EndingScene" parent="AutoscrollCameraController" instance=ExtResource("5_cwchy")]
