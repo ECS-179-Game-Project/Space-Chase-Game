@@ -39,7 +39,6 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 				player.jump_force *= JUMP_MULTIPLIER
 			PowerupType.SHIELD: # Permanent, no timer needed
 				player.active_shield = true
-				player.turn_shield_on()
 			PowerupType.GET_BIG:
 				player.scale *= SCALE_MULTIPLIER
 				player.throw_strength *= THROW_MULTIPLIER

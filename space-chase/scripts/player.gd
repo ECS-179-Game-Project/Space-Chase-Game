@@ -167,6 +167,7 @@ func _physics_process(delta: float) -> void:
 	
 	_handle_ordering() # Z-index
 	_handle_facing() # Looking left/right
+	$ShieldParticles.visible = active_shield
 	
 	# Ghost movement (return early to prevent normal movement)
 	if is_ghost:
@@ -531,8 +532,6 @@ func _disable_interactions() -> void:
 		if child is Area2D:
 			child.monitoring = false
 
-func turn_shield_on() -> void:
-	$ShieldParticles.visible = active_shield
 
 func _started_respawning() -> void: # Called at the start of respawn animations
 	is_respawning = true
