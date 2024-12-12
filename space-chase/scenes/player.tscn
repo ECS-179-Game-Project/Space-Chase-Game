@@ -1123,6 +1123,7 @@ amount = 1
 process_material = SubResource("ParticleProcessMaterial_nn3ex")
 texture = ExtResource("20_s0da5")
 lifetime = 14.0
+speed_scale = 1.5
 local_coords = true
 trail_lifetime = 0.01
 
