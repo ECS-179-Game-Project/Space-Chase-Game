@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cp0unwki8fal7"
+path="res://.godot/imported/SpaceshipLand.ogg-6711e838e9f50c33d2bdb5b556497a9a.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Cutscene/SpaceshipLand.ogg"
+dest_files=["res://.godot/imported/SpaceshipLand.ogg-6711e838e9f50c33d2bdb5b556497a9a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
