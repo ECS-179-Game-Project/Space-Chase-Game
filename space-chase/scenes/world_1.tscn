@@ -189,6 +189,7 @@ owner_player = 1
 [node name="FloorOfDeath" type="Area2D" parent="."]
 position = Vector2(0, 121)
 rotation = -1.5708
+collision_mask = 0
 script = ExtResource("25_vvwau")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorOfDeath"]

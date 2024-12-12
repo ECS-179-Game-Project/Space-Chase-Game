@@ -7,7 +7,7 @@ extends Node
 @onready var background_music: AudioStreamPlayer2D = $Audio/BackgroundMusic
 @onready var explosion_sound: AudioStreamPlayer2D = $Explosion/Explosion
 @onready var red_lazer_sound: AudioStreamPlayer2D = $RedShip/RedFire/LazerRedShip
-@onready var blue_lazer_sound: AudioStreamPlayer2D = $BlueShip/BlueFire/LazerBlueShip
+@onready var blue_lazer_sound: AudioStreamPlayer2D = $GreenShip/BlueFire/LazerBlueShip
 
 
 
