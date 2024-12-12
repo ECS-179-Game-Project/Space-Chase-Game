@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 	if SceneManager.is_transitioning:
 		return
 	
-	if Input.is_anything_pressed():
+	if Input.is_action_just_pressed("esc"):
 		end_cutscene()
 
 

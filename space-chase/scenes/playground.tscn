@@ -163,7 +163,6 @@ shape = SubResource("WorldBoundaryShape2D_0ohnb")
 [node name="Player1" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("13_mxlg4")]
 texture_filter = 3
 position = Vector2(-33, 64)
-use_up_as_jump = true
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("14_w5fo5")
 respawn_pos = NodePath("../StaticCamera/PlayerRespawnLocation")
@@ -172,7 +171,6 @@ respawn_pos = NodePath("../StaticCamera/PlayerRespawnLocation")
 texture_filter = 3
 position = Vector2(19, 63)
 player_id = 1
-use_up_as_jump = true
 player_color = Color(0, 0.317647, 0.145098, 1)
 dash_color_gradient = ExtResource("11_6ftgq")
 respawn_pos = NodePath("../StaticCamera/PlayerRespawnLocation")
