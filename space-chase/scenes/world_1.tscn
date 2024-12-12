@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="PackedScene" uid="uid://bv0pxf3mm1062" path="res://scenes/enemy_wall_of_death.tscn" id="12_3lcki"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="13_1negu"]
-[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="15_64g0u"]
+[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="15_64g0u"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 [ext_resource type="TileSet" uid="uid://ue1dbukbe1gy" path="res://resources/foreground_tileset.tres" id="16_36jcp"]
 [ext_resource type="TileSet" uid="uid://b3l3d0robsua5" path="res://resources/ground_tileset.tres" id="16_65ouv"]
@@ -98,6 +98,7 @@ push_line_ratio = 0.9
 speedup_zone_width = 80.0
 autoscroll_speed = 75.0
 end_zone = 10000.0
+debug_lines = false
 
 [node name="PlayerRespawnLocation" type="Node2D" parent="AutoscrollCameraController"]
 position = Vector2(30, 0)
