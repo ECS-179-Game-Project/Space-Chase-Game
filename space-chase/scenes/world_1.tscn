@@ -98,7 +98,7 @@ end_zone = 10000.0
 
 [node name="EndingScene" parent="AutoscrollCameraController" instance=ExtResource("5_cwchy")]
 visible = false
-winning_score = 5000.0
+winning_score = 5.0
 
 [node name="PlayerRespawnLocation" type="Node2D" parent="AutoscrollCameraController"]
 position = Vector2(30, 0)
