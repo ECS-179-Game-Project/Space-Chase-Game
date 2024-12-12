@@ -23,7 +23,7 @@ const DEFAULT_JUMP_FORCE: float = 350.0
 const DEFAULT_THROW_STRENGTH: float = 1.0
 const DEFAULT_DASH_SPEED: float = 430.0
 
-const COYOTE_TIME_WINDOW: float = 0.06 # Time in seconds in which jumping is possible after no longer being on the floor
+const COYOTE_TIME_WINDOW: float = 0.12 # Time in seconds in which jumping is possible after no longer being on the floor
 const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
 const HOLD_TIME: float = 5.0 # How long a player is able to hold
 const HOLD_TIMER_REDUCTION: float = 0.5 # How much to reduce the hold timer for each button mashed by held player

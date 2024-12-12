@@ -118,7 +118,6 @@ func get_level_progress() -> float:
 ## Starts victory sequence
 ## @experimental: Incomplete
 func _on_player_win(id: PlayerID) -> void:
-	ending_scene.pause()
 	return
 
 
@@ -137,6 +136,6 @@ func _on_request_charge(charger: ChargingStation, id: PlayerID, delta) -> void:
 	
 	if _player_points[id] > WINNING_THRESHOLD:
 		charge_exchange *= 2
-		
+	
 	charge_exchange = charger.charge_energy(charge_exchange)
 	add_player_energy(charge_exchange, id)
