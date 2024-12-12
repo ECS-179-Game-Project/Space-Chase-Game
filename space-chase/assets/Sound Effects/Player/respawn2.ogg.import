@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dh7anm45jvsek"
+path="res://.godot/imported/respawn2.ogg-7f07263efd52ca2ac39119fa45c0463b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Player/respawn2.ogg"
+dest_files=["res://.godot/imported/respawn2.ogg-7f07263efd52ca2ac39119fa45c0463b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

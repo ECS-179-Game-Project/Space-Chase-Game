@@ -22,3 +22,5 @@ texture = ExtResource("2_uk7tn")
 hframes = 9
 vframes = 4
 frame = 24
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

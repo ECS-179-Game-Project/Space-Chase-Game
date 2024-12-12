@@ -351,7 +351,8 @@ func _start_ghost() -> void:
 	_ghost_timer.start(GHOST_TIME)
 	
 	# Respawn sound effect
-	#respawn_sound.play()
+	respawn_sound.play()
+	#respawn_sound.seek(2.0)
 
 
 func _stop_ghost() -> void: # Respawn as normal player

@@ -141,3 +141,5 @@ libraries = {
 visible = false
 position = Vector2(1, -1)
 texture = ExtResource("3_xcr14")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
