@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1b3oagd8va1h"]
+
+[ext_resource type="Texture2D" uid="uid://ktn8ikbvflbl" path="res://assets/sprites/enemies/FlyEye/fly-eye.png" id="1_m8w7j"]
+[ext_resource type="Script" path="res://scripts/hit_box.gd" id="2_8f5cc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3payw"]
+atlas = ExtResource("1_m8w7j")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b04cg"]
+atlas = ExtResource("1_m8w7j")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3j1p"]
+atlas = ExtResource("1_m8w7j")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ikhf"]
+atlas = ExtResource("1_m8w7j")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j3ifh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3payw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b04cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3j1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ikhf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vykg2"]
+
+[node name="FlyEye" type="AnimatedSprite2D"]
+position = Vector2(0, -23)
+rotation = 3.14159
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_j3ifh")
+autoplay = "default"
+frame_progress = 0.70197
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(-4.76837e-07, -1)
+script = ExtResource("2_8f5cc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_vykg2")
