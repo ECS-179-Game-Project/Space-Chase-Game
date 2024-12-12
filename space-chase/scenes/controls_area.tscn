@@ -44,18 +44,18 @@ script = ExtResource("1_rrtn1")
 z_index = -3
 layout_mode = 3
 anchors_preset = 0
-offset_top = -39.0
-offset_bottom = -39.0
+offset_left = -1.0
+offset_top = -40.0
+offset_right = -1.0
+offset_bottom = -40.0
 
 [node name="Label" type="Label" parent="Control"]
 z_index = 1
 layout_mode = 0
 offset_left = -79.851
-offset_top = -93.4932
+offset_top = -127.493
 offset_right = 80.149
-offset_bottom = -73.4932
-grow_horizontal = 2
-grow_vertical = 0
+offset_bottom = -107.493
 theme_override_fonts/font = ExtResource("2_mgfks")
 theme_override_font_sizes/font_size = 20
 text = "CONTROLS
@@ -67,11 +67,9 @@ vertical_alignment = 1
 z_as_relative = false
 layout_mode = 0
 offset_left = -189.0
-offset_top = -60.0
+offset_top = -89.0
 offset_right = 189.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_bottom = 31.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
 custom_minimum_size = Vector2(0, 120)
@@ -250,10 +248,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -259.0
-offset_top = -128.0
-offset_right = 120.0
-offset_bottom = 65.0
+offset_left = -33.0
+offset_top = 141.0
+offset_right = 346.0
+offset_bottom = 334.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -310,7 +308,7 @@ shape = SubResource("WorldBoundaryShape2D_jjw2g")
 disabled = true
 
 [node name="BottomWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
-position = Vector2(0, 121)
+position = Vector2(0, 122)
 collision_layer = 32
 collision_mask = 0
 
@@ -319,14 +317,14 @@ shape = SubResource("WorldBoundaryShape2D_d33ls")
 
 [node name="Player1" parent="Node2D" instance=ExtResource("16_lt7e2")]
 texture_filter = 3
-position = Vector2(-33, 79)
+position = Vector2(-33, 80)
 use_up_as_jump = true
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("17_ully6")
 
 [node name="Player2" parent="Node2D" instance=ExtResource("16_lt7e2")]
 texture_filter = 3
-position = Vector2(27, 79)
+position = Vector2(27, 80)
 player_id = 1
 use_up_as_jump = true
 player_color = Color(0, 0.317647, 0.145098, 1)
