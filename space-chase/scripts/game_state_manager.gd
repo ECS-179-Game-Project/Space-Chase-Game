@@ -26,7 +26,7 @@ enum PlayerID {
 	PLAYER_2,
 }
 
-const CHARGE_PER_TICK: float = 0.15
+const CHARGE_PER_SECOND: float = 15
 const WINNING_THRESHOLD: float = 200.0
 
 var player_colors: Array[Color] = [Color.WHITE, Color.WHITE]
@@ -71,7 +71,7 @@ func set_player_energy(energy: int, id: PlayerID) -> void:
 
 
 ## Increases the score of player with ID [param id] by [param energy]. Returns the change in score
-func add_player_energy(energy: int, id: PlayerID) -> float:
+func add_player_energy(energy: float, id: PlayerID) -> float:
 	if (_player_points[id] + float(energy) < 0.0):
 		_player_points[id] = 0.0
 		return 0.0
@@ -81,7 +81,7 @@ func add_player_energy(energy: int, id: PlayerID) -> float:
 
 
 ## Decreases the score of player with ID [param id] by [param energy]. Returns the change in score
-func remove_player_energy(energy: int, id: PlayerID) -> float:
+func remove_player_energy(energy: float, id: PlayerID) -> float:
 	if (_player_points[id] - float(energy) < 0.0):
 		_player_points[id] = 0.0
 		return 0.0
@@ -127,6 +127,7 @@ func _on_player_ready(id: PlayerID) -> void:
 ## Give energy to charging station
 ## @experimental: Needs testing
 func _on_request_charge(charger: ChargingStation, id: PlayerID, delta) -> void:
-	var charge_exchange = CHARGE_PER_TICK * _player_points[id] * delta
+	var charge_exchange = CHARGE_PER_SECOND * delta
 	charge_exchange = charger.charge_energy(charge_exchange)
+
 	add_player_energy(charge_exchange, id)
