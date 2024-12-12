@@ -1,0 +1,338 @@
+[gd_scene load_steps=25 format=3 uid="uid://dpqbqosadj5g3"]
+
+[ext_resource type="Script" path="res://scripts/Menu scripts/controls_menu.gd" id="1_rrtn1"]
+[ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_mgfks"]
+[ext_resource type="Texture2D" uid="uid://dxa0ulxc22vhp" path="res://assets/sprites/buttons/wasd.png" id="3_7j38l"]
+[ext_resource type="Texture2D" uid="uid://c7mlpqsgie41l" path="res://assets/sprites/buttons/arrows.png" id="4_b4lhi"]
+[ext_resource type="Texture2D" uid="uid://d1gvs8i0sojbm" path="res://assets/sprites/buttons/dpad.png" id="5_sxvbp"]
+[ext_resource type="Texture2D" uid="uid://dqo0le2fklfat" path="res://assets/sprites/buttons/j.png" id="6_d1spr"]
+[ext_resource type="Texture2D" uid="uid://dyd80afkqbmph" path="res://assets/sprites/buttons/z.png" id="7_e77uv"]
+[ext_resource type="Texture2D" uid="uid://ffubl8ytgkt3" path="res://assets/sprites/buttons/r1.png" id="8_odm64"]
+[ext_resource type="Texture2D" uid="uid://b5ch8no14cbpu" path="res://assets/sprites/buttons/k.png" id="9_w3y0v"]
+[ext_resource type="Texture2D" uid="uid://c1pt70nl1m75x" path="res://assets/sprites/buttons/keyx.png" id="10_5thty"]
+[ext_resource type="Texture2D" uid="uid://baakggf4ouquo" path="res://assets/sprites/buttons/x.png" id="11_nadc2"]
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="12_8cmfj"]
+[ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="13_dadut"]
+[ext_resource type="AudioStream" uid="uid://cbyh0bucg0rfi" path="res://assets/Audio/DavidKBD - Cosmic Pack 02 - Galactic Pulse-full.ogg" id="14_l7ggv"]
+[ext_resource type="Script" path="res://scripts/world_audio.gd" id="15_i26ur"]
+[ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="16_lt7e2"]
+[ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="17_ully6"]
+[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="18_ih1pr"]
+[ext_resource type="AudioStream" uid="uid://dypkdd1kqhee7" path="res://assets/Sound Effects/Game/retroclick.ogg" id="19_j3war"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_an5hx"]
+shader = ExtResource("12_8cmfj")
+shader_parameter/speed = 0.05
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bh0r3"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ed2yk"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjw2g"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d33ls"]
+
+[node name="ControlsArea" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rrtn1")
+
+[node name="Control" type="Control" parent="."]
+z_index = -3
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_top = -40.0
+offset_right = -1.0
+offset_bottom = -40.0
+
+[node name="Label" type="Label" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = -79.851
+offset_top = -127.493
+offset_right = 80.149
+offset_bottom = -107.493
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 20
+text = "CONTROLS
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+z_as_relative = false
+layout_mode = 0
+offset_left = -189.0
+offset_top = -89.0
+offset_right = 189.0
+offset_bottom = 31.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+alignment = 2
+
+[node name="keyboard2" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+text = "Input
+"
+horizontal_alignment = 1
+
+[node name="keyboard" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+text = "Keyboard P1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+text = "Keyboard P2"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+text = "Controller
+"
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="movement" type="Label" parent="Control/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+text = "Movement
+"
+horizontal_alignment = 1
+
+[node name="wasd" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("3_7j38l")
+expand_mode = 3
+
+[node name="arrows" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("4_b4lhi")
+expand_mode = 3
+
+[node name="dpad" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("5_sxvbp")
+expand_mode = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+text = "Grab"
+
+[node name="jk" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.82
+texture = ExtResource("6_d1spr")
+expand_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.82
+texture = ExtResource("7_e77uv")
+expand_mode = 3
+
+[node name="r1" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.82
+texture = ExtResource("8_odm64")
+expand_mode = 3
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+text = "Dash
+"
+
+[node name="k" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
+texture = ExtResource("9_w3y0v")
+expand_mode = 3
+
+[node name="keyx" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
+texture = ExtResource("10_5thty")
+expand_mode = 3
+
+[node name="x" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
+texture = ExtResource("11_nadc2")
+expand_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+z_index = -1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_an5hx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -324.0
+offset_top = -165.0
+offset_right = 109.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.48, 1.08)
+texture = ExtResource("13_dadut")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = 141.0
+offset_right = 346.0
+offset_bottom = 334.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_mgfks")
+text = "Back"
+alignment = 0
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 5
+
+[node name="StaticCamera" type="Camera2D" parent="Node2D"]
+z_index = 5
+position = Vector2(0, -30)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+
+[node name="PlayerRespawnLocation" type="Node2D" parent="Node2D/StaticCamera"]
+
+[node name="WorldAudio" type="AudioStreamPlayer2D" parent="Node2D/StaticCamera"]
+position = Vector2(-10, 23)
+stream = ExtResource("14_l7ggv")
+volume_db = -15.0
+script = ExtResource("15_i26ur")
+
+[node name="LeftWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
+position = Vector2(-248, 23)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/LeftWorldBorder"]
+shape = SubResource("WorldBoundaryShape2D_bh0r3")
+
+[node name="RightWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
+position = Vector2(248, 23)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/RightWorldBorder"]
+shape = SubResource("WorldBoundaryShape2D_ed2yk")
+
+[node name="DISABLED-TopWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
+visible = false
+position = Vector2(-10, -162)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/DISABLED-TopWorldBorder"]
+shape = SubResource("WorldBoundaryShape2D_jjw2g")
+disabled = true
+
+[node name="BottomWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
+position = Vector2(0, 122)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/BottomWorldBorder"]
+shape = SubResource("WorldBoundaryShape2D_d33ls")
+
+[node name="Player1" parent="Node2D" instance=ExtResource("16_lt7e2")]
+texture_filter = 3
+position = Vector2(-33, 80)
+use_up_as_jump = true
+player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
+dash_color_gradient = ExtResource("17_ully6")
+
+[node name="Player2" parent="Node2D" instance=ExtResource("16_lt7e2")]
+texture_filter = 3
+position = Vector2(27, 80)
+player_id = 1
+use_up_as_jump = true
+player_color = Color(0, 0.317647, 0.145098, 1)
+dash_color_gradient = ExtResource("18_ih1pr")
+
+[node name="Click" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource("19_j3war")
+volume_db = 6.0
+attenuation = 0.138696
+
+[connection signal="pressed" from="Control/MarginContainer/Back" to="." method="_on_back_pressed"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dojks3vldqq2a"]
+[gd_scene load_steps=8 format=3 uid="uid://dojks3vldqq2a"]
 
 [ext_resource type="Script" path="res://scripts/Menu scripts/menu_manager.gd" id="1_6bse5"]
 [ext_resource type="PackedScene" uid="uid://bkgl5v8ijl362" path="res://scenes/menus/main_menu.tscn" id="2_wapdf"]
 [ext_resource type="PackedScene" uid="uid://dpqe7w3828b51" path="res://scenes/menus/settings_menu.tscn" id="3_k1pra"]
-[ext_resource type="PackedScene" uid="uid://jbgv7amd1esl" path="res://scenes/menus/controls_menu.tscn" id="4_13nhb"]
 [ext_resource type="AudioStream" uid="uid://c0aneki06jy5a" path="res://assets/Audio/DavidKBD - Cosmic Pack 01 - Cosmic Journey-full.ogg" id="4_shyfh"]
 [ext_resource type="AudioStream" uid="uid://dypkdd1kqhee7" path="res://assets/Sound Effects/Game/retroclick.ogg" id="5_6l65f"]
 [ext_resource type="PackedScene" uid="uid://dmdeee48wl2if" path="res://scenes/menus/volume_menu.tscn" id="5_av3cf"]
@@ -29,10 +28,6 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="ControlsMenu" parent="." instance=ExtResource("4_13nhb")]
-visible = false
-layout_mode = 1
-
 [node name="VolumeMenu" parent="." instance=ExtResource("5_av3cf")]
 visible = false
 layout_mode = 1
@@ -47,6 +42,7 @@ layout_mode = 1
 stream = ExtResource("4_shyfh")
 volume_db = -15.0
 autoplay = true
+bus = &"MUSIC"
 parameters/looping = false
 
 [node name="Click" type="AudioStreamPlayer2D" parent="Audio"]

@@ -1,9 +1,9 @@
 class_name ControlsMenu
 extends Control
 
-@onready var menu_manager: MenuManager = $".."
+@onready var click_sound: AudioStreamPlayer2D = $Node2D/Click
 
 
 func _on_back_pressed() -> void:
-	menu_manager.button_click()
-	menu_manager.change_menu(MenuManager.MenuState.MAIN)
+	click_sound.play()
+	MenuManager.enter_menu(true)

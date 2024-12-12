@@ -13,6 +13,7 @@ enum ExitOption {
 	INTRO,
 	START,
 	PLAYGROUND,
+	CONTROLS_AREA,
 	QUIT,
 }
 
@@ -23,7 +24,6 @@ var cur_menu: MenuState = MenuState.MAIN
 @onready var menu_states := {
 	MenuState.MAIN: $MainMenu,
 	MenuState.SETTINGS: $SettingsMenu,
-	MenuState.CONTROLS: $ControlsMenu,
 	MenuState.VOLUME: $VolumeMenu,
 	MenuState.EXTRAS: $ExtrasMenu,
 }
@@ -55,9 +55,11 @@ func change_menu(new_menu: MenuState):
 	cur_menu = new_menu
 
 
-static func enter_menu():
+static func enter_menu(skip_transition: bool = false):
 	SceneManager.change_scene(GameScene.menu_manager, {
 		"pattern": "curtains",
+		"skip_fade_out": skip_transition,
+		"skip_fade_in": skip_transition,
 	})
 
 
@@ -83,6 +85,12 @@ func leave_menu(exit_option: ExitOption, skip_transition: bool = false):
 			})
 		ExitOption.PLAYGROUND:
 			SceneManager.change_scene(GameScene.playground, {
+				"pattern": "circle",
+				"skip_fade_out": skip_transition,
+				"skip_fade_in": skip_transition,
+			})
+		ExitOption.CONTROLS_AREA:
+			SceneManager.change_scene(GameScene.controls_area, {
 				"pattern": "circle",
 				"skip_fade_out": skip_transition,
 				"skip_fade_in": skip_transition,

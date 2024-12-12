@@ -11,21 +11,23 @@ func _init() -> void:
 	area_entered.connect(_on_hurtbox_entered)
 
 
-func _on_hurtbox_entered(hurtbox:HurtBox) -> void:
-	var target := hurtbox.owner
-	
-	if target is Player and target.is_ghost:
-		return
-	
-	if hurt_owner.is_dashing and target.has_method("dash_stun"):
-		# Dash collision (dash stun)
-		if target is Player and target.is_dashing:
-			target.dash_stun(hurt_owner.facing)
-			hurt_owner.dash_stun(target.facing)
-		else:
-			target.dash_stun(hurt_owner.facing)
+func _on_hurtbox_entered(hurtbox: Area2D) -> void:
+	if hurtbox is HurtBox:
+		var target := hurtbox.owner
+		
+		if target is Player and target.is_ghost:
+			return
+		
+		if hurt_owner.is_dashing and target.has_method("dash_stun"):
+			# Dash collision (dash stun)
+			if target is Player and target.is_dashing:
+				target.dash_stun(hurt_owner.facing)
+				hurt_owner.dash_stun(target.facing)
+			else:
+				target.dash_stun(hurt_owner.facing)
 
 
 # Detect collision of trap tiles
-func _on_body_entered(body: TrapTileMapLayer) -> void:
-	hurt_owner.instakill()
+func _on_body_entered(body: Node2D) -> void:
+	if body is TrapTileMapLayer:
+		hurt_owner.instakill()
