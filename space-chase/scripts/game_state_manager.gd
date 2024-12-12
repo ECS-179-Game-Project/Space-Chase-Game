@@ -29,6 +29,7 @@ enum PlayerID {
 
 const CHARGE_PER_SECOND: float = 15
 const WINNING_THRESHOLD: float = 200.0
+const OVERCHARGE_CAP: float = 100.0
 
 var winning_player: PlayerID = PlayerID.PLAYER_1
 
@@ -80,8 +81,13 @@ func set_player_energy(energy: int, id: PlayerID) -> void:
 ## Increases the score of player with ID [param id] by [param energy]. Returns the change in score
 func add_player_energy(energy: float, id: PlayerID) -> float:
 	if (_player_points[id] + float(energy) < 0.0):
+		var temp = _player_points[id]
 		_player_points[id] = 0.0
-		return 0.0
+		return _player_points[id] - temp
+	elif (_player_points[id] + float(energy) > WINNING_THRESHOLD + OVERCHARGE_CAP):
+		var temp = _player_points[id]
+		_player_points[id] = WINNING_THRESHOLD + OVERCHARGE_CAP
+		return WINNING_THRESHOLD + OVERCHARGE_CAP - temp
 	else:
 		_player_points[id] += energy
 		return energy

@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="15_i26ur"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="16_lt7e2"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="17_ully6"]
-[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="18_ih1pr"]
+[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="18_ih1pr"]
 [ext_resource type="AudioStream" uid="uid://dypkdd1kqhee7" path="res://assets/Sound Effects/Game/retroclick.ogg" id="19_j3war"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_an5hx"]
