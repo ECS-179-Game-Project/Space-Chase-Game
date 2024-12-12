@@ -1,3 +1,4 @@
+@tool
 class_name EnergyBar
 extends Control
 
@@ -7,21 +8,15 @@ extends Control
 @onready var energy_bar = $Texture/PlayerEnergy as ProgressBar
 
 
-func _init():
-	GameStateManager.player_ready.connect(_on_player_ready)
-
-
 func _ready() -> void:
-	energy_bar.max_value = GameStateManager.WINNING_THRESHOLD
+	if not Engine.is_editor_hint():
+		energy_bar.max_value = GameStateManager.WINNING_THRESHOLD
+		energy_bar.get_theme_stylebox("fill").set("bg_color", bar_color)
 
 
 func _process(_delta) -> void:
-	energy_bar.value = GameStateManager.get_player_energy(owner_player)
+	if Engine.is_editor_hint():
+		energy_bar.get_theme_stylebox("fill").set("bg_color", bar_color)
+	else:
+		energy_bar.value = GameStateManager.get_player_energy(owner_player)
 	
-
-func _on_player_ready(id: GameStateManager.PlayerID):
-	print("fofsodfsdfsd")
-	if owner_player == id:
-		energy_bar.get_theme_stylebox("fill").set("bg_color",
-			GameStateManager.player_colors[owner_player].lightened(0.3))
-		print(GameStateManager.player_colors)
