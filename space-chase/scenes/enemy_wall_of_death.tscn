@@ -113,48 +113,63 @@ position = Vector2(-2, -37)
 
 [node name="FlyEye" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(22, -23)
+frame_progress = 0.654206
 
 [node name="FlyEye5" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(3, 57.9412)
+frame_progress = 0.654206
 
 [node name="FlyEye6" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(-13, -118)
+frame_progress = 0.654206
 
 [node name="FlyEye7" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(-4, 31)
+frame_progress = 0.654206
 
 [node name="FlyEye11" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(-15, -28)
+frame_progress = 0.654206
 
 [node name="FlyEye12" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(19, -72)
+frame_progress = 0.654206
 
 [node name="FlyEye13" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(3, -102)
+frame_progress = 0.654206
 
 [node name="FlyEye14" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(10, 130)
+frame_progress = 0.654206
 
 [node name="FlyEye15" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(-3, -183)
+frame_progress = 0.654206
 
 [node name="FlyEye2" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(5, -153.48)
+frame_progress = 0.654206
 
 [node name="FlyEye8" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(20, -193)
+frame_progress = 0.654206
 
 [node name="FlyEye9" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(-15, 125)
+frame_progress = 0.654206
 
 [node name="FlyEye10" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(18, 0)
+frame_progress = 0.654206
 
 [node name="FlyEye3" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(13, 105)
+frame_progress = 0.654206
 
 [node name="FlyEye4" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(19, -98)
+frame_progress = 0.654206
 
 [node name="Ghost" parent="Wall" instance=ExtResource("5_3i1e6")]
 position = Vector2(15, 71)
