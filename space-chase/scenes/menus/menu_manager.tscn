@@ -42,6 +42,7 @@ layout_mode = 1
 stream = ExtResource("4_shyfh")
 volume_db = -15.0
 autoplay = true
+bus = &"MUSIC"
 parameters/looping = false
 
 [node name="Click" type="AudioStreamPlayer2D" parent="Audio"]
