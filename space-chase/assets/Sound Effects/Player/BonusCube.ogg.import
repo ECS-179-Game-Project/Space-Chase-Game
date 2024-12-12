@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d1hovsbfkai7o"
+path="res://.godot/imported/BonusCube.ogg-9e6f73808ad83581ddd0233a16e13627.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Player/BonusCube.ogg"
+dest_files=["res://.godot/imported/BonusCube.ogg-9e6f73808ad83581ddd0233a16e13627.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

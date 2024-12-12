@@ -1,0 +1,208 @@
+[gd_scene load_steps=10 format=3 uid="uid://bv0pxf3mm1062"]
+
+[ext_resource type="Script" path="res://scripts/wall_of_death.gd" id="1_dov3q"]
+[ext_resource type="Script" path="res://scripts/hit_box.gd" id="1_ublc7"]
+[ext_resource type="PackedScene" uid="uid://l60mkfew567n" path="res://scenes/bat_enemy.tscn" id="3_qcc01"]
+[ext_resource type="PackedScene" uid="uid://c1b3oagd8va1h" path="res://scenes/fly_eye_enemy.tscn" id="4_plpfp"]
+[ext_resource type="PackedScene" uid="uid://qxxmdvxok3kw" path="res://scenes/ghost_enemy.tscn" id="5_3i1e6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u2fpk"]
+normal = Vector2(1, 0)
+
+[sub_resource type="Animation" id="Animation_4xjey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_1h4tm"]
+resource_name = "chase"
+length = 0.5
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, -1), Vector2(1, -1), Vector2(1, 1), Vector2(-1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gqspa"]
+_data = {
+"RESET": SubResource("Animation_4xjey"),
+"chase": SubResource("Animation_1h4tm")
+}
+
+[node name="EnemyWallOfDeathHitBox" type="Node2D"]
+z_index = 10
+script = ExtResource("1_dov3q")
+
+[node name="WallHitBox" type="Area2D" parent="."]
+position = Vector2(-2, 5)
+script = ExtResource("1_ublc7")
+
+[node name="HitBoxShape" type="CollisionShape2D" parent="WallHitBox"]
+position = Vector2(2, -5)
+shape = SubResource("WorldBoundaryShape2D_u2fpk")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Wall" type="Node2D" parent="."]
+position = Vector2(-1, -1)
+
+[node name="Bat" parent="Wall" instance=ExtResource("3_qcc01")]
+
+[node name="Bat2" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(2.13759, -126)
+
+[node name="Bat3" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-3, 84.9886)
+
+[node name="Bat8" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(20, 28)
+
+[node name="Bat11" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(2, -178)
+
+[node name="Bat12" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(20, -141)
+
+[node name="Bat13" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(15, 85)
+
+[node name="Bat14" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-16, -145)
+
+[node name="Bat15" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-17, -72)
+
+[node name="Bat16" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-19, 44)
+
+[node name="Bat9" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-21, -5)
+
+[node name="Bat10" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(19, -52)
+
+[node name="Bat4" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(3, -77.8597)
+
+[node name="Bat7" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-20, -178)
+
+[node name="Bat5" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-1.59377, 131)
+
+[node name="Bat6" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-2, -37)
+
+[node name="FlyEye" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(22, -23)
+
+[node name="FlyEye5" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(3, 57.9412)
+
+[node name="FlyEye6" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(-13, -118)
+
+[node name="FlyEye7" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(-4, 31)
+
+[node name="FlyEye11" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(-15, -28)
+
+[node name="FlyEye12" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(19, -72)
+
+[node name="FlyEye13" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(3, -102)
+
+[node name="FlyEye14" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(10, 130)
+
+[node name="FlyEye15" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(-3, -183)
+
+[node name="FlyEye2" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(5, -153.48)
+
+[node name="FlyEye8" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(20, -193)
+
+[node name="FlyEye9" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(-15, 125)
+
+[node name="FlyEye10" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(18, 0)
+
+[node name="FlyEye3" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(13, 105)
+
+[node name="FlyEye4" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(19, -98)
+
+[node name="Ghost" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(15, 71)
+
+[node name="Ghost4" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(-3, -50)
+
+[node name="Ghost10" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(-9, 17)
+
+[node name="Ghost11" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(-2, 109)
+
+[node name="Ghost12" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(14, -119)
+
+[node name="Ghost13" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(10, 25)
+
+[node name="Ghost14" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(10, 44)
+
+[node name="Ghost15" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(3, -66)
+
+[node name="Ghost5" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(23, -165)
+
+[node name="Ghost6" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(26, 124)
+
+[node name="Ghost7" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(-1, -9.66077)
+
+[node name="Ghost8" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(-10, -90)
+
+[node name="Ghost9" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(-15, 74)
+
+[node name="Ghost2" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(0, -199.94)
+
+[node name="Ghost3" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(12, 155)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gqspa")
+}
+autoplay = "chase"

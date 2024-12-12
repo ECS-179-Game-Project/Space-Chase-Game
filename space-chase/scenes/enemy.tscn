@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://csa1kkoi3cbhr"]
+
+[ext_resource type="Texture2D" uid="uid://cusv036m5i64q" path="res://assets/sprites/enemies/Bat/Spritesheet.png" id="1_pue1k"]
+[ext_resource type="Script" path="res://scripts/hit_box.gd" id="3_3o77e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjmb6"]
+atlas = ExtResource("1_pue1k")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4c3r"]
+atlas = ExtResource("1_pue1k")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2b83"]
+atlas = ExtResource("1_pue1k")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2etc"]
+atlas = ExtResource("1_pue1k")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujwu5"]
+atlas = ExtResource("1_pue1k")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_du3lv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjmb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4c3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2b83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2etc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujwu5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vykg2"]
+
+[node name="Bat" type="AnimatedSprite2D"]
+position = Vector2(0.375092, 1)
+rotation = 3.14159
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_du3lv")
+autoplay = "default"
+frame_progress = 0.313717
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(-2, 5)
+script = ExtResource("3_3o77e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_vykg2")

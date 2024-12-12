@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://tfm405ere4ct"]
+
+[ext_resource type="Script" path="res://scripts/tracked_particles.gd" id="1_3bbin"]
+[ext_resource type="Texture2D" uid="uid://b6g65w81g6e47" path="res://assets/sprites/Space Runner Assets/Effects/sparkle-effect.png" id="1_sl5tt"]
+
+[sub_resource type="Curve" id="Curve_qar4n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.986667, 0.043956), -0.339366, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cyxnw"]
+curve = SubResource("Curve_qar4n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3a2k5"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 50.0
+emission_ring_inner_radius = 48.0
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, -4, 0)
+scale_min = 0.4
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_cyxnw")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ekqg"]
+atlas = ExtResource("1_sl5tt")
+region = Rect2(16, 0, 16, 16)
+
+[node name="1ChargingZone" type="GPUParticles2D"]
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_3a2k5")
+texture = SubResource("AtlasTexture_7ekqg")
+preprocess = 0.6
+randomness = 0.5
+script = ExtResource("1_3bbin")
+id = 1
