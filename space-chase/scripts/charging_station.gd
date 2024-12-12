@@ -33,6 +33,7 @@ func _ready() -> void:
 	
 	add_child(_charge_zone_particles)
 	GameStateManager.final_zone_entered.connect(_on_final_zone_entered)
+	GameStateManager.level_entered.connect(_on_level_entered)
 
 
 func _process(delta):
@@ -57,3 +58,9 @@ func charge_energy(x: float) -> float:
 func _on_final_zone_entered() -> void:
 	charge_ok = true
 	_charge_zone_particles.emitting = true
+
+
+func _on_level_entered() -> void:
+	charge_ok = false
+	_charge_zone_particles.emitting = false
+	_energy_charged = 0.0
