@@ -3,7 +3,7 @@ extends Node2D
 
 @export_range(0, 1) var reach_chance: float = 0.001
 @export_category("Reach Speed")
-@export_range(0, 20) var min_speed: float = 0.1
+@export_range(0, 20) var min_speed: float = 1
 @export_range(0, 20) var max_speed: float = 5
 @export_category("Reach Distance")
 @export_range(0, 300) var min_reach: float = 25
