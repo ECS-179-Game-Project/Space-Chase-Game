@@ -18,6 +18,7 @@ offset_right = 146.0
 offset_bottom = 4.0
 grow_horizontal = 2
 script = ExtResource("1_tx75j")
+bar_color = Color(1, 0, 0, 1)
 
 [node name="Texture" type="TextureRect" parent="."]
 layout_mode = 0
