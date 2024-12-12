@@ -98,19 +98,19 @@ position = Vector2(-1, -1)
 position = Vector2(-1, -121)
 sprite_frames = SubResource("SpriteFrames_a6iil")
 autoplay = "default"
-frame_progress = 0.971862
+frame_progress = 0.654092
 
 [node name="Drill2" type="AnimatedSprite2D" parent="Wall"]
 position = Vector2(-1, -1)
 sprite_frames = SubResource("SpriteFrames_a6iil")
 autoplay = "default"
-frame_progress = 0.34951
+frame_progress = 0.0317451
 
 [node name="Drill3" type="AnimatedSprite2D" parent="Wall"]
 position = Vector2(-1, 119)
 sprite_frames = SubResource("SpriteFrames_a6iil")
 autoplay = "default"
-frame_progress = 0.39336
+frame_progress = 0.0755902
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
