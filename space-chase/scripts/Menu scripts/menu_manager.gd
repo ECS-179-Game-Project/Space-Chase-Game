@@ -13,6 +13,7 @@ enum ExitOption {
 	INTRO,
 	START,
 	PLAYGROUND,
+	CONTROLS_AREA,
 	QUIT,
 }
 
@@ -83,6 +84,12 @@ func leave_menu(exit_option: ExitOption, skip_transition: bool = false):
 			})
 		ExitOption.PLAYGROUND:
 			SceneManager.change_scene(GameScene.playground, {
+				"pattern": "circle",
+				"skip_fade_out": skip_transition,
+				"skip_fade_in": skip_transition,
+			})
+		ExitOption.CONTROLS_AREA:
+			SceneManager.change_scene(GameScene.controls_area, {
 				"pattern": "circle",
 				"skip_fade_out": skip_transition,
 				"skip_fade_in": skip_transition,
