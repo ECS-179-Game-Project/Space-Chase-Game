@@ -15,7 +15,7 @@ func quit():
 
 func pause(id: GameStateManager.PlayerID = GameStateManager.PlayerID.PLAYER_1):
 	$".".visible = true
-	$VBoxContainer/Label.text = str("PLAYER ", id, " WINS")
+	$VBoxContainer/Label.text = str("PLAYER ", id + 1, " WINS")
 
 
 func _on_quit_pressed() -> void:
