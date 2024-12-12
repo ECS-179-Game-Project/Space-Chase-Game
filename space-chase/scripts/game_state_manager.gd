@@ -105,8 +105,6 @@ func _on_player_win(id: PlayerID) -> void:
 	return
 
 
-<<<<<<< HEAD
-=======
 func _on_player_ready(id: PlayerID) -> void:
 	print("asdfasdf")
 	return
@@ -116,7 +114,6 @@ func _on_level_entered() -> void:
 	clear()
 
 
->>>>>>> 4641420a0ae6118c82151be62d1d42375ad858b0
 ## Give energy to charging station
 ## @experimental: Needs testing
 func _on_request_charge(charger: ChargingStation, id: PlayerID, delta) -> void:
