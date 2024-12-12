@@ -38,7 +38,7 @@ var _camera_position: float = 0.0 ## The x position of the current camera's righ
 var _final_position_x: float = 0.0 ## Final right bound x, passed by the camera on ready
 var _total_distance: float = 0.0 ## Total distance to travel, calculated by final - initial
 var _remaining_level_progress: float = 0.0 ## The ratio of remaining level to total distance.
-@onready var ending_scene: EndingScene = $/root/EndingScene
+
 
 func _ready() -> void:
 	player_ready.connect(_on_player_ready)
