@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dyd80afkqbmph" path="res://assets/sprites/buttons/z.png" id="13_iw34n"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="14_6t42t"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="15_hu81e"]
-[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="16_ucst6"]
+[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="16_ucst6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_an5hx"]
 shader = ExtResource("2_xnojn")
@@ -253,16 +253,15 @@ theme_override_fonts/font = ExtResource("4_35fqx")
 text = "Back"
 alignment = 0
 
-[node name="Player1" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("14_6t42t")]
+[node name="Player1" parent="." instance=ExtResource("14_6t42t")]
 z_index = 10
 texture_filter = 3
 position = Vector2(-26.1195, 79.1096)
 use_up_as_jump = true
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("15_hu81e")
-respawn_pos = NodePath("")
 
-[node name="Player2" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("14_6t42t")]
+[node name="Player2" parent="." instance=ExtResource("14_6t42t")]
 z_index = 10
 texture_filter = 3
 position = Vector2(19.8805, 79.1096)
@@ -270,7 +269,6 @@ player_id = 1
 use_up_as_jump = true
 player_color = Color(6.257e-07, 0.316222, 0.143203, 1)
 dash_color_gradient = ExtResource("16_ucst6")
-respawn_pos = NodePath("")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 32

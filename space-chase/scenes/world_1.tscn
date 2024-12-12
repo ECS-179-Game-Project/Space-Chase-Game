@@ -182,7 +182,7 @@ offset_left = 414.0
 offset_top = 88.0
 offset_right = 414.0
 offset_bottom = 88.0
-bar_color = Color(0, 0.448, 0.84, 1)
+bar_color = Color(0.243958, 0.735512, 0.520569, 1)
 owner_player = 1
 
 [node name="FloorOfDeath" type="Area2D" parent="."]
