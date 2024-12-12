@@ -28,5 +28,6 @@ func _on_hurtbox_entered(hurtbox: Area2D) -> void:
 
 
 # Detect collision of trap tiles
-func _on_body_entered(_body: TrapTileMapLayer) -> void:
-	hurt_owner.instakill()
+func _on_body_entered(body: Node2D) -> void:
+	if body is TrapTileMapLayer:
+		hurt_owner.instakill()
