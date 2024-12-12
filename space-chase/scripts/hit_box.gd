@@ -10,11 +10,11 @@ func _init() -> void:
 	area_entered.connect(_on_hurtbox_entered)
 
 
-func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
+func _on_hurtbox_entered(hurtbox: Area2D) -> void:
+	if hurtbox is HurtBox:
+		var target := hurtbox.owner
+		#current_energy = game_state_manager.get_player_energy(PlayerID.PLAYER_1)
+		#adjusted_energy = current_energy * 0.75
 		
-	var target := hurtbox.owner
-	#current_energy = game_state_manager.get_player_energy(PlayerID.PLAYER_1)
-	#adjusted_energy = current_energy * 0.75
-	
-	if target.has_method("instakill"):
-		target.instakill()
+		if target.has_method("instakill"):
+			target.instakill()
