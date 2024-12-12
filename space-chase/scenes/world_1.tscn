@@ -153,15 +153,14 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoscrollCameraController/RightWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_v7676")
 
-[node name="DISABLED-TopWorldBorder" type="StaticBody2D" parent="AutoscrollCameraController"]
+[node name="TopWorldBorder" type="StaticBody2D" parent="AutoscrollCameraController"]
 visible = false
 position = Vector2(-10, -162)
 collision_layer = 32
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoscrollCameraController/DISABLED-TopWorldBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoscrollCameraController/TopWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_th0pi")
-disabled = true
 
 [node name="BottomWorldBorder" type="StaticBody2D" parent="AutoscrollCameraController"]
 position = Vector2(-10, 162)
@@ -411,3 +410,18 @@ position = Vector2(6144, -114)
 
 [node name="EnergyGain19" parent="." instance=ExtResource("23_noxf7")]
 position = Vector2(6934, 13)
+
+[node name="EnergyGain20" parent="." instance=ExtResource("23_noxf7")]
+position = Vector2(9416, -60)
+
+[node name="EnergyGain21" parent="." instance=ExtResource("23_noxf7")]
+position = Vector2(9205, -71)
+
+[node name="EnergyGain22" parent="." instance=ExtResource("23_noxf7")]
+position = Vector2(9234, -73)
+
+[node name="EnergyGain23" parent="." instance=ExtResource("23_noxf7")]
+position = Vector2(9259, -74)
+
+[node name="EnergyGain24" parent="." instance=ExtResource("23_noxf7")]
+position = Vector2(9068, -11)
