@@ -3,8 +3,6 @@ extends Control
 
 const PlayerID = GameStateManager.PlayerID
 
-@onready var game_state_manager: GameStateManager = $/root/GameStateManager
-
 
 func resume():
 	get_tree().paused = false
@@ -22,8 +20,7 @@ func restart():
 	await SceneManager.fade_out({"pattern": "circle", "speed": 4})
 	$".".visible = false
 	get_tree().reload_current_scene()
-	game_state_manager.set_player_energy(PlayerID.PLAYER_1, 0)
-	game_state_manager.set_player_energy(PlayerID.PLAYER_2, 0)
+	GameStateManager.clear()
 	SceneManager.fade_in({"pattern": "circle"})
 
 
@@ -51,5 +48,5 @@ func _on_quit_pressed() -> void:
 	quit()
 
 
-func _process(delta):
+func _process(_delta):
 	testEsc()

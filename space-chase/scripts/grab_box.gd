@@ -12,25 +12,27 @@ func _init() -> void:
 	area_entered.connect(_on_hurtbox_entered)
 
 
-func _on_grabbox_entered(grabbox: GrabBox) -> void:
-	var target := grabbox.owner
-	
-	if grab_owner.is_stunned:
-		return
-	
-	if target is Player and target.has_method("grab_tech"):
-		target.grab_tech()
-		grab_owner.grab_tech()
+func _on_grabbox_entered(grabbox: Area2D) -> void:
+	if grabbox is GrabBox:
+		var target := grabbox.owner
+		
+		if grab_owner.is_stunned:
+			return
+		
+		if target is Player and target.has_method("grab_tech"):
+			target.grab_tech()
+			grab_owner.grab_tech()
 
 
-func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
-	var target := hurtbox.owner
-	
-	if grab_owner.is_stunned:
-		return
-	
-	if target is Player and target.is_ghost:
-		return
-	
-	if grab_owner != target and target.has_method("got_grabbed"):
-		grab_owner.hold(target)
+func _on_hurtbox_entered(hurtbox: Area2D) -> void:
+	if hurtbox is HurtBox:
+		var target := hurtbox.owner
+		
+		if grab_owner.is_stunned:
+			return
+		
+		if target is Player and target.is_ghost:
+			return
+		
+		if grab_owner != target and target.has_method("got_grabbed"):
+			grab_owner.hold(target)

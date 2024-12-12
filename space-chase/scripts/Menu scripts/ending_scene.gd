@@ -3,22 +3,24 @@ extends Control
 
 const PlayerID = GameStateManager.PlayerID
 
+func _ready():
+	GameStateManager.player_win.connect(_on_player_win)
+
+
 func quit():
 	get_tree().paused = false
 	$".".visible = false
 	MenuManager.enter_menu()
 
-func pause():
-	 #figure out a way to detect if the player is charging 
-	#should be another if statement? 
-	if PlayerID.PLAYER_1:
-		#get_tree().paused = true
-		$".".visible = true
-		$VBoxContainer/Label.text = "PLAYER 1 WINS"
-	elif PlayerID.PLAYER_2:
-		#get_tree().paused = true
-		$".".visible = true
-		$VBoxContainer/Label.text = "PLAYER 2 WINS"
+
+func pause(id: GameStateManager.PlayerID = GameStateManager.PlayerID.PLAYER_1):
+	$".".visible = true
+	$VBoxContainer/Label.text = str("PLAYER ", id + 1, " WINS")
+
 
 func _on_quit_pressed() -> void:
 	quit() # Replace with function body.
+
+
+func _on_player_win(id: GameStateManager.PlayerID):
+	pause(id)

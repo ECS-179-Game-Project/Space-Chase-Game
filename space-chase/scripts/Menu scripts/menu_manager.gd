@@ -24,7 +24,6 @@ var cur_menu: MenuState = MenuState.MAIN
 @onready var menu_states := {
 	MenuState.MAIN: $MainMenu,
 	MenuState.SETTINGS: $SettingsMenu,
-	MenuState.CONTROLS: $ControlsMenu,
 	MenuState.VOLUME: $VolumeMenu,
 	MenuState.EXTRAS: $ExtrasMenu,
 }

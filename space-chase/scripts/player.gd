@@ -23,7 +23,7 @@ const DEFAULT_JUMP_FORCE: float = 350.0
 const DEFAULT_THROW_STRENGTH: float = 1.0
 const DEFAULT_DASH_SPEED: float = 430.0
 
-const COYOTE_TIME_WINDOW: float = 0.06 # Time in seconds in which jumping is possible after no longer being on the floor
+const COYOTE_TIME_WINDOW: float = 0.12 # Time in seconds in which jumping is possible after no longer being on the floor
 const HELD_POS_HEIGHT: float = 15.0 # How high held targets should be
 const HOLD_TIME: float = 5.0 # How long a player is able to hold
 const HOLD_TIMER_REDUCTION: float = 0.5 # How much to reduce the hold timer for each button mashed by held player
@@ -247,7 +247,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_update_animation_tree()
 	
 
@@ -413,7 +413,7 @@ func _stop_grab() -> void: # Called at the end of teh grab animation
 	is_grabbing = false
 
 
-func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
+func _throw(_high_throw: bool = false) -> void: # Held target is thrown ahead
 	is_holding = false
 	_held_target.thrown(_get_action_dir(_dir), throw_strength)
 	_held_target = null
@@ -445,7 +445,7 @@ func _reduce_hold_timer() -> void:
 		_hold_timer.start(new_hold_time)
 
 
-func _start_dash(delta: float) -> void:
+func _start_dash(_delta: float) -> void:
 	dash_sound.play()
 	
 	is_dashing = true

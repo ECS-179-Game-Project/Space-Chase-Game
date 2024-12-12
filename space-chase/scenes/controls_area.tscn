@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://jbgv7amd1esl"]
+[gd_scene load_steps=25 format=3 uid="uid://dpqbqosadj5g3"]
 
 [ext_resource type="Script" path="res://scripts/Menu scripts/controls_menu.gd" id="1_rrtn1"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_mgfks"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://baakggf4ouquo" path="res://assets/sprites/buttons/x.png" id="11_nadc2"]
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="12_8cmfj"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="13_dadut"]
-[ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="14_t5rps"]
+[ext_resource type="AudioStream" uid="uid://cbyh0bucg0rfi" path="res://assets/Audio/DavidKBD - Cosmic Pack 02 - Galactic Pulse-full.ogg" id="14_l7ggv"]
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="15_i26ur"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="16_lt7e2"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="17_ully6"]
@@ -277,7 +277,7 @@ position_smoothing_speed = 20.0
 
 [node name="WorldAudio" type="AudioStreamPlayer2D" parent="Node2D/StaticCamera"]
 position = Vector2(-10, 23)
-stream = ExtResource("14_t5rps")
+stream = ExtResource("14_l7ggv")
 volume_db = -15.0
 script = ExtResource("15_i26ur")
 
