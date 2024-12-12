@@ -16,10 +16,10 @@
 [ext_resource type="TileSet" uid="uid://cvtvdfrvydmov" path="res://resources/platform_tileset.tres" id="18_vvnam"]
 [ext_resource type="TileSet" uid="uid://b3l3d0robsua5" path="res://resources/ground_tileset.tres" id="19_dyywv"]
 [ext_resource type="TileSet" uid="uid://mq7nu5sb2j6k" path="res://resources/trap_tileset.tres" id="20_evj8i"]
+[ext_resource type="Texture2D" uid="uid://b8b3hcrmvnhbc" path="res://assets/sprites/ships/red_ship.png" id="20_fwtfd"]
 [ext_resource type="Script" path="res://scripts/trap_layer.gd" id="21_k2dd0"]
 [ext_resource type="TileSet" uid="uid://dam4f3gaq7eir" path="res://resources/background_tileset.tres" id="22_iyu0f"]
 [ext_resource type="PackedScene" uid="uid://iwoxsd7c60qm" path="res://scenes/powerups/energy_gain_powerup.tscn" id="23_0c4sm"]
-[ext_resource type="Texture2D" uid="uid://5221bbh7d5vs" path="res://assets/sprites/ships/blue_ship.png" id="23_l77bm"]
 [ext_resource type="PackedScene" uid="uid://brro3m5tumnva" path="res://scenes/platform.tscn" id="24_rwgrt"]
 [ext_resource type="PackedScene" uid="uid://bwhn6h0pahu0k" path="res://scenes/powerups/get_big_powerup.tscn" id="25_s8h6p"]
 [ext_resource type="PackedScene" uid="uid://dd3fxo2cwtjy3" path="res://scenes/powerups/get_small_powerup.tscn" id="26_wthqe"]
@@ -222,6 +222,7 @@ tile_set = ExtResource("22_iyu0f")
 [node name="RedChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
 position = Vector2(214, 61)
 rotation = 2.65551
+texture = ExtResource("20_fwtfd")
 owner_player = NodePath("../Player1")
 override_chargeability = true
 
@@ -233,19 +234,18 @@ rotation = 0.359538
 position = Vector2(19.0347, 8.9264)
 rotation = -2.75238
 
-[node name="BlueChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
+[node name="GreenChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
 position = Vector2(248, 66)
 rotation = -6.16202
 scale = Vector2(1, -1)
-texture = ExtResource("23_l77bm")
 owner_player = NodePath("../Player2")
 override_chargeability = true
 
-[node name="Fire" parent="BlueChargingStation" index="0"]
+[node name="Fire" parent="GreenChargingStation" index="0"]
 position = Vector2(-8.81316, -2.08045)
 rotation = 6.22469
 
-[node name="Fire2" parent="BlueChargingStation" index="1"]
+[node name="Fire2" parent="GreenChargingStation" index="1"]
 position = Vector2(18.0147, 9.2451)
 rotation = 3.42352
 
@@ -271,4 +271,4 @@ position = Vector2(-231, 14)
 position = Vector2(234, -9)
 
 [editable path="RedChargingStation"]
-[editable path="BlueChargingStation"]
+[editable path="GreenChargingStation"]
