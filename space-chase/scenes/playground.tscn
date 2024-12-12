@@ -102,6 +102,7 @@ offset_left = 425.0
 offset_top = 88.0
 offset_right = 425.0
 offset_bottom = 88.0
+bar_color = Color(0, 0.447059, 0.839216, 1)
 owner_player = 1
 
 [node name="RedChargingBar" parent="StaticCamera" instance=ExtResource("8_dpu0h")]
@@ -110,6 +111,7 @@ offset_left = 336.0
 offset_top = 88.0
 offset_right = 672.0
 offset_bottom = 176.0
+bar_color = Color(0.901961, 0.196078, 0.196078, 1)
 
 [node name="PlayerBanner" parent="StaticCamera" instance=ExtResource("11_ygpoc")]
 z_index = 1
