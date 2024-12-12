@@ -44,6 +44,7 @@ func _ready() -> void:
 	player_ready.connect(_on_player_ready)
 	player_win.connect(_on_player_win)
 	request_charge.connect(_on_request_charge)
+	level_entered.connect(_on_level_entered)
 
 
 ## Resets game state to 0.
@@ -111,7 +112,7 @@ func initialize_camera_pos(init_pos: float, final_pos: float) -> void:
 
 ## Returns the current level progress of the camera as a ratio.
 func get_level_progress() -> float:
-	return  1.0 - _remaining_level_progress
+	return 1.0 - _remaining_level_progress
 
 
 ## Starts victory sequence
@@ -123,6 +124,11 @@ func _on_player_win(id: PlayerID) -> void:
 func _on_player_ready(id: PlayerID) -> void:
 	print("asdfasdf")
 	return
+
+
+func _on_level_entered() -> void:
+	clear()
+
 
 ## Give energy to charging station
 ## @experimental: Needs testing
