@@ -2,7 +2,11 @@
 
 ## Summary
 
+`text here`
+
 ## Gameplay Explanation
+
+`text here`
 
 # Main Roles
 
@@ -42,10 +46,20 @@
 
 ## Press Kit and Trailer
 
+`text here`
+
 ## Narrative Design
+
+`text here`
 
 ## Audio
 
+`text here`
+
 ## Gameplay testing / Level Design
 
+`text here`
+
 ## Game Feel & Polish
+
+`text here`
