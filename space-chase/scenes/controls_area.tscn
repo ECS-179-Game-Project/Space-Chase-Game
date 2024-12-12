@@ -41,6 +41,7 @@ anchors_preset = 0
 script = ExtResource("1_rrtn1")
 
 [node name="Control" type="Control" parent="."]
+z_index = -3
 layout_mode = 3
 anchors_preset = 0
 offset_top = -39.0
@@ -264,63 +265,66 @@ theme_override_fonts/font = ExtResource("2_mgfks")
 text = "Back"
 alignment = 0
 
-[node name="StaticCamera" type="Camera2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 5
+
+[node name="StaticCamera" type="Camera2D" parent="Node2D"]
 z_index = 5
 position = Vector2(0, -30)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 
-[node name="PlayerRespawnLocation" type="Node2D" parent="StaticCamera"]
+[node name="PlayerRespawnLocation" type="Node2D" parent="Node2D/StaticCamera"]
 
-[node name="WorldAudio" type="AudioStreamPlayer2D" parent="StaticCamera"]
+[node name="WorldAudio" type="AudioStreamPlayer2D" parent="Node2D/StaticCamera"]
 position = Vector2(-10, 23)
 stream = ExtResource("14_t5rps")
 volume_db = -15.0
 script = ExtResource("15_i26ur")
 
-[node name="LeftWorldBorder" type="StaticBody2D" parent="StaticCamera"]
+[node name="LeftWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
 position = Vector2(-248, 23)
 collision_layer = 32
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticCamera/LeftWorldBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/LeftWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_bh0r3")
 
-[node name="RightWorldBorder" type="StaticBody2D" parent="StaticCamera"]
+[node name="RightWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
 position = Vector2(248, 23)
 collision_layer = 32
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticCamera/RightWorldBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/RightWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_ed2yk")
 
-[node name="DISABLED-TopWorldBorder" type="StaticBody2D" parent="StaticCamera"]
+[node name="DISABLED-TopWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
 visible = false
 position = Vector2(-10, -162)
 collision_layer = 32
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticCamera/DISABLED-TopWorldBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/DISABLED-TopWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_jjw2g")
 disabled = true
 
-[node name="BottomWorldBorder" type="StaticBody2D" parent="StaticCamera"]
+[node name="BottomWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
 position = Vector2(0, 121)
 collision_layer = 32
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticCamera/BottomWorldBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/BottomWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_d33ls")
 
-[node name="Player1" parent="." instance=ExtResource("16_lt7e2")]
+[node name="Player1" parent="Node2D" instance=ExtResource("16_lt7e2")]
 texture_filter = 3
 position = Vector2(-33, 79)
 use_up_as_jump = true
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("17_ully6")
 
-[node name="Player2" parent="." instance=ExtResource("16_lt7e2")]
+[node name="Player2" parent="Node2D" instance=ExtResource("16_lt7e2")]
 texture_filter = 3
 position = Vector2(27, 79)
 player_id = 1
@@ -328,7 +332,7 @@ use_up_as_jump = true
 player_color = Color(0, 0.317647, 0.145098, 1)
 dash_color_gradient = ExtResource("18_ih1pr")
 
-[node name="Click" type="AudioStreamPlayer2D" parent="."]
+[node name="Click" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("19_j3war")
 volume_db = 6.0
 attenuation = 0.138696

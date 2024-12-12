@@ -123,7 +123,6 @@ func _on_player_win(id: PlayerID) -> void:
 
 
 func _on_player_ready(id: PlayerID) -> void:
-	print("asdfasdf")
 	return
 
 
