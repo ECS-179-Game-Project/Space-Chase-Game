@@ -17,7 +17,7 @@ func _ready() -> void:
 	z_index = -1 # Render behind the parent
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	global_position = Vector2.ZERO
 
 	if draw_trail:

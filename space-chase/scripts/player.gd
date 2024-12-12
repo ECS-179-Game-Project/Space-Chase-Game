@@ -247,7 +247,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_update_animation_tree()
 	
 
@@ -413,7 +413,7 @@ func _stop_grab() -> void: # Called at the end of teh grab animation
 	is_grabbing = false
 
 
-func _throw(high_throw: bool = false) -> void: # Held target is thrown ahead
+func _throw(_high_throw: bool = false) -> void: # Held target is thrown ahead
 	is_holding = false
 	_held_target.thrown(_get_action_dir(_dir), throw_strength)
 	_held_target = null
@@ -445,7 +445,7 @@ func _reduce_hold_timer() -> void:
 		_hold_timer.start(new_hold_time)
 
 
-func _start_dash(delta: float) -> void:
+func _start_dash(_delta: float) -> void:
 	dash_sound.play()
 	
 	is_dashing = true
