@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="PackedScene" uid="uid://bv0pxf3mm1062" path="res://scenes/enemy_wall_of_death.tscn" id="12_3lcki"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="13_1negu"]
-[ext_resource type="Gradient" uid="uid://dbnd1k3dylhvl" path="res://resources/blue_gradient.tres" id="14_nkvsa"]
+[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="15_64g0u"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 [ext_resource type="TileSet" uid="uid://ue1dbukbe1gy" path="res://resources/foreground_tileset.tres" id="16_36jcp"]
 [ext_resource type="TileSet" uid="uid://b3l3d0robsua5" path="res://resources/ground_tileset.tres" id="16_65ouv"]
@@ -195,8 +195,8 @@ texture_filter = 3
 position = Vector2(58, 38)
 player_id = 1
 use_up_as_jump = true
-player_color = Color(0, 0.208508, 0.503089, 1)
-dash_color_gradient = ExtResource("14_nkvsa")
+player_color = Color(6.257e-07, 0.316222, 0.143203, 1)
+dash_color_gradient = ExtResource("15_64g0u")
 respawn_pos = NodePath("../AutoscrollCameraController/PlayerRespawnLocation")
 
 [node name="Player1" parent="." node_paths=PackedStringArray("respawn_pos") instance=ExtResource("3_korow")]

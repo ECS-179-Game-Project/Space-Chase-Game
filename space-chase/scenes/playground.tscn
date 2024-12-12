@@ -7,10 +7,10 @@
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="6_1f7ch"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_kixqf"]
 [ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/energy_bar.tscn" id="8_dpu0h"]
+[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="11_6ftgq"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="11_ygpoc"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="13_mxlg4"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="14_w5fo5"]
-[ext_resource type="Gradient" uid="uid://dbnd1k3dylhvl" path="res://resources/blue_gradient.tres" id="15_6utsq"]
 [ext_resource type="Script" path="res://scripts/hit_box.gd" id="16_5xjdl"]
 [ext_resource type="TileSet" uid="uid://ue1dbukbe1gy" path="res://resources/foreground_tileset.tres" id="17_io4nr"]
 [ext_resource type="TileSet" uid="uid://cvtvdfrvydmov" path="res://resources/platform_tileset.tres" id="18_vvnam"]
@@ -173,8 +173,8 @@ texture_filter = 3
 position = Vector2(19, 63)
 player_id = 1
 use_up_as_jump = true
-player_color = Color(0, 0.208508, 0.503089, 1)
-dash_color_gradient = ExtResource("15_6utsq")
+player_color = Color(0, 0.317647, 0.145098, 1)
+dash_color_gradient = ExtResource("11_6ftgq")
 respawn_pos = NodePath("../StaticCamera/PlayerRespawnLocation")
 
 [node name="FloorOfDeath" type="Area2D" parent="."]
