@@ -25,7 +25,7 @@ func _ready() -> void:
 	_charge_zone_particles = load("res://scenes/particles/1_charging_zone.tscn").instantiate()
 	_charge_zone_particles.emitting = override_chargeability
 	_charge_zone_particles.process_material.set("emission_ring_radius", CHARGE_RADIUS)
-	_charge_zone_particles.process_material.set("emission_ring_inner_radius", CHARGE_RADIUS)
+	_charge_zone_particles.process_material.set("emission_ring_inner_radius", CHARGE_RADIUS * 0.95)
 	
 	var zone_color = Color.from_hsv(player_color.h, 1.0, 1.0)
 	zone_color.g += 0.4
