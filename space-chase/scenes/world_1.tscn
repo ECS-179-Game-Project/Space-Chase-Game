@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=38 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -30,7 +30,12 @@
 [ext_resource type="Script" path="res://scripts/hit_box.gd" id="25_vvwau"]
 [ext_resource type="PackedScene" uid="uid://cgn1s0ga0v0p8" path="res://scenes/charging_station.tscn" id="31_6a2xa"]
 [ext_resource type="PackedScene" uid="uid://dcn6by0w5pb03" path="res://scenes/powerups/shield_powerup.tscn" id="31_adid5"]
+<<<<<<< HEAD
+[ext_resource type="Texture2D" uid="uid://5221bbh7d5vs" path="res://assets/sprites/ships/blue_ship.png" id="31_r0joe"]
+[ext_resource type="PackedScene" uid="uid://c7684b3b2t8bk" path="res://scenes/powerups/randompower.tscn" id="32_5sfpd"]
+=======
 [ext_resource type="Texture2D" uid="uid://b8b3hcrmvnhbc" path="res://assets/sprites/ships/red_ship.png" id="31_ycoux"]
+>>>>>>> a2f5a04abe72eb3e1edc727839ce80c393d9bcdb
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]
 normal = Vector2(1, 0)
@@ -97,7 +102,6 @@ script = ExtResource("1_eeylw")
 players = [NodePath("../Player1"), NodePath("../Player2")]
 push_line_ratio = 0.9
 speedup_zone_width = 80.0
-autoscroll_speed = 50.0
 end_zone = 10000.0
 
 [node name="EndingScene" parent="AutoscrollCameraController" instance=ExtResource("5_cwchy")]
@@ -411,6 +415,10 @@ position = Vector2(6144, -114)
 [node name="EnergyGain19" parent="." instance=ExtResource("23_noxf7")]
 position = Vector2(6934, 13)
 
+<<<<<<< HEAD
+[node name="Randompower" parent="." instance=ExtResource("32_5sfpd")]
+position = Vector2(129, 41)
+=======
 [node name="EnergyGain20" parent="." instance=ExtResource("23_noxf7")]
 position = Vector2(9416, -60)
 
@@ -425,3 +433,4 @@ position = Vector2(9259, -74)
 
 [node name="EnergyGain24" parent="." instance=ExtResource("23_noxf7")]
 position = Vector2(9068, -11)
+>>>>>>> a2f5a04abe72eb3e1edc727839ce80c393d9bcdb
