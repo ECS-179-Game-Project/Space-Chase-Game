@@ -45,6 +45,7 @@ func _ready() -> void:
 	player_win.connect(_on_player_win)
 	request_charge.connect(_on_request_charge)
 	level_entered.connect(_on_level_entered)
+	player_mashing_while_held.connect(_on_player_mashing_while_held)
 
 
 ## Resets game state to 0.
@@ -117,16 +118,20 @@ func get_level_progress() -> float:
 
 ## Starts victory sequence
 ## @experimental: Incomplete
-func _on_player_win(id: PlayerID) -> void:
+func _on_player_win(_id: PlayerID) -> void:
 	return
 
 
-func _on_player_ready(id: PlayerID) -> void:
+func _on_player_ready(_id: PlayerID) -> void:
 	return
 
 
 func _on_level_entered() -> void:
 	clear()
+
+
+func _on_player_mashing_while_held() -> void:
+	return
 
 
 ## Give energy to charging station
