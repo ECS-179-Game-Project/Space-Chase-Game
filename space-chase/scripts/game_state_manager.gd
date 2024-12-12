@@ -18,6 +18,7 @@ signal level_entered
 signal final_zone_entered
 signal player_ready(id: PlayerID)
 signal player_win(id: PlayerID)
+signal end_cutscene_finished
 signal player_mashing_while_held
 signal request_charge(charger: ChargingStation, id: PlayerID, delta: float)
 
@@ -28,10 +29,14 @@ enum PlayerID {
 
 const CHARGE_PER_SECOND: float = 15
 const WINNING_THRESHOLD: float = 200.0
+const OVERCHARGE_CAP: float = 100.0
+
+var winning_player: PlayerID = PlayerID.PLAYER_1
 
 var player_colors: Array[Color] = [Color.WHITE, Color.WHITE]
 
 var _player_points: Vector2 = Vector2.ZERO ## Player points stored as a Vector2.
+var _player_won: bool = false
 
 var _active_camera: Camera2D ## Stored reference to current camera used to disable when switching.
 var _camera_position: float = 0.0 ## The x position of the current camera's right bound.
@@ -54,6 +59,7 @@ func clear() -> void:
 	_player_points = Vector2i.ZERO
 	_camera_position = 0.0
 	_remaining_level_progress = 0.0
+	_player_won = false
 
 
 ## Sets the active camera to [param new_camera].
@@ -75,8 +81,13 @@ func set_player_energy(energy: int, id: PlayerID) -> void:
 ## Increases the score of player with ID [param id] by [param energy]. Returns the change in score
 func add_player_energy(energy: float, id: PlayerID) -> float:
 	if (_player_points[id] + float(energy) < 0.0):
+		var temp = _player_points[id]
 		_player_points[id] = 0.0
-		return 0.0
+		return _player_points[id] - temp
+	elif (_player_points[id] + float(energy) > WINNING_THRESHOLD + OVERCHARGE_CAP):
+		var temp = _player_points[id]
+		_player_points[id] = WINNING_THRESHOLD + OVERCHARGE_CAP
+		return WINNING_THRESHOLD + OVERCHARGE_CAP - temp
 	else:
 		_player_points[id] += energy
 		return energy
@@ -117,9 +128,15 @@ func get_level_progress() -> float:
 
 
 ## Starts victory sequence
-## @experimental: Incomplete
 func _on_player_win(_id: PlayerID) -> void:
-	return
+	if _player_won:
+		return
+	
+	_player_won = true
+	winning_player = _id
+	SceneManager.change_scene(GameScene.end_cutscene, {
+		"pattern": "squares",
+	})
 
 
 func _on_player_ready(_id: PlayerID) -> void:
