@@ -30,6 +30,176 @@ grow_vertical = 2
 scale = Vector2(2.67999, 2.92)
 script = ExtResource("1_s0e62")
 
+[node name="Label" type="Label" parent="."]
+z_index = 1
+layout_mode = 2
+offset_left = -79.851
+offset_top = -93.4932
+offset_right = 80.149
+offset_bottom = -73.4932
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_35fqx")
+theme_override_font_sizes/font_size = 20
+text = "CONTROLS
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+z_index = 1
+layout_mode = 2
+offset_left = -189.0
+offset_top = -60.0
+offset_right = 189.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+alignment = 2
+
+[node name="keyboard" type="Label" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_35fqx")
+theme_override_font_sizes/font_size = 12
+text = "Keyboard P1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_35fqx")
+theme_override_font_sizes/font_size = 12
+text = "Keyboard P2"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_35fqx")
+theme_override_font_sizes/font_size = 12
+text = "Controller
+"
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="movement" type="Label" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_35fqx")
+theme_override_font_sizes/font_size = 12
+text = "Movement
+"
+horizontal_alignment = 1
+
+[node name="wasd" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("5_orqqr")
+expand_mode = 3
+
+[node name="arrows" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("5_5vgjy")
+expand_mode = 3
+
+[node name="dpad" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("6_ojg1u")
+expand_mode = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("4_35fqx")
+theme_override_font_sizes/font_size = 12
+text = "Grab"
+
+[node name="jk" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.82
+texture = ExtResource("5_0q1mh")
+expand_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.82
+texture = ExtResource("13_iw34n")
+expand_mode = 3
+
+[node name="r1" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.82
+texture = ExtResource("9_etws2")
+expand_mode = 3
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("4_35fqx")
+theme_override_font_sizes/font_size = 12
+text = "Dash
+"
+
+[node name="k" type="TextureRect" parent="HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
+texture = ExtResource("10_ngfhr")
+expand_mode = 3
+
+[node name="keyx" type="TextureRect" parent="HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
+texture = ExtResource("12_f4kff")
+expand_mode = 3
+
+[node name="x" type="TextureRect" parent="HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
+texture = ExtResource("7_dvns2")
+expand_mode = 3
+
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_an5hx")
@@ -45,150 +215,21 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_8yabj")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -156.344
-offset_top = -110.274
-offset_right = 158.656
-offset_bottom = -80.274
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("4_35fqx")
-theme_override_font_sizes/font_size = 20
-text = "CONTROLS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="jk" type="TextureRect" parent="."]
-layout_mode = 2
-offset_left = 61.5674
-offset_top = -55.8219
-offset_right = 98.5674
-offset_bottom = -20.8219
-texture = ExtResource("5_0q1mh")
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -72.3883
-offset_top = 87.6712
-offset_right = 55.6117
-offset_bottom = 111.671
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -35.821
+offset_top = 73.2877
+offset_right = 36.179
+offset_bottom = 97.2877
 grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Back" type="Button" parent="MarginContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_35fqx")
 text = "Back"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = -210.075
-offset_top = -58.2192
-offset_right = -60.0754
-offset_bottom = 39.7808
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(22.3881, 22.9452)
-
-[node name="keyboard" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_35fqx")
-text = "Keyboard P1
-
-
-
-Keyboard P2
-
-
-
-Controller"
-
-[node name="wasd" type="TextureRect" parent="."]
-layout_mode = 2
-offset_left = -32.0897
-offset_top = -58.9041
-offset_right = 15.9103
-offset_bottom = -18.9041
-texture = ExtResource("5_orqqr")
-
-[node name="dpad" type="TextureRect" parent="."]
-layout_mode = 2
-offset_left = -24.627
-offset_top = 46.2329
-offset_right = 6.37304
-offset_bottom = 79.2329
-texture = ExtResource("6_ojg1u")
-
-[node name="x" type="TextureRect" parent="."]
-layout_mode = 2
-offset_left = 150.001
-offset_top = 51.3699
-offset_right = 182.001
-offset_bottom = 84.3699
-texture = ExtResource("7_dvns2")
-
-[node name="r1" type="TextureRect" parent="."]
-layout_mode = 2
-offset_left = 60.0748
-offset_top = 47.2603
-offset_right = 101.075
-offset_bottom = 80.2603
-texture = ExtResource("9_etws2")
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = -105.224
-offset_top = -80.137
-offset_right = 216.776
-offset_bottom = -40.137
-scale = Vector2(0.75, 0.75)
-
-[node name="movement" type="Label" parent="HBoxContainer3"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_35fqx")
-text = "	        Movement   Grab     Dash
-"
-
-[node name="k" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 143.0
-offset_top = -55.0
-offset_right = 184.0
-offset_bottom = -20.0
-texture = ExtResource("10_ngfhr")
-
-[node name="arrows" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = -32.4628
-offset_top = -13.6986
-offset_right = 15.5372
-offset_bottom = 26.3014
-texture = ExtResource("5_5vgjy")
-
-[node name="keyx" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 144.03
-offset_top = -11.3014
-offset_right = 185.03
-offset_bottom = 28.6986
-texture = ExtResource("12_f4kff")
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 62.6868
-offset_top = -9.58904
-offset_right = 102.687
-offset_bottom = 30.411
-texture = ExtResource("13_iw34n")
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/Back" to="." method="_on_back_pressed"]
