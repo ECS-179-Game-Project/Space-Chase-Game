@@ -128,6 +128,9 @@ func _on_player_ready(id: PlayerID) -> void:
 ## @experimental: Needs testing
 func _on_request_charge(charger: ChargingStation, id: PlayerID, delta) -> void:
 	var charge_exchange = CHARGE_PER_SECOND * delta
+	
+	if _player_points[id] > WINNING_THRESHOLD:
+		charge_exchange *= 2
+		
 	charge_exchange = charger.charge_energy(charge_exchange)
-
 	add_player_energy(charge_exchange, id)
