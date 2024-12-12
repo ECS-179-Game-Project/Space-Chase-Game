@@ -1079,6 +1079,7 @@ frame_progress = 0.516746
 
 [node name="RedShoot" type="AnimatedSprite2D" parent="RedShip"]
 position = Vector2(26, 4)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_h82ap")
 animation = &"no_shoot"
 autoplay = "no_shoot"
@@ -1108,6 +1109,7 @@ frame_progress = 0.150791
 
 [node name="BlueShoot" type="AnimatedSprite2D" parent="GreenShip"]
 position = Vector2(26, 4)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_3l14y")
 animation = &"no_shoot"
 autoplay = "no_shoot"
@@ -1147,16 +1149,15 @@ position_smoothing_speed = 20.0
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("9_a7f6p")
-volume_db = 10.0
 bus = &"MUSIC"
 
 [node name="Spaceship" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("13_jmna4")
-volume_db = 20.0
+volume_db = 10.0
 bus = &"SFX"
 
 [node name="SpaceshipSpin" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("14_pegmf")
-volume_db = 10.0
+volume_db = 5.0
 pitch_scale = 0.7
 bus = &"SFX"
