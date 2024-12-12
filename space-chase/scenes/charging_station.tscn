@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgn1s0ga0v0p8"]
-
-[ext_resource type="Script" path="res://scripts/charging_station.gd" id="1_371d5"]
-
-[node name="ChargingStation" type="Node2D"]
-script = ExtResource("1_371d5")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
