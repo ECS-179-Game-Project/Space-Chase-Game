@@ -33,7 +33,8 @@ func _on_hurtbox_entered(hurtbox: Area2D) -> void:
 	if target is Player and target.is_ghost:
 		return
 		
-	if target.active_shield:
+	if target is Player and target.active_shield:
+		target.active_shield = false
 		return
 	
 	if grab_owner != target and target.has_method("got_grabbed"):

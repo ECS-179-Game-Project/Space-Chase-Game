@@ -6,8 +6,8 @@ Applies and unapplies powerup for a player (unapplying is for temporary powerups
 Uses a powerup enum (autoload this script so powerup scenes have access to this enum)
 """
 
-const SPEED_MULTIPLIER: float = 1.5
-const JUMP_MULTIPLIER: float = 1.5
+const SPEED_MULTIPLIER: float = 1.25
+const JUMP_MULTIPLIER: float = 1.25
 const THROW_MULTIPLIER: float = 1.5
 const SCALE_MULTIPLIER: float = 1.5
 
@@ -37,7 +37,7 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 				player.speed *= SPEED_MULTIPLIER
 			PowerupType.JUMP_BOOST:
 				player.jump_force *= JUMP_MULTIPLIER
-			PowerupType.SHIELD:
+			PowerupType.SHIELD: # Permanent, no timer needed
 				player.active_shield = true
 				player.turn_shield_on()
 			PowerupType.GET_BIG:
@@ -52,7 +52,7 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 		print("Applied power-up: %s to player %s" % [PowerupType.keys()[type], player])
 
 		# If temporary, start a timer
-		if type != PowerupType.ENERGY_GAIN:
+		if type != PowerupType.ENERGY_GAIN and type != PowerupType.SHIELD:
 			var timer = _start_unapply_timer(type, player, duration)
 			active_powerups[player.player_id][type] = { "active": true, "timer": timer }
 	else:
@@ -69,9 +69,6 @@ func unapply_powerup(type: PowerupType, player: Player) -> void:
 				player.speed /= SPEED_MULTIPLIER
 			PowerupType.JUMP_BOOST:
 				player.jump_force /= JUMP_MULTIPLIER
-			PowerupType.SHIELD:
-				player.active_shield = false
-				player.turn_shield_on()
 			PowerupType.GET_BIG:
 				player.throw_strength /= THROW_MULTIPLIER
 				player.scale /= SCALE_MULTIPLIER
