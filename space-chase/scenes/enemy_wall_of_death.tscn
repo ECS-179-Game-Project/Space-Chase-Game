@@ -72,72 +72,134 @@ position = Vector2(2.13759, -126)
 [node name="Bat3" parent="Wall" instance=ExtResource("3_qcc01")]
 position = Vector2(-3, 84.9886)
 
+[node name="Bat8" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(20, 28)
+
+[node name="Bat11" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(2, -178)
+
+[node name="Bat12" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(20, -141)
+
+[node name="Bat13" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(15, 85)
+
+[node name="Bat14" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-16, -145)
+
+[node name="Bat15" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-17, -72)
+
+[node name="Bat16" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-19, 44)
+
+[node name="Bat9" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(-21, -5)
+
+[node name="Bat10" parent="Wall" instance=ExtResource("3_qcc01")]
+position = Vector2(19, -52)
+
 [node name="Bat4" parent="Wall" instance=ExtResource("3_qcc01")]
 position = Vector2(3, -77.8597)
 
 [node name="Bat7" parent="Wall" instance=ExtResource("3_qcc01")]
-position = Vector2(-4.99563, -180)
+position = Vector2(-20, -178)
 
 [node name="Bat5" parent="Wall" instance=ExtResource("3_qcc01")]
 position = Vector2(-1.59377, 131)
 
 [node name="Bat6" parent="Wall" instance=ExtResource("3_qcc01")]
-position = Vector2(0.592029, -41)
+position = Vector2(-2, -37)
 
 [node name="FlyEye" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(22, -23)
 
 [node name="FlyEye5" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(3, 57.9412)
 
 [node name="FlyEye6" parent="Wall" instance=ExtResource("4_plpfp")]
-position = Vector2(-2, -106.869)
+position = Vector2(-13, -118)
 
 [node name="FlyEye7" parent="Wall" instance=ExtResource("4_plpfp")]
-position = Vector2(4.65993, 42)
+position = Vector2(-4, 31)
+
+[node name="FlyEye11" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(-15, -28)
+
+[node name="FlyEye12" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(19, -72)
+
+[node name="FlyEye13" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(3, -102)
+
+[node name="FlyEye14" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(10, 130)
+
+[node name="FlyEye15" parent="Wall" instance=ExtResource("4_plpfp")]
+position = Vector2(-3, -183)
 
 [node name="FlyEye2" parent="Wall" instance=ExtResource("4_plpfp")]
 position = Vector2(5, -153.48)
 
 [node name="FlyEye8" parent="Wall" instance=ExtResource("4_plpfp")]
-position = Vector2(6.20534, -185)
+position = Vector2(20, -193)
 
 [node name="FlyEye9" parent="Wall" instance=ExtResource("4_plpfp")]
-position = Vector2(8, 139.401)
+position = Vector2(-15, 125)
 
 [node name="FlyEye10" parent="Wall" instance=ExtResource("4_plpfp")]
-position = Vector2(4, 14.4724)
+position = Vector2(18, 0)
 
 [node name="FlyEye3" parent="Wall" instance=ExtResource("4_plpfp")]
-position = Vector2(6, 108.14)
+position = Vector2(13, 105)
 
 [node name="FlyEye4" parent="Wall" instance=ExtResource("4_plpfp")]
-position = Vector2(-2, -92.407)
+position = Vector2(19, -98)
 
 [node name="Ghost" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(15, 71)
 
 [node name="Ghost4" parent="Wall" instance=ExtResource("5_3i1e6")]
-position = Vector2(4.67077, -56)
+position = Vector2(-3, -50)
+
+[node name="Ghost10" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(-9, 17)
+
+[node name="Ghost11" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(-2, 109)
+
+[node name="Ghost12" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(14, -119)
+
+[node name="Ghost13" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(10, 25)
+
+[node name="Ghost14" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(10, 44)
+
+[node name="Ghost15" parent="Wall" instance=ExtResource("5_3i1e6")]
+position = Vector2(3, -66)
 
 [node name="Ghost5" parent="Wall" instance=ExtResource("5_3i1e6")]
-position = Vector2(-2, -134.993)
+position = Vector2(23, -165)
 
 [node name="Ghost6" parent="Wall" instance=ExtResource("5_3i1e6")]
-position = Vector2(4.9308, 125)
+position = Vector2(26, 124)
 
 [node name="Ghost7" parent="Wall" instance=ExtResource("5_3i1e6")]
 position = Vector2(-1, -9.66077)
 
 [node name="Ghost8" parent="Wall" instance=ExtResource("5_3i1e6")]
-position = Vector2(9, -90.204)
+position = Vector2(-10, -90)
 
 [node name="Ghost9" parent="Wall" instance=ExtResource("5_3i1e6")]
-position = Vector2(8, 76.1378)
+position = Vector2(-15, 74)
 
 [node name="Ghost2" parent="Wall" instance=ExtResource("5_3i1e6")]
 position = Vector2(0, -199.94)
 
 [node name="Ghost3" parent="Wall" instance=ExtResource("5_3i1e6")]
-position = Vector2(3.88547, 153)
+position = Vector2(12, 155)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
