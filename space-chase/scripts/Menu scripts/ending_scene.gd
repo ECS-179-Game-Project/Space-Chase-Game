@@ -24,6 +24,8 @@ func pause():
 		#get_tree().paused = true
 		$".".visible = true
 		$VBoxContainer/Label.text = "PLAYER 2 WINS"
+func _process(delta: float) -> void:
+	pause()
 
 func _on_quit_pressed() -> void:
 	quit() # Replace with function body.
