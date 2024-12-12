@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=38 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="PackedScene" uid="uid://bv0pxf3mm1062" path="res://scenes/enemy_wall_of_death.tscn" id="12_3lcki"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="13_1negu"]
-[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="15_64g0u"]
+[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="15_64g0u"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 [ext_resource type="TileSet" uid="uid://ue1dbukbe1gy" path="res://resources/foreground_tileset.tres" id="16_36jcp"]
 [ext_resource type="TileSet" uid="uid://b3l3d0robsua5" path="res://resources/ground_tileset.tres" id="16_65ouv"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://cgn1s0ga0v0p8" path="res://scenes/charging_station.tscn" id="31_6a2xa"]
 [ext_resource type="PackedScene" uid="uid://dcn6by0w5pb03" path="res://scenes/powerups/shield_powerup.tscn" id="31_adid5"]
 [ext_resource type="Texture2D" uid="uid://b8b3hcrmvnhbc" path="res://assets/sprites/ships/red_ship.png" id="31_ycoux"]
+[ext_resource type="PackedScene" uid="uid://c7684b3b2t8bk" path="res://scenes/powerups/randompower.tscn" id="32_5sfpd"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]
 normal = Vector2(1, 0)
@@ -422,8 +423,14 @@ position = Vector2(9205, -71)
 [node name="EnergyGain22" parent="." instance=ExtResource("23_noxf7")]
 position = Vector2(9234, -73)
 
+[node name="ShieldPowerup3" parent="EnergyGain22" instance=ExtResource("31_adid5")]
+position = Vector2(-9071, 110)
+
 [node name="EnergyGain23" parent="." instance=ExtResource("23_noxf7")]
 position = Vector2(9259, -74)
 
 [node name="EnergyGain24" parent="." instance=ExtResource("23_noxf7")]
 position = Vector2(9068, -11)
+
+[node name="Randompower" parent="." instance=ExtResource("32_5sfpd")]
+position = Vector2(198, 30)

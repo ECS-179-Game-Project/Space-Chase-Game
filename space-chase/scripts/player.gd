@@ -530,6 +530,8 @@ func _disable_interactions() -> void:
 		if child is Area2D:
 			child.monitoring = false
 
+func turn_shield_on() -> void:
+	$GPUParticles2D.visible = active_shield
 
 func _started_respawning() -> void: # Called at the start of respawn animations
 	is_respawning = true
