@@ -32,5 +32,8 @@ func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
 	if target is Player and target.is_ghost:
 		return
 	
+	if target.active_shield:
+		return
+	
 	if grab_owner != target and target.has_method("got_grabbed"):
 		grab_owner.hold(target)

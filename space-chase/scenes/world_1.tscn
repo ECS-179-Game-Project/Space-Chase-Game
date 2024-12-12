@@ -420,6 +420,9 @@ position = Vector2(9205, -71)
 [node name="EnergyGain22" parent="." instance=ExtResource("23_noxf7")]
 position = Vector2(9234, -73)
 
+[node name="ShieldPowerup3" parent="EnergyGain22" instance=ExtResource("31_adid5")]
+position = Vector2(-9071, 110)
+
 [node name="EnergyGain23" parent="." instance=ExtResource("23_noxf7")]
 position = Vector2(9259, -74)
 
