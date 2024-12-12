@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://do8v4n71w03p2" path="res://assets/Sound Effects/Player/dash_refill.ogg" id="10_qjs53"]
 [ext_resource type="Script" path="res://scenes/powerups/powerup_label.gd" id="12_k2a54"]
 [ext_resource type="AudioStream" uid="uid://crmrg7y601pdi" path="res://assets/Sound Effects/Player/death.ogg" id="12_q7dcy"]
-[ext_resource type="AudioStream" uid="uid://dh7anm45jvsek" path="res://assets/Sound Effects/Player/respawn2.ogg" id="15_mhx0y"]
+[ext_resource type="AudioStream" uid="uid://ddo7fc0ojf7w5" path="res://assets/Sound Effects/Player/respawn3.ogg" id="15_c7sff"]
 [ext_resource type="AudioStream" uid="uid://88y32xutfg4x" path="res://assets/Sound Effects/Player/grab.mp3" id="17_t73pq"]
 [ext_resource type="AudioStream" uid="uid://bk3k70e3mymoo" path="res://assets/Sound Effects/Player/Thrown.ogg" id="18_5teqp"]
 [ext_resource type="Texture2D" uid="uid://cj47u7rfp8k81" path="res://assets/sprites/effect_4.png" id="20_s0da5"]
@@ -1090,7 +1090,8 @@ volume_db = 5.0
 bus = &"SFX"
 
 [node name="Respawn" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("15_mhx0y")
+stream = ExtResource("15_c7sff")
+pitch_scale = 0.6
 bus = &"SFX"
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Audio"]
