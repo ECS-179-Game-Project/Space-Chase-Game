@@ -34,11 +34,12 @@ var _camera_position: float = 0.0 ## The x position of the current camera's righ
 var _final_position_x: float = 0.0 ## Final right bound x, passed by the camera on ready
 var _total_distance: float = 0.0 ## Total distance to travel, calculated by final - initial
 var _remaining_level_progress: float = 0.0 ## The ratio of remaining level to total distance.
-
+@onready var ending_scene: EndingScene = $/root/EndingScene
 
 func _ready() -> void:
 	player_win.connect(_on_player_win)
 	request_charge.connect(_on_request_charge)
+	level_entered.connect(_on_level_entered)
 
 
 ## Resets game state to 0.
@@ -94,15 +95,28 @@ func initialize_camera_pos(init_pos: float, final_pos: float) -> void:
 
 ## Returns the current level progress of the camera as a ratio.
 func get_level_progress() -> float:
-	return  1.0 - _remaining_level_progress
+	return 1.0 - _remaining_level_progress
 
 
 ## Starts victory sequence
 ## @experimental: Incomplete
 func _on_player_win(id: PlayerID) -> void:
+	ending_scene.pause()
 	return
 
 
+<<<<<<< HEAD
+=======
+func _on_player_ready(id: PlayerID) -> void:
+	print("asdfasdf")
+	return
+
+
+func _on_level_entered() -> void:
+	clear()
+
+
+>>>>>>> 4641420a0ae6118c82151be62d1d42375ad858b0
 ## Give energy to charging station
 ## @experimental: Needs testing
 func _on_request_charge(charger: ChargingStation, id: PlayerID, delta) -> void:

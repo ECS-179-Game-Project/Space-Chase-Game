@@ -813,7 +813,17 @@ script = ExtResource("1_eeylw")
 players = [NodePath("../Player1"), NodePath("../Player2")]
 push_line_ratio = 0.8
 autoscroll_speed = 50.0
+<<<<<<< HEAD
 end_zone = 1e+06
+=======
+end_zone = 10000.0
+
+[node name="EndingScene" parent="AutoscrollCameraController" instance=ExtResource("5_cwchy")]
+visible = false
+
+[node name="PlayerRespawnLocation" type="Node2D" parent="AutoscrollCameraController"]
+position = Vector2(30, 0)
+>>>>>>> 4641420a0ae6118c82151be62d1d42375ad858b0
 
 [node name="WorldAudio" type="AudioStreamPlayer2D" parent="AutoscrollCameraController"]
 position = Vector2(-10, 23)
