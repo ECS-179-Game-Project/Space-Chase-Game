@@ -56,9 +56,11 @@ func change_menu(new_menu: MenuState):
 	cur_menu = new_menu
 
 
-static func enter_menu():
+static func enter_menu(skip_transition: bool = false):
 	SceneManager.change_scene(GameScene.menu_manager, {
 		"pattern": "curtains",
+		"skip_fade_out": skip_transition,
+		"skip_fade_in": skip_transition,
 	})
 
 

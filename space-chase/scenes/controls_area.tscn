@@ -280,7 +280,7 @@ volume_db = -15.0
 script = ExtResource("15_i26ur")
 
 [node name="LeftWorldBorder" type="StaticBody2D" parent="StaticCamera"]
-position = Vector2(-288, 23)
+position = Vector2(-248, 23)
 collision_layer = 32
 collision_mask = 0
 
@@ -288,7 +288,7 @@ collision_mask = 0
 shape = SubResource("WorldBoundaryShape2D_bh0r3")
 
 [node name="RightWorldBorder" type="StaticBody2D" parent="StaticCamera"]
-position = Vector2(288, 23)
+position = Vector2(248, 23)
 collision_layer = 32
 collision_mask = 0
 
@@ -315,14 +315,14 @@ shape = SubResource("WorldBoundaryShape2D_d33ls")
 
 [node name="Player1" parent="." instance=ExtResource("16_lt7e2")]
 texture_filter = 3
-position = Vector2(-33, 64)
+position = Vector2(-33, 79)
 use_up_as_jump = true
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("17_ully6")
 
 [node name="Player2" parent="." instance=ExtResource("16_lt7e2")]
 texture_filter = 3
-position = Vector2(19, 63)
+position = Vector2(27, 79)
 player_id = 1
 use_up_as_jump = true
 player_color = Color(0, 0.317647, 0.145098, 1)
@@ -332,3 +332,5 @@ dash_color_gradient = ExtResource("18_ih1pr")
 stream = ExtResource("19_j3war")
 volume_db = 6.0
 attenuation = 0.138696
+
+[connection signal="pressed" from="Control/MarginContainer/Back" to="." method="_on_back_pressed"]

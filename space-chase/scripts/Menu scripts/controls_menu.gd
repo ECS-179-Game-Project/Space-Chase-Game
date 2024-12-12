@@ -3,5 +3,6 @@ extends Control
 
 
 func _on_back_pressed() -> void:
+	print("FUCK")
 	$Click.play()
-	MenuManager.enter_menu()
+	MenuManager.enter_menu(true)
