@@ -258,7 +258,7 @@ func instakill() -> void: # Called by hitbox
 		return
 	
 	var opposite_player_id = 1 if player_id == 0 else 0
-	var energy_lost: float = GameStateManager.remove_player_energy(10, player_id)
+	var energy_lost: float = GameStateManager.remove_player_energy(25, player_id)
 	GameStateManager.add_player_energy(energy_lost, opposite_player_id)
 	
 	# Release the held player
