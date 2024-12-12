@@ -7,19 +7,24 @@ const PlayerID = GameStateManager.PlayerID
 func pause():
 	#figure out a way to detect if the player is charging 
 	#should be another if statement? 
+	
 	if  GameStateManager.get_player_energy(PlayerID.PLAYER_1) >= winning_score:
 	#ChargingStation.WIN_THRESHOLD:
-		get_tree().paused = true
+		#get_tree().paused = true
 		$".".visible = true
 		$VBoxContainer/Label.text = "PLAYER 1 WINS"
 	elif GameStateManager.get_player_energy(PlayerID.PLAYER_2) >= winning_score:
 	#ChargingStation.WIN_THRESHOLD:
-		get_tree().paused = true
+		#get_tree().paused = true
 		$".".visible = true
 		$VBoxContainer/Label.text = "PLAYER 2 WINS"
+
+func testEsc():
+	if get_tree().paused == false:
+		pause()
 		
 func _process(delta):
-	pause()
+	testEsc()
 
 
 func _on_quit_pressed() -> void:
