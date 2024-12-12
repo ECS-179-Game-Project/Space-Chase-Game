@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://csp6dyan08ll8"]
+[gd_scene load_steps=6 format=3 uid="uid://csp6dyan08ll8"]
 
 [ext_resource type="Texture2D" uid="uid://t4rq3mr68b3k" path="res://assets/sprites/Health Bar Asset Pack 2 by Adwit Rahman/rpg (2).png" id="1_832xr"]
 [ext_resource type="Script" path="res://scripts/energy_bar.gd" id="1_tx75j"]
@@ -6,6 +6,12 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmfip"]
 resource_local_to_scene = true
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ca4fu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbpxi"]
+bg_color = Color(1, 1, 1, 0.72549)
 
 [node name="ChargingBar" type="Control"]
 layout_mode = 3
@@ -18,7 +24,6 @@ offset_right = 146.0
 offset_bottom = 4.0
 grow_horizontal = 2
 script = ExtResource("1_tx75j")
-bar_color = Color(1, 0, 0, 1)
 
 [node name="Texture" type="TextureRect" parent="."]
 layout_mode = 0
@@ -40,5 +45,22 @@ offset_bottom = 16.0
 grow_horizontal = 2
 scale = Vector2(0.35, 0.35)
 theme_override_styles/fill = SubResource("StyleBoxFlat_nmfip")
+value = 100.0
+show_percentage = false
+
+[node name="PlayerOvercharge" type="ProgressBar" parent="Texture"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 2.0
+offset_right = 151.0
+offset_bottom = 16.0
+grow_horizontal = 2
+scale = Vector2(0.35, 0.35)
+theme_override_styles/background = SubResource("StyleBoxFlat_ca4fu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cbpxi")
+min_value = 100.0
 value = 100.0
 show_percentage = false
