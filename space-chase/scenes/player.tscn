@@ -14,9 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://54rvsi41cps1" path="res://assets/Sound Effects/Player/Player-Dash.ogg" id="9_8fqmr"]
 [ext_resource type="Texture2D" uid="uid://fgres5fl3gp7" path="res://assets/sprites/player/Astronaut/Astronaut_Run.png" id="10_gmp08"]
 [ext_resource type="AudioStream" uid="uid://do8v4n71w03p2" path="res://assets/Sound Effects/Player/dash_refill.ogg" id="10_qjs53"]
-[ext_resource type="AudioStream" uid="uid://b02e3md2bodq7" path="res://assets/Sound Effects/Player/Respawn.ogg" id="11_gxo3f"]
 [ext_resource type="Script" path="res://scenes/powerups/powerup_label.gd" id="12_k2a54"]
 [ext_resource type="AudioStream" uid="uid://crmrg7y601pdi" path="res://assets/Sound Effects/Player/death.ogg" id="12_q7dcy"]
+[ext_resource type="AudioStream" uid="uid://dh7anm45jvsek" path="res://assets/Sound Effects/Player/respawn2.ogg" id="15_mhx0y"]
 [ext_resource type="AudioStream" uid="uid://88y32xutfg4x" path="res://assets/Sound Effects/Player/grab.mp3" id="17_t73pq"]
 [ext_resource type="AudioStream" uid="uid://bk3k70e3mymoo" path="res://assets/Sound Effects/Player/Thrown.ogg" id="18_5teqp"]
 [ext_resource type="Texture2D" uid="uid://cj47u7rfp8k81" path="res://assets/sprites/effect_4.png" id="20_s0da5"]
@@ -1090,8 +1090,7 @@ volume_db = 5.0
 bus = &"SFX"
 
 [node name="Respawn" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("11_gxo3f")
-volume_db = 24.0
+stream = ExtResource("15_mhx0y")
 bus = &"SFX"
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Audio"]

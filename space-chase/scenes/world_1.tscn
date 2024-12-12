@@ -106,7 +106,7 @@ position = Vector2(30, 0)
 [node name="WorldAudio" type="AudioStreamPlayer2D" parent="AutoscrollCameraController"]
 position = Vector2(-10, 23)
 stream = ExtResource("1_hpo4n")
-volume_db = -15.0
+volume_db = -20.0
 bus = &"MUSIC"
 script = ExtResource("1_t0e68")
 
