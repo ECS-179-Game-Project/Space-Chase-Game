@@ -1148,6 +1148,7 @@ position_smoothing_speed = 20.0
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("9_a7f6p")
 volume_db = 10.0
+bus = &"MUSIC"
 
 [node name="Spaceship" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("13_jmna4")

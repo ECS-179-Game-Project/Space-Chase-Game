@@ -1041,15 +1041,18 @@ bus = &"SFX"
 [node name="Death" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("12_q7dcy")
 volume_db = -4.0
+bus = &"SFX"
 
 [node name="Grabbed" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("18_5teqp")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="Thrown" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("17_t73pq")
 volume_db = -15.0
 pitch_scale = 1.4
+bus = &"SFX"
 
 [node name="Label" type="Label" parent="."]
 visible = false
