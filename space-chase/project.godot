@@ -30,7 +30,7 @@ Particles="*res://scripts/particles.gd"
 
 [display]
 
-window/size/resizable=false
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
