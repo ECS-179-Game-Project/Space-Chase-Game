@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cgn1s0ga0v0p8"]
 
 [ext_resource type="Script" path="res://scripts/charging_station.gd" id="1_371d5"]
-[ext_resource type="Texture2D" uid="uid://b8b3hcrmvnhbc" path="res://assets/sprites/ships/red_ship.png" id="2_eb8na"]
+[ext_resource type="Texture2D" uid="uid://vxio366wnpuw" path="res://assets/sprites/ships/green_ship.png" id="1_rf2h8"]
 [ext_resource type="Texture2D" uid="uid://dase8c6mjtsvf" path="res://assets/sprites/explosions/Yellow Effect Bullet Impact Explosion 32x32.png" id="3_d3f6p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ky2rn"]
@@ -89,7 +89,7 @@ _data = {
 
 [node name="ChargingStation" type="Sprite2D"]
 z_index = -2
-texture = ExtResource("2_eb8na")
+texture = ExtResource("1_rf2h8")
 hframes = 6
 script = ExtResource("1_371d5")
 
