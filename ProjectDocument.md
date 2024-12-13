@@ -32,7 +32,7 @@
 
 ### Main Menu
 
-![](./ExampleImages/main menu.png)
+![main menu](ExampleImages/mainmenu.png)
 
 The main menu was the first thing I inplemented when doing the UI. The script `menu_manager.gd`
 organized and manages the whole menu system for our game. In there every menu state is declared as a
