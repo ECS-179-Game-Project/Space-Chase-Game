@@ -48,6 +48,7 @@ texture, giving it an animated look.
 ### Controls Menu
 
 ![volume/setting menu](ExampleImages/controlsmenu.png)
+
 For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter
 for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu
 The addition of having the players test the movement in the controls menu was Jason's idea and he implemented it.
@@ -55,6 +56,7 @@ The addition of having the players test the movement in the controls menu was Ja
 ### Settings Menu
 
 ![volume/setting menu](ExampleImages/volumemenu.png)
+
 This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. This was done via sliders which was
 built into godot. The script would adjust the sound accordingly, such as updating the bus volume to the current slider value or muting sound when the
 bslider is at zero.
@@ -62,6 +64,7 @@ bslider is at zero.
 ### Pause Menu
 
 ![pause menu](ExampleImages/pausemenu.png)
+
 For the pause menu it was similarity built like the main menu, however it is not managed by the
 `menu_manager.gd`. The 3 buttons that make up the pause menu are resume, restart, and quit. Using
 `paused` boolen that is already in godot I can can make a simple function that pauses the current
@@ -75,8 +78,8 @@ blured effect. The whole pause
 ### In-Game UI
 
 ![energy player bar](ExampleImages/energybar.png) ![level progression bar](ExampleImages/progressbar.png)
-There are two main aspects of the in-game UI. The level progress bar and the player energy bar. The level progress bar
-was made with godot's built in progress bar node. The script of this scene uses functions from the
+
+There are two main aspects of the in-game UI. The level progress bar and the player energy bar. The level progress bar was made with godot's built in progress bar node. The script of this scene uses functions from the
 `game_state_manager.gd` specifically the get level progress function. As for the energy bar of each player
 the `game_state_manager.gd` was also used to tell the player's current energy
 and which bar belonged to who. Being a fixed camera game all these UI elements had to be placed within the autoscroller
