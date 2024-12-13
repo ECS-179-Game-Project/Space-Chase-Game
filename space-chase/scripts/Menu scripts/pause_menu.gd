@@ -29,7 +29,7 @@ func pause():
 	$".".visible = true
 
 
-func testEsc():
+func esc_pressed():
 	if Input.is_action_just_pressed("esc") and get_tree().paused == false:
 		pause()
 	elif Input.is_action_just_pressed("esc") and get_tree().paused == true:
@@ -49,4 +49,4 @@ func _on_quit_pressed() -> void:
 
 
 func _process(_delta):
-	testEsc()
+	esc_pressed()
