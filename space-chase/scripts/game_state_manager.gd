@@ -18,6 +18,7 @@ signal level_entered
 signal final_zone_entered
 signal player_ready(id: PlayerID)
 signal player_win(id: PlayerID)
+signal powerup_collected(id: PlayerID)
 signal end_cutscene_finished
 signal player_mashing_while_held
 signal request_charge(charger: ChargingStation, id: PlayerID, delta: float)

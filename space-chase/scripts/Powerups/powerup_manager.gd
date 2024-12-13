@@ -48,6 +48,7 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 			PowerupType.ENERGY_GAIN:
 				game_state_manager.add_player_energy(25, player.player_id) # Permanent, no timer needed
 		
+		GameStateManager.powerup_collected.emit(player.player_id)
 		print("Applied power-up: %s to player %s" % [PowerupType.keys()[type], player])
 
 		# If temporary, start a timer

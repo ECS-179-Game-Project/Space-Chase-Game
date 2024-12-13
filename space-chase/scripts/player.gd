@@ -32,7 +32,6 @@ const GHOST_TIME: float = 2.0 # How long for player to stop being a ghost
 
 @export_category("Main Settings")
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
-@export var use_up_as_jump: bool = false # Sets jump input to the up input
 @export var player_color: Color = Color.BLACK
 @export var dash_color_gradient: Gradient = load("res://resources/red_gradient.tres")
 @export_category("Physics Settings")
@@ -94,6 +93,7 @@ var _held_target: Node2D = null
 func _ready() -> void:
 	# Signals
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
+	GameStateManager.powerup_collected.connect(_on_powerup_collected)
 	
 	# Set contrls based on player_id
 	if player_id == GameStateManager.PlayerID.PLAYER_1:
@@ -102,8 +102,6 @@ func _ready() -> void:
 		_controls = PlayerControls.get_p2_controls()
 	else:
 		print("ERROR: INVALID PLAYER_ID, CANNOT SET CONTROLS")
-	if use_up_as_jump:
-		_controls.jump = _controls.up
 	
 	# Check for respawn pos
 	if respawn_pos == null:
@@ -160,13 +158,20 @@ func _physics_process(delta: float) -> void:
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
 	_dir = Vector2(horizontal_dir, vertical_dir).normalized()
 	
+	# Update basis movement statuses
 	is_jumping = not is_on_floor()
 	is_idle = is_zero_approx(velocity.x)
 	is_running = not is_zero_approx(velocity.x)
 	
+	# Update visuals
 	_handle_ordering() # Z-index
 	_handle_facing() # Looking left/right
 	$ShieldParticles.visible = active_shield
+	
+	# Check for jump input
+	var use_up_as_jump: bool = PlayerControls.use_up_as_jump[player_id]
+	var has_jumped: bool = Input.is_action_just_pressed(_controls.jump) or (use_up_as_jump and Input.is_action_just_pressed(_controls.up))
+	var holding_jump: bool = Input.is_action_pressed(_controls.jump) or (use_up_as_jump and Input.is_action_pressed(_controls.up))
 	
 	# Ghost movement (return early to prevent normal movement)
 	if is_ghost:
@@ -178,7 +183,7 @@ func _physics_process(delta: float) -> void:
 		var apply_gravity: float = gravity * delta
 		var acting_terminal_velocity: float = terminal_velocity
 		is_fast_falling = Input.is_action_pressed(_controls.down)
-		is_holding_jump = Input.is_action_pressed(_controls.jump) and velocity.y < 0
+		is_holding_jump = holding_jump and velocity.y < 0
 		if is_fast_falling:
 			apply_gravity *= fast_fall_factor
 			acting_terminal_velocity *= fast_fall_factor
@@ -199,7 +204,7 @@ func _physics_process(delta: float) -> void:
 			run_sound.stop()
 
 	# Handle jumping
-	if _can_move() and Input.is_action_just_pressed(_controls.jump) and (not _coyote_timer.is_stopped()):
+	if _can_move() and has_jumped and (not _coyote_timer.is_stopped()):
 		_start_jump()
 	if is_on_floor():
 		_coyote_timer.start(COYOTE_TIME_WINDOW)
@@ -344,6 +349,11 @@ func can_charge() -> bool:
 
 
 # -------------------- Private functions --------------------
+
+func _on_powerup_collected(collector_player_id: GameStateManager.PlayerID) -> void:
+	if collector_player_id == player_id:
+		status_animation_player.play("collect_powerup")
+
 
 func _start_ghost() -> void:
 	is_dead = false
