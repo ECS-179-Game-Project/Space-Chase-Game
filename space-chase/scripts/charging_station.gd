@@ -40,8 +40,7 @@ func _process(delta):
 	if charge_ok or override_chargeability:
 		if _energy_charged >= win_threshold:
 			GameStateManager.player_win.emit(charger_id)
-			
-		elif global_position.distance_to(owner_player.global_position) < CHARGE_RADIUS:
+		elif global_position.distance_to(owner_player.global_position) < CHARGE_RADIUS and owner_player.can_charge():
 			GameStateManager.request_charge.emit(self, charger_id, delta)
 		
 
@@ -61,6 +60,7 @@ func get_ship_energy()-> float:
 func _on_final_zone_entered() -> void:
 	charge_ok = true
 	_charge_zone_particles.emitting = true
+	GameStateManager._player_won = false
 
 
 func _on_level_entered() -> void:

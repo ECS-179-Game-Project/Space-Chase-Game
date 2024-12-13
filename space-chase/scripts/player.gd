@@ -49,7 +49,6 @@ const GHOST_TIME: float = 2.0 # How long for player to stop being a ghost
 @export_range (0.0, 1.0) var hold_jump_gravity_reduction: float = 0.5
 @export var respawn_pos: Node2D = null
 
-var energy: float = 0
 var facing: Direction.Facing = Direction.Facing.RIGHT
 var dashes: int = max_dashes
 var active_shield: bool = false
@@ -338,6 +337,10 @@ func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 	var x_force_sign: float = Direction.get_sign_factor(direction)
 	var force := Vector2(x_force_sign * x_force, 1.2 * -x_force)
 	_start_knockback(force, 0.3)
+
+
+func can_charge() -> bool:
+	return (not is_held) and (not is_ghost)
 
 
 # -------------------- Private functions --------------------

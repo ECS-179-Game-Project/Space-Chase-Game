@@ -166,5 +166,6 @@ func _on_request_charge(charger: ChargingStation, id: PlayerID, delta) -> void:
 	charge_exchange = charger.charge_energy(charge_exchange)
 	add_player_energy(charge_exchange, id)
 
+
 func _on_picked_powerup() -> void:
 	return
