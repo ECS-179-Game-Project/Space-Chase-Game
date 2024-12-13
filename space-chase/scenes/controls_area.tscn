@@ -171,12 +171,12 @@ theme_override_fonts/font = ExtResource("2_mgfks")
 theme_override_font_sizes/font_size = 12
 text = "Grab"
 
-[node name="period" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer3"]
+[node name="comma" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.82
-texture = ExtResource("6_1i6fc")
+texture = ExtResource("9_a442f")
 expand_mode = 3
 
 [node name="f" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer3"]
@@ -208,12 +208,12 @@ theme_override_font_sizes/font_size = 12
 text = "Dash
 "
 
-[node name="comma" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer4"]
+[node name="period" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.87
-texture = ExtResource("9_a442f")
+texture = ExtResource("6_1i6fc")
 expand_mode = 3
 
 [node name="G" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer4"]
