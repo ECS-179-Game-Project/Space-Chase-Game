@@ -18,6 +18,9 @@ var _charge_zone_particles: GPUParticles2D
 @onready var charger_id = owner_player.player_id ## ID of the player that owns the charging station.
 @onready var player_color = owner_player.player_color
 
+@onready var charge_bar = $ChargeBar
+@onready var charge_progress_bar = $ChargeBar/ProgressBar
+
 
 func _ready() -> void:
 	charge_ok = false
@@ -28,8 +31,15 @@ func _ready() -> void:
 	_charge_zone_particles.process_material.set("emission_ring_inner_radius", CHARGE_RADIUS * 0.95)
 	
 	var zone_color = Color.from_hsv(player_color.h, 1.0, 1.0)
+	charge_progress_bar.set_color(zone_color)
+	print(zone_color)
 	zone_color.g += 0.4
 	_charge_zone_particles.process_material.set("color", zone_color)
+	
+	
+	charge_progress_bar.value = 0
+	charge_progress_bar.max_value = win_threshold
+	charge_bar.visible = override_chargeability
 	
 	add_child(_charge_zone_particles)
 	GameStateManager.final_zone_entered.connect(_on_final_zone_entered)
@@ -52,6 +62,8 @@ func charge_energy(x: float) -> float:
 	else:
 		_energy_charged += x
 	
+	charge_progress_bar.value = _energy_charged
+	
 	return prev_energy - _energy_charged
 	
 func get_ship_energy()-> float:
@@ -59,11 +71,13 @@ func get_ship_energy()-> float:
 	
 func _on_final_zone_entered() -> void:
 	charge_ok = true
+	charge_bar.visible = true
 	_charge_zone_particles.emitting = true
 	GameStateManager._player_won = false
 
 
 func _on_level_entered() -> void:
 	charge_ok = false
+	charge_bar.visible = override_chargeability
 	_charge_zone_particles.emitting = false
 	_energy_charged = 0.0

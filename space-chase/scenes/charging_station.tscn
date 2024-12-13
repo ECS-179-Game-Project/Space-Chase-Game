@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgn1s0ga0v0p8"]
+[gd_scene load_steps=16 format=3 uid="uid://cgn1s0ga0v0p8"]
 
 [ext_resource type="Script" path="res://scripts/charging_station.gd" id="1_371d5"]
 [ext_resource type="Texture2D" uid="uid://vxio366wnpuw" path="res://assets/sprites/ships/green_ship.png" id="1_rf2h8"]
 [ext_resource type="Texture2D" uid="uid://dase8c6mjtsvf" path="res://assets/sprites/explosions/Yellow Effect Bullet Impact Explosion 32x32.png" id="3_d3f6p"]
+[ext_resource type="Texture2D" uid="uid://dxm0ameiy5lf4" path="res://assets/sprites/Health Bar Asset Pack 2 by Adwit Rahman/stationbar.png" id="4_mt5ng"]
+[ext_resource type="Script" path="res://scripts/charge_progress_bar.gd" id="5_xkl18"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ky2rn"]
 atlas = ExtResource("3_d3f6p")
@@ -87,6 +89,13 @@ _data = {
 "idle": SubResource("Animation_nkfx1")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vpr0"]
+bg_color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7kvk"]
+resource_local_to_scene = true
+bg_color = Color(1, 0, 1, 1)
+
 [node name="ChargingStation" type="Sprite2D"]
 z_index = -2
 texture = ExtResource("1_rf2h8")
@@ -115,3 +124,38 @@ libraries = {
 "": SubResource("AnimationLibrary_vnimc")
 }
 autoplay = "idle"
+
+[node name="ChargeBar" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = 14.0
+offset_right = 24.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 4.71239
+texture = ExtResource("4_mt5ng")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="ChargeBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.488189
+anchor_top = 0.444444
+anchor_right = 0.488189
+anchor_bottom = 0.444444
+offset_left = -50.0
+offset_top = -3.0
+offset_right = 53.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_8vpr0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c7kvk")
+value = 50.0
+show_percentage = false
+script = ExtResource("5_xkl18")
+metadata/_edit_use_anchors_ = true
