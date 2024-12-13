@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dpqbqosadj5g3"]
+[gd_scene load_steps=28 format=3 uid="uid://dpqbqosadj5g3"]
 
 [ext_resource type="Script" path="res://scripts/Menu scripts/controls_menu.gd" id="1_rrtn1"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_mgfks"]
@@ -10,9 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://ffubl8ytgkt3" path="res://assets/sprites/buttons/r1.png" id="8_odm64"]
 [ext_resource type="Texture2D" uid="uid://b5ch8no14cbpu" path="res://assets/sprites/buttons/k.png" id="9_w3y0v"]
 [ext_resource type="Texture2D" uid="uid://c1pt70nl1m75x" path="res://assets/sprites/buttons/keyx.png" id="10_5thty"]
+[ext_resource type="Texture2D" uid="uid://depwtrr00i5da" path="res://assets/sprites/buttons/square.png" id="11_g6sgw"]
 [ext_resource type="Texture2D" uid="uid://baakggf4ouquo" path="res://assets/sprites/buttons/x.png" id="11_nadc2"]
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="12_8cmfj"]
+[ext_resource type="Texture2D" uid="uid://bnv83dd2t4qjc" path="res://assets/sprites/buttons/space.png" id="12_s8k6w"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="13_dadut"]
+[ext_resource type="Texture2D" uid="uid://cromxi8l6ddvx" path="res://assets/sprites/buttons/alt.png" id="13_e274u"]
 [ext_resource type="AudioStream" uid="uid://cbyh0bucg0rfi" path="res://assets/Audio/DavidKBD - Cosmic Pack 02 - Galactic Pulse-full.ogg" id="14_l7ggv"]
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="15_i26ur"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="16_lt7e2"]
@@ -65,11 +68,18 @@ vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 z_as_relative = false
-layout_mode = 0
-offset_left = -189.0
-offset_top = -89.0
-offset_right = 189.0
-offset_bottom = 31.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -98.0
+offset_right = 242.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
 custom_minimum_size = Vector2(0, 120)
@@ -221,6 +231,42 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.87
+texture = ExtResource("11_g6sgw")
+expand_mode = 3
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+text = "Jump
+"
+
+[node name="space" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
+texture = ExtResource("12_s8k6w")
+
+[node name="place holder" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
+texture = ExtResource("13_e274u")
+expand_mode = 3
+
+[node name="x" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.87
 texture = ExtResource("11_nadc2")
 expand_mode = 3
 
@@ -232,10 +278,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -324.0
-offset_top = -165.0
-offset_right = 109.0
-offset_bottom = 156.0
+offset_left = -307.0
+offset_top = -170.0
+offset_right = 126.0
+offset_bottom = 151.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.48, 1.08)

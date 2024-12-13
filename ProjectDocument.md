@@ -30,6 +30,10 @@
 
 ## User interface and input
 
+### Main Menu
+
+The main menu was the first thing I inplemented when doing the UI. At first it was a simple 3 button layout with a start, settings, and quit button. A menu manager script was implemented to handle all the different states of the menu.
+
 `text here`
 
 ## Animation and Visuals
