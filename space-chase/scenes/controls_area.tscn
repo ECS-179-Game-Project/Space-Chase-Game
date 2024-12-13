@@ -140,7 +140,7 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
-texture = ExtResource("3_hrfbw")
+texture = ExtResource("3_7j38l")
 expand_mode = 3
 
 [node name="wasd" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer2"]
@@ -148,7 +148,7 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
-texture = ExtResource("3_7j38l")
+texture = ExtResource("3_hrfbw")
 expand_mode = 3
 
 [node name="dpad" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer2"]
@@ -176,7 +176,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.82
-texture = ExtResource("9_a442f")
+texture = ExtResource("7_67q6a")
 expand_mode = 3
 
 [node name="f" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer3"]
@@ -184,7 +184,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.82
-texture = ExtResource("7_67q6a")
+texture = ExtResource("9_a442f")
 expand_mode = 3
 
 [node name="r1" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer3"]
@@ -213,7 +213,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.87
-texture = ExtResource("6_1i6fc")
+texture = ExtResource("10_eeb33")
 expand_mode = 3
 
 [node name="G" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer4"]
@@ -221,7 +221,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.87
-texture = ExtResource("10_eeb33")
+texture = ExtResource("6_1i6fc")
 expand_mode = 3
 
 [node name="square" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer4"]
@@ -250,15 +250,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.87
-texture = ExtResource("12_0gpro")
-expand_mode = 3
+texture = ExtResource("12_s8k6w")
 
 [node name="place holder" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.87
-texture = ExtResource("12_s8k6w")
+texture = ExtResource("12_0gpro")
+expand_mode = 3
 
 [node name="x" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer5"]
 layout_mode = 2
