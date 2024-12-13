@@ -533,7 +533,7 @@ func _enable_interactions() -> void:
 	# Enable all Area2D
 	for child in get_children():
 		if child is Area2D:
-			child.monitoring = true
+			child.set_deferred("monitoring", true)
 
 
 func _disable_interactions() -> void:
@@ -543,7 +543,7 @@ func _disable_interactions() -> void:
 	# Disable all Area2D
 	for child in get_children():
 		if child is Area2D:
-			child.monitoring = false
+			child.set_deferred("monitoring", false)
 
 
 func _started_respawning() -> void: # Called at the start of respawn animations

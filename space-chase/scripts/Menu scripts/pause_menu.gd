@@ -20,7 +20,7 @@ func restart():
 	await SceneManager.fade_out({"pattern": "circle", "speed": 4})
 	$".".visible = false
 	get_tree().reload_current_scene()
-	GameStateManager.clear()
+	GameStateManager.level_entered.emit()
 	SceneManager.fade_in({"pattern": "circle"})
 
 

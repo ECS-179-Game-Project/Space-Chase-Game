@@ -30,7 +30,7 @@ atlas = ExtResource("1_sl5tt")
 region = Rect2(16, 0, 16, 16)
 
 [node name="1ChargingZone" type="GPUParticles2D"]
-amount = 80
+amount = 120
 process_material = SubResource("ParticleProcessMaterial_3a2k5")
 texture = SubResource("AtlasTexture_7ekqg")
 preprocess = 0.6
