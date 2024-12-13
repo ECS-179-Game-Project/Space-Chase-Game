@@ -29,6 +29,8 @@ func _ready() -> void:
 	_charge_zone_particles.emitting = override_chargeability
 	_charge_zone_particles.process_material.set("emission_ring_radius", CHARGE_RADIUS)
 	_charge_zone_particles.process_material.set("emission_ring_inner_radius", CHARGE_RADIUS * 0.95)
+	_charge_zone_particles.z_index = 1
+	_charge_zone_particles.z_as_relative = true
 	
 	var zone_color = Color.from_hsv(player_color.h, 1.0, 1.0)
 	charge_progress_bar.set_color(zone_color)
