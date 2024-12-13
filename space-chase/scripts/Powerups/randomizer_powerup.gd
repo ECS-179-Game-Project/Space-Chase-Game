@@ -13,13 +13,15 @@ func _ready() -> void:
 	$AnimationPlayer.play("rotatin")
 	super()
 
-func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
-	var target = hurtbox.owner
+func _on_hurtbox_entered(hurtbox: Area2D) -> void:
+	if hurtbox is HurtBox:
+		var target = hurtbox.owner
 
-	if target is Player and not target.is_held and not target.is_ghost:
-		_spawn_powerup(target)
-		# Queue this node for deletion after the power-up logic is handled
-		call_deferred("queue_free")
+		if target is Player and not target.is_held and not target.is_ghost:
+			_spawn_powerup(target)
+			# Queue this node for deletion after the power-up logic is handled
+			call_deferred("queue_free")
+			
 
 func _spawn_powerup(player:Player) -> void:
 	# Select a random power-up scene

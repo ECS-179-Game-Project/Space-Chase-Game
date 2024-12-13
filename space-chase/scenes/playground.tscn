@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="6_1f7ch"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_kixqf"]
 [ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/energy_bar.tscn" id="8_dpu0h"]
-[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="11_6ftgq"]
+[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="11_6ftgq"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="11_ygpoc"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="13_mxlg4"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="14_w5fo5"]
@@ -217,36 +217,6 @@ texture_filter = 3
 tile_map_data = PackedByteArray("AADx/wAAAgAMAAIAABAOAAAAAgAMAAIAAAA=")
 tile_set = ExtResource("22_iyu0f")
 
-[node name="RedChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
-position = Vector2(214, 61)
-rotation = 2.65551
-texture = ExtResource("20_fwtfd")
-owner_player = NodePath("../Player1")
-override_chargeability = true
-
-[node name="Fire" parent="RedChargingStation" index="0"]
-position = Vector2(-11.6447, 0.633307)
-rotation = 0.359538
-
-[node name="Fire2" parent="RedChargingStation" index="1"]
-position = Vector2(19.0347, 8.9264)
-rotation = -2.75238
-
-[node name="GreenChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
-position = Vector2(248, 66)
-rotation = 0.121165
-scale = Vector2(1, -1)
-owner_player = NodePath("../Player2")
-override_chargeability = true
-
-[node name="Fire" parent="GreenChargingStation" index="0"]
-position = Vector2(-8.81316, -2.08045)
-rotation = 6.22469
-
-[node name="Fire2" parent="GreenChargingStation" index="1"]
-position = Vector2(18.0147, 9.2451)
-rotation = 3.42352
-
 [node name="Platform" parent="." instance=ExtResource("24_rwgrt")]
 position = Vector2(0, -22)
 
@@ -268,5 +238,13 @@ position = Vector2(-231, 14)
 [node name="ShieldPowerup" parent="." instance=ExtResource("29_ktlnk")]
 position = Vector2(234, -9)
 
-[editable path="RedChargingStation"]
-[editable path="GreenChargingStation"]
+[node name="ChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
+position = Vector2(220, 66)
+scale = Vector2(-1, 1)
+owner_player = NodePath("../Player2")
+override_chargeability = true
+
+[node name="ChargingStation2" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
+position = Vector2(159, 66)
+texture = ExtResource("20_fwtfd")
+owner_player = NodePath("../Player1")
