@@ -35,7 +35,7 @@
 The main menu was the first thing I inplemented when doing the UI. The script `menu_manager.gd`
 organized and manages the whole menu system for our game. In there every menu state is declared as a
 enum and handles key features such as changing and entering between menus. Futhermore an addon was used
-to manage the multiple mene scenes. Helpful functions such as `change_scene` allowed us to effortlessly
+to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to effortlessly
 move between menu states while also adding animated transitions. The structure of each menu scene has
 similar formatting with each other. Being some form of vbox container with a set of buttons, each with
 their own signal controlled by a script for that scene. Within each menu, besides the start and quit,
@@ -51,7 +51,8 @@ The addition of having the players test the movement in the controls menu was Ja
 
 ### Settings Menu
 
-The sound menu
+This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. This was done via sliders which was
+built into godot.
 
 ### Pause Menu
 
@@ -63,7 +64,7 @@ paused and the menu will be made visible. If the player chooses to resume the sc
 and the game will continue. For the restart button the game is unpaused and the current scene is
 reloaded thus resetting any progress done. As for the quit, it will take the player back to main
 menu. For the blured background of the pause menu a ColorRect was used with a shader to give the
-blured effect.
+blured effect. The whole pause
 
 ### In-Game UI
 
