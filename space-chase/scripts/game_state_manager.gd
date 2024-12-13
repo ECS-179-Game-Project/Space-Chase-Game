@@ -163,6 +163,8 @@ func _on_request_charge(charger: ChargingStation, id: PlayerID, delta) -> void:
 	
 	if _player_points[id] > WINNING_THRESHOLD:
 		charge_exchange *= 2
+	elif is_zero_approx(_player_points[id]):
+		charge_exchange = 0
 	
 	charge_exchange = charger.charge_energy(charge_exchange)
 	add_player_energy(charge_exchange, id)
