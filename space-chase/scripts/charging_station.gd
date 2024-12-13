@@ -55,7 +55,9 @@ func charge_energy(x: float) -> float:
 	
 	return prev_energy - _energy_charged
 	
-
+func get_ship_energy()-> float:
+	return _energy_charged
+	
 func _on_final_zone_entered() -> void:
 	charge_ok = true
 	_charge_zone_particles.emitting = true
