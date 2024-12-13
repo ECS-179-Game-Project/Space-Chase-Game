@@ -10,25 +10,25 @@
 
 # Main Roles
 
-- Producer: Carlos Huang
-- Movement and Physics: Karim Shami
-- Game Logic: Jason Zhou
-- User interface and input: Patrick Le
-- Animation and Visuals: Raghav Bajaria
+- Producer: [Carlos Huang](https://github.com/cahuang10)
+- Movement and Physics: [Karim Shami](https://github.com/BoiPlex)
+- Game Logic: [Jason Zhou](https://github.com/khromeengine)
+- User interface and input: [Patrick Le](https://github.com/patple)
+- Animation and Visuals: [Raghav Bajoria](https://github.com/RaghavsScarletSplendour)
 
-## Producer
-
-`text here`
-
-## Movement and Physics
+## Producer (Carlos Huang)
 
 `text here`
 
-## Game Logic
+## Movement and Physics (Karim Shami)
 
 `text here`
 
-## User interface and input
+## Game Logic (Jason Zhou)
+
+`text here`
+
+## User interface and input (Patrick Le)
 
 ### Main Menu
 
@@ -43,7 +43,7 @@ there is a back button which takes the player to last previous menu. Also each m
 background, this was done by using a TextureRect and creating a shader to automatically scroll the
 texture, giving it an animated look.
 
-## Pause Menu
+### Pause Menu
 
 For the pause menu it was similarity built like the main menu, however it is not managed by the
 `menu_manager.gd`. The 3 buttons that make up the pause menu are resume, restart, and quit. Using
@@ -65,29 +65,31 @@ camera so it would stay in view of the camera.
 
 ## Animation and Visuals
 
+## Animation and Visuals (Raghav Bajoria)
+
 `text here`
 
 # Sub-Roles
 
-- Press Kit and Trailer: Carlos Huang
-- Narrative Design: Karim Shami
-- Audio: Raghav Bajoria
-- Gameplay testing / Level Design: Patrick Le
-- Game Feel & Polish: Jason Zhou
+- Press Kit and Trailer: [Carlos Huang](https://github.com/cahuang10)
+- Narrative Design: [Karim Shami](https://github.com/BoiPlex)
+- Audio: [Raghav Bajoria](https://github.com/RaghavsScarletSplendour)
+- Gameplay testing / Level Design: [Patrick Le](https://github.com/patple)
+- Game Feel & Polish: [Jason Zhou](https://github.com/khromeengine)
 
-## Press Kit and Trailer
-
-`text here`
-
-## Narrative Design
+## Press Kit and Trailer (Carlos Huang)
 
 `text here`
 
-## Audio
+## Narrative Design (Karim Shami)
 
 `text here`
 
-## Gameplay testing / Level Design
+## Audio (Raghav Bajoria)
+
+`text here`
+
+## Gameplay testing / Level Design (Patrick Le)
 
 ### Gameplay feedback
 
@@ -111,6 +113,6 @@ camera so it would stay in view of the camera.
 
 `text here`
 
-## Game Feel & Polish
+## Game Feel & Polish (Jason Zhou)
 
 `text here`
