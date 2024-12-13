@@ -49,7 +49,7 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 				game_state_manager.add_player_energy(25, player.player_id) # Permanent, no timer needed
 		
 		GameStateManager.powerup_collected.emit(player.player_id)
-		print("Applied power-up: %s to player %s" % [PowerupType.keys()[type], player])
+		print("Applied powerup: %s to player %s" % [PowerupType.keys()[type], player.player_id + 1])
 
 		# If temporary, start a timer
 		if type != PowerupType.ENERGY_GAIN and type != PowerupType.SHIELD:
@@ -83,7 +83,7 @@ func unapply_powerup(type: PowerupType, player: Player) -> void:
 		
 		# Update dictionary
 		active_powerups[player.player_id].erase(type)
-		print("Unapplied power-up: %s from player %s" % [PowerupType.keys()[type], player])
+		print("Unapplied powerup: %s from player %s" % [PowerupType.keys()[type], player.player_id + 1])
 
 func _start_unapply_timer(type: PowerupType, player: Player, duration: float) -> Timer:
 	var timer = Timer.new()
