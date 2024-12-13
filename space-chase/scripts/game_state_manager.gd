@@ -21,6 +21,8 @@ signal player_win(id: PlayerID)
 signal end_cutscene_finished
 signal player_mashing_while_held
 signal request_charge(charger: ChargingStation, id: PlayerID, delta: float)
+signal play_powerup_audio(powerup_type: PowerupManager.PowerupType, position: Vector2)
+
 
 enum PlayerID {
 	PLAYER_1,
@@ -44,6 +46,7 @@ var _final_position_x: float = 0.0 ## Final right bound x, passed by the camera 
 var _total_distance: float = 0.0 ## Total distance to travel, calculated by final - initial
 var _remaining_level_progress: float = 0.0 ## The ratio of remaining level to total distance.
 
+@onready var powerup_sound = preload("res://assets/Sound Effects/Powerups/Getbig.ogg")
 
 func _ready() -> void:
 	player_ready.connect(_on_player_ready)
@@ -51,8 +54,9 @@ func _ready() -> void:
 	request_charge.connect(_on_request_charge)
 	level_entered.connect(_on_level_entered)
 	player_mashing_while_held.connect(_on_player_mashing_while_held)
+	play_powerup_audio.connect(_on_picked_powerup)
 
-
+		
 ## Resets game state to 0.
 ## All variables are reinitialized to 0 except for _active_camera.
 func clear() -> void:
@@ -161,3 +165,6 @@ func _on_request_charge(charger: ChargingStation, id: PlayerID, delta) -> void:
 	
 	charge_exchange = charger.charge_energy(charge_exchange)
 	add_player_energy(charge_exchange, id)
+
+func _on_picked_powerup() -> void:
+	return
