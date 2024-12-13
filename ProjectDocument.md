@@ -43,6 +43,12 @@ there is a back button which takes the player to last previous menu. Also each m
 background, this was done by using a TextureRect and creating a shader to automatically scroll the
 texture, giving it an animated look.
 
+### Controls Menu
+
+For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter
+for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu
+The addition of having the players test the movement in the controls menu was Jason's idea and he implemented it.
+
 ### Pause Menu
 
 For the pause menu it was similarity built like the main menu, however it is not managed by the
@@ -68,7 +74,7 @@ camera so it would stay in view of the camera.
 
 This was implemented with the assistance of Karim Shami (Movement and Physics). He created a player controls script where each player
 had their own dedicated control list and inputs. Also in the input map settings you could add different devices. This allowed it the game
-differentiate
+differentiate between two controllers. Since the issue was that if
 
 ## Animation and Visuals
 
@@ -106,7 +112,9 @@ differentiate
   would have perfered the right trigger. So we changed the keybinds for the controller after these feedback.
   The jump from the up movement and now they are two seperate controls. We also rebinded the dash to be square and triangle
   which gives the player more options. This was done the same to grabing where there are multiple inputs for it such as both triggers
-  and bumpers are now keybinds for it.
+  and bumpers are now keybinds for it. Futhermore from the testing people noted keybinds for when playing two players on a single keyboard
+  was unplayable. Some changes such as chaging the arrow keys to I, J, K, and L since we noticed that some people did not
+  have arrow keys on their keyboard.
 
 - Another suggestion we had was the difficulty of the level design. Although I intentionally designed the level to be hard
   with near impossible jumps I agree some trap and platform placement was unfair. So some map tweaks were made to make the level more
@@ -115,8 +123,7 @@ differentiate
   and it was nice to see the play testers noticing.
 
 - A number of players also commented about player and visablitly. Such as indecators for when the player
-  respawn is going to happen,
-  when the ships are fully charged, and a change of one of the player's color.
+  respawn is going to happen, when the ships are fully charged, and a change of one of the player's color.
 
 ###
 
