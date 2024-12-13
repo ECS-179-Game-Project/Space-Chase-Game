@@ -55,13 +55,20 @@ reloaded thus resetting any progress done. As for the quit, it will take the pla
 menu. For the blured background of the pause menu a ColorRect was used with a shader to give the
 blured effect.
 
-## In-game UI
+### In-Game UI
 
 There are two main aspects of the in-game UI. The level progress bar and the player energy bar. The level progress bar
-was made with godot's built in progress bar node. The script of this scene uses functions from the `game_state_manager.gd` specifically
-the get level progrss function. As for the energy bar of each player the `game_state_manager.gd` was also used to tell the player's current energy
+was made with godot's built in progress bar node. The script of this scene uses functions from the
+`game_state_manager.gd` specifically the get level progrss function. As for the energy bar of each player
+the `game_state_manager.gd` was also used to tell the player's current energy
 and which bar belonged to who. Being a fixed camera game all these UI elements had to be placed within the autoscroller
 camera so it would stay in view of the camera.
+
+### Controller Input
+
+This was implemented with the assistance of Karim Shami (Movement and Physics). He created a player controls script where each player
+had their own dedicated control list and inputs. Also in the input map settings you could add different devices. This allowed it the game
+differentiate
 
 ## Animation and Visuals
 
@@ -103,10 +110,12 @@ camera so it would stay in view of the camera.
 
 - Another suggestion we had was the difficulty of the level design. Although I intentionally designed the level to be hard
   with near impossible jumps I agree some trap and platform placement was unfair. So some map tweaks were made to make the level more
-  enjoyable while also being not too hard. We also got some feedback of how the push box aspect of the camera was high risk high reward since the players would have less time to react to traps. This was intented
+  enjoyable while also being not too hard. We also got some feedback of how the push box aspect of the camera
+  was high risk high reward since the players would have less time to react to traps. This was intented
   and it was nice to see the play testers noticing.
 
-- A number of players also commented about player and visablitly. Such as indecators for when the player respawn is going to happen,
+- A number of players also commented about player and visablitly. Such as indecators for when the player
+  respawn is going to happen,
   when the ships are fully charged, and a change of one of the player's color.
 
 ###
