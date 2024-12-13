@@ -28,6 +28,10 @@ Direction="*res://scripts/direction.gd"
 PowerupManager="*res://scripts/Powerups/powerup_manager.gd"
 Particles="*res://scripts/particles.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/stretch/mode="viewport"
