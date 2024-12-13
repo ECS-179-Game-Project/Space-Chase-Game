@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dcuokery2ipy0"]
+[gd_scene load_steps=33 format=4 uid="uid://dcuokery2ipy0"]
 
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_4bf42"]
 [ext_resource type="Texture2D" uid="uid://qio8qrcblxkf" path="res://assets/sprites/Terrain/stringstar fields/background_1.png" id="2_bkfp7"]
@@ -41,14 +41,6 @@ normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p8aqr"]
 normal = Vector2(1, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0a31"]
-resource_local_to_scene = true
-bg_color = Color(1, 0, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42by5"]
-resource_local_to_scene = true
-bg_color = Color(1, 0, 1, 1)
 
 [node name="Playground" type="Node"]
 
@@ -225,46 +217,6 @@ texture_filter = 3
 tile_map_data = PackedByteArray("AADx/wAAAgAMAAIAABAOAAAAAgAMAAIAAAA=")
 tile_set = ExtResource("22_iyu0f")
 
-[node name="RedChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
-position = Vector2(214, 61)
-rotation = 2.65551
-texture = ExtResource("20_fwtfd")
-owner_player = NodePath("../Player1")
-override_chargeability = true
-
-[node name="Fire" parent="RedChargingStation" index="0"]
-position = Vector2(-11.6447, 0.633307)
-rotation = 0.359538
-
-[node name="Fire2" parent="RedChargingStation" index="1"]
-position = Vector2(19.0347, 8.9264)
-rotation = -2.75238
-
-[node name="ProgressBar" parent="RedChargingStation/ChargeBar" index="0"]
-anchor_left = 0.373737
-anchor_top = 0.407407
-theme_override_styles/fill = SubResource("StyleBoxFlat_t0a31")
-
-[node name="GreenChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
-position = Vector2(248, 66)
-rotation = 0.121165
-scale = Vector2(1, -1)
-owner_player = NodePath("../Player2")
-override_chargeability = true
-
-[node name="Fire" parent="GreenChargingStation" index="0"]
-position = Vector2(-8.81316, -2.08045)
-rotation = 6.22469
-
-[node name="Fire2" parent="GreenChargingStation" index="1"]
-position = Vector2(18.0147, 9.2451)
-rotation = 3.42352
-
-[node name="ProgressBar" parent="GreenChargingStation/ChargeBar" index="0"]
-anchor_left = 0.373737
-anchor_top = 0.407407
-theme_override_styles/fill = SubResource("StyleBoxFlat_42by5")
-
 [node name="Platform" parent="." instance=ExtResource("24_rwgrt")]
 position = Vector2(0, -22)
 
@@ -286,5 +238,13 @@ position = Vector2(-231, 14)
 [node name="ShieldPowerup" parent="." instance=ExtResource("29_ktlnk")]
 position = Vector2(234, -9)
 
-[editable path="RedChargingStation"]
-[editable path="GreenChargingStation"]
+[node name="ChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
+position = Vector2(220, 66)
+scale = Vector2(-1, 1)
+owner_player = NodePath("../Player2")
+override_chargeability = true
+
+[node name="ChargingStation2" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
+position = Vector2(159, 66)
+texture = ExtResource("20_fwtfd")
+owner_player = NodePath("../Player1")
