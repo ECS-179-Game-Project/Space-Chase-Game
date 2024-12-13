@@ -9,7 +9,7 @@ extends Node
 @onready var background_music: AudioStreamPlayer2D = $Audio/BackgroundMusic
 @onready var explosion_sound: AudioStreamPlayer2D = $Planet/Explosion/Explosion
 @onready var red_lazer_sound: AudioStreamPlayer2D = $RedShip/RedFire/LazerRedShip
-@onready var blue_lazer_sound: AudioStreamPlayer2D = $GreenShip/BlueFire/LazerBlueShip
+@onready var blue_lazer_sound: AudioStreamPlayer2D = $GreenShip/GreenFire/LazerBlueShip
 @onready var end_ui: Control = $EndUI
 @onready var label: Label = $EndUI/VBoxContainer/Label
 
@@ -38,19 +38,6 @@ func end_cutscene() -> void:
 	#})
 
 
-func _on_cutscene_entered() -> void:
-	if skip_cutscene:
-		end_cutscene()
-	else:
-		cutscene_animation_player.play("start_cutscene") # Will eventually call end_cutscene()
-		if GameStateManager.winning_player == GameStateManager.PlayerID.PLAYER_1:
-			red_win_animation_player.play("start_cutscene")
-			label.text = "PLAYER 1 WINS!"
-		else:
-			green_win_animation_player.play("start_cutscene")
-			label.text = "PLAYER 2 WINS!"
-
-
 func play_explosion_sound():
 	explosion_sound.play()
 
@@ -65,3 +52,16 @@ func play_blue_ship_shoot_sound():
 
 func _on_quit_pressed() -> void:
 	MenuManager.enter_menu()
+
+
+func _on_cutscene_entered() -> void:
+	if skip_cutscene:
+		end_cutscene()
+	else:
+		cutscene_animation_player.play("start_cutscene") # Will eventually call end_cutscene()
+		if GameStateManager.winning_player == GameStateManager.PlayerID.PLAYER_1:
+			red_win_animation_player.play("start_cutscene")
+			label.text = "PLAYER 1 WINS!"
+		else:
+			green_win_animation_player.play("start_cutscene")
+			label.text = "PLAYER 2 WINS!"
