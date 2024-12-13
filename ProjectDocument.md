@@ -47,6 +47,7 @@ texture, giving it an animated look.
 
 ### Controls Menu
 
+![volume/setting menu](ExampleImages/controlsmenu.png)
 For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter
 for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu
 The addition of having the players test the movement in the controls menu was Jason's idea and he implemented it.
