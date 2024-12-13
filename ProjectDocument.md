@@ -49,6 +49,10 @@ For the controls menu it has all the keybinds for each player as well as the con
 for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu
 The addition of having the players test the movement in the controls menu was Jason's idea and he implemented it.
 
+### Settings Menu
+
+The sound menu
+
 ### Pause Menu
 
 For the pause menu it was similarity built like the main menu, however it is not managed by the
@@ -74,7 +78,7 @@ camera so it would stay in view of the camera.
 
 This was implemented with the assistance of Karim Shami (Movement and Physics). He created a player controls script where each player
 had their own dedicated control list and inputs. Also in the input map settings you could add different devices. This allowed it the game
-differentiate between two controllers. Since the issue was that if
+differentiate between two controllers.
 
 ## Animation and Visuals
 
