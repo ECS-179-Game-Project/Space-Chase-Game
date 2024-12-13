@@ -61,7 +61,7 @@ func _ready() -> void:
 ## Resets game state to 0.
 ## All variables are reinitialized to 0 except for _active_camera.
 func clear() -> void:
-	_player_points = Vector2i.ZERO
+	_player_points = Vector2.ZERO
 	_camera_position = 0.0
 	_remaining_level_progress = 0.0
 	_player_won = false
