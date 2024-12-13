@@ -413,23 +413,27 @@ collision_mask = 0
 position = Vector2(35, -1)
 shape = SubResource("RectangleShape2D_hg4ga")
 
-[node name="Player1" parent="Node2D" instance=ExtResource("16_lt7e2")]
+[node name="Player1" parent="Node2D" node_paths=PackedStringArray("respawn_pos") instance=ExtResource("16_lt7e2")]
 texture_filter = 3
 position = Vector2(-33, 80)
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("17_ully6")
+respawn_pos = NodePath("../RespawnPos")
 
-[node name="Player2" parent="Node2D" instance=ExtResource("16_lt7e2")]
+[node name="Player2" parent="Node2D" node_paths=PackedStringArray("respawn_pos") instance=ExtResource("16_lt7e2")]
 texture_filter = 3
 position = Vector2(27, 80)
 player_id = 1
 player_color = Color(0, 0.317647, 0.145098, 1)
 dash_color_gradient = ExtResource("18_ih1pr")
+respawn_pos = NodePath("../RespawnPos")
 
 [node name="Click" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("19_j3war")
 volume_db = 6.0
 attenuation = 0.138696
+
+[node name="RespawnPos" type="Node2D" parent="Node2D"]
 
 [connection signal="toggled" from="Control/Settings/VBoxContainer/P1JumpWithUp" to="." method="_on_p1_jump_with_up_toggled"]
 [connection signal="toggled" from="Control/Settings/VBoxContainer/P2JumpWithUp" to="." method="_on_p2_jump_with_up_toggled"]
