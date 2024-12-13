@@ -59,6 +59,7 @@ bslider is at zero.
 
 ### Pause Menu
 
+![pause menu](ExampleImages/pausemenu.png)
 For the pause menu it was similarity built like the main menu, however it is not managed by the
 `menu_manager.gd`. The 3 buttons that make up the pause menu are resume, restart, and quit. Using
 `paused` boolen that is already in godot I can can make a simple function that pauses the current
@@ -71,6 +72,7 @@ blured effect. The whole pause
 
 ### In-Game UI
 
+![energy player bar](ExampleImages/energybar.png) ![level progression bar](ExampleImages/progressbar.png)
 There are two main aspects of the in-game UI. The level progress bar and the player energy bar. The level progress bar
 was made with godot's built in progress bar node. The script of this scene uses functions from the
 `game_state_manager.gd` specifically the get level progress function. As for the energy bar of each player
