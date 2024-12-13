@@ -33,10 +33,10 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ed2yk"]
 normal = Vector2(-1, 0)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jjw2g"]
-normal = Vector2(0, 1)
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d33ls"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hg4ga"]
+size = Vector2(196, 86)
 
 [node name="ControlsArea" type="Control"]
 layout_mode = 3
@@ -66,7 +66,7 @@ text = "CONTROLS
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="ControlsHBoxContainer" type="HBoxContainer" parent="Control"]
 z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
@@ -81,13 +81,13 @@ offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ControlsHBoxContainer"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 alignment = 2
 
-[node name="keyboard2" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+[node name="keyboard2" type="Label" parent="Control/ControlsHBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 2
 theme_override_fonts/font = ExtResource("2_mgfks")
@@ -96,39 +96,37 @@ text = "Input
 "
 horizontal_alignment = 1
 
-[node name="keyboard" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+[node name="keyboard" type="Label" parent="Control/ControlsHBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_mgfks")
 theme_override_font_sizes/font_size = 12
-text = "Keyboard P1
-"
+text = "P1 Keyboard"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/ControlsHBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_mgfks")
 theme_override_font_sizes/font_size = 12
-text = "Keyboard P2"
+text = "P2 Keyboard"
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Control/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Control/ControlsHBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_mgfks")
 theme_override_font_sizes/font_size = 12
-text = "Controller
-"
+text = "Controllers"
 vertical_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/ControlsHBoxContainer"]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 alignment = 2
 
-[node name="movement" type="Label" parent="Control/HBoxContainer/VBoxContainer2"]
+[node name="movement" type="Label" parent="Control/ControlsHBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_mgfks")
@@ -137,7 +135,7 @@ text = "Movement
 "
 horizontal_alignment = 1
 
-[node name="wasd" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer2"]
+[node name="wasd" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -145,7 +143,7 @@ size_flags_vertical = 2
 texture = ExtResource("3_7j38l")
 expand_mode = 3
 
-[node name="arrows" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer2"]
+[node name="arrows" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -153,7 +151,7 @@ size_flags_vertical = 2
 texture = ExtResource("4_b4lhi")
 expand_mode = 3
 
-[node name="dpad" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer2"]
+[node name="dpad" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -161,11 +159,11 @@ size_flags_vertical = 2
 texture = ExtResource("5_sxvbp")
 expand_mode = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Control/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control/ControlsHBoxContainer"]
 custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="Control/ControlsHBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
@@ -173,7 +171,7 @@ theme_override_fonts/font = ExtResource("2_mgfks")
 theme_override_font_sizes/font_size = 12
 text = "Grab"
 
-[node name="jk" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer3"]
+[node name="jk" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -181,7 +179,7 @@ size_flags_stretch_ratio = 9.82
 texture = ExtResource("6_d1spr")
 expand_mode = 3
 
-[node name="TextureRect2" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer3"]
+[node name="TextureRect2" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -189,7 +187,7 @@ size_flags_stretch_ratio = 9.82
 texture = ExtResource("7_e77uv")
 expand_mode = 3
 
-[node name="r1" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer3"]
+[node name="r1" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -197,11 +195,11 @@ size_flags_stretch_ratio = 9.82
 texture = ExtResource("8_odm64")
 expand_mode = 3
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="Control/HBoxContainer"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="Control/ControlsHBoxContainer"]
 custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Control/HBoxContainer/VBoxContainer4"]
+[node name="Label2" type="Label" parent="Control/ControlsHBoxContainer/VBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
@@ -210,7 +208,7 @@ theme_override_font_sizes/font_size = 12
 text = "Dash
 "
 
-[node name="k" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer4"]
+[node name="k" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -218,7 +216,7 @@ size_flags_stretch_ratio = 4.87
 texture = ExtResource("9_w3y0v")
 expand_mode = 3
 
-[node name="keyx" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer4"]
+[node name="keyx" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -226,7 +224,7 @@ size_flags_stretch_ratio = 4.87
 texture = ExtResource("10_5thty")
 expand_mode = 3
 
-[node name="x" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer4"]
+[node name="x" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -234,11 +232,11 @@ size_flags_stretch_ratio = 4.87
 texture = ExtResource("11_g6sgw")
 expand_mode = 3
 
-[node name="VBoxContainer5" type="VBoxContainer" parent="Control/HBoxContainer"]
+[node name="VBoxContainer5" type="VBoxContainer" parent="Control/ControlsHBoxContainer"]
 custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Control/HBoxContainer/VBoxContainer5"]
+[node name="Label2" type="Label" parent="Control/ControlsHBoxContainer/VBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
@@ -247,14 +245,14 @@ theme_override_font_sizes/font_size = 12
 text = "Jump
 "
 
-[node name="space" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer5"]
+[node name="space" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.87
 texture = ExtResource("12_s8k6w")
 
-[node name="place holder" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer5"]
+[node name="place holder" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -262,7 +260,7 @@ size_flags_stretch_ratio = 4.87
 texture = ExtResource("13_e274u")
 expand_mode = 3
 
-[node name="x" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer5"]
+[node name="x" type="TextureRect" parent="Control/ControlsHBoxContainer/VBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -287,6 +285,60 @@ grow_vertical = 2
 scale = Vector2(1.48, 1.08)
 texture = ExtResource("13_dadut")
 
+[node name="Settings" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.0
+offset_top = 92.0
+offset_right = -94.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlsSettings" type="Label" parent="Control/Settings"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+text = "Jump Settings"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Settings"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+alignment = 1
+
+[node name="BlankLabel" type="Label" parent="Control/Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+
+[node name="P1JumpWithUp" type="CheckButton" parent="Control/Settings/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 10
+text = "P1 Jump with Up"
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="P2JumpWithUp" type="CheckButton" parent="Control/Settings/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_mgfks")
+theme_override_font_sizes/font_size = 10
+text = "P2 Jump with Up"
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -305,6 +357,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_mgfks")
 text = "Back"
 alignment = 0
@@ -343,16 +396,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/RightWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_ed2yk")
 
-[node name="DISABLED-TopWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
-visible = false
-position = Vector2(-10, -162)
-collision_layer = 32
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/DISABLED-TopWorldBorder"]
-shape = SubResource("WorldBoundaryShape2D_jjw2g")
-disabled = true
-
 [node name="BottomWorldBorder" type="StaticBody2D" parent="Node2D/StaticCamera"]
 position = Vector2(0, 122)
 collision_layer = 32
@@ -360,6 +403,15 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/BottomWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_d33ls")
+
+[node name="RectangleBorrder" type="StaticBody2D" parent="Node2D/StaticCamera"]
+position = Vector2(-224, 119)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticCamera/RectangleBorrder"]
+position = Vector2(35, -1)
+shape = SubResource("RectangleShape2D_hg4ga")
 
 [node name="Player1" parent="Node2D" instance=ExtResource("16_lt7e2")]
 texture_filter = 3
@@ -379,4 +431,6 @@ stream = ExtResource("19_j3war")
 volume_db = 6.0
 attenuation = 0.138696
 
+[connection signal="toggled" from="Control/Settings/VBoxContainer/P1JumpWithUp" to="." method="_on_p1_jump_with_up_toggled"]
+[connection signal="toggled" from="Control/Settings/VBoxContainer/P2JumpWithUp" to="." method="_on_p2_jump_with_up_toggled"]
 [connection signal="pressed" from="Control/MarginContainer/Back" to="." method="_on_back_pressed"]

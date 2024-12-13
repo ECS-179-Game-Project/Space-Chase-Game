@@ -32,7 +32,6 @@ const GHOST_TIME: float = 2.0 # How long for player to stop being a ghost
 
 @export_category("Main Settings")
 @export var player_id := GameStateManager.PlayerID.PLAYER_1
-@export var use_up_as_jump: bool = false # Sets jump input to the up input
 @export var player_color: Color = Color.BLACK
 @export var dash_color_gradient: Gradient = load("res://resources/red_gradient.tres")
 @export_category("Physics Settings")
@@ -170,6 +169,7 @@ func _physics_process(delta: float) -> void:
 	$ShieldParticles.visible = active_shield
 	
 	# Check for jump input
+	var use_up_as_jump: bool = PlayerControls.use_up_as_jump[player_id]
 	var has_jumped: bool = Input.is_action_just_pressed(_controls.jump) or (use_up_as_jump and Input.is_action_just_pressed(_controls.up))
 	var holding_jump: bool = Input.is_action_pressed(_controls.jump) or (use_up_as_jump and Input.is_action_pressed(_controls.up))
 	
