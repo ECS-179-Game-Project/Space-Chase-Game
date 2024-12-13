@@ -53,6 +53,7 @@ The addition of having the players test the movement in the controls menu was Ja
 
 ### Settings Menu
 
+![volume/setting menu](ExampleImages/volumemenu.png)
 This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. This was done via sliders which was
 built into godot. The script would adjust the sound accordingly, such as updating the bus volume to the current slider value or muting sound when the
 bslider is at zero.
