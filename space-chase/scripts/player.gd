@@ -159,13 +159,19 @@ func _physics_process(delta: float) -> void:
 	var vertical_dir := Input.get_axis(_controls.up, _controls.down)
 	_dir = Vector2(horizontal_dir, vertical_dir).normalized()
 	
+	# Update basis movement statuses
 	is_jumping = not is_on_floor()
 	is_idle = is_zero_approx(velocity.x)
 	is_running = not is_zero_approx(velocity.x)
 	
+	# Update visuals
 	_handle_ordering() # Z-index
 	_handle_facing() # Looking left/right
 	$ShieldParticles.visible = active_shield
+	
+	# Check for jump input
+	var has_jumped: bool = Input.is_action_just_pressed(_controls.jump) or (use_up_as_jump and Input.is_action_just_pressed(_controls.up))
+	var holding_jump: bool = Input.is_action_pressed(_controls.jump) or (use_up_as_jump and Input.is_action_pressed(_controls.up))
 	
 	# Ghost movement (return early to prevent normal movement)
 	if is_ghost:
@@ -177,7 +183,7 @@ func _physics_process(delta: float) -> void:
 		var apply_gravity: float = gravity * delta
 		var acting_terminal_velocity: float = terminal_velocity
 		is_fast_falling = Input.is_action_pressed(_controls.down)
-		is_holding_jump = Input.is_action_pressed(_controls.jump) and velocity.y < 0
+		is_holding_jump = holding_jump and velocity.y < 0
 		if is_fast_falling:
 			apply_gravity *= fast_fall_factor
 			acting_terminal_velocity *= fast_fall_factor
@@ -198,10 +204,6 @@ func _physics_process(delta: float) -> void:
 			run_sound.stop()
 
 	# Handle jumping
-	if player_id == GameStateManager.PlayerID.PLAYER_1:
-		print("jump", Input.is_action_just_pressed(_controls.jump))
-		print("up", Input.is_action_just_released(_controls.up))
-	var has_jumped: bool = Input.is_action_just_pressed(_controls.jump) or (use_up_as_jump and Input.is_action_just_released(_controls.up))
 	if _can_move() and has_jumped and (not _coyote_timer.is_stopped()):
 		_start_jump()
 	if is_on_floor():
