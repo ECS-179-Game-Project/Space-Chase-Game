@@ -12,6 +12,8 @@ Gives abilities to the player (through powerup manager)
 const HOVER_AMPLITUDE:float = 5.0
 const HOVER_SPEED: float = 2.0
 
+signal powerup_collected(type: PowerupManager.PowerupType, position: Vector2)
+
 @export var duration: float = 10.0
 @export var type: PowerupManager.PowerupType
 
@@ -19,14 +21,14 @@ var _hover_time: float = 0.0
 var _original_pos: Vector2
 
 @onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
-@onready var audio_files = {
-	PowerupManager.PowerupType.SPEED_BOOST: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
-	PowerupManager.PowerupType.JUMP_BOOST: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
-	PowerupManager.PowerupType.SHIELD: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
-	PowerupManager.PowerupType.ENERGY_GAIN: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
-	PowerupManager.PowerupType.GET_BIG: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
-	PowerupManager.PowerupType.GET_SMALL: preload("res://assets/Sound Effects/Powerups/Getbig.ogg")
-}
+#@onready var audio_files = {
+	#PowerupManager.PowerupType.SPEED_BOOST: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	#PowerupManager.PowerupType.JUMP_BOOST: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	#PowerupManager.PowerupType.SHIELD: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	#PowerupManager.PowerupType.ENERGY_GAIN: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	#PowerupManager.PowerupType.GET_BIG: preload("res://assets/Sound Effects/Powerups/Getbig.ogg"),
+	#PowerupManager.PowerupType.GET_SMALL: preload("res://assets/Sound Effects/Powerups/Getbig.ogg")
+#}
 
 
 func _init() -> void:
@@ -37,10 +39,6 @@ func _init() -> void:
 func _ready() -> void:
 	_original_pos = global_position
 	
-	
-	
-
-
 
 func _physics_process(delta: float) -> void:
 	_hover_time += HOVER_SPEED * delta
@@ -53,15 +51,23 @@ func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
 	if target is Player and (not target.is_held) and (not target.is_ghost):
 		PowerupManager.apply_powerup(type, target, duration)
 		
-		var audio_player = AudioStreamPlayer.new()
-		add_child(audio_player)
-		audio_player.stream = preload("res://assets/Sound Effects/Powerups/Getbig.ogg")
-		audio_player.volume_db = 0
-		audio_player.play()
-		
-		sound.play()
+		emit_signal("powerup_collected", type, global_position)
+		#var audio_player = AudioStreamPlayer.new()
+		#add_child(audio_player)
+		#audio_player.stream = preload("res://assets/Sound Effects/Powerups/Getbig.ogg")
+		#audio_player.volume_db = 0
+		#audio_player.play()
+		#
+		#sound.play()
 			
-			# Queue free the player after the audio finishes
-			#audio_player.connect("finished", audio_player, "queue_free")
+		# Queue free the player after the audio finishes
+		#audio_player.connect("finished", audio_player, "queue_free")
+		if sound and sound.stream:
+			sound.play()
+			# Wait until the sound finishes before freeing the node
+			sound.connect("finished", Callable(self, "_on_audio_finished"))
+		else:
+			queue_free()  # If no audio, free immediately
+
 
 		queue_free()  # Destroy the power-up after use
