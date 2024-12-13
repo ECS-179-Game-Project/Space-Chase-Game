@@ -11,6 +11,7 @@ var powerup_scenes = [
 
 func _ready() -> void:
 	$AnimationPlayer.play("rotatin")
+	super()
 
 func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
 	var target = hurtbox.owner
