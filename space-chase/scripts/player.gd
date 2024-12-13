@@ -94,6 +94,7 @@ var _held_target: Node2D = null
 func _ready() -> void:
 	# Signals
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
+	GameStateManager.powerup_collected.connect(_on_powerup_collected)
 	
 	# Set contrls based on player_id
 	if player_id == GameStateManager.PlayerID.PLAYER_1:
@@ -102,8 +103,6 @@ func _ready() -> void:
 		_controls = PlayerControls.get_p2_controls()
 	else:
 		print("ERROR: INVALID PLAYER_ID, CANNOT SET CONTROLS")
-	if use_up_as_jump:
-		_controls.jump = _controls.up
 	
 	# Check for respawn pos
 	if respawn_pos == null:
@@ -199,7 +198,11 @@ func _physics_process(delta: float) -> void:
 			run_sound.stop()
 
 	# Handle jumping
-	if _can_move() and Input.is_action_just_pressed(_controls.jump) and (not _coyote_timer.is_stopped()):
+	if player_id == GameStateManager.PlayerID.PLAYER_1:
+		print("jump", Input.is_action_just_pressed(_controls.jump))
+		print("up", Input.is_action_just_released(_controls.up))
+	var has_jumped: bool = Input.is_action_just_pressed(_controls.jump) or (use_up_as_jump and Input.is_action_just_released(_controls.up))
+	if _can_move() and has_jumped and (not _coyote_timer.is_stopped()):
 		_start_jump()
 	if is_on_floor():
 		_coyote_timer.start(COYOTE_TIME_WINDOW)
@@ -344,6 +347,11 @@ func can_charge() -> bool:
 
 
 # -------------------- Private functions --------------------
+
+func _on_powerup_collected(collector_player_id: GameStateManager.PlayerID) -> void:
+	if collector_player_id == player_id:
+		status_animation_player.play("collect_powerup")
+
 
 func _start_ghost() -> void:
 	is_dead = false
