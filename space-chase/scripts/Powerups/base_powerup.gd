@@ -45,29 +45,30 @@ func _physics_process(delta: float) -> void:
 	global_position.y = _original_pos.y + HOVER_AMPLITUDE * cos(_hover_time)
 
 
-func _on_hurtbox_entered(hurtbox: HurtBox) -> void:
-	var target := hurtbox.owner
+func _on_hurtbox_entered(hurtbox: Area2D) -> void:
+	if hurtbox is HurtBox:
+		var target := hurtbox.owner
 
-	if target is Player and (not target.is_held) and (not target.is_ghost):
-		PowerupManager.apply_powerup(type, target, duration)
-		
-		emit_signal("powerup_collected", type, global_position)
-		#var audio_player = AudioStreamPlayer.new()
-		#add_child(audio_player)
-		#audio_player.stream = preload("res://assets/Sound Effects/Powerups/Getbig.ogg")
-		#audio_player.volume_db = 0
-		#audio_player.play()
-		#
-		#sound.play()
+		if target is Player and (not target.is_held) and (not target.is_ghost):
+			PowerupManager.apply_powerup(type, target, duration)
 			
-		# Queue free the player after the audio finishes
-		#audio_player.connect("finished", audio_player, "queue_free")
-		if sound and sound.stream:
-			sound.play()
-			# Wait until the sound finishes before freeing the node
-			sound.connect("finished", Callable(self, "_on_audio_finished"))
-		else:
-			queue_free()  # If no audio, free immediately
+			emit_signal("powerup_collected", type, global_position)
+			#var audio_player = AudioStreamPlayer.new()
+			#add_child(audio_player)
+			#audio_player.stream = preload("res://assets/Sound Effects/Powerups/Getbig.ogg")
+			#audio_player.volume_db = 0
+			#audio_player.play()
+			#
+			#sound.play()
+				
+			# Queue free the player after the audio finishes
+			#audio_player.connect("finished", audio_player, "queue_free")
+			if sound and sound.stream:
+				sound.play()
+				# Wait until the sound finishes before freeing the node
+				sound.connect("finished", Callable(self, "_on_audio_finished"))
+			else:
+				queue_free()  # If no audio, free immediately
 
 
-		queue_free()  # Destroy the power-up after use
+			queue_free()  # Destroy the power-up after use
