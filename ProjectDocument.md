@@ -32,6 +32,8 @@
 
 ### Main Menu
 
+![](./ExampleImages/main menu.png)
+
 The main menu was the first thing I inplemented when doing the UI. The script `menu_manager.gd`
 organized and manages the whole menu system for our game. In there every menu state is declared as a
 enum and handles key features such as changing and entering between menus. Futhermore an addon was used
@@ -52,7 +54,8 @@ The addition of having the players test the movement in the controls menu was Ja
 ### Settings Menu
 
 This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. This was done via sliders which was
-built into godot.
+built into godot. The script would adjust the sound accordingly, such as updating the bus volume to the current slider value or muting sound when the
+bslider is at zero.
 
 ### Pause Menu
 
@@ -70,7 +73,7 @@ blured effect. The whole pause
 
 There are two main aspects of the in-game UI. The level progress bar and the player energy bar. The level progress bar
 was made with godot's built in progress bar node. The script of this scene uses functions from the
-`game_state_manager.gd` specifically the get level progrss function. As for the energy bar of each player
+`game_state_manager.gd` specifically the get level progress function. As for the energy bar of each player
 the `game_state_manager.gd` was also used to tell the player's current energy
 and which bar belonged to who. Being a fixed camera game all these UI elements had to be placed within the autoscroller
 camera so it would stay in view of the camera.
