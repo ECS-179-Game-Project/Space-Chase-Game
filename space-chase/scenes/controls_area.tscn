@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dpqbqosadj5g3"]
+[gd_scene load_steps=28 format=3 uid="uid://dpqbqosadj5g3"]
 
 [ext_resource type="Script" path="res://scripts/Menu scripts/controls_menu.gd" id="1_rrtn1"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_mgfks"]
@@ -15,6 +15,7 @@
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="12_8cmfj"]
 [ext_resource type="Texture2D" uid="uid://bnv83dd2t4qjc" path="res://assets/sprites/buttons/space.png" id="12_s8k6w"]
 [ext_resource type="Texture2D" uid="uid://b47355i5hrilt" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_diagonal_diffraction_spikes.png" id="13_dadut"]
+[ext_resource type="Texture2D" uid="uid://cromxi8l6ddvx" path="res://assets/sprites/buttons/alt.png" id="13_e274u"]
 [ext_resource type="AudioStream" uid="uid://cbyh0bucg0rfi" path="res://assets/Audio/DavidKBD - Cosmic Pack 02 - Galactic Pulse-full.ogg" id="14_l7ggv"]
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="15_i26ur"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="16_lt7e2"]
@@ -67,11 +68,18 @@ vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 z_as_relative = false
-layout_mode = 0
-offset_left = -198.0
-offset_top = -89.0
-offset_right = 288.0
-offset_bottom = 31.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -98.0
+offset_right = 242.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
 custom_minimum_size = Vector2(0, 120)
@@ -251,7 +259,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.87
-texture = ExtResource("10_5thty")
+texture = ExtResource("13_e274u")
 expand_mode = 3
 
 [node name="x" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer5"]
