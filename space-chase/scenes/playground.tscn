@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://dcuokery2ipy0"]
+[gd_scene load_steps=35 format=4 uid="uid://dcuokery2ipy0"]
 
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_4bf42"]
 [ext_resource type="Texture2D" uid="uid://qio8qrcblxkf" path="res://assets/sprites/Terrain/stringstar fields/background_1.png" id="2_bkfp7"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="6_1f7ch"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_kixqf"]
 [ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/energy_bar.tscn" id="8_dpu0h"]
-[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="11_6ftgq"]
+[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="11_6ftgq"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="11_ygpoc"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="13_mxlg4"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="14_w5fo5"]
@@ -41,6 +41,14 @@ normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p8aqr"]
 normal = Vector2(1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0a31"]
+resource_local_to_scene = true
+bg_color = Color(1, 0, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42by5"]
+resource_local_to_scene = true
+bg_color = Color(1, 0, 1, 1)
 
 [node name="Playground" type="Node"]
 
@@ -232,6 +240,9 @@ rotation = 0.359538
 position = Vector2(19.0347, 8.9264)
 rotation = -2.75238
 
+[node name="ProgressBar" parent="RedChargingStation/ChargeBar" index="0"]
+theme_override_styles/fill = SubResource("StyleBoxFlat_t0a31")
+
 [node name="GreenChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
 position = Vector2(248, 66)
 rotation = 0.121165
@@ -246,6 +257,9 @@ rotation = 6.22469
 [node name="Fire2" parent="GreenChargingStation" index="1"]
 position = Vector2(18.0147, 9.2451)
 rotation = 3.42352
+
+[node name="ProgressBar" parent="GreenChargingStation/ChargeBar" index="0"]
+theme_override_styles/fill = SubResource("StyleBoxFlat_42by5")
 
 [node name="Platform" parent="." instance=ExtResource("24_rwgrt")]
 position = Vector2(0, -22)
