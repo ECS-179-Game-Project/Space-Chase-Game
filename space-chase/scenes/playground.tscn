@@ -241,6 +241,8 @@ position = Vector2(19.0347, 8.9264)
 rotation = -2.75238
 
 [node name="ProgressBar" parent="RedChargingStation/ChargeBar" index="0"]
+anchor_left = 0.373737
+anchor_top = 0.407407
 theme_override_styles/fill = SubResource("StyleBoxFlat_t0a31")
 
 [node name="GreenChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
@@ -259,6 +261,8 @@ position = Vector2(18.0147, 9.2451)
 rotation = 3.42352
 
 [node name="ProgressBar" parent="GreenChargingStation/ChargeBar" index="0"]
+anchor_left = 0.373737
+anchor_top = 0.407407
 theme_override_styles/fill = SubResource("StyleBoxFlat_42by5")
 
 [node name="Platform" parent="." instance=ExtResource("24_rwgrt")]

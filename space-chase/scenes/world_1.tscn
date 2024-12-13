@@ -108,6 +108,7 @@ position = Vector2(50, 0)
 position = Vector2(-10, 23)
 stream = ExtResource("1_hpo4n")
 bus = &"MUSIC"
+parameters/looping = false
 script = ExtResource("1_t0e68")
 
 [node name="PauseMenu" parent="AutoscrollCameraController" instance=ExtResource("7_6v1f6")]
