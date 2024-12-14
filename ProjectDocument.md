@@ -379,18 +379,19 @@ _All under License.md_
 ### Visual Polish
 
    To improve game feel on the visual end:
-   - I implemented particle effects in a few parts of the game. These include when players die, when a powerup is picked up, when players are charging their stations,
-   and when the charging stations are activated to indicate charging zones. For energy charging particles, I edited the particle shader to be able to target
+   - I implemented [particle effects](https://github.com/ECS-179-Game-Project/Space-Chase-Game/tree/main/space-chase/scenes/particles) in a few parts of the game. These include when players die, when a powerup is picked up, when players are charging their stations,
+   and when the charging stations are activated to indicate charging zones. For energy charging particles, I edited the [particle shader](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scenes/particles/3_energy_particles.tscn) to be able to target
    a specific point in space to go to.
-   - I wrote shaders for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, player characters,
-   - I remade our player spritesheet to be more easily integrated into our animations. In the process, I also redid animations for player actions, adding animations
+   - I wrote [shaders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/shaders/player.gdshader) for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, player characters,
+   - I remade our [player spritesheet](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/player/Astronaut/Astronaut_Spritesheet.png) to be more easily integrated into our animations. In the process, I also redid animations for player actions, adding animations
    to actions that had previously not had any, and overall making animations slightly smoother.
    - I reorganized some of the menus to be more even and, in the future, more modifiable.
    
 ### Physics Polish
 
-   To improve game feel on the physics side:
-   - I implemented coyote time for player jumping.
+   To improve game feel on the physics side, I mostly changed the player script:
+   - I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping.
+   - I changed the hold jump gravity change to only apply on the way up.
    - I changed the player dash so that the player retains some vertical momentum, to keep a sense of speed.
    - I added terminal velocity to the player, so the player doesn't fall extremely fast when platforming.
    - Karim did a great job, so I didn't really need to tweak anything else.
@@ -402,9 +403,9 @@ _All under License.md_
    - I adjusted the speed of some sound effects like the player jump to fit more with the action.
    - I properly positioned audio streams so they would be mixed better in stereo.
    - I changed the music to loop.
-   - I implemented the audio sliders in the volume settings.
+   - I implemented the [audio sliders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/Menu%20scripts/volume_slider.gd) in the volume settings.
    - I categorized sound effects and music for Godot's audio server, so they can be adjusted manually by the player in audio settings.
-   - I sped up the music in the final area to give more of a sense of urgency.
+   - I [sped up](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/370cffc64f5a3e9fb428805a2edaaad745f5f31d/space-chase/scripts/world_audio.gd#L15) the music in the final area to give more of a sense of urgency.
    
 
 
