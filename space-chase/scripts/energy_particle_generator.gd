@@ -26,7 +26,6 @@ func _on_final_zone_entered() -> void:
 	
 
 func _on_timeout() -> void:
-	print(charging_station.global_position - $".".global_position)
 	_energy_particles.emitting = false
 
 
