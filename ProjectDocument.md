@@ -80,7 +80,8 @@ paused and the menu will be made visible. If the player chooses to resume the sc
 and the game will continue. For the restart button the game is unpaused and the current scene is
 reloaded thus resetting any progress done. As for the quit, it will take the player back to main
 menu. For the blured background of the pause menu a ColorRect was used with a shader to give the
-blured effect. The whole pause menu scene was added to the autoscrolling camera since the camera which allowed it to be in view of the camera at all times when the player pressed pause.
+blured effect. The whole pause menu scene was added to the autoscrolling camera since the camera which allowed it to be in
+view of the camera at all times when the player pressed pause.
 
 ### In-Game UI
 
@@ -93,11 +94,12 @@ from the game state manager to display the current energy of each player. The fu
 the player would lose a fixed amout of energy upon death and that lost amount would be given to the other player. To implemente this the [instakill](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cb12d3fa9054d308f30a1e9c84a88861d3687b77/space-chase/scripts/player.gd#L261)
 function inside the `player.gd` was modified so that players who died would have lost energy and the oposing player would have gained some.
 
-### Controller Input
+### Input Devices
 
 This was implemented with the assistance of Karim Shami (Movement and Physics). He created a player controls script where each player
 had their own dedicated control list and inputs. Also in the input map settings you could add different devices. This allowed it the game
-differentiate between two controllers.
+differentiate between two controllers. As for keyboard the player 1 was WASD was used while having F as grab and G being the dash. While player 2
+used the arrow keys or IJKL if they didn't have arrow keys Comma was used for the grab, period was the dash and slash was for space
 
 ### UI Resources
 
