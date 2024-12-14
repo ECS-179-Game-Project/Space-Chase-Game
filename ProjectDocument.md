@@ -42,15 +42,8 @@ ups to level the playing field such as a speed boost or strength up.
 ![main menu](ExampleImages/mainmenu.png)
 
 The main menu was the first thing I implemented when doing the UI. The script `menu_manager.gd`
-organized and manages the whole menu system for our game. In there every menu state is declared as a
-enum and handles key features such as changing and entering between menus. Futhermore an addon was used
-to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to effortlessly
-move between menu states while also adding animated transitions. The structure of each menu scene has
-similar formatting with each other. Being some form of vbox container with a set of buttons, each with
-their own signal controlled by a script for that scene. Within each menu, besides the start and quit,
-there is a back button which takes the player to last previous menu. Also each menu has an animated
-background, this was done by using a TextureRect and creating a shader to automatically scroll the
-texture, giving it an animated look.
+organized and manages the whole menu system for our game. In there every menu state is declared as a enum and handles key features such as changing and entering between menus. Futhermore an addon was used to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to move between menu states while also adding animated transitions. Most of the menus used are children of the menu manager. So `@onready var menu_manager: MenuManager = $".."` was very usful accessing functions within menu manager when changing menus. The structure of each menu scene has similar formatting with each other. Being some form of vbox container with a set of buttons, each withtheir own signal controlled by a script for that scene. Within each menu, besides the start and quit,
+there is a back button which takes the player to last previous menu. Also each menu has an animated background, this was done by using a TextureRect and creating a shader to automatically scroll the texture, giving it an animated look.
 
 ### Controls Menu
 
@@ -64,8 +57,7 @@ The addition of having the players test the movement in the controls menu was bo
 
 ![volume/setting menu](ExampleImages/volumemenu.png)
 
-This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. Jason implemented the sliders which was
-built into godot. The script would adjust the sound accordingly, such as updating the bus volume to the current slider value or muting sound when the
+This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. Jason implemented the sliders which was built into godot. The script would adjust the sound accordingly, such as updating the bus volume to the current slider value or muting sound when the
 bslider is at zero.
 
 ### Pause Menu
@@ -73,7 +65,7 @@ bslider is at zero.
 ![pause menu](ExampleImages/pausemenu.png)
 
 For the pause menu it was similarity built like the main menu, however it is not managed by the
-`menu_manager.gd`. The 3 buttons that make up the pause menu are resume, restart, and quit. Using
+`menu_manager.gd` thus not it's child. The 3 buttons that make up the pause menu are resume, restart, and quit. Using
 `paused` boolen that is already in godot a function was made that pauses the current
 scene. The pause menu is binded to the escape key so upon pressing it the current screne will be
 paused and the menu will be made visible. If the player chooses to resume the scene will be unpaused
@@ -82,6 +74,10 @@ reloaded thus resetting any progress done. As for the quit, it will take the pla
 menu. For the blured background of the pause menu a ColorRect was used with a shader to give the
 blured effect. The whole pause menu scene was added to the autoscrolling camera since the camera which allowed it to be in
 view of the camera at all times when the player pressed pause.
+
+### Ending Scene
+
+![ending scene](ExampleImages/endmenu.png)
 
 ### In-Game UI
 
