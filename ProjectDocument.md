@@ -504,7 +504,7 @@ Just like the intro cutscene, the end cutscene is in its own scene. The key diff
 
 ### Assets used
 
-_All under License.md_
+All under [License.md](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/License.md)
 
 ## Gameplay testing / Level Design (Patrick Le)
 
