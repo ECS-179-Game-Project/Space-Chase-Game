@@ -4,7 +4,7 @@
 
 Space Chase is a two player racing game with platforming elements. This game takes inspiration from
 [Celeste](https://store.steampowered.com/app/504230/Celeste/),
-[SpeedRunners](https://store.steampowered.com/app/207140/SpeedRunners/), and [Super Smash Bros](https://www.smashbros.com/en_US/). Players have to race against each other to reach their ship first, however they would need to collect energy on the way to full charge their ship to win. A unique asspect is that the player can sabatoge their opponent such as throwing them off the platforms or into spikes. Players can also dash, which can be utlilized both for movement and offensive ability (stunning the player).
+[SpeedRunners](https://store.steampowered.com/app/207140/SpeedRunners/), and [Super Smash Bros](https://www.smashbros.com/en_US/). Players have to race against each other to reach their ship first, however they would need to collect energy on the way to full charge their ship to win. A unique aspect is that the player can sabotage their opponent such as throwing them off the platforms or into spikes. Players can also dash, which can be utilized both for movement and offensive ability (stunning the player).
 
 ## Gameplay Explanation
 
