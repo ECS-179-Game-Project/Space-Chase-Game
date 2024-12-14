@@ -6,7 +6,7 @@ Space Chase is a two player racing game with platforming elements. This game tak
 
 ## Gameplay Explanation
 
-The main goal of the game is to reach your ship while collecting as much energy as possible to refuel it. However you will be competeing against an opposing player. Mechanics such as grabbing and throwing are at your disposal to gain the upperhand against your opponent. Movement is also a huge part of this game and serves are a core gameplay mechnaic. Borrowing the omnidirectional dash from Celeste it servers as an extra tool for the player to traverse the deadly level and out run their opponent.
+The main goal of the game is to reach your ship while collecting as much energy as possible to refuel it. However you will be competeing against an opposing player. Mechanics such as grabbing and throwing are at your disposal to gain the upperhand against your opponent. Movement is also a huge part of this game and serves are a core gameplay mechnaic. Borrowing the omnidirectional dash from Celeste it servers as an extra tool for the player to traverse the deadly level and out run their opponent. There are also power ups to level the playing field.
 
 # Main Roles
 
