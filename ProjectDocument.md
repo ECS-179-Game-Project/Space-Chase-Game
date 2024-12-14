@@ -100,25 +100,43 @@ I outline each of the player's major movement/physics mechanics, all of which ar
 **Horizontal movement**
 Players can instantaneously move left or right by simply setting their x velocity to their speed times horizontal direction.
 
+![run](https://github.com/user-attachments/assets/a328a550-3799-432a-b97c-1bc71011800b)
+
 **Jumping**
 I wanted to give players more control with jumping, where players can either short hop, hold jump, or anything in-between. Holding jump reduces the player's gravity, which increases jump height and also enables the player to fall slower if jump is continued to be held. Short hops can be even shorter if combined with the fast falling mechanic.
+
+![jump](https://github.com/user-attachments/assets/48c2a1ae-4af9-4dfa-bf8e-74a9422b4c21)
 
 **Fast Falling & Going Down Platforms**
 Holding down enables the player to fast fall, which increases the player's gravity, giving the player even more movement options. This could help the player regenerate their dash, jump sooner, avoid obstacles, and even lead to some combos.
 
+![fast_fall](https://github.com/user-attachments/assets/250e1ea0-f21a-4cd2-9ce3-9283281fb01c)
+
+![platform](https://github.com/user-attachments/assets/ac908bb2-78d3-4d61-b918-cda02836d9d9)
+
 **Grabbing**
 Each player can try to grab the other player be temporarily enabling the grabbox. If a grabbox detectes the other player's hurtbbox, then the player holds the other player. However, if a grabbox detets another grabbox, then a grab tech occurs, stunning both players in their opposite directions.
+
+![grab](https://github.com/user-attachments/assets/18c2ed30-6135-42ea-8d6f-7f8950497e1a)
+
+![grab_tech](https://github.com/user-attachments/assets/2209b80a-960c-4fb4-85cd-522424b56b07)
 
 **Holding a Player**
 While the grab button is held, a player can hold the other player for `HOLD_TIME`. During this time the player can move and jump around freely, enabling for devious throw setups. The only restriction is that the player can't dash while holding another player.
 
+![hold](https://github.com/user-attachments/assets/9e89413a-efc7-499f-ab00-223c3ea06837)
+
 **Throwing a Player**
 Releasing the grab button throws the held player. If the grab button is tapped (quickly pressed and released), then the throw is done instantly out of grab. After gameplay testing, I figured it would be better to give the player more throw options. Holding up throws the player up, holding down drops the player in front, holding diagonally up throws the player in that same direction, and holding horizontally throws the player in that direction with less height. Each type of throw is configured based on direction and x and y velocities. If no direction is pressed then the throw defaults to horizontal. 
+
+![throwing](https://github.com/user-attachments/assets/82f2890e-50a4-4df2-bdd3-5468778c027d)
 
 **Being Held by a Player**
 After testing, I found it to be unfair to have no control while being held, so I added input mashing, enabling the held player to escape faster. This is achieved by reducing the hold timer for every input the held player presses. Once the hold timer ends, the held player is released just like a throw where down is being held.
 
 Being held makes the player sprite flash yellow, while input mashing makes the player flash purple.
+
+![mashing](https://github.com/user-attachments/assets/f6dd097c-e2f9-456d-bc3d-403ab27044aa)
 
 **Dashing**
 Given our game is a platformer I had to make sure the dashing felt good but also useful for versus.
@@ -129,13 +147,25 @@ I incorporated versus into the dash by making it so players can stun the other p
 
 Dashes leave a dash trail behind the player.
 
+![dashing](https://github.com/user-attachments/assets/45fc2ae4-8dbc-4ece-87a8-0fe7ce4619df)
+
+![dash_stun](https://github.com/user-attachments/assets/227fa02d-ab83-43ac-a579-65ef8fc373ca)
+
+![dash_collision](https://github.com/user-attachments/assets/976b59f4-c864-4ddb-a60b-80891409b708)
+
 **Death**
 As discussed with Jason and the rest of the team, our game felt best with no health system. So the player is instakilled by any hitbox (as detected by hurtbox). I implemented the death mechanic since it's a prerequisite for the player's ghost movement. The player is dead for `RESPAWN_TIME` before spawning in as a ghost.
+
+The death particles are implemented by Jason.
+
+![death](https://github.com/user-attachments/assets/b72104c5-ccdd-4e58-838c-dbcfaa1e704b)
 
 **Ghost Movement**
 As a ghost, players don't have gravity. Ghosts have 8-way movement, similar to the heart in Undertale. Ghosts don't have collision since the `_disable_interactions` function is called, meaning they can phase through solid ground and can't be killed. The only collision ghosts have is for the world borders (layer 6), as to not let ghosts escape the auto scroll camera's frame. During `GHOST_TIME`, ghosts can freely pick where they want to respawn, giving the players more control and making it more fair. We came to the decision to allow ghosts to dash with no cooldown, allowing ghost players to have faster movement for picking their respawn location. One issue I noticed was that if you try to spawn inside solid ground then you get stuck (since normal players collide with solid ground), so I made it so that the player dies if this occurs.
 
 The ghost sprite blinks to indicate that the player will soon respawn as normal.
+
+![ghost](https://github.com/user-attachments/assets/4c0f139a-da5c-4093-85a8-bd557527f64d)
 
 **Stunned**
 Players can be in a stunned state from the various interactions (grab teching, dash stunning, throws, etc). This stunned state is initiated by the `_start_knockback` function, which takes in a force (Vector2) and the duration of the stun (float). The force is a Vector2, which decides the stun's direction and magnitudes. It's called force, but in actuality it's a constant velocity applied for the stun duration.
