@@ -33,6 +33,9 @@ ups to level the playing field such as a speed boost or strength up.
 
 ## Game Logic (Jason Zhou)
 
+   ![The core game design document from the initial plan.](ExampleImages/core_game_design.png)
+
+
    As the head of Game Logic, I was in charge of implementing various systems overseeing game states and data and other 
    backend parts that are required for the game to function. To this end, I designed and implemented the [GameStateManager](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/game_state_manager.gd) 
    singleton / global script, the [charging stations](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/charging_station.gd),
