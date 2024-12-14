@@ -82,6 +82,7 @@ Although not exactly a power-up, it behaves like one. When players collect this,
 ### Collision Masks & Layers
 
 Before implementing the game's physics I started by outlining the collision layers that will govern what collides with what. It's imperative the collision layers are distinct and useful:
+
 - Layer 1 (Solid ground): All solid ground tiles exist in this layer, which enable players to collide with the level's solid ground/walls. This collision is also used to kill the player if they're found inside solid ground.
 - Layer 2 (Platforms): Platforms exist on their own layer to allow players to conditionally stand on them
 - Layer 3 (Hurtbox): Allows hurtboxes to be detected by hitboxes (killing the player) and grabboxes (grabbing the player)
@@ -100,7 +101,7 @@ I outline each of the player's major movement/physics mechanics, all of which ar
 Players can instantaneously move left or right by simply setting their x velocity to their speed times horizontal direction.
 
 **Jumping**
-I wanted to give players more control with jumping, where players can either short hop or hold jump. Holding jump reduces the player's gravity, which increases jump height and also enables the player to fall slower if jump is continued to be held. 
+I wanted to give players more control with jumping, where players can either short hop or hold jump. Holding jump reduces the player's gravity, which increases jump height and also enables the player to fall slower if jump is continued to be held.
 
 **Fast Falling & Going Down Platforms**
 Holding down enables the player to fast fall, which increases the player's gravity, giving the player even more movement options. This could help the player regenerate their dash, jump sooner, avoid obstacles, and even lead to some combos.
@@ -122,7 +123,7 @@ Being held makes the player sprite flash yellow, while input mashing makes the p
 **Dashing**
 Given our game is a platformer I had to make sure the dashing felt good but also useful for versus.
 
-In terms of movement I took inspiration from Celeste, one of my most favorite platformers. Dashes last for `dash_time`, where they apply a constant `dash_speed` velocity. Dashes are 8-way, enabling for discrete D-pad-like movement. 
+In terms of movement I took inspiration from Celeste, one of my most favorite platformers. Dashes last for `dash_time`, where they apply a constant `dash_speed` velocity. Dashes are 8-way, enabling for discrete D-pad-like movement.
 
 I incorporated versus into the dash by making it so players can stun the other player by dashing into them. If players dash into each other at the same time then both players are stunned.
 
@@ -147,6 +148,7 @@ Given I was in-charge of the players' movement/physics, I wanted to make sure th
 The other part of the game's physics is the level terrain itself. I managed this using various tilemap layers:
 
 Tilemap Layers
+
 - Background: No collision layer. Exists the furthest back and is purely visual.
 - Midground: No collision layer. Exists ontop of the background and is also visual.
 - Solid ground: In the solid ground collision layer (layer 1). Players collide with solid ground tiles. In addition to basic square tiles, I added slope tiles, which have a triangular collision shape, allowing players to run up/down them.
@@ -156,84 +158,75 @@ Tilemap Layers
 
 ## Game Logic (Jason Zhou)
 
-   ![The core game design document from the initial plan.](ExampleImages/core_gameplay_design.png)
+![The core game design document from the initial plan.](ExampleImages/core_gameplay_design.png)
 
+As the head of Game Logic, I was in charge of implementing various systems overseeing game states and data and other
+backend parts that are required for the game to function. To this end, I designed and implemented the [GameStateManager](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/game_state_manager.gd)
+singleton / global script, the [charging stations](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/charging_station.gd),
+and the [camera](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/autoscroll_camera_controller.gd).
 
-   As the head of Game Logic, I was in charge of implementing various systems overseeing game states and data and other 
-   backend parts that are required for the game to function. To this end, I designed and implemented the [GameStateManager](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/game_state_manager.gd) 
-   singleton / global script, the [charging stations](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/charging_station.gd),
-   and the [camera](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/autoscroll_camera_controller.gd).
-   
-   
-   Since Game Logic is important to get working sooner rather than later, most of my code on Game Logic was written 
-   in our first week of work, including most of the GameStateManager and most of the camera. The charging station and
-   related logic for charging in the game state were worked on but incomplete until the last week when our game was near completion.
-   
-   
-   While I wrote most of the code in the first week, I continued to update and fix my code according to my team's needs over the span of the project.
-   Details for this will be provided in the following sections. I also continued to consult for my team to make sure they can fulfill their roles
-   when working on systems related to game state, particularly with Patrick, our UI lead. Occasionally, I redesigned game objects to be better
-   integrated with the rest of the game.
-   
-   
-   In this project, I followed no particular design pattern, but tried my best to keep code free from dependencies that might break the game.
-   This is especially important, as the game state is very often accessed by many different objects.
- 
-   
-   I originally planned to also implement menus, cutscene, powerup, and enemy managers as per our initial plan, but:
-   - Menus and level management were implemented by Karim with an add-on with the first build of our project.
-   - Cutscenes were designed and implemented by Karim as the narrative designer.
-   - Carlos, our producer, implemented the powerup manager.
-   - We ran out of time to work on enemies and integrate them into our level.
+Since Game Logic is important to get working sooner rather than later, most of my code on Game Logic was written
+in our first week of work, including most of the GameStateManager and most of the camera. The charging station and
+related logic for charging in the game state were worked on but incomplete until the last week when our game was near completion.
+
+While I wrote most of the code in the first week, I continued to update and fix my code according to my team's needs over the span of the project.
+Details for this will be provided in the following sections. I also continued to consult for my team to make sure they can fulfill their roles
+when working on systems related to game state, particularly with Patrick, our UI lead. Occasionally, I redesigned game objects to be better
+integrated with the rest of the game.
+
+In this project, I followed no particular design pattern, but tried my best to keep code free from dependencies that might break the game.
+This is especially important, as the game state is very often accessed by many different objects.
+
+I originally planned to also implement menus, cutscene, powerup, and enemy managers as per our initial plan, but:
+
+- Menus and level management were implemented by Karim with an add-on with the first build of our project.
+- Cutscenes were designed and implemented by Karim as the narrative designer.
+- Carlos, our producer, implemented the powerup manager.
+- We ran out of time to work on enemies and integrate them into our level.
 
 ### Game State Manager
 
-   The GameStateManager is primarily responsible for handling game data for player energy and camera position (and by extension level progress).
-   For player energy, it stores each player's energy separated into a Vector2 and has many functions to manage energy like set, get, and add functions.
-   For level progress, the game state manager is updated with new values related to level progress when the camera moves forward and contains
-   a get function for our progress bar in the HUD. 
-   
-   
-   The GameStateManager also contains constants that are used for many of the game's objects, such as the player ID enumeration, player energy capacity,
-   and the charging threshold for winning. To allow game objects to easily influence the game state, the manager contains many global signals related to
-   energy, players, and level state.
-   
-   
-   This script was gradually updated throughout our project, with new additions whenever our team needed more access to certain parts of the game state.
+The GameStateManager is primarily responsible for handling game data for player energy and camera position (and by extension level progress).
+For player energy, it stores each player's energy separated into a Vector2 and has many functions to manage energy like set, get, and add functions.
+For level progress, the game state manager is updated with new values related to level progress when the camera moves forward and contains
+a get function for our progress bar in the HUD.
+
+The GameStateManager also contains constants that are used for many of the game's objects, such as the player ID enumeration, player energy capacity,
+and the charging threshold for winning. To allow game objects to easily influence the game state, the manager contains many global signals related to
+energy, players, and level state.
+
+This script was gradually updated throughout our project, with new additions whenever our team needed more access to certain parts of the game state.
 
 ### Charging Station
 
-   The ChargingStation class and object is the win condition for the game. We developed the game fairly linearly, so we didn't get to the ending sequence
-   until around the last week of work. Because of this, I developed but never tested the code for the charging station in the beginning. As we got to
-   making the ending sequence, I finished the code for the charging station.
-   
-   
-   A charging station is assigned to a player through an export variable and stores its own charged energy. In hindsight, the role of storing the charged energy
-   could have been left to the GameStateManager, but by the time I realized, it was a bit too late to refactor. The charging station is unlocked when the game is in the final zone,
-   and gains charge through proximity to its assigned player if the player has energy. To do this, it emits a request_charge signal, which is caught by the GameStateManager.
-   The proximity is indicated by a circle of particles that I designed in the players' colors.
-   
+The ChargingStation class and object is the win condition for the game. We developed the game fairly linearly, so we didn't get to the ending sequence
+until around the last week of work. Because of this, I developed but never tested the code for the charging station in the beginning. As we got to
+making the ending sequence, I finished the code for the charging station.
+
+A charging station is assigned to a player through an export variable and stores its own charged energy. In hindsight, the role of storing the charged energy
+could have been left to the GameStateManager, but by the time I realized, it was a bit too late to refactor. The charging station is unlocked when the game is in the final zone,
+and gains charge through proximity to its assigned player if the player has energy. To do this, it emits a request_charge signal, which is caught by the GameStateManager.
+The proximity is indicated by a circle of particles that I designed in the players' colors.
+
 ### Camera
 
-   The camera design that we landed on initially was an autoscrolling pushbox camera. Essentially, we have a camera that moves forward automatically and moves
-   forward if a player pushes on the boundary. This is done by getting a push line position as a ratio of the viewport width (x) and running checks on an array
-   of exported players in process, and obviously, it autoscrolls by moving forward every frame. 
-   
-   
-   There were a few simple but important changes to the camera during development. While designing the camera, I noted that we needed consistency for the GameStateManager's
-   position variables, so I standardized each position to consider the right border of the viewport. During gameplay testing, I noticed that the screen was too disorienting when platforming back and forth along the push line, so I added a linearly interpolated speedup zone to the camera. This is done similarly to the push line, by getting another line by adding an x to the push line. 
-   
-   
-   The camera signals to the GameStateManager whenever it moves, to update game state for our progress bar. After the camera reaches the end zone, it similarly signals
-   to the game state to intitialize the end sequence.
-   
+The camera design that we landed on initially was an autoscrolling pushbox camera. Essentially, we have a camera that moves forward automatically and moves
+forward if a player pushes on the boundary. This is done by getting a push line position as a ratio of the viewport width (x) and running checks on an array
+of exported players in process, and obviously, it autoscrolls by moving forward every frame.
+
+There were a few simple but important changes to the camera during development. While designing the camera, I noted that we needed consistency for the GameStateManager's
+position variables, so I standardized each position to consider the right border of the viewport. During gameplay testing, I noticed that the screen was too disorienting when platforming back and forth along the push line, so I added a linearly interpolated speedup zone to the camera. This is done similarly to the push line, by getting another line by adding an x to the push line.
+
+The camera signals to the GameStateManager whenever it moves, to update game state for our progress bar. After the camera reaches the end zone, it similarly signals
+to the game state to intitialize the end sequence.
+
 ## User interface and input (Patrick Le)
 
 ### Main Menu
 
 ![main menu](ExampleImages/mainmenu.png)
 
-Karim implemented the  `menu_manager.gd` script which
+Karim and I implemented the `menu_manager.gd` script which
 organized and manages the whole menu system for our game. In there every menu state is declared as a enum and handles key features such as changing and entering between menus. Futhermore an addon was used to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to move between menu states while also adding animated transitions. Most of the menus used are children of the menu manager. So `@onready var menu_manager: MenuManager = $".."` was very usful accessing functions within menu manager when changing menus. The structure of each menu scene has similar formatting with each other. Being some form of vbox container with a set of buttons, each withtheir own signal controlled by a script for that scene. Within each menu, besides the start and quit,
 there is a "back" button which takes the player to last previous menu. Also each menu has an animated background, this was done by using a TextureRect and creating a shader to automatically scroll the texture, giving it an animated look.
 
@@ -470,41 +463,41 @@ _All under License.md_
 
 ## Game Feel & Polish (Jason Zhou)
 
-   My work on game feel and polish is very varied and range from visuals to physics to audio. 
-   
-   
+My work on game feel and polish is very varied and range from visuals to physics to audio.
+
 ### Visual Polish
 
-   To improve game feel on the visual end:
-   - I implemented [particle effects](https://github.com/ECS-179-Game-Project/Space-Chase-Game/tree/main/space-chase/scenes/particles) in a few parts of the game. These include when players die, when a powerup is picked up, when players are charging their stations,
-   and when the charging stations are activated to indicate charging zones. For energy charging particles, I edited the [particle shader](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scenes/particles/3_energy_particles.tscn) to be able to target
-   a specific point in space to go to.
-   - I wrote [shaders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/shaders/player.gdshader) for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, player characters,
-   - I remade our [player spritesheet](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/player/Astronaut/Astronaut_Spritesheet.png) to be more easily integrated into our animations. In the process, I also redid animations for player actions, adding animations
-   to actions that had previously not had any, and overall making animations slightly smoother.
-   - I reorganized some of the menus to be more even and, in the future, more modifiable.
-   
+To improve game feel on the visual end:
+
+- I implemented [particle effects](https://github.com/ECS-179-Game-Project/Space-Chase-Game/tree/main/space-chase/scenes/particles) in a few parts of the game. These include when players die, when a powerup is picked up, when players are charging their stations,
+  and when the charging stations are activated to indicate charging zones. For energy charging particles, I edited the [particle shader](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scenes/particles/3_energy_particles.tscn) to be able to target
+  a specific point in space to go to.
+- I wrote [shaders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/shaders/player.gdshader) for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, player characters,
+- I remade our [player spritesheet](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/player/Astronaut/Astronaut_Spritesheet.png) to be more easily integrated into our animations. In the process, I also redid animations for player actions, adding animations
+  to actions that had previously not had any, and overall making animations slightly smoother.
+- I reorganized some of the menus to be more even and, in the future, more modifiable.
+
 ### Physics Polish
 
-   To improve game feel on the physics side, I mostly changed the player script:
-   - I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping.
-   - I changed the hold jump gravity change to only apply on the way up.
-   - I changed the player dash so that the player retains some vertical momentum, to keep a sense of speed.
-   - I added terminal velocity to the player, so the player doesn't fall extremely fast when platforming.
-   - Karim did a great job, so I didn't really need to tweak anything else.
-   
+To improve game feel on the physics side, I mostly changed the player script:
+
+- I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping.
+- I changed the hold jump gravity change to only apply on the way up.
+- I changed the player dash so that the player retains some vertical momentum, to keep a sense of speed.
+- I added terminal velocity to the player, so the player doesn't fall extremely fast when platforming.
+- Karim did a great job, so I didn't really need to tweak anything else.
+
 ### Audio Polish
 
-   To improve game feel on the audio side:
-   - I adjusted the volume of most sound effects and music in the game to overall be more balanced.
-   - I adjusted the speed of some sound effects like the player jump to fit more with the action.
-   - I properly positioned audio streams so they would be mixed better in stereo.
-   - I changed the music to loop.
-   - I implemented the [audio sliders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/Menu%20scripts/volume_slider.gd) in the volume settings.
-   - I categorized sound effects and music for Godot's audio server, so they can be adjusted manually by the player in audio settings.
-   - I [sped up](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/370cffc64f5a3e9fb428805a2edaaad745f5f31d/space-chase/scripts/world_audio.gd#L15) the music in the final area to give more of a sense of urgency.
-   
+To improve game feel on the audio side:
 
+- I adjusted the volume of most sound effects and music in the game to overall be more balanced.
+- I adjusted the speed of some sound effects like the player jump to fit more with the action.
+- I properly positioned audio streams so they would be mixed better in stereo.
+- I changed the music to loop.
+- I implemented the [audio sliders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/Menu%20scripts/volume_slider.gd) in the volume settings.
+- I categorized sound effects and music for Godot's audio server, so they can be adjusted manually by the player in audio settings.
+- I [sped up](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/370cffc64f5a3e9fb428805a2edaaad745f5f31d/space-chase/scripts/world_audio.gd#L15) the music in the final area to give more of a sense of urgency.
 
 # Areas to improve
 
