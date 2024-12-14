@@ -47,7 +47,8 @@ This power-up grants the player the ability to double in size while gaining a st
 
 #### GetSmall:
 
-https://github.com/user-attachments/assets/478b6446-4725-494a-8860-ac557b512918
+![Recording2024-12-13222122-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/6f21286e-bda5-469a-bed6-ad5bc4a953c8)
+
 
 This power-up grants the player the ability to shrink in size while gaining the ability to double dash, which can be useful for escaping enemy grabs and traps.
 
