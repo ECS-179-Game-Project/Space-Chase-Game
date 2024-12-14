@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bctcl714fikvk"]
+
+[ext_resource type="Script" path="res://scripts/energy_particle_generator.gd" id="1_o33e0"]
+[ext_resource type="PackedScene" uid="uid://dj8qg8ra6bexr" path="res://scenes/particles/3_energy_particles.tscn" id="2_5n2gw"]
+
+[node name="EnergyParticleGenerator" type="Node2D"]
+script = ExtResource("1_o33e0")
+
+[node name="EnergyParticles" parent="." instance=ExtResource("2_5n2gw")]
+position = Vector2(-23, 0)
