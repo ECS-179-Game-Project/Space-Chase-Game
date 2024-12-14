@@ -27,17 +27,17 @@ ups to level the playing field such as a speed boost or strength up.
 
 # Organization Work
 
-To help brainstorm ideas for a game, I hosted a couple of meetings during the first week. During the meetings, I suggested ideas such as implementing a point system and power-ups. After the first week, there was no longer a need to meet online, but I would occasionally check in with my groupmates.
-I also created a GitHub repository. This allowed everyone to push their work from their own branch to the main branch. Ensuring that everyone worked on their own branch was helpful, as it allowed them to focus on their respective parts.
-It was important to make sure everyone followed the deadlines based on the schedule I helped create at the beginning of this project. The schedule was effective because people started working on different tasks, and it was mostly followed by everyone.
+-To help brainstorm ideas for a game, I hosted a couple of meetings during the first week. During the meetings, I suggested ideas such as implementing a point system and power-ups. After the first week, there was no longer a need to meet online, but I would occasionally check in with my groupmates.
+-I also created a GitHub repository. This allowed everyone to push their work from their own branch to the main branch. Ensuring that everyone worked on their own branch was helpful, as it allowed them to focus on their respective parts.
+-It was important to make sure everyone followed the deadlines based on the schedule I helped create at the beginning of this project. The schedule was effective because people started working on different tasks, and it was mostly followed by everyone.
 
 
 # Implementing power-ups
 
 There were two aspects of the game that people were not working on: the power-ups and the enemies. Due to the limited amount of time given for this project, I decided to implement the power-ups.
-I created a base class for all the power-ups. The first class I created was base_powerup.gd. The class had an enum that assigned the six types of power-ups we have. This class also handled the player entering and picking up the power-ups. With the help of Karim Shami, we made the power-ups float up and down, which gave them a better game feel.
-I also created the powerup_manager.gd class. This class essentially applies and removes the effects of power-ups. I wanted to make a centralized class to handle the complexity of the power-up system. Additionally, I ensured that when the same power-up is picked up again before it runs out, the game increases the duration of the power-up's effect.
-Lastly, I made the randomizer_powerup.gd class. This class was more challenging for me because I was not familiar with animations and the preload function. For the animation, I combined all the sprites we had for the different types of power-ups and created an animation that cycles through the sprites. This is similar to Mario Kart's power-ups, where the power-up shuffles until the player picks it up.
+-I created a base class for all the power-ups. The first class I created was base_powerup.gd. The class had an enum that assigned the six types of power-ups we have. This class also handled the player entering and picking up the power-ups. With the help of Karim Shami, we made the power-ups float up and down, which gave them a better game feel.
+-I also created the powerup_manager.gd class. This class essentially applies and removes the effects of power-ups. I wanted to make a centralized class to handle the complexity of the power-up system. Additionally, I ensured that when the same power-up is picked up again before it runs out, the game increases the duration of the power-up's effect.
+-Lastly, I made the randomizer_powerup.gd class. This class was more challenging for me because I was not familiar with animations and the preload function. For the animation, I combined all the sprites we had for the different types of power-ups and created an animation that cycles through the sprites. This is similar to Mario Kart's power-ups, where the power-up shuffles until the player picks it up.
 
 
 ## Poweru-ps:
