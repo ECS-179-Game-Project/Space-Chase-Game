@@ -6,7 +6,7 @@
 ## Player
 
 1. "dash.ogg" by [Swiss Arcade Game Entertainment](https://phoenix1291.itch.io/) Free to use under attribution terms at https://phoenix1291.itch.io/sound-effects-pack-2
-2. "dash_refill.ogg" by [Extreme Sound Effects](https://www.youtube.com/@soundeffects3977) Free to use under attribution terms at https://www.youtube.com/watch?v=Oazz9OJp7Xg
+2. "dash_refill.ogg" by [Kronbits](https://kronbits.itch.io/) Free to use under attribution terms at https://kronbits.itch.io/freesfx
 3. "Jump2.ogg" by [Damaged Panda](https://opengameart.org/users/damaged-panda) Free to use under attribution terms at https://opengameart.org/content/100-plus-game-sound-effects-wavoggm4a
 4. "respawn2.ogg" by [Jesús Lastra](https://opengameart.org/users/jalastram) at https://opengameart.org/content/8-bit-powerup-1
 5. "respawn3.ogg" by [Swiss Arcade Game Entertainment](https://phoenix1291.itch.io/) Free to use under attribution terms at https://phoenix1291.itch.io/sound-effects-pack-2
