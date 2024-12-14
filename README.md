@@ -4,13 +4,14 @@ Learn more about our game:
 
 [Project Document](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/ProjectDocument.md)
 
-[trailer](https://youtu.be/sAVLEPqOCx0)
+[Trailer](https://youtu.be/sAVLEPqOCx0)
 
-[Press kit](https://www.notion.so/Space-Chase-156a4264007680478aeacbd30d0a2188)
+[Press Kit](https://www.notion.so/Space-Chase-156a4264007680478aeacbd30d0a2188)
 
 ## Play the Game
 
-[SPACE CHASE!](https://fruitman.itch.io/space-chase)
+- Web: [SPACE CHASE!](https://fruitman.itch.io/space-chase) (may be glitchy beacuse of html shenanigans)
+- Downloads for Web/Windows/Linux: [G-Drive Link](https://drive.google.com/drive/folders/1g2zDoaeGkmNR3fVvqwzpbHlL7WlIAepg?usp=sharing)
 
 ## Credits
 
