@@ -77,15 +77,13 @@ Although not exactly a power-up, it behaves like one. When players collect this,
 
 The main menu was the first thing I implemented when doing the UI. The script `menu_manager.gd`
 organized and manages the whole menu system for our game. In there every menu state is declared as a enum and handles key features such as changing and entering between menus. Futhermore an addon was used to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to move between menu states while also adding animated transitions. Most of the menus used are children of the menu manager. So `@onready var menu_manager: MenuManager = $".."` was very usful accessing functions within menu manager when changing menus. The structure of each menu scene has similar formatting with each other. Being some form of vbox container with a set of buttons, each withtheir own signal controlled by a script for that scene. Within each menu, besides the start and quit,
-there is a back button which takes the player to last previous menu. Also each menu has an animated background, this was done by using a TextureRect and creating a shader to automatically scroll the texture, giving it an animated look.
+there is a "back" button which takes the player to last previous menu. Also each menu has an animated background, this was done by using a TextureRect and creating a shader to automatically scroll the texture, giving it an animated look.
 
 ### Controls Menu
 
 ![volume/setting menu](ExampleImages/controlsmenu.png)
 
-For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter
-for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu
-The addition of having the players test the movement in the controls menu was both implemented by Jason Zho(Game Logic) and Karim Shami (Movement and Physics). This was done by adding the two players to the scene and adding invisible barriers.
+For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu. The addition of having the players test the movement in the controls menu was both implemented by Jason Zho(Game Logic) and Karim Shami (Movement and Physics). This was done by adding the two players to the scene and adding invisible barriers.
 
 ### Settings Menu
 
@@ -107,12 +105,12 @@ and the game will continue. For the restart button the game is unpaused and the 
 reloaded thus resetting any progress done. As for the quit, it will take the player back to main
 menu. For the blured background of the pause menu a ColorRect was used with a shader to give the
 blured effect. The whole pause menu scene was added to the autoscrolling camera since the camera which allowed it to be in
-view of the camera at all times when the player pressed pause.
+view of the camera at all times when the player pressed pause. Also the z of this scene was placed at 11 to make it appear in front of all the objects in the camera.
 
 ### Ending Scene
 
 ![ending scene](ExampleImages/endmenu.png)
-The ending scene was created with the help of Karim who created the cutscene and Jason who help figure out how to display the corrisponding player id of who won the game. The quit button takes the player back to main menu so they can replay the game
+The ending scene was created with the help of Karim who created the cutscene. Once the cutscene ends the name of the player will appear as well as a quit button to return the player back to the main menu.
 
 ### In-Game UI
 
@@ -180,21 +178,24 @@ Here is the link to our [press kit](https://deep-spleen-40e.notion.site/Space-Ch
 ## Audio (Raghav Bajoria)
 
 ### Audio Collection and Implementation
+
 - Sourced high-quality audio tracks and sound effects to match the project's tone and theme.
 - Edited and trimmed audio to fit specific scenes and timing requirements.
 - Converted audio files into the appropriate formats for seamless integration into the project.
 
 ### Animation Integration
+
 - Synchronized animations with collected audio for a cohesive storytelling experience.
 - Ensured smooth transitions between scenes with aligned audio and animations.
 
 ### Challenges and Solutions
+
 - Challenge: Trimming and aligning audio to fit precise scene timings. Solution: Carefully reviewed and adjusted soundtracks using Quicktime Player to match visual cues and transitions.
 - Challenge: Finding the correct audio to fit the game whilst also complying with the copyright and legal agreements. Solution: itch.io and opengamemart.org was a great resource to find the right fit.
 
 ### Assets used
 
-*All under License.md*
+_All under License.md_
 
 ## Gameplay testing / Level Design (Patrick Le)
 
