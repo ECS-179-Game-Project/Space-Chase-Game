@@ -98,7 +98,7 @@ script = ExtResource("1_eeylw")
 players = [NodePath("../Player1"), NodePath("../Player2")]
 push_line_ratio = 0.9
 speedup_zone_width = 80.0
-autoscroll_speed = 75000.0
+autoscroll_speed = 75.0
 end_zone = 9990.0
 debug_lines = false
 
