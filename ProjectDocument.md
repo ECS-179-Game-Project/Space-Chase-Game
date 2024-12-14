@@ -143,12 +143,8 @@ differentiate between two controllers.
 - Most of the of the complaints seem to be the keybinds and the controls of the player. Most players did not
   like how the up movement was also the jump. It made it harder for them to jump diagonally. Futhermore other players had
   certian preferences for different controls. So example some people were find with the grab being right bumper while some
-  would have perfered the right trigger. So we changed the keybinds for the controller after these feedback.
-  The jump from the up movement and now they are two seperate controls. We also rebinded the dash to be square and triangle
-  which gives the player more options. This was done the same to grabing where there are multiple inputs for it such as both triggers
-  and bumpers are now keybinds for it. Futhermore from the testing people noted keybinds for when playing two players on a single keyboard
-  was unplayable. Some changes such as chaging the arrow keys to I, J, K, and L since we noticed that some people did not
-  have arrow keys on their keyboard.
+  would have perfered the right trigger. Futhermore from the testing people noted keybinds for when playing two players on a single keyboard
+  was unplayable.
 
 - Another suggestion we had was the difficulty of the level design. Although I intentionally designed the level to be hard
   with near impossible jumps I agree some trap and platform placement was unfair. So some map tweaks were made to make the level more
@@ -158,8 +154,22 @@ differentiate between two controllers.
 
 - A number of players also commented about player and visablitly. Such as indecators for when the player
   respawn is going to happen, when the ships are fully charged, and a change of one of the player's color.
+- Players also felt that the ghosting mechnaic was confusing and difficult to move around when ghosting causing them to respawn in wall and dying
+  again.
 
 ### Adjustments after feedback
+
+- The controls were changed for both controller and keyboard. For both devices the jump and up movement were seperated
+  into two different inputs. This allowed the players to have more freedome when jumping to the left or right. It also
+  made it easier to jump and dash midair. Another thing we changed for the controller was the dashing, instead of having it on the bumpers
+  it was changed to square and triangle, while the jump was changed to X and circle. The grabbing was also changed to both triggers
+  and both bumpers.
+- As for gameplay clarity we have changed player 2's color from blue to green to improve player visablitly. I also increased the contrast
+  of the background of the cave sections of the level since some complaints were that the background blended into the solid ground too much
+  making it hard to see.
+- To fix some issue with the ghosting we added an indecator such as the player binkingto show that the ghosting was ending and that the  
+  player was going to respawn. We also made it so that the player could dash in when they are a ghost. This allows the player to recovoer more
+  quickly from a bad spawn.
 
 `text here`
 
