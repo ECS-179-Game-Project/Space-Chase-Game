@@ -2,7 +2,7 @@
 
 ## Summary
 
-`text here`
+Space Chase is a two player racing game with platforming elements. This game takes inspiration from [Celeste](https://store.steampowered.com/app/504230/Celeste/) and [SpeedRunners](https://store.steampowered.com/app/207140/SpeedRunners/). Players would have to race against each other to reach their ship first, however they would need to collect energy on the way to full charge their ship to win. A unique asspect is that the player can sabatoge their opponent by throwing them off the platforms or into spikes.
 
 ## Gameplay Explanation
 
