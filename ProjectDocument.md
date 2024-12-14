@@ -17,9 +17,11 @@ ups to level the playing field such as a speed boost or shrinking.
 
 ## Suggestions
 
-We suggest playing the game with another player. First off by going to the controls menu to get familiar with the player's abilities. Once both players are ready, play the main game.
+We suggest bringing a friend to play the game with. Start off by going to the controls menu to get familiar with the player's abilities. Once both players are ready, play the main game!
 
 If you want to test the game's mechanics or experiment, feel free to do it in the playground (a safe non-chaotic environment). You can find it in the extras menu.
+
+Press the escape key if you want to restart/exit the main game or playground.
 
 # Main Roles
 
