@@ -1,5 +1,5 @@
 # Space Chase
-Learn more about our game: [Link](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/ProjectDocument.md)
+Learn more about our game: [Project Document](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/ProjectDocument.md)
 
 Press kit + trailer (link)
 
