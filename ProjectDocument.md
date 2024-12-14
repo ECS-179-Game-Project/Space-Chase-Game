@@ -73,7 +73,7 @@ paused and the menu will be made visible. If the player chooses to resume the sc
 and the game will continue. For the restart button the game is unpaused and the current scene is
 reloaded thus resetting any progress done. As for the quit, it will take the player back to main
 menu. For the blured background of the pause menu a ColorRect was used with a shader to give the
-blured effect. The whole pause
+blured effect. The whole pause menu scene was added to the autoscrolling camera since the camera which allowed it to be in view of the camera at all times when the player pressed pause.
 
 ### In-Game UI
 
