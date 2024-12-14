@@ -430,40 +430,27 @@ _All under License.md_
 
 ### Gameplay feedback
 
-- Most of the of the complaints seem to be the keybinds and the controls of the player. Most players did not
-  like how the up movement was also the jump. It made it harder for them to jump diagonally. Futhermore other players had
-  certian preferences for different controls. So example some people were find with the grab being right bumper while some
-  would have perfered the right trigger. Futhermore from the testing people noted keybinds for when playing two players on a single keyboard
-  was unplayable.
+- Most of the complaints seem to be the keybinds and the controls of the player. Most players did not like how the up movement was also the jump. It made it harder for them to jump diagonally. Furthermore other players had certain preferences for different controls. For example some people were fine with the grab being the right bumper while some would have preferred the right trigger. Furthermore from the testing people noted keybinds for when playing two players on a single keyboard was unplayable.
 
-- Another suggestion we had was the difficulty of the level design. Although I intentionally designed the level to be hard
-  with near impossible jumps I agree some trap and platform placement was unfair. So some map tweaks were made to make the level more
-  enjoyable while also being not too hard. We also got some feedback of how the push box aspect of the camera
-  was high risk high reward since the players would have less time to react to traps. This was intented
-  and it was nice to see the play testers noticing.
+- Another suggestion we had was the difficulty of the level design. Although I intentionally designed the level to be hard with near impossible jumps I agree some trap and platform placement was unfair. So some map tweaks were made to make the level more enjoyable while also not being too hard. We also got some feedback of how the push box aspect of the camera was high risk high reward since the players would have less time to react to traps. This was intended and it was nice to see the play testers noticing.
 
-- A number of players also commented about player and visablitly. Such as indecators for when the player
+- A number of players also commented about players and visibility. Such as indicators for when the player respawn is going to happen, when the ships are fully charged, and a change of one of the player's colors.
   respawn is going to happen, when the ships are fully charged, and a change of one of the player's color.
-- Players also felt that the ghosting mechnaic was confusing and difficult to move around when ghosting causing them to respawn in wall and dying
-  again.
+
+- Players also felt that the ghosting mechanic was confusing and difficult to move around when ghosting, causing them to respawn in the wall and dying again.
 
 ### Adjustments after feedback
 
-- The controls were changed for both controller and keyboard. For both devices the jump and up movement were seperated
-  into two different inputs. This allowed the players to have more freedome when jumping to the left or right. It also
-  made it easier to jump and dash midair. Another thing we changed for the controller was the dashing, instead of having it on the bumpers
-  it was changed to square and triangle, while the jump was changed to X and circle. The grabbing was also changed to both triggers
-  and both bumpers.
-- As for gameplay clarity we have changed player 2's color from blue to green to improve player visablitly. I also increased the contrast
-  of the background of the cave sections of the level since some complaints were that the background blended into the solid ground too much
-  making it hard to see.
-- To fix some issue with the ghosting we added an indecator such as the player binkingto show that the ghosting was ending and that the  
-  player was going to respawn. We also made it so that the player could dash in when they are a ghost. This allows the player to recovoer more
-  quickly from a bad spawn.
+- The controls were changed for both controller and keyboard. For both devices the jump and up movement were separated into two different inputs. This allowed the players to have more freedom when jumping to the left or right. It also made it easier to jump and dash midair. Another thing we changed for the controller was the dashing, instead of having it on the bumpers it was changed to square and triangle, while the jump was changed to X and circle. The grabbing was also changed to both triggers and both bumpers.
+
+- As for gameplay clarity we have changed player 2's color from blue to green to improve player visibility. I also increased the contrast of the background of the cave sections of the level since some complaints were that the background blended into the solid ground too much making it hard to see.
+
+- To fix some issue with the ghosting we added an indicator such as the player blinking to show that the ghosting was ending and that the
+  the player was going to respawn. We also made it so that the player could dash in when they are a ghost. This allows the player to recover more quickly from a bad spawn.
 
 ### Level Design
 
-- The level design was very straight foward with with Raghav's(Animation and Visuals) implementation of the different tilesheets. I wanted to make the level hard yet not frustrating. Futhermore I wanted to add an emphasis of the trade off of using the push box to speed up the camera. So spike traps are randomly placed so that if a player is constantly using the push box why will run into since there is a very short window to react. Also to add more variation throughout the map there are hidden tunnels that led provide strong power-ups or lead you directly into a trap. Karim also helped with level design by providing more detail and decorations throughout the level.
+- The level design was very straight forward with Raghav's(Animation and Visuals) implementation of the different stylesheets. I wanted to make the level hard yet not frustrating. Furthermore I wanted to add an emphasis on the tradeoff of using the push box to speed up the camera. So spike traps are randomly placed so that if a player is constantly using the push box why will run into since there is a very short window to react. Also to add more variation throughout the map there are hidden tunnels that led provide strong power-ups or lead you directly into a trap. Karim also helped with level design by providing more detail and decorations throughout the level.
 
 ## Game Feel & Polish (Jason Zhou)
 
