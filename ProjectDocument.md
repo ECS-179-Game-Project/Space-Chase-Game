@@ -101,7 +101,7 @@ I outline each of the player's major movement/physics mechanics, all of which ar
 Players can instantaneously move left or right by simply setting their x velocity to their speed times horizontal direction.
 
 **Jumping**
-I wanted to give players more control with jumping, where players can either short hop or hold jump. Holding jump reduces the player's gravity, which increases jump height and also enables the player to fall slower if jump is continued to be held.
+I wanted to give players more control with jumping, where players can either short hop, hold jump, or anything in-between. Holding jump reduces the player's gravity, which increases jump height and also enables the player to fall slower if jump is continued to be held. Short hops can be even shorter if combined with the fast falling mechanic.
 
 **Fast Falling & Going Down Platforms**
 Holding down enables the player to fast fall, which increases the player's gravity, giving the player even more movement options. This could help the player regenerate their dash, jump sooner, avoid obstacles, and even lead to some combos.
@@ -179,7 +179,7 @@ This is especially important, as the game state is very often accessed by many d
 
 I originally planned to also implement menus, cutscene, powerup, and enemy managers as per our initial plan, but:
 
-- Menus and level management were implemented by Karim with an add-on with the first build of our project.
+- Menus and level management were implemented by Karim with an add-on with the first build of our project. Most of the menus were made by Patrick and Karim.
 - Cutscenes were designed and implemented by Karim as the narrative designer.
 - Carlos, our producer, implemented the powerup manager.
 - We ran out of time to work on enemies and integrate them into our level.
@@ -226,7 +226,7 @@ to the game state to intitialize the end sequence.
 
 ![main menu](ExampleImages/mainmenu.png)
 
-Karim and I implemented the `menu_manager.gd` script which
+Karim Shami (Movement and Physics) and I implemented the `menu_manager.gd` script which
 organized and manages the whole menu system for our game. In there every menu state is declared as a enum and handles key features such as changing and entering between menus. Futhermore an addon was used to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to move between menu states while also adding animated transitions. Most of the menus used are children of the menu manager. So `@onready var menu_manager: MenuManager = $".."` was very usful accessing functions within menu manager when changing menus. The structure of each menu scene has similar formatting with each other. Being some form of vbox container with a set of buttons, each withtheir own signal controlled by a script for that scene. Within each menu, besides the start and quit,
 there is a "back" button which takes the player to last previous menu. Also each menu has an animated background, this was done by using a TextureRect and creating a shader to automatically scroll the texture, giving it an animated look.
 
@@ -234,7 +234,7 @@ there is a "back" button which takes the player to last previous menu. Also each
 
 ![volume/setting menu](ExampleImages/controlsmenu.png)
 
-For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu. The addition of having the players test the movement in the controls menu was both implemented by Jason Zho(Game Logic) and Karim Shami (Movement and Physics). This was done by adding the two players to the scene and adding invisible barriers.
+For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu. The addition of having the players test the movement in the controls menu was both implemented by Jason Zho(Game Logic) and Karim. This was done by adding the two players to the scene and adding invisible barriers.
 
 ### Settings Menu
 
@@ -251,7 +251,7 @@ For the pause menu it was similarity built like the main menu, however it is not
 `menu_manager.gd` thus not it's child. The 3 buttons that make up the pause menu are resume, restart, and quit. Using
 `paused` boolen that is already in godot a function was made that pauses the current
 scene. The pause menu is binded to the escape key so upon pressing it the current screne will be
-paused and the menu will be made visible. If the player chooses to resume the scene will be unpaused
+paused and the [menu will be made visible](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/e1394f4026841682ba1f7e9b6818259c7c52892e/space-chase/scripts/Menu%20scripts/pause_menu.gd#L27). If the player chooses to resume the scene will be unpaused
 and the game will continue. For the restart button the game is unpaused and the current scene is
 reloaded thus resetting any progress done. As for the quit, it will take the player back to main
 menu. For the blured background of the pause menu a ColorRect was used with a shader to give the
@@ -272,7 +272,8 @@ to get the current level progression and the player's energy. The game state man
 function I was able to display the current's level progress on the bar at the top of the camera. While the energy bar of the player used a similar format of using [`get_player_energy`](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cf6b6518055fa3b0b0419af4be64a5942517d500/space-chase/scripts/game_state_manager.gd#L110)
 from the game state manager to display the current energy of each player. The function simply returns the energy of the player ID passed through. Futhermore
 the player would lose a fixed amout of energy upon death and that lost amount would be given to the other player. To implemente this the [instakill](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cb12d3fa9054d308f30a1e9c84a88861d3687b77/space-chase/scripts/player.gd#L261)
-function inside the `player.gd` was modified so that players who died would have lost energy and the oposing player would have gained some.
+function inside the `player.gd` was modified so that players who died would have lost energy and the oposing player would have gained some. The scene created for both the player energy and progress bar was made in a similar format. Where a TextureRect was used with the progress bar placed inside of it. The TextureRect would be loaded with a
+specific sprite to give the bar more detail.
 
 ### Input Devices
 
@@ -426,40 +427,27 @@ _All under License.md_
 
 ### Gameplay feedback
 
-- Most of the of the complaints seem to be the keybinds and the controls of the player. Most players did not
-  like how the up movement was also the jump. It made it harder for them to jump diagonally. Futhermore other players had
-  certian preferences for different controls. So example some people were find with the grab being right bumper while some
-  would have perfered the right trigger. Futhermore from the testing people noted keybinds for when playing two players on a single keyboard
-  was unplayable.
+- Most of the complaints seem to be the keybinds and the controls of the player. Most players did not like how the up movement was also the jump. It made it harder for them to jump diagonally. Furthermore other players had certain preferences for different controls. For example some people were fine with the grab being the right bumper while some would have preferred the right trigger. Furthermore from the testing people noted keybinds for when playing two players on a single keyboard was unplayable.
 
-- Another suggestion we had was the difficulty of the level design. Although I intentionally designed the level to be hard
-  with near impossible jumps I agree some trap and platform placement was unfair. So some map tweaks were made to make the level more
-  enjoyable while also being not too hard. We also got some feedback of how the push box aspect of the camera
-  was high risk high reward since the players would have less time to react to traps. This was intented
-  and it was nice to see the play testers noticing.
+- Another suggestion we had was the difficulty of the level design. Although I intentionally designed the level to be hard with near impossible jumps I agree some trap and platform placement was unfair. So some map tweaks were made to make the level more enjoyable while also not being too hard. We also got some feedback of how the push box aspect of the camera was high risk high reward since the players would have less time to react to traps. This was intended and it was nice to see the play testers noticing.
 
-- A number of players also commented about player and visablitly. Such as indecators for when the player
+- A number of players also commented about players and visibility. Such as indicators for when the player respawn is going to happen, when the ships are fully charged, and a change of one of the player's colors.
   respawn is going to happen, when the ships are fully charged, and a change of one of the player's color.
-- Players also felt that the ghosting mechnaic was confusing and difficult to move around when ghosting causing them to respawn in wall and dying
-  again.
+
+- Players also felt that the ghosting mechanic was confusing and difficult to move around when ghosting, causing them to respawn in the wall and dying again.
 
 ### Adjustments after feedback
 
-- The controls were changed for both controller and keyboard. For both devices the jump and up movement were seperated
-  into two different inputs. This allowed the players to have more freedome when jumping to the left or right. It also
-  made it easier to jump and dash midair. Another thing we changed for the controller was the dashing, instead of having it on the bumpers
-  it was changed to square and triangle, while the jump was changed to X and circle. The grabbing was also changed to both triggers
-  and both bumpers.
-- As for gameplay clarity we have changed player 2's color from blue to green to improve player visablitly. I also increased the contrast
-  of the background of the cave sections of the level since some complaints were that the background blended into the solid ground too much
-  making it hard to see.
-- To fix some issue with the ghosting we added an indecator such as the player binkingto show that the ghosting was ending and that the  
-  player was going to respawn. We also made it so that the player could dash in when they are a ghost. This allows the player to recovoer more
-  quickly from a bad spawn.
+- The controls were changed for both controller and keyboard. For both devices the jump and up movement were separated into two different inputs. This allowed the players to have more freedom when jumping to the left or right. It also made it easier to jump and dash midair. Another thing we changed for the controller was the dashing, instead of having it on the bumpers it was changed to square and triangle, while the jump was changed to X and circle. The grabbing was also changed to both triggers and both bumpers.
+
+- As for gameplay clarity we have changed player 2's color from blue to green to improve player visibility. I also increased the contrast of the background of the cave sections of the level since some complaints were that the background blended into the solid ground too much making it hard to see.
+
+- To fix some issue with the ghosting we added an indicator such as the player blinking to show that the ghosting was ending and that the
+  the player was going to respawn. We also made it so that the player could dash in when they are a ghost. This allows the player to recover more quickly from a bad spawn.
 
 ### Level Design
 
-- The level design was very straight foward with with Raghav's(Animation and Visuals) implementation of the different tilesheets. I wanted to make the level hard yet not frustrating. Futhermore I wanted to add an emphasis of the trade off of using the push box to speed up the camera. So spike traps are randomly placed so that if a player is constantly using the push box why will run into since there is a very short window to react. Also to add more variation throughout the map there are hidden tunnels that led provide strong power-ups or lead you directly into a trap. Karim also helped with level design by providing more detail and decorations throughout the level.
+- The level design was very straight forward with Raghav's(Animation and Visuals) implementation of the different stylesheets. I wanted to make the level hard yet not frustrating. Furthermore I wanted to add an emphasis on the tradeoff of using the push box to speed up the camera. So spike traps are randomly placed so that if a player is constantly using the push box why will run into since there is a very short window to react. Also to add more variation throughout the map there are hidden tunnels that led provide strong power-ups or lead you directly into a trap. Karim also helped with level design by providing more detail and decorations throughout the level.
 
 ## Game Feel & Polish (Jason Zhou)
 
@@ -472,14 +460,15 @@ To improve game feel on the visual end:
 - I implemented [particle effects](https://github.com/ECS-179-Game-Project/Space-Chase-Game/tree/main/space-chase/scenes/particles) in a few parts of the game. These include when players die, when a powerup is picked up, when players are charging their stations,
   and when the charging stations are activated to indicate charging zones. For energy charging particles, I edited the [particle shader](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scenes/particles/3_energy_particles.tscn) to be able to target
   a specific point in space to go to.
+- Intertwined with charging particles, I added the progress bar for the charging stations in the end zone to clarify when players will win.
 - I wrote [shaders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/shaders/player.gdshader) for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, player characters,
 - I remade our [player spritesheet](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/player/Astronaut/Astronaut_Spritesheet.png) to be more easily integrated into our animations. In the process, I also redid animations for player actions, adding animations
   to actions that had previously not had any, and overall making animations slightly smoother.
 - I reorganized some of the menus to be more even and, in the future, more modifiable.
 
-### Physics Polish
+### Gameplay Polish
 
-To improve game feel on the physics side, I mostly changed the player script:
+To improve game feel on the gameplay side, I mostly changed the player script:
 
 - I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping.
 - I changed the hold jump gravity change to only apply on the way up.
@@ -510,3 +499,14 @@ To improve game feel on the audio side:
   are fixed and the only way to change them is through the project settings in godot
 - Also adding network multiplayer would have been a nice thing to add as well since godot does
   have some support with online multiplayer.
+
+## Visual Improvements
+
+- We could definitely have more visual effects in our game like distortions when dashing, dying, etc.
+- An idea that might not be too hard to implement is color selection for players. Most of the player differentiated objects are already colored automatically. This could also help with accessibility, considering we chose red and green for our players which is a common type of colorblindness.
+- Adding lighting could help with visuals.
+
+## Gameplay Improvement
+
+- Increasing variety by adding more levels, perhaps with different color palettes.
+- Adding an additional game mode in the "extras" menu that is just 1v1 Final Destination (some items) in the end zone.
