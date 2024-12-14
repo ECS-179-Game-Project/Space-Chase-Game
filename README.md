@@ -10,7 +10,7 @@ Learn more about our game:
 
 ## Play the Game
 
-- Web: [SPACE CHASE!](https://fruitman.itch.io/space-chase) (may be glitchy beacuse of html shenanigans)
+- Web: [SPACE CHASE!](https://fruitman.itch.io/space-chase) (may be slow beacuse of html shenanigans)
 - Downloads for Web/Windows/Linux: [G-Drive Link](https://drive.google.com/drive/folders/1g2zDoaeGkmNR3fVvqwzpbHlL7WlIAepg?usp=sharing)
 
 ## Credits
