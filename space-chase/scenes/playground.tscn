@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://dcuokery2ipy0"]
+[gd_scene load_steps=34 format=4 uid="uid://dcuokery2ipy0"]
 
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_4bf42"]
 [ext_resource type="Texture2D" uid="uid://qio8qrcblxkf" path="res://assets/sprites/Terrain/stringstar fields/background_1.png" id="2_bkfp7"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/energy_bar.tscn" id="8_dpu0h"]
 [ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="11_6ftgq"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="11_ygpoc"]
+[ext_resource type="Script" path="res://scripts/world_particle_container.gd" id="12_7mnuh"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="13_mxlg4"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="14_w5fo5"]
 [ext_resource type="Script" path="res://scripts/hit_box.gd" id="16_5xjdl"]
@@ -175,6 +176,9 @@ player_color = Color(0, 0.317647, 0.145098, 1)
 dash_color_gradient = ExtResource("11_6ftgq")
 respawn_pos = NodePath("../StaticCamera/PlayerRespawnLocation")
 
+[node name="WorldParticleContainer" type="Node" parent="."]
+script = ExtResource("12_7mnuh")
+
 [node name="FloorOfDeath" type="Area2D" parent="."]
 position = Vector2(0, 121)
 rotation = -1.5708
@@ -248,3 +252,4 @@ override_chargeability = true
 position = Vector2(159, 66)
 texture = ExtResource("20_fwtfd")
 owner_player = NodePath("../Player1")
+override_chargeability = true

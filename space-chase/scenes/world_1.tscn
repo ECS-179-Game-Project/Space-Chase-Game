@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=38 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -18,6 +18,7 @@
 [ext_resource type="TileSet" uid="uid://ue1dbukbe1gy" path="res://resources/foreground_tileset.tres" id="16_36jcp"]
 [ext_resource type="TileSet" uid="uid://b3l3d0robsua5" path="res://resources/ground_tileset.tres" id="16_65ouv"]
 [ext_resource type="TileSet" uid="uid://dam4f3gaq7eir" path="res://resources/background_tileset.tres" id="16_g7e85"]
+[ext_resource type="Script" path="res://scripts/world_particle_container.gd" id="16_n1u4r"]
 [ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="16_t3m13"]
 [ext_resource type="PackedScene" uid="uid://oq7dsvxm3qi7" path="res://scenes/powerups/jump_powerup.tscn" id="17_fgkj1"]
 [ext_resource type="TileSet" uid="uid://cvtvdfrvydmov" path="res://resources/platform_tileset.tres" id="18_8yiye"]
@@ -207,6 +208,9 @@ position = Vector2(12, 38)
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("13_1negu")
 respawn_pos = NodePath("../AutoscrollCameraController/CameraRespawnLocation")
+
+[node name="WorldParticleContainer" type="Node" parent="."]
+script = ExtResource("16_n1u4r")
 
 [node name="TilemapLayers" type="Node" parent="."]
 

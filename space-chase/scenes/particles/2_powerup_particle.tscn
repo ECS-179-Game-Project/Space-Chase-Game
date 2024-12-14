@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://bcof6hbgr0ncy"]
+
+[ext_resource type="Shader" path="res://shaders/white.gdshader" id="1_1lm3k"]
+[ext_resource type="Texture2D" uid="uid://b6g65w81g6e47" path="res://assets/sprites/Space Runner Assets/Effects/sparkle-effect.png" id="1_b46qf"]
+[ext_resource type="Script" path="res://scripts/oneshot_particles.gd" id="2_xbo6i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yioeo"]
+shader = ExtResource("1_1lm3k")
+
+[sub_resource type="Curve" id="Curve_8lnmn"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 322.802, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nko2s"]
+curve = SubResource("Curve_8lnmn")
+
+[sub_resource type="Curve" id="Curve_pndd2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.384615), 0.668251, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_djtwp"]
+curve = SubResource("Curve_pndd2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mh16f"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+angle_min = 1.07288e-05
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 37.63
+initial_velocity_max = 64.51
+damping_min = 0.2
+damping_max = 0.2
+damping_curve = SubResource("CurveTexture_nko2s")
+scale_min = 0.6
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_djtwp")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l2k3"]
+atlas = ExtResource("1_b46qf")
+region = Rect2(64, 0, 16, 16)
+
+[node name="OneShotParticles" type="GPUParticles2D"]
+texture_filter = 3
+material = SubResource("ShaderMaterial_yioeo")
+process_material = SubResource("ParticleProcessMaterial_mh16f")
+texture = SubResource("AtlasTexture_7l2k3")
+lifetime = 0.8
+speed_scale = 2.0
+explosiveness = 1.0
+script = ExtResource("2_xbo6i")

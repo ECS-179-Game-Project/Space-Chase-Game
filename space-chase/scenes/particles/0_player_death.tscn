@@ -25,7 +25,7 @@ initial_velocity_min = 220.43
 initial_velocity_max = 263.44
 gravity = Vector3(0, 98, 0)
 scale_min = 0.6
-scale_max = 1.5
+scale_max = 0.9
 scale_curve = SubResource("CurveTexture_4f3d5")
 color_ramp = SubResource("GradientTexture1D_2krpt")
 
@@ -34,7 +34,6 @@ atlas = ExtResource("1_m87gy")
 region = Rect2(48, 0, 16, 16)
 
 [node name="PlayerDeath" type="GPUParticles2D"]
-amount = 34
 process_material = SubResource("ParticleProcessMaterial_yndfh")
 texture = SubResource("AtlasTexture_f4epm")
 lifetime = 0.7
