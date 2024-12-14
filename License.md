@@ -29,3 +29,7 @@
 
 1. "retroclick.ogg" this sound was created by David McKee (ViRiX) soundcloud.com/virix at https://opengameart.org/content/ui-sound-effects-pack
 2. "DavidKBD - Cosmic Pack 01 - Cosmic Journey-full.ogg" by [DavidKBD](https://davidkbd.itch.io/cosmic-journey-space-themed-music-pack) Free to use under attribution terms at https://creativecommons.org/licenses/by/4.0/
+
+## Other
+
+Some of the sounds in this project were created by David McKee (ViRiX) soundcloud.com/virix

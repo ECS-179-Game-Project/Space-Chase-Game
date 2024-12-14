@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cndr58s5m3ody"
+path="res://.godot/imported/dash_refill.ogg-1723cd4474bc51aa82cd39cf7155d830.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Sound Effects/Player/dash_refill.ogg"
+dest_files=["res://.godot/imported/dash_refill.ogg-1723cd4474bc51aa82cd39cf7155d830.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

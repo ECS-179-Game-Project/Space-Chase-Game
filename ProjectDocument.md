@@ -112,7 +112,55 @@ used the arrow keys or IJKL if they didn't have arrow keys Comma was used for th
 
 ## Animation and Visuals (Raghav Bajoria)
 
-`text here`
+### Player Animations
+
+The player character has a wide variety of animations designed to enhance gameplay and create a dynamic experience. These animations include:
+
+Idle: A static yet engaging pose to signal inactivity.
+Running: Basic running
+Jumping: Basic jump
+Dashing: A streak of orange behind the playe
+Grabbing: Player tilts to the right or left when pressed
+Held/Holding: Player holds the other player on top of their head
+Fast Falling: dash animation downwards
+Ghosting/Respawning (as Ghost/Normal): Player becomes opaque and washed with white
+Stunned: Displays the player's vulnerability when hit or sabotaged.
+Death (Die): Player shrinks when dead
+
+These animations, though simple in implementation, contribute to the competitive and high-energy tone of the game. The animations were implemented using a state machine to seamlessly transition between different player actions. Player feedback reported that the animations felt very satisfying.
+
+### Cutscene Animations
+
+Cutscenes enhance the game's storytelling and immersion with animations such as:
+
+Explosions: Spaceship and world explosions
+Spaceship Movement: Spaceship movement to demonstrate entering, fighting and leaving the scene
+
+Karim Shami played a major role in creating these animations, ensuring consistency and visual flair. Raghav helped with adjusting certain animations to provide a better visual experience.
+
+### Sprites and Tilesheet
+
+The sprites and tilesheets used in Space Chase were primarily sourced from pre-downloaded assets, ensuring high-quality visuals while saving development time.
+
+These included:
+
+- Character Sprites: Used for player animations like running, dashing, grabbing, and more.
+- Environmental Tilesheets: Created the dynamic and visually distinct environments, such as platforms, traps, and backgrounds.
+
+Karim Shami played a key role in helping find and implement assets, ensuring they aligned with the game's fast-paced and competitive aesthetic. Minor modifications were made to some sprites (e.g., grab animation) to better fit the gameplay mechanics.
+
+### Challenges
+
+The most challenging part of the process was setting up and fine-tuning the animation state machine, ensuring smooth and logical transitions between different states.
+
+### Feedback and Iterations
+
+Adjustments were made to the grab animation for smoother transitions based on playtesting feedback.
+Overall, animations remained consistent with their initial designs.
+
+### Audience Reception
+
+The dash animation stood out as the most impressive feature, garnering praise for its visual impact and gameplay utility.
 
 # Sub-Roles
 
