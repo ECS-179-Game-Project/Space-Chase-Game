@@ -160,7 +160,7 @@ Although not exactly a power-up, it behaves like one. When players collect this,
 
 ![main menu](ExampleImages/mainmenu.png)
 
-The main menu was the first thing I implemented when doing the UI. The script `menu_manager.gd`
+Karim implemented the  `menu_manager.gd` script which
 organized and manages the whole menu system for our game. In there every menu state is declared as a enum and handles key features such as changing and entering between menus. Futhermore an addon was used to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to move between menu states while also adding animated transitions. Most of the menus used are children of the menu manager. So `@onready var menu_manager: MenuManager = $".."` was very usful accessing functions within menu manager when changing menus. The structure of each menu scene has similar formatting with each other. Being some form of vbox container with a set of buttons, each withtheir own signal controlled by a script for that scene. Within each menu, besides the start and quit,
 there is a "back" button which takes the player to last previous menu. Also each menu has an animated background, this was done by using a TextureRect and creating a shader to automatically scroll the texture, giving it an animated look.
 
