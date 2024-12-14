@@ -132,7 +132,22 @@ used the arrow keys or IJKL if they didn't have arrow keys Comma was used for th
 
 ## Audio (Raghav Bajoria)
 
-`text here`
+### Audio Collection and Implementation
+- Sourced high-quality audio tracks and sound effects to match the project's tone and theme.
+- Edited and trimmed audio to fit specific scenes and timing requirements.
+- Converted audio files into the appropriate formats for seamless integration into the project.
+
+### Animation Integration
+- Synchronized animations with collected audio for a cohesive storytelling experience.
+- Ensured smooth transitions between scenes with aligned audio and animations.
+
+### Challenges and Solutions
+- Challenge: Trimming and aligning audio to fit precise scene timings. Solution: Carefully reviewed and adjusted soundtracks using Quicktime Player to match visual cues and transitions.
+- Challenge: Finding the correct audio to fit the game whilst also complying with the copyright and legal agreements. Solution: itch.io and opengamemart.org was a great resource to find the right fit.
+
+### Assets used
+
+*All under License.md*
 
 ## Gameplay testing / Level Design (Patrick Le)
 
