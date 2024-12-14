@@ -9,11 +9,17 @@ Space Chase is a two player racing game with platforming elements. This game tak
 ## Gameplay Explanation
 
 The main goal of the game is to reach your ship while collecting as much energy as possible to refuel it.
-However you will be competeing against an opposing player. Mechanics such as grabbing and throwing are at
+However you will be competeing against an opposing player. Mechanics such as grabbing, throwing, and dashing are at
 your disposal to gain the upperhand against your opponent. Movement is also a huge part of this game and
 serves are a core gameplay mechnaic. Borrowing the omnidirectional dash from Celeste it servers as an
 extra tool for the player to traverse the deadly level and out run their opponent. There are also power
-ups to level the playing field such as a speed boost or strength up.
+ups to level the playing field such as a speed boost or shrinking.
+
+## Suggestions
+
+We suggest playing the game with another player. First off by going to the controls menu to get familiar with the player's abilities. Once both players are ready, play the main game.
+
+If you want to test the game's mechanics or experiment, feel free to do it in the playground (a safe non-chaotic environment). You can find it in the extras menu.
 
 # Main Roles
 
@@ -97,6 +103,8 @@ Given our game is both a platformer and versus game, we couldn't rely on standar
 
 I outline each of the player's major movement/physics mechanics, all of which are implemented in [player.gd](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/player.gd). Due to the scope of our game I wanted to keep all the movement mechanics in 1 script for easy lookup (using comments as documentation). The only exceptions are [grabbox.gd](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/grab_box.gd), [hurtbox.gd](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/hurt_box.gd), and [hitbox.gd](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/hit_box.gd), which are scripts attached to Area2Ds, similar to exercise 1.
 
+A playground scene that's ouside the main level is used for testing purposes.
+
 **Horizontal movement**
 
 Players can instantaneously move left or right by simply setting their x velocity to their speed times horizontal direction.
@@ -112,6 +120,8 @@ I wanted to give players more control with jumping, where players can either sho
 **Fast Falling & Going Down Platforms**
 
 Holding down enables the player to fast fall, which increases the player's gravity, giving the player even more movement options. This could help the player regenerate their dash, jump sooner, avoid obstacles, and even lead to some combos.
+
+Fast falling leaves a white trail behind the player.
 
 ![fast_fall](https://github.com/user-attachments/assets/250e1ea0-f21a-4cd2-9ce3-9283281fb01c)
 
@@ -149,7 +159,7 @@ Being held makes the player sprite flash yellow, while input mashing makes the p
 
 Given our game is a platformer I had to make sure the dashing felt good but also useful for versus.
 
-In terms of movement I took inspiration from Celeste, one of my most favorite platformers. Dashes last for `dash_time`, where they apply a constant `dash_speed` velocity. Dashes are 8-way, enabling for discrete D-pad-like movement. At the end of the dash, just like Celeste (at least while in the air), the player's velocity is taken away with a damping effect of 0.4. Jason helped with this as I originally planned to set velocity to 0 rather than multiplying it by a damping effect, which feels much nicer, giving the player more air time.
+In terms of movement I took inspiration from Celeste, one of my most favorite platformers. Dashes last for `dash_time`, where they apply a constant `dash_speed` velocity. Dashes are 8-way, enabling for discrete D-pad-like movement. At the end of the dash, just like Celeste (at least while in the air), the player's velocity is taken away with a damping effect of 0.4. Jason helped with this as I originally planned to set velocity to 0 rather than multiplying it by a damping effect, which feels much nicer, giving the player more air time. The dash recharges when touching the ground.
 
 I incorporated versus into the dash by making it so players can stun the other player by dashing into them. If players dash into each other at the same time then both players are stunned.
 
