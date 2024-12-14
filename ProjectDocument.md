@@ -19,7 +19,7 @@ ups to level the playing field such as a speed boost or strength up.
 
 - Producer: [Carlos Huang](https://github.com/cahuang10)
 - Movement and Physics: [Karim Shami](https://github.com/BoiPlex)
-- Game Logic: [Jason Zhou](https://github.com/khromeengine)
+- Game Logic: [Jason Zhou](https://github.com/khromeengine), [itch.io page](https://khromeengine.itch.io)
 - User interface and input: [Patrick Le](https://github.com/patple)
 - Animation and Visuals: [Raghav Bajoria](https://github.com/RaghavsScarletSplendour)
 
