@@ -34,7 +34,7 @@
 
 ![main menu](ExampleImages/mainmenu.png)
 
-The main menu was the first thing I inplemented when doing the UI. The script `menu_manager.gd`
+The main menu was the first thing I implemented when doing the UI. The script `menu_manager.gd`
 organized and manages the whole menu system for our game. In there every menu state is declared as a
 enum and handles key features such as changing and entering between menus. Futhermore an addon was used
 to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to effortlessly
@@ -51,13 +51,13 @@ texture, giving it an animated look.
 
 For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter
 for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu
-The addition of having the players test the movement in the controls menu was both implemented by Jason and Karim.
+The addition of having the players test the movement in the controls menu was both implemented by Jason and Karim. This was done by adding the two players to the scene and adding invisible barriers.
 
 ### Settings Menu
 
 ![volume/setting menu](ExampleImages/volumemenu.png)
 
-This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. This was done via sliders which was
+This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. Jason implemented the sliders which was
 built into godot. The script would adjust the sound accordingly, such as updating the bus volume to the current slider value or muting sound when the
 bslider is at zero.
 
@@ -67,20 +67,24 @@ bslider is at zero.
 
 For the pause menu it was similarity built like the main menu, however it is not managed by the
 `menu_manager.gd`. The 3 buttons that make up the pause menu are resume, restart, and quit. Using
-`paused` boolen that is already in godot I can can make a simple function that pauses the current
+`paused` boolen that is already in godot a function was made that pauses the current
 scene. The pause menu is binded to the escape key so upon pressing it the current screne will be
 paused and the menu will be made visible. If the player chooses to resume the scene will be unpaused
 and the game will continue. For the restart button the game is unpaused and the current scene is
 reloaded thus resetting any progress done. As for the quit, it will take the player back to main
 menu. For the blured background of the pause menu a ColorRect was used with a shader to give the
-blured effect. The whole pause
+blured effect. The whole pause menu scene was added to the autoscrolling camera since the camera which allowed it to be in view of the camera at all times when the player pressed pause.
 
 ### In-Game UI
 
 ![energy player bar](ExampleImages/energybar.png) ![level progression bar](ExampleImages/progressbar.png)
 
 There are two main aspects of the in-game UI. The level progress bar and the player energy bar. Both used functions from the gamestate manager
-to get the current level progression and the player's eneryg. The game state manager was implemented by Jason. Using the [get level progress](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cf6b6518055fa3b0b0419af4be64a5942517d500/space-chase/scripts/game_state_manager.gd#L129)
+to get the current level progression and the player's eneryg. The game state manager was implemented by Jason. Using the [`get_level_progress`](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cf6b6518055fa3b0b0419af4be64a5942517d500/space-chase/scripts/game_state_manager.gd#L129)
+function I was able to display the current's level progress on the bar at the top of the camera. While the energy bar of the player used a similar format of using [`get_player_energy`](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cf6b6518055fa3b0b0419af4be64a5942517d500/space-chase/scripts/game_state_manager.gd#L110)
+from the game state manager to display the current energy of each player. The function simply returns the energy of the player ID passed through. Futhermore
+the player would lose a fixed amout of energy upon death and that lost amount would be given to the other player. To implemente this the [instakill](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cb12d3fa9054d308f30a1e9c84a88861d3687b77/space-chase/scripts/player.gd#L261)
+function inside the `player.gd` was modified so that players who died would have lost energy and the oposing player would have gained some.
 
 ### Controller Input
 
@@ -88,7 +92,18 @@ This was implemented with the assistance of Karim Shami (Movement and Physics). 
 had their own dedicated control list and inputs. Also in the input map settings you could add different devices. This allowed it the game
 differentiate between two controllers.
 
-## Animation and Visuals
+### UI Resources
+
+- [How to make a Scrolling Background in Godot 4](https://www.youtube.com/watch?v=TMeT541OLPA&t=78s)
+- [Make a Pause Menu in Godot in 5 Minutes!](https://www.youtube.com/watch?v=e9-WQg1yMCY)
+- [Godot 4 Main Menu Beginner Tutorial](https://www.youtube.com/watch?v=vsKxB66_ngw)
+
+### Assets used
+
+- [Menu background](https://space-spheremaps.itch.io/pixelart-starfields)
+- [Pevel progression bar and player banner icons](https://mattwalkden.itch.io/free-space-runner-pack)
+- [Player energy bar](https://adwitr.itch.io/pixel-health-bar-asset-pack-2?download)
+- [Parts of the player banner](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar)
 
 ## Animation and Visuals (Raghav Bajoria)
 
