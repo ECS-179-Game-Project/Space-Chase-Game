@@ -79,7 +79,80 @@ Although not exactly a power-up, it behaves like one. When players collect this,
 
 ## Movement and Physics (Karim Shami)
 
-`text here`
+### Collision Masks & Layers
+
+Before implementing the game's physics I started by outlining the collision layers that will govern what collides with what. It's imperative the collision layers are distinct and useful:
+- Layer 1 (Solid ground): All solid ground tiles exist in this layer, which enable players to collide with the level's solid ground/walls. This collision is also used to kill the player if they're found inside solid ground.
+- Layer 2 (Platforms): Platforms exist on their own layer to allow players to conditionally stand on them
+- Layer 3 (Hurtbox): Allows hurtboxes to be detected by hitboxes (killing the player) and grabboxes (grabbing the player)
+- Layer 4 (Hitbox): For hitboxes such as trap tiles, death pits in the level, and the walls of aliens.
+- Layer 5 (Grabbox): Allows grabboxes to be detected by other grabboxes for grab collisions (grab teching)
+- Layer 6 (Impassable by ghosts): Used by the world border to prevent ghost players from exiting the autoscroll camera's frame
+- Layer 7 (Traps): Trap tiles exist in this layer to be detected by hurtboxes to kill the player.
+
+### Player Controller/Physics
+
+Given our game is both a platformer and versus game, we couldn't rely on standard physics conventions. While platformers typically involve acceleration/friction, I made the design choice of not using acceleration/friction. The main benefit of constant velocity is that the movement feels very tight and responsive. Our fast-paced versus platformer needed to have movement that feels responsive but also chaotic. This is achieved by using instantaneous velocity for all movement. It makes for a tense but fun experience for both players to have instant control over movement while having to react to the other player's instant movement, contributing to the chaos. The no acceleration rule doesn't apply to gravity.
+
+I outline each of the player's major movement/physics mechanics, all of which are implemented in `player.gd`
+
+**Horizontal movement**
+Players can instantaneously move left or right by simply setting their x velocity to their speed times horizontal direction.
+
+**Jumping**
+I wanted to give players more control with jumping, where players can either short hop or hold jump. Holding jump reduces the player's gravity, which increases jump height and also enables the player to fall slower if jump is continued to be held. 
+
+**Fast Falling & Going Down Platforms**
+Holding down enables the player to fast fall, which increases the player's gravity, giving the player even more movement options. This could help the player regenerate their dash, jump sooner, avoid obstacles, and even lead to some combos.
+
+**Grabbing**
+Each player can try to grab the other player be temporarily enabling the grabbox. If a grabbox detectes the other player's hurtbbox, then the player holds the other player. However, if a grabbox detets another grabbox, then a grab tech occurs, stunning both players in their opposite directions.
+
+**Holding a Player**
+While the grab button is held, a player can hold the other player for `HOLD_TIME`. During this time the player can move and jump around freely, enabling for devious throw setups. The only restriction is that the player can't dash while holding another player.
+
+**Throwing a Player**
+Releasing the grab button throws the held player. After gameplay testing, I figured it would be better to give the player more throw options. Holding up throws the player up, holding down drops the player in front, holding diagonally up throws the player in that same direction, and holding horizontally throws the player in that direction with less height. Each type of throw is configured based on direction and x and y velocities. If no direction is pressed then the throw defaults to horizontal.
+
+**Being Held by a Player**
+After testing, I found it to be unfair to have no control while being held, so I added input mashing, enabling the held player to escape faster. This is achieved by reducing the hold timer for every input the held player presses. Once the hold timer ends, the held player is released just like a throw where down is being held.
+
+Being held makes the player sprite flash yellow, while input mashing makes the player flash purple.
+
+**Dashing**
+Given our game is a platformer I had to make sure the dashing felt good but also useful for versus.
+
+In terms of movement I took inspiration from Celeste, one of my most favorite platformers. Dashes last for `dash_time`, where they apply a constant `dash_speed` velocity. Dashes are 8-way, enabling for discrete D-pad-like movement. 
+
+I incorporated versus into the dash by making it so players can stun the other player by dashing into them. If players dash into each other at the same time then both players are stunned.
+
+Dashes leave a dash trail behind the player.
+
+**Death**
+As discussed with Jason and the rest of the team, our game felt best with no health system. So the player is instakilled by any hitbox (as detected by hurtbox). I implemented the death mechanic since it's a prerequisite for the player's ghost movement. The player is dead for `RESPAWN_TIME` before spawning in as a ghost.
+
+**Ghost Movement**
+As a ghost, players don't have gravity. Ghosts have 8-way movement, similar to the heart in Undertale. Ghosts don't have collision since the `_disable_interactions` function is called, meaning they can phase through solid ground and can't be killed. The only collision ghosts have is for the world borders (layer 6), as to not let ghosts escape the auto scroll camera's frame. During `GHOST_TIME`, ghosts can freely pick where they want to respawn, giving the players more control and making it more fair. We came to the decision to allow ghosts to dash with no cooldown, allowing ghost players to have faster movement for picking their respawn location. One issue I noticed was that if you try to spawn inside solid ground then you get stuck (since normal players collide with solid ground), so I made it so that the player dies if this occurs.
+
+The ghost sprite blinks to indicate that the player will soon respawn as normal.
+
+**Stunned**
+Players can be in a stunned state from the various interactions (grab teching, dash stunning, throws, etc). This stunned state is initiated by the `_start_knockback` function, which takes in a force (Vector2) and the duration of the stun (float). The force is a Vector2, which decides the stun's direction and magnitudes. It's called force, but in actuality it's a constant velocity applied for the stun duration.
+
+**Other**
+Given I was in-charge of the players' movement/physics, I wanted to make sure that the game logic and animation roles had the proper tools to implement their parts, so I added a bunch of conditional variables that are updated based on player state. These conditional variables play an essential role in updating the player's animation state tree.
+
+### Level Terrain & Other Collisions
+
+The other part of the game's physics is the level terrain itself. I managed this using various tilemap layers:
+
+Tilemap Layers
+- Background: No collision layer. Exists the furthest back and is purely visual.
+- Midground: No collision layer. Exists ontop of the background and is also visual.
+- Solid ground: In the solid ground collision layer (layer 1). Players collide with solid ground tiles. In addition to basic square tiles, I added slope tiles, which have a triangular collision shape, allowing players to run up/down them.
+- Platform tiles: In the platforms collision layer (layer 2). Just like standalone platforms but with tiles. These are used for the bridge tiles so that players can fall down them.
+- Trap tiles: In the traps collision layer (layer 7). Players are instakilled when colliding with trap tiles. This tilemap layer acts as a hitbox but with tiles.
+- Foreground: No collision layer. Exists on top of everything else and is visual.
 
 ## Game Logic (Jason Zhou)
 
@@ -306,7 +379,31 @@ Here is the link to our [press kit](https://deep-spleen-40e.notion.site/Space-Ch
 
 ## Narrative Design (Karim Shami)
 
-`text here`
+We decided on the theme of our game before writing our game's initial plan. We wanted our game to be space-themed, where players fight to escape a planet.
+
+### Intro Cutscene
+
+Intro Narrative: Themed in space, 2 astronauts in spaceships encounter a planet. There is disagreement on who found it first, so they argue about it. The argument escalates into both spaceships ramming into each other, causing an explosion. The spaceships get damaged, causing them to both fall and crash into the aforementioned planet.
+
+I implemented this intro into the game through the intro cutscene. I thought about using a similar scheme to exercise 1's cutscene commands, but I decided against it since it wasn't worth the added complexity, especially since our game's intro isn't directly linked to main game. In a separate scene, I used a single animation player to play the intro cutscene by moving around the necessary sprites and animations, heavily relying on rotation, scale, and transparency. I made sure there was no text in the cutscene, which makes the cutscene's story accessible to more people. The menu can enter the intro cutscene. At the end of the cutscene animation, the game leaves the scene and enters the main game scene. The cutscene can be skipped by pressing the escape key or the start button on controllers.
+
+### In-Game Narrative Elements
+
+In-Game Narrative: The planet is infested with a swarm of hungry alien monsters, so the players must run away from the wall of aliens as they navigate the mysterious planet’s platforming challenges and battle it out to see who can collect enough energy and stay above the curve. The goal is to charge their respective spaceship in the final zone of the level.
+
+I incorporated the in-game narrative by collaborating with Raghav to use space-themed assets and to give the planet an alien feel.
+
+Parallax Scrolling: Given the players are traveling the planet through the use of an auto scroll camera, I replaced the static background with 3 layers parallax background scrolling. This increases the immersion of players as it gives more depth as the backgrounds scroll at different speeds.
+
+Wall of Alien Monsters: Using 3 different aliens (ghost, bat creature, flying eye thing), I created a giant wall that is a hitbox with a vertical world border hitbox. We initially had a static wall of drills chasing the players, but it felt too bland, so I replaced it with a giant swarm of individual monsters. The `wall_of_death.gd` script loops through every monster, allowing each monster to randomly extend outwards to reach the players. Given the randomness element of reaching out, this mechanic makes the wall of death lifelike, almost like a hivemind. Each enemy has an individual hitbox that's able to kill players. To better incorporate the in-game story, when the auto scroll camera stops at the final zone of the level, there's a second wall of alien monsters to the right of the screen. This adds to the narrative as the players now find themselves trapped between 2 walls of alien monsters, leaving them no choice but to gather energy and battle it out as they try to be the first one to charge their ship and escape the planet.
+
+To make the level feel like a mysterious planet, I used vegetation of unnatural colors (orange), rock formations, and pillar structures. These background assets add to the immersion of the planet while also adding mystery. Life exists on the planet (such as alien monsters and orange plants), but what about the abandoned pillars and entrances? The level's terrain is rocky, with pockets of life throughout.
+
+### End Cutscene
+
+End Narrative: The winning player fixes their spaceship and escapes the planet, leaving the other player to die on the planet as it gets internally consumed by the swarm of monsters, exploding and being crushed into nothingness. With a stroke of luck, the losing player is thrown off the planet and its sent into the depths of space with a broken spaceship.
+
+Just like the intro cutscene, the end cutscene is in its own scene. The key difference is that I had to make sure there were two different animations, 1 for each player winning. I decided to implement 3 animation players. 1 animation players regardless, which is the planet exploding and being crushed into nothingness. The other 2 animation players are specific based on which player 1. The winning player's spaceship quickly escapes the planet and gracefully glides through space as the losing player is knocked off the planet and falls into the depths of space. At the end of the cutscene's animation, a menu appears, displaying the player who won and a back button to return to the main menu. The end cutscene is triggered once a player wins (fully charging their spaceship)
 
 ## Audio (Raghav Bajoria)
 
