@@ -53,6 +53,8 @@ This power-up grants the player the ability to shrink in size while gaining the 
 
 #### Speed:
 
+![image](https://github.com/user-attachments/assets/306dc0cf-f420-4978-8aa1-20b22b2e6983)
+
 This power-up increases the player's movement speed.
 
 #### Jump:
