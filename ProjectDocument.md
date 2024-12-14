@@ -72,6 +72,9 @@ This power-up prevents the opponent from grabbing the player. It is a one-time-u
 
 #### Energy:
 
+![image](https://github.com/user-attachments/assets/330b7131-d44a-4ab1-a95d-8957c44c638d)
+
+
 Although not exactly a power-up, it behaves like one. When players collect this, they gain energy points to charge the ship at the end of the game.
 
 ## Movement and Physics (Karim Shami)
