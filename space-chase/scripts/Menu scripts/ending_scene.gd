@@ -4,9 +4,7 @@ extends Control
 const PlayerID = GameStateManager.PlayerID
 
 func _ready():
-	#GameStateManager.player_win.connect(_on_player_win)
 	pass
-#GameStateManager.player_win.connect(_on_player_win)#func _on_player_win(id: GameStateManager.PlayerID):
 
 func quit():
 	get_tree().paused = false

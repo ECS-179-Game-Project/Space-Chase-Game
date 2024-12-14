@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bctcl714fikvk" path="res://scenes/energy_particle_generator.tscn" id="12_ws2q5"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="13_1negu"]
 [ext_resource type="Shader" path="res://shaders/player.gdshader" id="13_4uup1"]
-[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="15_64g0u"]
+[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="15_64g0u"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 [ext_resource type="TileSet" uid="uid://ue1dbukbe1gy" path="res://resources/foreground_tileset.tres" id="16_36jcp"]
 [ext_resource type="TileSet" uid="uid://b3l3d0robsua5" path="res://resources/ground_tileset.tres" id="16_65ouv"]
