@@ -373,6 +373,8 @@ The player character has a wide variety of animations designed to enhance gamepl
 
 These animations, though simple in implementation, contribute to the competitive and high-energy tone of the game. The animations were implemented using a state machine to seamlessly transition between different player actions. Player feedback reported that the animations felt very satisfying.
 
+![image](https://github.com/user-attachments/assets/226d39f0-882c-4753-8223-d046b0372e14)
+
 ### Cutscene Animations
 
 Cutscenes enhance the game's storytelling and immersion with animations such as:
