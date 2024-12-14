@@ -251,7 +251,7 @@ For the pause menu it was similarity built like the main menu, however it is not
 `menu_manager.gd` thus not it's child. The 3 buttons that make up the pause menu are resume, restart, and quit. Using
 `paused` boolen that is already in godot a function was made that pauses the current
 scene. The pause menu is binded to the escape key so upon pressing it the current screne will be
-paused and the menu will be made visible. If the player chooses to resume the scene will be unpaused
+paused and the [menu will be made visible](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/e1394f4026841682ba1f7e9b6818259c7c52892e/space-chase/scripts/Menu%20scripts/pause_menu.gd#L27). If the player chooses to resume the scene will be unpaused
 and the game will continue. For the restart button the game is unpaused and the current scene is
 reloaded thus resetting any progress done. As for the quit, it will take the player back to main
 menu. For the blured background of the pause menu a ColorRect was used with a shader to give the
