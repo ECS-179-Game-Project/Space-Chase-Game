@@ -279,4 +279,4 @@ charging_station = NodePath("../ChargingStation2")
 [node name="EnergyParticleGenerator2" parent="." node_paths=PackedStringArray("charging_station") instance=ExtResource("29_wwr03")]
 material = SubResource("ShaderMaterial_2nx42")
 position = Vector2(47, 107)
-charging_station = NodePath("../ChargingStation2")
+charging_station = NodePath("../ChargingStation")
