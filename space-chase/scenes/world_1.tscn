@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://by8gd8yvk2qlc"]
+[gd_scene load_steps=43 format=4 uid="uid://by8gd8yvk2qlc"]
 
 [ext_resource type="Script" path="res://scripts/autoscroll_camera_controller.gd" id="1_eeylw"]
 [ext_resource type="AudioStream" uid="uid://dmfdj1sc5qlc4" path="res://assets/Audio/DavidKBD - Cosmic Pack 06 - Lunar Rampage-full.ogg" id="1_hpo4n"]
@@ -12,12 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_6v1f6"]
 [ext_resource type="PackedScene" uid="uid://cb65d6ix0yb4" path="res://scenes/level_progress_bar.tscn" id="7_g8m0g"]
 [ext_resource type="PackedScene" uid="uid://bv0pxf3mm1062" path="res://scenes/enemy_wall_of_death.tscn" id="12_3lcki"]
+[ext_resource type="PackedScene" uid="uid://bctcl714fikvk" path="res://scenes/energy_particle_generator.tscn" id="12_ws2q5"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="13_1negu"]
-[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="15_64g0u"]
+[ext_resource type="Shader" path="res://shaders/player.gdshader" id="13_4uup1"]
+[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="15_64g0u"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="15_65r4o"]
 [ext_resource type="TileSet" uid="uid://ue1dbukbe1gy" path="res://resources/foreground_tileset.tres" id="16_36jcp"]
 [ext_resource type="TileSet" uid="uid://b3l3d0robsua5" path="res://resources/ground_tileset.tres" id="16_65ouv"]
 [ext_resource type="TileSet" uid="uid://dam4f3gaq7eir" path="res://resources/background_tileset.tres" id="16_g7e85"]
+[ext_resource type="Script" path="res://scripts/world_particle_container.gd" id="16_n1u4r"]
 [ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="16_t3m13"]
 [ext_resource type="PackedScene" uid="uid://oq7dsvxm3qi7" path="res://scenes/powerups/jump_powerup.tscn" id="17_fgkj1"]
 [ext_resource type="TileSet" uid="uid://bbcpyc81ltcry" path="res://resources/midground_tileset.tres" id="17_pl7j5"]
@@ -43,6 +46,20 @@ normal = Vector2(-1, 0)
 normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0ohnb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ko0xb"]
+shader = ExtResource("13_4uup1")
+shader_parameter/inputColor = Color(1, 0, 0, 1)
+shader_parameter/intensity = 1.0
+shader_parameter/blendOriginal = 1.0
+shader_parameter/tintColor = Color(1, 0.360784, 0.188235, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdnu6"]
+shader = ExtResource("13_4uup1")
+shader_parameter/inputColor = Color(0, 1, 0, 1)
+shader_parameter/intensity = 1.0
+shader_parameter/blendOriginal = 1.0
+shader_parameter/tintColor = Color(0.541176, 1, 0.054902, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p8aqr"]
 normal = Vector2(1, 0)
@@ -185,6 +202,16 @@ offset_bottom = 88.0
 bar_color = Color(0.243958, 0.735512, 0.520569, 1)
 owner_player = 1
 
+[node name="EnergyParticleGenerator" parent="AutoscrollCameraController" node_paths=PackedStringArray("charging_station") instance=ExtResource("12_ws2q5")]
+material = SubResource("ShaderMaterial_ko0xb")
+position = Vector2(-56, 136)
+charging_station = NodePath("../../RedChargingStation")
+
+[node name="EnergyParticleGenerator2" parent="AutoscrollCameraController" node_paths=PackedStringArray("charging_station") instance=ExtResource("12_ws2q5")]
+material = SubResource("ShaderMaterial_hdnu6")
+position = Vector2(34, 137)
+charging_station = NodePath("../../GreenChargingStation")
+
 [node name="FloorOfDeath" type="Area2D" parent="."]
 position = Vector2(0, 121)
 rotation = -1.5708
@@ -208,6 +235,9 @@ position = Vector2(12, 38)
 player_color = Color(0.461862, 1.05888e-06, 2.64719e-07, 1)
 dash_color_gradient = ExtResource("13_1negu")
 respawn_pos = NodePath("../AutoscrollCameraController/CameraRespawnLocation")
+
+[node name="WorldParticleContainer" type="Node" parent="."]
+script = ExtResource("16_n1u4r")
 
 [node name="TilemapLayers" type="Node" parent="."]
 

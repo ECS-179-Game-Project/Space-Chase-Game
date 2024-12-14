@@ -76,6 +76,7 @@ var _stun_timer: Timer # Wait while player is stunned from knockback
 var _respawn_timer: Timer # Wait until player respawns as a ghost
 var _ghost_timer: Timer # Wait until player stops being a ghost
 var _held_target: Node2D = null
+var _death_particles: int
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var main_animation_player: AnimationPlayer = $MainAnimationPlayer
@@ -145,6 +146,7 @@ func _ready() -> void:
 	_ghost_timer.timeout.connect(_stop_ghost)
 	add_child(_ghost_timer)
 	
+	_death_particles = Particles.load_particle("res://scenes/particles/0_player_death.tscn")
 	GameStateManager.player_ready.emit(player_id)
 
 
@@ -270,6 +272,7 @@ func instakill() -> void: # Called by hitbox
 	if is_holding:
 		_release()
 	
+	Particles.spawn_particle_to_world(_death_particles, global_position)
 	PowerupManager._clear_all_buffs(self)
 	_reset_status() # Safety check incase of incorrect statuses
 	
@@ -359,6 +362,7 @@ func _start_ghost() -> void:
 	is_dead = false
 	is_ghost = true
 	is_respawning = true
+	
 	#main_animation_player.play("respawn_as_ghost")
 	
 	global_position = respawn_pos.global_position

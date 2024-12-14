@@ -19,6 +19,7 @@ signal powerup_collected(type: PowerupManager.PowerupType, position: Vector2)
 
 var _hover_time: float = 0.0
 var _original_pos: Vector2
+var _powerup_particles: int
 
 @onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 #@onready var audio_files = {
@@ -34,6 +35,7 @@ var _original_pos: Vector2
 func _init() -> void:
 	set_collision_mask_value(3, true) # Detect hurtboxes (specifically players)
 	area_entered.connect(_on_hurtbox_entered)
+	_powerup_particles = Particles.load_particle("res://scenes/particles/2_powerup_particle.tscn")
 	
 
 func _ready() -> void:
@@ -52,6 +54,7 @@ func _on_hurtbox_entered(hurtbox: Area2D) -> void:
 		if target is Player and (not target.is_held) and (not target.is_ghost):
 			PowerupManager.apply_powerup(type, target, duration)
 			
+			Particles.spawn_particle_to_world(_powerup_particles, global_position)
 			emit_signal("powerup_collected", type, global_position)
 			#var audio_player = AudioStreamPlayer.new()
 			#add_child(audio_player)
