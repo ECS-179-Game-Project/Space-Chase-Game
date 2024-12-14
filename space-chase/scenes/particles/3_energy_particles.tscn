@@ -1,16 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj8qg8ra6bexr"]
+[gd_scene load_steps=6 format=3 uid="uid://dj8qg8ra6bexr"]
 
-[ext_resource type="Shader" path="res://shaders/player.gdshader" id="1_hmymu"]
 [ext_resource type="Texture2D" uid="uid://b6g65w81g6e47" path="res://assets/sprites/Space Runner Assets/Effects/sparkle-effect.png" id="1_j6332"]
 [ext_resource type="Script" path="res://scripts/tracked_particles.gd" id="3_h1lkc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4vjhm"]
-resource_local_to_scene = true
-shader = ExtResource("1_hmymu")
-shader_parameter/inputColor = Color(1, 1, 1, 1)
-shader_parameter/intensity = 1.0
-shader_parameter/blendOriginal = 1.0
-shader_parameter/tintColor = Color(1, 1, 1, 1)
 
 [sub_resource type="Shader" id="Shader_k8xoh"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's ParticleProcessMaterial.
@@ -434,7 +425,7 @@ region = Rect2(96, 0, 16, 16)
 
 [node name="OneShotParticles" type="GPUParticles2D"]
 z_index = -2
-material = SubResource("ShaderMaterial_4vjhm")
+use_parent_material = true
 amount = 20
 process_material = SubResource("ShaderMaterial_6qoak")
 texture = SubResource("AtlasTexture_2ah0c")

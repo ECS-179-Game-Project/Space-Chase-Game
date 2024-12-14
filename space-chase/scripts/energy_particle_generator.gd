@@ -11,7 +11,6 @@ var gen_timer: Timer
 
 func _ready() -> void:
 	_set_distance()
-	_energy_particles.material.set("shader_parameter/inputColor", charging_station.player_color)
 	_energy_particles.emitting = false
 	GameStateManager.final_zone_entered.connect(_on_final_zone_entered)
 	GameStateManager.request_charge.connect(_on_request_charge)
@@ -40,6 +39,8 @@ func _on_request_charge(charger: ChargingStation, id: GameStateManager.PlayerID,
 
 
 func _set_distance():
+	_energy_particles.material.set("shader_parameter/inputColor", charging_station.player_color)
+	_energy_particles.material.set("shader_parameter/tintColor", Color.WHITE)
 	var target = charging_station.particle_target_point
 	target.y += 20
 	_energy_particles.process_material.set("shader_parameter/target", charging_station.global_position)

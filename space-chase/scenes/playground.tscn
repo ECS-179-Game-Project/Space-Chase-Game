@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dcuokery2ipy0"]
+[gd_scene load_steps=38 format=4 uid="uid://dcuokery2ipy0"]
 
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_4bf42"]
 [ext_resource type="Texture2D" uid="uid://qio8qrcblxkf" path="res://assets/sprites/Terrain/stringstar fields/background_1.png" id="2_bkfp7"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://oq7dsvxm3qi7" path="res://scenes/powerups/jump_powerup.tscn" id="27_xaj1a"]
 [ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="28_ixhg3"]
 [ext_resource type="PackedScene" uid="uid://dcn6by0w5pb03" path="res://scenes/powerups/shield_powerup.tscn" id="29_ktlnk"]
+[ext_resource type="Shader" path="res://shaders/player.gdshader" id="29_o4pyr"]
 [ext_resource type="PackedScene" uid="uid://bctcl714fikvk" path="res://scenes/energy_particle_generator.tscn" id="29_wwr03"]
 [ext_resource type="PackedScene" uid="uid://cgn1s0ga0v0p8" path="res://scenes/charging_station.tscn" id="31_lhjxg"]
 
@@ -43,6 +44,20 @@ normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p8aqr"]
 normal = Vector2(1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_elqwn"]
+shader = ExtResource("29_o4pyr")
+shader_parameter/inputColor = Color(1, 0, 0, 1)
+shader_parameter/intensity = 1.0
+shader_parameter/blendOriginal = 1.0
+shader_parameter/tintColor = Color(1, 0.360784, 0.188235, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2nx42"]
+shader = ExtResource("29_o4pyr")
+shader_parameter/inputColor = Color(0, 1, 0, 1)
+shader_parameter/intensity = 1.0
+shader_parameter/blendOriginal = 1.0
+shader_parameter/tintColor = Color(0.541176, 1, 0.054902, 1)
 
 [node name="Playground" type="Node"]
 
@@ -257,9 +272,11 @@ position = Vector2(-223, 13)
 spawn_time = 2.5
 
 [node name="EnergyParticleGenerator" parent="." node_paths=PackedStringArray("charging_station") instance=ExtResource("29_wwr03")]
-position = Vector2(46, 107)
-charging_station = NodePath("../ChargingStation")
+material = SubResource("ShaderMaterial_elqwn")
+position = Vector2(-45, 107)
+charging_station = NodePath("../ChargingStation2")
 
 [node name="EnergyParticleGenerator2" parent="." node_paths=PackedStringArray("charging_station") instance=ExtResource("29_wwr03")]
-position = Vector2(-44, 107)
+material = SubResource("ShaderMaterial_2nx42")
+position = Vector2(47, 107)
 charging_station = NodePath("../ChargingStation2")

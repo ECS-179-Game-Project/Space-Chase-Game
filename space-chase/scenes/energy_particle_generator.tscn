@@ -1,7 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bctcl714fikvk"]
+[gd_scene load_steps=7 format=3 uid="uid://bctcl714fikvk"]
 
 [ext_resource type="Script" path="res://scripts/energy_particle_generator.gd" id="1_o33e0"]
 [ext_resource type="PackedScene" uid="uid://dj8qg8ra6bexr" path="res://scenes/particles/3_energy_particles.tscn" id="2_5n2gw"]
+[ext_resource type="Shader" path="res://shaders/player.gdshader" id="3_b8cfa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4toat"]
+resource_local_to_scene = true
+shader = ExtResource("3_b8cfa")
+shader_parameter/inputColor = Color(1, 1, 1, 1)
+shader_parameter/intensity = 1.0
+shader_parameter/blendOriginal = 0.0
+shader_parameter/tintColor = Color(1, 1, 1, 1)
 
 [sub_resource type="Shader" id="Shader_k8xoh"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's ParticleProcessMaterial.
@@ -423,5 +432,6 @@ shader_parameter/gravity = Vector3(0, -1e-06, 0)
 script = ExtResource("1_o33e0")
 
 [node name="EnergyParticles" parent="." instance=ExtResource("2_5n2gw")]
+material = SubResource("ShaderMaterial_4toat")
 position = Vector2(-23, 0)
 process_material = SubResource("ShaderMaterial_vgifp")
