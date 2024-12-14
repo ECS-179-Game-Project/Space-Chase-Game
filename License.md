@@ -48,10 +48,10 @@ Some of the sounds in this project were created by David McKee (ViRiX) soundclou
 
 ["Space Runner Asset Pack"](https://mattwalkden.itch.io/free-space-runner-pack) used for players by [*MattWalkden*](https://mattwalkden.itch.io/) distributed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed.en). 
 
-["Springstar Fields"](https://trixelized.itch.io/starstring-fields) used for terrain/backgrounds by [*Trixie* (Trixelized)](https://trixelized.itch.io/) distributed under MIT License. Text file containing MIT License copyright information added to original sprite set in "space-chase/assets/sprites/Terrain/springstar fields/License.txt".
+["Springstar Fields"](https://trixelized.itch.io/starstring-fields) used for terrain/backgrounds by [*Trixie* (Trixelized)](https://trixelized.itch.io/) distributed under MIT License. Text file containing MIT License copyright information added to original sprite set in ["space-chase/assets/sprites/Terrain/springstar fields/License.txt"](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/Terrain/stringstar%20fields/License.txt).
 
 ["Free Effect Bullet Impact Explosion 32x32"](https://bdragon1727.itch.io/free-effect-bullet-impact-explosion-32x32) (Unused) by [*BDragon1727*](https://bdragon1727.itch.io/). Licensing information provided in source link.
 
 ["Basic Pixel Heatlth bar and Scroll bar"](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar) (Unused) by [*BDragon1727*](https://bdragon1727.itch.io/). Licensing information provided in source link.
 
-["Health Bar Asset Pack 2"](https://adwitr.itch.io/pixel-health-bar-asset-pack-2) used for energy and charging bars by [*adwitr*](https://adwitr.itch.io/) distributed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)
+["Health Bar Asset Pack 2"](https://adwitr.itch.io/pixel-health-bar-asset-pack-2) used for energy and charging bars by [*adwitr*](https://adwitr.itch.io/) distributed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en).
