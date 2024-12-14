@@ -177,8 +177,6 @@ Dashes leave a dash trail behind the player.
 
 As discussed with Jason and the rest of the team, our game felt best with no health system. So the player is instakilled by any hitbox (as detected by hurtbox). I implemented the death mechanic since it's a prerequisite for the player's ghost movement. The player is dead for `RESPAWN_TIME` before spawning in as a ghost.
 
-The death particles are implemented by Jason.
-
 ![death](https://github.com/user-attachments/assets/b72104c5-ccdd-4e58-838c-dbcfaa1e704b)
 
 **Ghost Movement**
