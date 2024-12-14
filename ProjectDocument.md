@@ -195,17 +195,22 @@ For player energy, it stores each player's energy separated into a Vector2 and h
 For level progress, the game state manager is updated with new values related to level progress when the camera moves forward and contains
 a get function for our progress bar in the HUD.
 
+
 The GameStateManager also contains constants that are used for many of the game's objects, such as the player ID enumeration, player energy capacity,
 and the charging threshold for winning. To allow game objects to easily influence the game state, the manager contains many global signals related to
 energy, players, and level state.
 
-This script was gradually updated throughout our project, with new additions whenever our team needed more access to certain parts of the game state.
+
+This script was gradually updated throughout our project, with new additions whenever our team needed more access to certain parts of the game state. Originally, 
+we didn't have signals in the manager, but I added them to more easily coordinate the rest of the game.
 
 ### Charging Station
 
 The ChargingStation class and object is the win condition for the game. We developed the game fairly linearly, so we didn't get to the ending sequence
-until around the last week of work. Because of this, I developed but never tested the code for the charging station in the beginning. As we got to
-making the ending sequence, I finished the code for the charging station.
+until around the last week of work. Because of this, I developed but never tested the code for the charging station in the beginning. There was a decent
+core idea, and as it turns out, most of the code was functional as it is. As we got to making the ending sequence, I finished the code for the charging station
+by fixing some bugs, changing the charging algorithm from being proportional to constant, and integrating overcharged player energy into the algorithm.
+
 
 A charging station is assigned to a player through an export variable and stores its own charged energy. In hindsight, the role of storing the charged energy
 could have been left to the GameStateManager, but by the time I realized, it was a bit too late to refactor. The charging station is unlocked when the game is in the final zone,
@@ -218,8 +223,16 @@ The camera design that we landed on initially was an autoscrolling pushbox camer
 forward if a player pushes on the boundary. This is done by getting a push line position as a ratio of the viewport width (x) and running checks on an array
 of exported players in process, and obviously, it autoscrolls by moving forward every frame.
 
+
 There were a few simple but important changes to the camera during development. While designing the camera, I noted that we needed consistency for the GameStateManager's
-position variables, so I standardized each position to consider the right border of the viewport. During gameplay testing, I noticed that the screen was too disorienting when platforming back and forth along the push line, so I added a linearly interpolated speedup zone to the camera. This is done similarly to the push line, by getting another line by adding an x to the push line.
+position variables, so I standardized each position to consider the right border of the viewport. During gameplay testing, I noticed that the screen was too disorienting when platforming back and forth along the push line, so I added a linearly interpolated speedup zone to the camera. This is done similarly to the push line, by getting another line by adding a constant x to the push line. The actual mechanism of the speedup zone is that the autoscroll speed is increased by a linear interpolation between 0 and any far enough player's speed, where the weight is a the player's distance between the speedup and push line. In effect, as the player gets closer to the push line, the camera will speed up
+gradually until they reach the push line.
+
+
+A weakness with our camera design is that it really only works to the right. Significant changes would need to be made for it to function in any other direction. To get around
+this, we designed our entire level where we only go right. It's a solution that's employed in many games, but I think we could introduce a much bigger variety of gameplay
+if we could change camera directions, assuming we designed levels around it as well.
+
 
 The camera signals to the GameStateManager whenever it moves, to update game state for our progress bar. After the camera reaches the end zone, it similarly signals
 to the game state to intitialize the end sequence.
@@ -474,19 +487,18 @@ My work on game feel and polish is very varied and range from visuals to physics
    To improve game feel on the visual end:
    - I implemented [particle effects](https://github.com/ECS-179-Game-Project/Space-Chase-Game/tree/main/space-chase/scenes/particles) in a few parts of the game. These include when players die, when a powerup is picked up, when players are charging their stations,
    and when the charging stations are activated to indicate charging zones. For energy charging particles, I edited the [particle shader](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scenes/particles/3_energy_particles.tscn) to be able to target
-   a specific point in space to go to.
+   a specific point in space to go to, since standard Godot particle effects weren't capable of doing that.
    - Intertwined with charging particles, I added the progress bar for the charging stations in the end zone to clarify when players will win.
-   - I wrote [shaders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/shaders/player.gdshader) for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, player characters,
-   - I remade our [player spritesheet](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/player/Astronaut/Astronaut_Spritesheet.png) to be more easily integrated into our animations. In the process, I also redid animations for player actions, adding animations
-   to actions that had previously not had any, and overall making animations slightly smoother.
-   - I reorganized some of the menus to be more even and, in the future, more modifiable.
+   - I wrote [shaders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/shaders/player.gdshader) for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, and player characters.
+   - I remade our [player spritesheet](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/player/Astronaut/Astronaut_Spritesheet.png) to be more easily integrated into our animations. Previously, all of our player animations were split into multiple spritesheets, which made it much harder to animate the player. In the process, I also redid animations for player actions, adding animations to actions that had previously not had any, and overall making animations slightly smoother. This was especially noticeable for the grab, which used to have no animation and only a skew effect on the player.
+   - I reorganized some of the menus to be more even and, in the future, more modifiable, using Godot's control node system.
    
 ### Gameplay Polish
 
    To improve game feel on the gameplay side, I mostly changed the player script:
-   - I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping.
-   - I changed the hold jump gravity change to only apply on the way up.
-   - I changed the player dash so that the player retains some vertical momentum, to keep a sense of speed.
+   - I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping. Really, universally needed for platformers. I'm not playing a platformer without coyote time.
+   - I changed the hold jump gravity change to only apply on the way up. Before this cchange, we could slow fall by holding up, which was not intentional.
+   - I changed the player dash so that the player retains some vertical momentum, to keep a sense of speed. I shamelessly ripped off Celeste's dash mechanics to make the dash feel better.
    - I added terminal velocity to the player, so the player doesn't fall extremely fast when platforming.
    - Karim did a great job, so I didn't really need to tweak anything else.
    
@@ -494,12 +506,12 @@ My work on game feel and polish is very varied and range from visuals to physics
 
 To improve game feel on the audio side:
 
-- I adjusted the volume of most sound effects and music in the game to overall be more balanced.
-- I adjusted the speed of some sound effects like the player jump to fit more with the action.
-- I properly positioned audio streams so they would be mixed better in stereo.
-- I changed the music to loop.
+- I adjusted the volume of most sound effects and music in the game to overall be more balanced. Previously, many of the sound effects were too loud while some others were fine.
+- I adjusted the speed of some sound effects like the player jump to fit more with the action. The player jump sound effect used to be much longer and lower-pitched, which I thought did not feel good for a fast-paced platformer.
+- I properly positioned audio streams so they would be mixed better in stereo. Since most of our audio streams are 2D objects, we used to have issues with audio mixing with improperly placed audio.
+- I changed the music to loop. Previously, if you stayed in the menu or the game levels for too long, the music would stop playing.
 - I implemented the [audio sliders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/Menu%20scripts/volume_slider.gd) in the volume settings.
-- I categorized sound effects and music for Godot's audio server, so they can be adjusted manually by the player in audio settings.
+- I created audio buses and categorized sound effects and music for Godot's audio server, so they can be adjusted manually by the player in audio settings.
 - I [sped up](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/370cffc64f5a3e9fb428805a2edaaad745f5f31d/space-chase/scripts/world_audio.gd#L15) the music in the final area to give more of a sense of urgency.
 
 # Areas to improve
