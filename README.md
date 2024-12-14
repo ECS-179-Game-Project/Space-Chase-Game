@@ -8,7 +8,7 @@ Learn more about our game:
 [Press kit](https://www.notion.so/Space-Chase-156a4264007680478aeacbd30d0a2188)
 
 ## Play the Game
-(links to all playable versions, including web)
+[SPACE CHASE!](https://fruitman.itch.io/space-chase)
 
 ## Credits
 (credits go here)
