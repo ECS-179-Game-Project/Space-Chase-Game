@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cycrxmu37p28g"
+path="res://.godot/imported/End_cutscene.ogg-a8d1628614bf674391ff11faa1611ee2.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Music/End Cutscene/End_cutscene.ogg"
+dest_files=["res://.godot/imported/End_cutscene.ogg-a8d1628614bf674391ff11faa1611ee2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

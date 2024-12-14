@@ -10,6 +10,7 @@ extends Node
 @onready var explosion_sound: AudioStreamPlayer2D = $Planet/Explosion/Explosion
 @onready var red_lazer_sound: AudioStreamPlayer2D = $RedShip/RedFire/LazerRedShip
 @onready var blue_lazer_sound: AudioStreamPlayer2D = $GreenShip/GreenFire/LazerBlueShip
+@onready var quit_sound: AudioStreamPlayer2D = $EndUI/VBoxContainer/quit/Click
 @onready var end_ui: Control = $EndUI
 @onready var label: Label = $EndUI/VBoxContainer/Label
 
@@ -51,6 +52,7 @@ func play_blue_ship_shoot_sound():
 
 
 func _on_quit_pressed() -> void:
+	quit_sound.play()
 	MenuManager.enter_menu()
 
 

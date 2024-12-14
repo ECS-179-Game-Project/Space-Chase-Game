@@ -2,7 +2,8 @@ class_name EnergyGenerator
 extends Node2D
 
 @export var spawn_radius: float = 25.0
-@export var spawn_time: float = 0.25
+@export var spawn_time: float = 5.0
+@export var wait_for_final_zone: bool = false
 
 # Preloaded power-up scene
 var energy_powerup_scene = preload("res://scenes/powerups/energy_gain_powerup.tscn")
@@ -17,7 +18,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if not _in_final_zone:
+	if wait_for_final_zone and (not _in_final_zone):
 		return
 	
 	_cur_time += delta

@@ -30,8 +30,8 @@ enum PlayerID {
 	PLAYER_2,
 }
 
-const CHARGE_PER_SECOND: float = 15
-const WINNING_THRESHOLD: float = 200.0
+const CHARGE_PER_SECOND: float = 10
+const WINNING_THRESHOLD: float = 250.0
 const OVERCHARGE_CAP: float = 100.0
 
 var winning_player: PlayerID = PlayerID.PLAYER_1

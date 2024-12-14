@@ -2,11 +2,12 @@ extends BasePowerup
 
 # Preloaded power-up scenes
 var powerup_scenes = [
-	preload("res://scenes/powerups/energy_gain_powerup.tscn"),
+	#preload("res://scenes/powerups/energy_gain_powerup.tscn"),
 	preload("res://scenes/powerups/get_big_powerup.tscn"),
 	preload("res://scenes/powerups/get_small_powerup.tscn"),
 	preload("res://scenes/powerups/jump_powerup.tscn"),
-	preload("res://scenes/powerups/speed_powerup.tscn")
+	preload("res://scenes/powerups/speed_powerup.tscn"),
+	preload("res://scenes/powerups/shield_powerup.tscn"),
 ]
 
 func _ready() -> void:

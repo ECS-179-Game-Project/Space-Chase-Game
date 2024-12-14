@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://dbtjvvca5w42b"]
+[gd_scene load_steps=116 format=3 uid="uid://dbtjvvca5w42b"]
 
 [ext_resource type="Script" path="res://scripts/end_cutscene.gd" id="1_e5oc0"]
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="2_emcpf"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://shaders/settingscroll.gdshader" id="4_lm82p"]
 [ext_resource type="Texture2D" uid="uid://ccnyil8ka0rxr" path="res://assets/sprites/ships/red_shoot.png" id="5_7w5ib"]
 [ext_resource type="Texture2D" uid="uid://britdfev6wq7a" path="res://assets/sprites/pixelart_starfields/pixelart_starfield_corona.png" id="5_uw8cx"]
+[ext_resource type="AudioStream" uid="uid://dypkdd1kqhee7" path="res://assets/Sound Effects/Game/retroclick.ogg" id="6_c013w"]
 [ext_resource type="Texture2D" uid="uid://dase8c6mjtsvf" path="res://assets/sprites/explosions/Yellow Effect Bullet Impact Explosion 32x32.png" id="6_hh13s"]
 [ext_resource type="FontFile" uid="uid://bkmn2h3knu02d" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="6_uaxh0"]
 [ext_resource type="AudioStream" uid="uid://dwkf25hap323y" path="res://assets/Sound Effects/Cutscene/Laser_Shoot9.ogg" id="7_2u7x8"]
@@ -15,9 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://bwa4h5iso1iaa" path="res://assets/sprites/ships/blue_shoot.png" id="9_u42lm"]
 [ext_resource type="AudioStream" uid="uid://c2u6oi2x7beo0" path="res://assets/Sound Effects/Player/Laser.ogg" id="10_702ev"]
 [ext_resource type="AudioStream" uid="uid://bws6l7641uqq5" path="res://assets/Sound Effects/Cutscene/explosion1.ogg" id="11_xplom"]
-[ext_resource type="AudioStream" uid="uid://dfqssj4kpkb7k" path="res://assets/Music/Cutscene BG/vgm-atmospheric-nebula.mp3" id="12_jdtfw"]
 [ext_resource type="AudioStream" uid="uid://cp0unwki8fal7" path="res://assets/Sound Effects/Cutscene/SpaceshipLand.ogg" id="13_6ylw2"]
 [ext_resource type="AudioStream" uid="uid://dsm55w46oqr7h" path="res://assets/Sound Effects/Cutscene/Spin.ogg" id="14_80l2q"]
+[ext_resource type="AudioStream" uid="uid://cycrxmu37p28g" path="res://assets/Music/End Cutscene/End_cutscene.ogg" id="16_1wwh5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xinh"]
 shader = ExtResource("2_emcpf")
@@ -1331,6 +1332,11 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("6_uaxh0")
 text = "QUIT"
 
+[node name="Click" type="AudioStreamPlayer2D" parent="EndUI/VBoxContainer/quit"]
+stream = ExtResource("6_c013w")
+volume_db = 6.0
+bus = &"SFX"
+
 [node name="CutsceneAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_pjqht")
@@ -1362,7 +1368,6 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_vq826")
 animation = &"no_explode"
 autoplay = "no_explode"
-frame_progress = 0.579763
 
 [node name="Explosion" type="AudioStreamPlayer2D" parent="Planet/Explosion"]
 position = Vector2(0, 72)
@@ -1436,8 +1441,8 @@ position_smoothing_speed = 20.0
 [node name="Audio" type="Node" parent="."]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("12_jdtfw")
-volume_db = 10.0
+stream = ExtResource("16_1wwh5")
+volume_db = -10.0
 
 [node name="Spaceship" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("13_6ylw2")
