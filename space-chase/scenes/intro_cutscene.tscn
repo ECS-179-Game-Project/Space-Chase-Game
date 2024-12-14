@@ -1,6 +1,6 @@
 [gd_scene load_steps=103 format=3 uid="uid://dmoyoyuclhlel"]
 
-[ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_anfho"]
+[ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_anfho"]
 [ext_resource type="Texture2D" uid="uid://c8ijr4ebc7geq" path="res://assets/sprites/backgrounds/space_background.png" id="1_l07oe"]
 [ext_resource type="SpriteFrames" uid="uid://mybu87j2w85x" path="res://resources/red_ship.tres" id="4_vcnkh"]
 [ext_resource type="Texture2D" uid="uid://chanvjysgjltd" path="res://assets/sprites/backgrounds/cool_planets/blue_planet.png" id="5_bcnbw"]

@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="6_1f7ch"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_kixqf"]
 [ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/energy_bar.tscn" id="8_dpu0h"]
-[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="11_6ftgq"]
+[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="11_6ftgq"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="11_ygpoc"]
 [ext_resource type="Script" path="res://scripts/world_particle_container.gd" id="12_7mnuh"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="13_mxlg4"]
