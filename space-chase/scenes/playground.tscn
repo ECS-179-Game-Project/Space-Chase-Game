@@ -13,12 +13,12 @@
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="14_w5fo5"]
 [ext_resource type="Script" path="res://scripts/hit_box.gd" id="16_5xjdl"]
 [ext_resource type="TileSet" uid="uid://ue1dbukbe1gy" path="res://resources/foreground_tileset.tres" id="17_io4nr"]
+[ext_resource type="TileSet" uid="uid://bbcpyc81ltcry" path="res://resources/midground_tileset.tres" id="18_3ditf"]
 [ext_resource type="TileSet" uid="uid://cvtvdfrvydmov" path="res://resources/platform_tileset.tres" id="18_vvnam"]
 [ext_resource type="TileSet" uid="uid://b3l3d0robsua5" path="res://resources/ground_tileset.tres" id="19_dyywv"]
 [ext_resource type="TileSet" uid="uid://mq7nu5sb2j6k" path="res://resources/trap_tileset.tres" id="20_evj8i"]
 [ext_resource type="Texture2D" uid="uid://b8b3hcrmvnhbc" path="res://assets/sprites/ships/red_ship.png" id="20_fwtfd"]
 [ext_resource type="Script" path="res://scripts/trap_layer.gd" id="21_k2dd0"]
-[ext_resource type="TileSet" uid="uid://dam4f3gaq7eir" path="res://resources/background_tileset.tres" id="22_iyu0f"]
 [ext_resource type="PackedScene" uid="uid://brro3m5tumnva" path="res://scenes/platform.tscn" id="24_rwgrt"]
 [ext_resource type="PackedScene" uid="uid://bwhn6h0pahu0k" path="res://scenes/powerups/get_big_powerup.tscn" id="25_s8h6p"]
 [ext_resource type="PackedScene" uid="uid://dd3fxo2cwtjy3" path="res://scenes/powerups/get_small_powerup.tscn" id="26_wthqe"]
@@ -215,7 +215,7 @@ modulate = Color(0.529067, 0.529067, 0.529067, 1)
 z_index = -5
 texture_filter = 3
 tile_map_data = PackedByteArray("AADx/wAAAgAMAAIAABAOAAAAAgAMAAIAAAA=")
-tile_set = ExtResource("22_iyu0f")
+tile_set = ExtResource("18_3ditf")
 
 [node name="Platform" parent="." instance=ExtResource("24_rwgrt")]
 position = Vector2(0, -22)
