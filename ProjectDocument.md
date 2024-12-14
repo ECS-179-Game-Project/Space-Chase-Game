@@ -58,7 +58,7 @@ texture, giving it an animated look.
 
 For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter
 for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu
-The addition of having the players test the movement in the controls menu was both implemented by Jason and Karim. This was done by adding the two players to the scene and adding invisible barriers.
+The addition of having the players test the movement in the controls menu was both implemented by Jason Zho(Game Logic) and Karim Shami (Movement and Physics). This was done by adding the two players to the scene and adding invisible barriers.
 
 ### Settings Menu
 
@@ -96,7 +96,7 @@ function inside the `player.gd` was modified so that players who died would have
 
 ### Input Devices
 
-This was implemented with the assistance of Karim Shami (Movement and Physics). He created a player controls script where each player
+This was implemented with the assistance of Karim. He created a player [controls script](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/7572aeca99ce3adfedc336fae82fce82ea16661b/space-chase/scripts/player_controls.gd#L1) where each player
 had their own dedicated control list and inputs. Also in the input map settings you could add different devices. This allowed it the game
 differentiate between two controllers. As for keyboard the player 1 was WASD was used while having F as grab and G being the dash. While player 2
 used the arrow keys or IJKL if they didn't have arrow keys Comma was used for the grab, period was the dash and slash was for space
