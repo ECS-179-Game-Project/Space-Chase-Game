@@ -1112,7 +1112,7 @@ bus = &"SFX"
 
 [node name="DashRefill" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("11_o1pwm")
-volume_db = 1.5
+volume_db = 2.5
 pitch_scale = 1.84
 bus = &"SFX"
 
