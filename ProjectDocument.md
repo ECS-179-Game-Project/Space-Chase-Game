@@ -40,7 +40,7 @@ There were two aspects of the game that people were not working on: the power-up
 - Lastly, I made the `randomizer_powerup.gd` class. This class was more challenging for me because I was not familiar with animations and the preload function. For the animation, I combined all the sprites we had for the different types of power-ups and created an animation that cycles through the sprites. This is similar to Mario Kart's power-ups, where the power-up shuffles until the player picks it up.
 
 
-## Poweru-ps:
+# Poweru-ps:
 ### GetBig: 
 This power-up grants the player the ability to double in size while gaining a strength boost that allows the player to throw opponents further.
 
