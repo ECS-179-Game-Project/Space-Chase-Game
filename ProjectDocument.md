@@ -405,6 +405,8 @@ These included:
 
 Karim Shami played a key role in helping find and implement assets, ensuring they aligned with the game's fast-paced and competitive aesthetic. Minor modifications were made to some sprites (e.g., grab animation) to better fit the gameplay mechanics.
 
+All assets under [License.md](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/License.md)
+
 ### Challenges
 
 The most challenging part of the process was setting up and fine-tuning the animation state machine, ensuring smooth and logical transitions between different states.
