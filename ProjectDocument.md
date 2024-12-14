@@ -57,7 +57,7 @@ The addition of having the players test the movement in the controls menu was bo
 
 ![volume/setting menu](ExampleImages/volumemenu.png)
 
-This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. This was done via sliders which was
+This menu would lead to the sound setting menu where the player could adjust the master, music and sfx of the game. Jason implemented the sliders which was
 built into godot. The script would adjust the sound accordingly, such as updating the bus volume to the current slider value or muting sound when the
 bslider is at zero.
 
@@ -80,7 +80,11 @@ blured effect. The whole pause
 ![energy player bar](ExampleImages/energybar.png) ![level progression bar](ExampleImages/progressbar.png)
 
 There are two main aspects of the in-game UI. The level progress bar and the player energy bar. Both used functions from the gamestate manager
-to get the current level progression and the player's eneryg. The game state manager was implemented by Jason. Using the [get level progress](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cf6b6518055fa3b0b0419af4be64a5942517d500/space-chase/scripts/game_state_manager.gd#L129)
+to get the current level progression and the player's eneryg. The game state manager was implemented by Jason. Using the [`get_level_progress`](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cf6b6518055fa3b0b0419af4be64a5942517d500/space-chase/scripts/game_state_manager.gd#L129)
+function I was able to display the current's level progress on the bar at the top of the camera. While the energy bar of the player used a similar format of using [`get_player_energy`](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cf6b6518055fa3b0b0419af4be64a5942517d500/space-chase/scripts/game_state_manager.gd#L110)
+from the game state manager to display the current energy of each player. The function simply returns the energy of the player ID passed through. Futhermore
+the player would lose a fixed amout of energy upon death and that lost amount would be given to the other player. To implemente this the [instakill](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cb12d3fa9054d308f30a1e9c84a88861d3687b77/space-chase/scripts/player.gd#L261)
+function inside the `player.gd` was modified so that players who died would have lost energy and the oposing player would have gained some.
 
 ### Controller Input
 
@@ -88,7 +92,18 @@ This was implemented with the assistance of Karim Shami (Movement and Physics). 
 had their own dedicated control list and inputs. Also in the input map settings you could add different devices. This allowed it the game
 differentiate between two controllers.
 
-## Animation and Visuals
+### UI Resources
+
+- [How to make a Scrolling Background in Godot 4](https://www.youtube.com/watch?v=TMeT541OLPA&t=78s)
+- [Make a Pause Menu in Godot in 5 Minutes!](https://www.youtube.com/watch?v=e9-WQg1yMCY)
+- [Godot 4 Main Menu Beginner Tutorial](https://www.youtube.com/watch?v=vsKxB66_ngw)
+
+### Assets used
+
+- [Menu background](https://space-spheremaps.itch.io/pixelart-starfields)
+- [Pevel progression bar and player banner icons](https://mattwalkden.itch.io/free-space-runner-pack)
+- [Player energy bar](https://adwitr.itch.io/pixel-health-bar-asset-pack-2?download)
+- [Parts of the player banner](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar)
 
 ## Animation and Visuals (Raghav Bajoria)
 
