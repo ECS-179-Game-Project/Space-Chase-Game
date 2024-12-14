@@ -483,7 +483,7 @@ My work on game feel and polish is very varied and range from visuals to physics
    - I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping. Really, universally needed for platformers. I'm not playing a platformer without coyote time.
    - I changed the player dash so that the player retains some vertical momentum, to keep a sense of speed. I shamelessly ripped off Celeste's dash mechanics to make the dash feel better.
    - I added terminal velocity to the player, so the player doesn't fall extremely fast when platforming.
-   - Karim did a great job, so I didn't really need to tweak anything else.
+   - Karim did a great job, so I didn't really need to tweak anything else. I did not change player movement to be acceleration based since I want to keep the twitchy, fast-paced game feel. Also I wanted to avoid shenanigans with wavedashing.
    
 ### Audio Polish
 
