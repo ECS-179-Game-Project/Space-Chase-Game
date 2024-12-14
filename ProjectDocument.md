@@ -183,7 +183,7 @@ Tilemap Layers
 - Midground: No collision layer. Exists ontop of the background and is also visual.
 - Solid ground: In the solid ground collision layer (layer 1). Players collide with solid ground tiles. In addition to basic square tiles, I added slope tiles, which have a triangular collision shape, allowing players to run up/down them.
 - Platform tiles: In the platforms collision layer (layer 2). Just like standalone platforms but with tiles. These are used for the bridge tiles so that players can fall down them.
-- Trap tiles: In the traps collision layer (layer 7). Players are instakilled when colliding with trap tiles. This tilemap layer acts as a hitbox but with tiles.
+- Trap tiles: In the traps collision layer (layer 7). Players are instakilled when colliding with trap tiles. A script is used to define it as a `TrapTileMapLayer` type for detection by hurtboxes. This tilemap layer acts as a hitbox but with tiles. 
 - Foreground: No collision layer. Exists on top of everything else and is visual.
 
 ![image](https://github.com/user-attachments/assets/b5cc5319-ce7d-46cf-9569-da3dcf8c9cba)
