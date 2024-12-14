@@ -11,7 +11,7 @@ var dash: String
 var control_list: Array
 
 static var p1_control_list: Array = ["p1_left", "p1_right", "p1_up", "p1_down", "p1_jump", "p1_grab", "p1_dash"]
-static var p2_control_list: Array = ["p2_left", "p2_right", "p2_up", "p2_down", "p1_jump", "p2_grab", "p2_dash"]
+static var p2_control_list: Array = ["p2_left", "p2_right", "p2_up", "p2_down", "p2_jump", "p2_grab", "p2_dash"]
 
 # Maps player id to bool which indicates if up input should also be used as jump input
 static var use_up_as_jump: Dictionary = {
