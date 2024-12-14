@@ -46,7 +46,7 @@ func apply_powerup(type: PowerupType, player: Player, duration: float) -> void:
 				player.scale /= SCALE_MULTIPLIER
 				player.max_dashes += 1
 			PowerupType.ENERGY_GAIN:
-				game_state_manager.add_player_energy(25, player.player_id) # Permanent, no timer needed
+				game_state_manager.add_player_energy(15, player.player_id) # Permanent, no timer needed
 		
 		GameStateManager.powerup_collected.emit(player.player_id)
 		print("Applied powerup: %s to player %s" % [PowerupType.keys()[type], player.player_id + 1])

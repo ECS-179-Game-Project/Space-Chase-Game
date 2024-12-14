@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="6_1f7ch"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_kixqf"]
 [ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/energy_bar.tscn" id="8_dpu0h"]
-[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="11_6ftgq"]
+[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="11_6ftgq"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="11_ygpoc"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="13_mxlg4"]
 [ext_resource type="Gradient" uid="uid://bkumyxfsw02qu" path="res://resources/red_gradient.tres" id="14_w5fo5"]
@@ -19,10 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://b8b3hcrmvnhbc" path="res://assets/sprites/ships/red_ship.png" id="20_fwtfd"]
 [ext_resource type="Script" path="res://scripts/trap_layer.gd" id="21_k2dd0"]
 [ext_resource type="TileSet" uid="uid://dam4f3gaq7eir" path="res://resources/background_tileset.tres" id="22_iyu0f"]
-[ext_resource type="PackedScene" uid="uid://iwoxsd7c60qm" path="res://scenes/powerups/energy_gain_powerup.tscn" id="23_0c4sm"]
 [ext_resource type="PackedScene" uid="uid://brro3m5tumnva" path="res://scenes/platform.tscn" id="24_rwgrt"]
 [ext_resource type="PackedScene" uid="uid://bwhn6h0pahu0k" path="res://scenes/powerups/get_big_powerup.tscn" id="25_s8h6p"]
 [ext_resource type="PackedScene" uid="uid://dd3fxo2cwtjy3" path="res://scenes/powerups/get_small_powerup.tscn" id="26_wthqe"]
+[ext_resource type="PackedScene" uid="uid://cf2tgcgsotxcn" path="res://scenes/powerups/energy_generator.tscn" id="27_x3yrn"]
 [ext_resource type="PackedScene" uid="uid://oq7dsvxm3qi7" path="res://scenes/powerups/jump_powerup.tscn" id="27_xaj1a"]
 [ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="28_ixhg3"]
 [ext_resource type="PackedScene" uid="uid://dcn6by0w5pb03" path="res://scenes/powerups/shield_powerup.tscn" id="29_ktlnk"]
@@ -97,12 +97,12 @@ script = ExtResource("6_1f7ch")
 [node name="PauseMenu" parent="StaticCamera" instance=ExtResource("7_kixqf")]
 visible = false
 
-[node name="BlueChargingBar" parent="StaticCamera" instance=ExtResource("8_dpu0h")]
+[node name="GreenChargingBar" parent="StaticCamera" instance=ExtResource("8_dpu0h")]
 offset_left = 425.0
 offset_top = 88.0
 offset_right = 425.0
 offset_bottom = 88.0
-bar_color = Color(0, 0.447059, 0.839216, 1)
+bar_color = Color(0.243137, 0.737255, 0.521569, 1)
 owner_player = 1
 
 [node name="RedChargingBar" parent="StaticCamera" instance=ExtResource("8_dpu0h")]
@@ -221,22 +221,19 @@ tile_set = ExtResource("22_iyu0f")
 position = Vector2(0, -22)
 
 [node name="SpeedPowerup" parent="." instance=ExtResource("28_ixhg3")]
-position = Vector2(-248, -105)
+position = Vector2(112, -154)
 
 [node name="JumpPowerup" parent="." instance=ExtResource("27_xaj1a")]
-position = Vector2(-213, -102)
+position = Vector2(-102, -152)
 
 [node name="GetSmall" parent="." instance=ExtResource("26_wthqe")]
-position = Vector2(218, -97)
+position = Vector2(-235, -114)
 
 [node name="GetBig" parent="." instance=ExtResource("25_s8h6p")]
-position = Vector2(253, -97)
-
-[node name="EnergyGain" parent="." instance=ExtResource("23_0c4sm")]
-position = Vector2(-231, 14)
+position = Vector2(236, -115)
 
 [node name="ShieldPowerup" parent="." instance=ExtResource("29_ktlnk")]
-position = Vector2(234, -9)
+position = Vector2(1, -151)
 
 [node name="ChargingStation" parent="." node_paths=PackedStringArray("owner_player") instance=ExtResource("31_lhjxg")]
 position = Vector2(220, 66)
@@ -248,3 +245,8 @@ override_chargeability = true
 position = Vector2(159, 66)
 texture = ExtResource("20_fwtfd")
 owner_player = NodePath("../Player1")
+override_chargeability = true
+
+[node name="EnergyGenerator" parent="." instance=ExtResource("27_x3yrn")]
+position = Vector2(-223, 13)
+spawn_time = 2.5
