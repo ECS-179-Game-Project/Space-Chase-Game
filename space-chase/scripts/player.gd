@@ -91,6 +91,7 @@ var _death_particles: int
 @onready var grabbed_sound: AudioStreamPlayer2D = $Audio/Grabbed
 @onready var thrown_sound: AudioStreamPlayer2D = $Audio/Thrown
 
+
 func _ready() -> void:
 	# Signals
 	GameStateManager.player_mashing_while_held.connect(_reduce_hold_timer)
@@ -260,7 +261,8 @@ func _process(_delta: float) -> void:
 
 # -------------------- Public functions --------------------
 
-func instakill() -> void: # Called by hitbox
+# Called by hitbox, the player is instakilled and is now dead
+func instakill() -> void:
 	if is_dead or is_ghost:
 		return
 	
@@ -287,7 +289,8 @@ func instakill() -> void: # Called by hitbox
 	death_sound.play()
 
 
-func hold(target: Node2D) -> void: # Called by grabbox
+# Called by grabbox, the player is now holding another player
+func hold(target: Node2D) -> void:
 	is_grabbing = false
 	is_holding = true
 	is_held = false
@@ -296,14 +299,15 @@ func hold(target: Node2D) -> void: # Called by grabbox
 	target.got_grabbed()
 
 
-func got_grabbed() -> void: # Called by hold function
+# Called by hold(), the player is now being held
+func got_grabbed() -> void:
 	is_held = true
 	is_holding = false
 	
 	grabbed_sound.play()
 
 
-# Called by the thrower player on the thrown player
+# Called by the thrower player on the thrown player. Player is thrown
 func thrown(throw_direction: Vector2, thrower_throw_strength: float) -> void:
 	is_held = false
 	var force_amount: float = 270.0
@@ -319,6 +323,7 @@ func thrown(throw_direction: Vector2, thrower_throw_strength: float) -> void:
 	thrown_sound.play()
 
 
+# Called by the thrower player on the thrown player. Player is released (thrown but holding down)
 func released() -> void:
 	is_held = false
 	var x_force: float = 100
@@ -326,9 +331,8 @@ func released() -> void:
 	_start_knockback(force, 0.2)
 
 
-func grab_tech() -> void: # Called by grabbox
-	# BUG: When grab teching the grabboxes are still enabled. Players are also being thrown instead of just grab teching
-	
+# Called by grabbox, the player is now stunned by a grab tech
+func grab_tech() -> void:
 	# Backwards knockback
 	is_grabbing = false
 	is_holding = false
@@ -339,7 +343,8 @@ func grab_tech() -> void: # Called by grabbox
 	_start_knockback(force, 0.5)
 
 
-func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
+# Called by hurtbox, the player is now stunned by a dash stun
+func dash_stun(direction: Direction.Facing) -> void:
 	_end_dash()
 	var x_force: float = 125.0
 	var x_force_sign: float = Direction.get_sign_factor(direction)
@@ -347,23 +352,24 @@ func dash_stun(direction: Direction.Facing) -> void: # Called by hurtbox
 	_start_knockback(force, 0.3)
 
 
+# Return whether the player can charge their charging station
 func can_charge() -> bool:
 	return (not is_held) and (not is_ghost)
 
 
 # -------------------- Private functions --------------------
 
+# Play powerup collect sound
 func _on_powerup_collected(collector_player_id: GameStateManager.PlayerID) -> void:
 	if collector_player_id == player_id:
 		status_animation_player.play("collect_powerup")
 
 
+# Player is now a ghost
 func _start_ghost() -> void:
 	is_dead = false
 	is_ghost = true
 	is_respawning = true
-	
-	#main_animation_player.play("respawn_as_ghost")
 	
 	global_position = respawn_pos.global_position
 	_ghost_timer.start(GHOST_TIME)
@@ -373,10 +379,10 @@ func _start_ghost() -> void:
 	#respawn_sound.seek(2.0)
 
 
+# Player is no longer a ghost and is back to normal
 func _stop_ghost() -> void: # Respawn as normal player
 	is_ghost = false
 	is_respawning = true
-	#main_animation_player.play("respawn_as_normal")
 	
 	_enable_interactions()
 	
@@ -386,6 +392,7 @@ func _stop_ghost() -> void: # Respawn as normal player
 		return
 
 
+# Function that handels ghost movement
 func _move_as_ghost(delta: float) -> void:
 	# Ghost 8-way movement
 	if not is_dashing:
@@ -400,7 +407,7 @@ func _move_as_ghost(delta: float) -> void:
 	move_and_slide()
 
 
-# Used to apply knockback (during which the player is stunned)
+# Used to apply stun/knockback (during which the player is stunned)
 func _start_knockback(force: Vector2, stun_time: float) -> void:	
 	is_stunned = true
 	
@@ -409,11 +416,12 @@ func _start_knockback(force: Vector2, stun_time: float) -> void:
 	_stun_timer.start(stun_time)
 
 
+# Stop the stun/knockback
 func _stop_knockback():
 	is_stunned = false
-	#main_animation_player.stop() # Stop knockback animation
 
 
+# Start a jump
 func _start_jump() -> void:
 	velocity.y = -jump_force
 	_coyote_timer.stop()
@@ -421,30 +429,34 @@ func _start_jump() -> void:
 	jump_sound.play()
 
 
+# Start a grab
 func _start_grab() -> void:
 	is_grabbing = true
-	#main_animation_player.play("grab") # Temporarily enables grabbox
 	# Grab logic handled by grabbox
 	# At the end of the grab, the grab animation calls _stop_grab()
 
 
+# Stop a grab
 func _stop_grab() -> void: # Called at the end of teh grab animation
 	is_grabbing = false
 
 
-func _throw(_high_throw: bool = false) -> void: # Held target is thrown ahead
+# The holding player throws the held player based on directional input
+func _throw(_high_throw: bool = false) -> void:
 	is_holding = false
 	_held_target.thrown(_get_action_dir(_dir), throw_strength)
 	_held_target = null
 	#main_animation_player.stop() # Stop held animation
 
 
-func _release() -> void: # Held target is released from the grab
+# The holding player releases the held player
+func _release() -> void:
 	is_holding = false
 	_held_target.released()
 	_held_target = null
 
 
+# Move the held player so they stay ontop of the holding player
 func _move_held_target() -> void:
 	_held_target.global_position = global_position + Vector2(0, -HELD_POS_HEIGHT)
 	if velocity.x > 0.0:
@@ -454,6 +466,7 @@ func _move_held_target() -> void:
 	Direction.flip_horizontal(_held_target, facing)
 
 
+# Reduce the hold timer, called by the held player mashing inputs
 func _reduce_hold_timer() -> void:
 	if _hold_timer.is_stopped() or is_zero_approx(_hold_timer.time_left):
 		return
@@ -484,6 +497,7 @@ func _end_dash() -> void:
 		# Dash refill sound goes here
 
 
+# Refill the dash (when touching the ground)
 func _refill_dash() -> void:
 	var prev_dashes = dashes
 	dashes = max_dashes
@@ -493,6 +507,7 @@ func _refill_dash() -> void:
 		dash_refill_sound.play()
 
 
+# Update the z-index ordering of the player
 func _handle_ordering() -> void:
 	if is_ghost:
 		z_index = 2
@@ -502,13 +517,13 @@ func _handle_ordering() -> void:
 		z_index = 0
 
 
+# Update the player when they look left/right
 func _handle_facing() -> void:
 	if velocity.x > 0.0:
 		facing = Direction.Facing.RIGHT
 	elif velocity.x < 0.0:
 		facing = Direction.Facing.LEFT
 	Direction.flip_horizontal(self, facing)
-
 
 
 func _is_in_normal_state() -> bool:
@@ -519,7 +534,8 @@ func _can_move() -> bool:
 	return (not is_dashing) and (not is_held) and (not is_stunned)
 
 
-func _get_action_dir(dir: Vector2) -> Vector2: # For dashes and throws
+# Used by dashes and throws to get directional input
+func _get_action_dir(dir: Vector2) -> Vector2:
 	if dir == Vector2.ZERO:
 		var default_dir_x: float
 		if facing == Direction.Facing.RIGHT:
@@ -531,6 +547,7 @@ func _get_action_dir(dir: Vector2) -> Vector2: # For dashes and throws
 		return dir
 
 
+# Used when going from ghost to normal
 func _enable_interactions() -> void:
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(2, true)
@@ -540,6 +557,7 @@ func _enable_interactions() -> void:
 			child.set_deferred("monitoring", true)
 
 
+# Used when going from dead to ghost
 func _disable_interactions() -> void:
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(2, false)
