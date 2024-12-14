@@ -152,7 +152,7 @@ differentiate between two controllers.
 - A number of players also commented about player and visablitly. Such as indecators for when the player
   respawn is going to happen, when the ships are fully charged, and a change of one of the player's color.
 
-###
+### Adjustments after feedback
 
 `text here`
 
