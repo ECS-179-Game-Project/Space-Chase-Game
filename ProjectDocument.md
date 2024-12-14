@@ -101,7 +101,7 @@ I outline each of the player's major movement/physics mechanics, all of which ar
 Players can instantaneously move left or right by simply setting their x velocity to their speed times horizontal direction.
 
 **Jumping**
-I wanted to give players more control with jumping, where players can either short hop or hold jump. Holding jump reduces the player's gravity, which increases jump height and also enables the player to fall slower if jump is continued to be held. Short hops can be even shorter if combined with the fast falling mechanic.
+I wanted to give players more control with jumping, where players can either short hop, hold jump, or anything in-between. Holding jump reduces the player's gravity, which increases jump height and also enables the player to fall slower if jump is continued to be held. Short hops can be even shorter if combined with the fast falling mechanic.
 
 **Fast Falling & Going Down Platforms**
 Holding down enables the player to fast fall, which increases the player's gravity, giving the player even more movement options. This could help the player regenerate their dash, jump sooner, avoid obstacles, and even lead to some combos.
