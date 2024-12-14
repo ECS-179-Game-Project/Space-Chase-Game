@@ -2,11 +2,18 @@
 
 ## Summary
 
-Space Chase is a two player racing game with platforming elements. This game takes inspiration from [Celeste](https://store.steampowered.com/app/504230/Celeste/), [SpeedRunners](https://store.steampowered.com/app/207140/SpeedRunners/), and [Super Smash Bros](https://www.smashbros.com/en_US/). Players have to race against each other to reach their ship first, however they would need to collect energy on the way to full charge their ship to win. A unique asspect is that the player can sabatoge their opponent such as throwing them off the platforms or into spikes. Players can also dash, which can be utlilized both for movement and offensive ability (stunning the player).
+Space Chase is a two player racing game with platforming elements. This game takes inspiration from
+[Celeste](https://store.steampowered.com/app/504230/Celeste/),
+[SpeedRunners](https://store.steampowered.com/app/207140/SpeedRunners/), and [Super Smash Bros](https://www.smashbros.com/en_US/). Players have to race against each other to reach their ship first, however they would need to collect energy on the way to full charge their ship to win. A unique asspect is that the player can sabatoge their opponent such as throwing them off the platforms or into spikes. Players can also dash, which can be utlilized both for movement and offensive ability (stunning the player).
 
 ## Gameplay Explanation
 
-The main goal of the game is to reach your ship while collecting as much energy as possible to refuel it. However you will be competeing against an opposing player. Mechanics such as grabbing and throwing are at your disposal to gain the upperhand against your opponent. Movement is also a huge part of this game and serves are a core gameplay mechnaic. Borrowing the omnidirectional dash from Celeste it servers as an extra tool for the player to traverse the deadly level and out run their opponent. There are also power ups to level the playing field.
+The main goal of the game is to reach your ship while collecting as much energy as possible to refuel it.
+However you will be competeing against an opposing player. Mechanics such as grabbing and throwing are at
+your disposal to gain the upperhand against your opponent. Movement is also a huge part of this game and
+serves are a core gameplay mechnaic. Borrowing the omnidirectional dash from Celeste it servers as an
+extra tool for the player to traverse the deadly level and out run their opponent. There are also power
+ups to level the playing field such as a speed boost or strength up.
 
 # Main Roles
 
@@ -159,3 +166,15 @@ differentiate between two controllers.
 ## Game Feel & Polish (Jason Zhou)
 
 `text here`
+
+# Areas to improve
+
+## UI and Input
+
+- The controller support still needs more work. The main issue is that the if there is only one controller
+  then that controller is assigned to player 1. This could lead to accessibility issues if player 1 wants to play on
+  keyboard and player 2 wants to play on controller.
+- Another thing we could have done was having customizable player inputs since in the current build the player controls
+  are fixed and the only way to change them is through the project settings in godot
+- Also adding network multiplayer would have been a nice thing to add as well since godot does
+  have some support with online multiplayer.

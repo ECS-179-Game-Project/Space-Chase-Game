@@ -23,7 +23,7 @@
 4. "Lazer_Shoot9.ogg" by by [Damaged Panda](https://opengameart.org/users/damaged-panda) Free to use under attribution terms at https://opengameart.org/content/100-plus-game-sound-effects-wavoggm4a
 5. "Spin.ogg" by [AstroMenace Artwork ver 1.2 Assets Copyright (c) 2006-2007 Michael Kurinnoy, Viewizard](http://www.viewizard.com/download.php?forceos=source) at https://opengameart.org/content/space-battle-game-sounds-astromenace
 6. "SpaceshipLand.ogg" by [AstroMenace Artwork ver 1.2 Assets Copyright (c) 2006-2007 Michael Kurinnoy, Viewizard](http://www.viewizard.com/download.php?forceos=source) at https://opengameart.org/content/space-battle-game-sounds-astromenace
-7. "End_cutscene.ogg" 
+7. "End_cutscene.ogg" by [DavidKBD](https://davidkbd.itch.io/cosmic-journey-space-themed-music-pack) Free to use under attribution terms at https://creativecommons.org/licenses/by/4.0/
 
 ## Menu 
 
