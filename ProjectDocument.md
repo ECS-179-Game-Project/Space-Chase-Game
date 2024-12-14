@@ -51,7 +51,7 @@ texture, giving it an animated look.
 
 For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter
 for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu
-The addition of having the players test the movement in the controls menu was Jason's idea and he implemented it.
+The addition of having the players test the movement in the controls menu was both implemented by Jason and Karim.
 
 ### Settings Menu
 
@@ -79,11 +79,8 @@ blured effect. The whole pause
 
 ![energy player bar](ExampleImages/energybar.png) ![level progression bar](ExampleImages/progressbar.png)
 
-There are two main aspects of the in-game UI. The level progress bar and the player energy bar. The level progress bar was made with godot's built in progress bar node. The script of this scene uses functions from the
-`game_state_manager.gd` specifically the get level progress function. As for the energy bar of each player
-the `game_state_manager.gd` was also used to tell the player's current energy
-and which bar belonged to who. Being a fixed camera game all these UI elements had to be placed within the autoscroller
-camera so it would stay in view of the camera.
+There are two main aspects of the in-game UI. The level progress bar and the player energy bar. Both used functions from the gamestate manager
+to get the current level progression and the player's eneryg. The game state manager was implemented by Jason. Using the [get level progress](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cf6b6518055fa3b0b0419af4be64a5942517d500/space-chase/scripts/game_state_manager.gd#L129)
 
 ### Controller Input
 
