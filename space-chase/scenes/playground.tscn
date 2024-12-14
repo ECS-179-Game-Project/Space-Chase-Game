@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dcuokery2ipy0"]
+[gd_scene load_steps=35 format=4 uid="uid://dcuokery2ipy0"]
 
 [ext_resource type="Texture2D" uid="uid://bmdsiidh73slg" path="res://assets/sprites/Terrain/stringstar fields/background_0.png" id="1_4bf42"]
 [ext_resource type="Texture2D" uid="uid://qio8qrcblxkf" path="res://assets/sprites/Terrain/stringstar fields/background_1.png" id="2_bkfp7"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/world_audio.gd" id="6_1f7ch"]
 [ext_resource type="PackedScene" uid="uid://cgj22fj2tp1re" path="res://scenes/menus/pause_menu.tscn" id="7_kixqf"]
 [ext_resource type="PackedScene" uid="uid://csp6dyan08ll8" path="res://scenes/energy_bar.tscn" id="8_dpu0h"]
-[ext_resource type="Gradient" uid="uid://cxex3j6yqn5g8" path="res://resources/green_gradient.tres" id="11_6ftgq"]
+[ext_resource type="Gradient" path="res://resources/green_gradient.tres" id="11_6ftgq"]
 [ext_resource type="PackedScene" uid="uid://bkhtaki0c3a6t" path="res://scenes/player_banner.tscn" id="11_ygpoc"]
 [ext_resource type="Script" path="res://scripts/world_particle_container.gd" id="12_7mnuh"]
 [ext_resource type="PackedScene" uid="uid://bw5cb5fe23aa3" path="res://scenes/player.tscn" id="13_mxlg4"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://oq7dsvxm3qi7" path="res://scenes/powerups/jump_powerup.tscn" id="27_xaj1a"]
 [ext_resource type="PackedScene" uid="uid://dvhv8irckacv4" path="res://scenes/powerups/speed_powerup.tscn" id="28_ixhg3"]
 [ext_resource type="PackedScene" uid="uid://dcn6by0w5pb03" path="res://scenes/powerups/shield_powerup.tscn" id="29_ktlnk"]
+[ext_resource type="PackedScene" uid="uid://bctcl714fikvk" path="res://scenes/energy_particle_generator.tscn" id="29_wwr03"]
 [ext_resource type="PackedScene" uid="uid://cgn1s0ga0v0p8" path="res://scenes/charging_station.tscn" id="31_lhjxg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xdxvo"]
@@ -255,3 +256,10 @@ override_chargeability = true
 position = Vector2(-223, 13)
 spawn_time = 2.5
 
+[node name="EnergyParticleGenerator" parent="." node_paths=PackedStringArray("charging_station") instance=ExtResource("29_wwr03")]
+position = Vector2(46, 107)
+charging_station = NodePath("../ChargingStation")
+
+[node name="EnergyParticleGenerator2" parent="." node_paths=PackedStringArray("charging_station") instance=ExtResource("29_wwr03")]
+position = Vector2(-44, 107)
+charging_station = NodePath("../ChargingStation2")

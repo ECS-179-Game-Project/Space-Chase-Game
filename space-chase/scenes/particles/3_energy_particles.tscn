@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/tracked_particles.gd" id="3_h1lkc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4vjhm"]
+resource_local_to_scene = true
 shader = ExtResource("1_hmymu")
 shader_parameter/inputColor = Color(1, 1, 1, 1)
 shader_parameter/intensity = 1.0
@@ -334,7 +335,7 @@ void process() {
 		if (distance(pos, target) - target_attraction_radius > 0.0) {
 			VELOCITY += force * DELTA;
 		} else {
-			VELOCITY = mix(VELOCITY, target - pos, 0.2);
+			VELOCITY = mix(VELOCITY, 4.0 * (target - pos), 0.4);
 		}
 		
 		
@@ -384,17 +385,18 @@ void process() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6qoak"]
+resource_local_to_scene = true
 shader = SubResource("Shader_k8xoh")
-shader_parameter/target = Vector3(80, -200, 0)
-shader_parameter/target_attraction_radius = 120.095
+shader_parameter/target = Vector3(300, -20, 0)
+shader_parameter/target_attraction_radius = 60.0
 shader_parameter/direction = Vector3(0, 0, 0)
 shader_parameter/spread = 25.0
 shader_parameter/flatness = 0.0
 shader_parameter/inherit_emitter_velocity_ratio = 0.0
 shader_parameter/initial_linear_velocity_min = 0.0
 shader_parameter/initial_linear_velocity_max = 0.0
-shader_parameter/directional_velocity_min = 1.0
-shader_parameter/directional_velocity_max = 1.0
+shader_parameter/directional_velocity_min = 0.0
+shader_parameter/directional_velocity_max = 0.0
 shader_parameter/angular_velocity_min = 0.0
 shader_parameter/angular_velocity_max = 0.0
 shader_parameter/orbit_velocity_min = 0.0
@@ -431,9 +433,10 @@ atlas = ExtResource("1_j6332")
 region = Rect2(96, 0, 16, 16)
 
 [node name="OneShotParticles" type="GPUParticles2D"]
+z_index = -2
 material = SubResource("ShaderMaterial_4vjhm")
-amount = 15
+amount = 20
 process_material = SubResource("ShaderMaterial_6qoak")
 texture = SubResource("AtlasTexture_2ah0c")
-randomness = 0.31
+fixed_fps = 90
 script = ExtResource("3_h1lkc")

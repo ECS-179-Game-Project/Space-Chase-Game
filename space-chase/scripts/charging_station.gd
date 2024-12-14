@@ -20,7 +20,7 @@ var _charge_zone_particles: GPUParticles2D
 
 @onready var charge_bar = $ChargeBar
 @onready var charge_progress_bar = $ChargeBar/ProgressBar
-
+@onready var particle_target_point: Vector2 = $ParticleTargetPoint.global_position
 
 func _ready() -> void:
 	charge_ok = false

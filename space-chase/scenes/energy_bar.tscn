@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://csp6dyan08ll8"]
+[gd_scene load_steps=6 format=3 uid="uid://csp6dyan08ll8"]
 
 [ext_resource type="Texture2D" uid="uid://t4rq3mr68b3k" path="res://assets/sprites/Health Bar Asset Pack 2 by Adwit Rahman/rpg (2).png" id="1_832xr"]
 [ext_resource type="Script" path="res://scripts/energy_bar.gd" id="1_tx75j"]
-[ext_resource type="PackedScene" uid="uid://dj8qg8ra6bexr" path="res://scenes/particles/3_energy_particles.tscn" id="3_kf18m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmfip"]
 resource_local_to_scene = true
@@ -65,5 +64,3 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_cbpxi")
 min_value = 100.0
 value = 100.0
 show_percentage = false
-
-[node name="OneShotParticles" parent="." instance=ExtResource("3_kf18m")]

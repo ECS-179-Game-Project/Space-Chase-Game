@@ -153,3 +153,5 @@ value = 50.0
 show_percentage = false
 script = ExtResource("5_xkl18")
 metadata/_edit_use_anchors_ = true
+
+[node name="ParticleTargetPoint" type="Node2D" parent="."]
