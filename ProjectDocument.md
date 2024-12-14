@@ -33,7 +33,7 @@ ups to level the playing field such as a speed boost or strength up.
 
 ## Game Logic (Jason Zhou)
 
-   ![The core game design document from the initial plan.](ExampleImages/core_game_design.png)
+   ![The core game design document from the initial plan.](ExampleImages/core_gameplay_design.png)
 
 
    As the head of Game Logic, I was in charge of implementing various systems overseeing game states and data and other 
