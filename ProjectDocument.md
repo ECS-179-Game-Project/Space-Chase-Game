@@ -34,7 +34,7 @@
 
 ![main menu](ExampleImages/mainmenu.png)
 
-The main menu was the first thing I inplemented when doing the UI. The script `menu_manager.gd`
+The main menu was the first thing I implemented when doing the UI. The script `menu_manager.gd`
 organized and manages the whole menu system for our game. In there every menu state is declared as a
 enum and handles key features such as changing and entering between menus. Futhermore an addon was used
 to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to effortlessly
