@@ -66,7 +66,9 @@ This power-up boosts jump height and distance.
 
 #### Shield:
 
-This power-up prevents the opponent from grabbing the player. It is a one-time-use power-up.
+![Recording2024-12-13223635-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c2787735-cf8f-48c6-b4c0-538ea5dee2bd)
+
+This power-up prevents the opponent from grabbing the player. It is a one-time-use power-up. Finally, it creates an vortex-like aura around the player. This was made using CUPparticles2d with a texture `effect_4.png`.
 
 #### Energy:
 
