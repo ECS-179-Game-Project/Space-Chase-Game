@@ -125,7 +125,19 @@ used the arrow keys or IJKL if they didn't have arrow keys Comma was used for th
 
 ## Press Kit and Trailer (Carlos Huang)
 
-`text here`
+## Trailer
+I made a trailer using DaVinci Resolve. I came up with interesting text to describe what was happening during the trailer.
+I recorded many trial gameplays with a friend so the audience could get a sense of what the game is about.
+I looked for interesting audio I could use as background music and ensured that we had the rights to use it.
+
+Here is the link to our [trailer](https://youtu.be/sAVLEPqOCx0)
+
+## Press Kit
+
+For the press kit, I decided to create it using Notion. I like its easy-to-use interface. I created a logo for our game along with a slogan. I added some important details about our game. I also took screenshots of parts of our map that I felt were important to include in the press kit.
+
+Here is the link to our [press kit](https://deep-spleen-40e.notion.site/Space-Chase-156a4264007680478aeacbd30d0a2188?pvs=4)
+
 
 ## Narrative Design (Karim Shami)
 
