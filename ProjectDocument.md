@@ -67,7 +67,7 @@ bslider is at zero.
 
 For the pause menu it was similarity built like the main menu, however it is not managed by the
 `menu_manager.gd`. The 3 buttons that make up the pause menu are resume, restart, and quit. Using
-`paused` boolen that is already in godot I can can make a simple function that pauses the current
+`paused` boolen that is already in godot a function was made that pauses the current
 scene. The pause menu is binded to the escape key so upon pressing it the current screne will be
 paused and the menu will be made visible. If the player chooses to resume the scene will be unpaused
 and the game will continue. For the restart button the game is unpaused and the current scene is
