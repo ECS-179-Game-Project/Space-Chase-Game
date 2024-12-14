@@ -145,7 +145,7 @@ While the grab button is held, a player can hold the other player for `HOLD_TIME
 
 **Throwing a Player**
 
-Releasing the grab button throws the held player. If the grab button is tapped (quickly pressed and released), then the throw is done instantly out of grab. After gameplay testing, I figured it would be better to give the player more throw options. Holding up throws the player up, holding down drops the player in front, holding diagonally up throws the player in that same direction, and holding horizontally throws the player in that direction with less height. Each type of throw is configured based on direction and x and y velocities. If no direction is pressed then the throw defaults to horizontal. 
+Releasing the grab button throws the held player. If the grab button is tapped (quickly pressed and released), then the throw is done instantly out of grab. After gameplay testing, I figured it would be better to give the player more throw options. Holding up throws the player up, holding down drops the player in front (grab release), holding diagonally up throws the player in that same direction, and holding horizontally throws the player in that direction with less height. Each type of throw is configured based on direction and x and y velocities. If no direction is pressed then the throw defaults to horizontal. 
 
 ![throwing](https://github.com/user-attachments/assets/82f2890e-50a4-4df2-bdd3-5468778c027d)
 
@@ -192,6 +192,12 @@ The ghost sprite blinks to indicate that the player will soon respawn as normal.
 Players can be in a stunned state from the various interactions (grab teching, dash stunning, throws, etc). This stunned state is initiated by the `_start_knockback` function, which takes in a force (Vector2) and the duration of the stun (float). The force is a Vector2, which decides the stun's direction and magnitudes. It's called force, but in actuality it's a constant velocity applied for the stun duration.
 
 **Other**
+
+I wanted to make sure the player has a variety of movement options, including combos. Here are a few combos:
+- Up throw into jump and dash up
+- Diagonal down dash into grab
+- Side throw into side dash
+- Grab release into grab
 
 Given I was in-charge of the players' movement/physics, I wanted to make sure that everyone had the proper tools to implement their parts, so I added a bunch of conditional variables that are updated based on player state. For example, these conditional variables played an essential role in updating the player's animation state tree.
 
