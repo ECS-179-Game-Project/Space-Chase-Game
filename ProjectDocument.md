@@ -226,7 +226,7 @@ to the game state to intitialize the end sequence.
 
 ![main menu](ExampleImages/mainmenu.png)
 
-Karim and I implemented the `menu_manager.gd` script which
+Karim Shami (Movement and Physics) and I implemented the `menu_manager.gd` script which
 organized and manages the whole menu system for our game. In there every menu state is declared as a enum and handles key features such as changing and entering between menus. Futhermore an addon was used to manage the multiple menu scenes. Helpful functions such as `change_scene` allowed us to move between menu states while also adding animated transitions. Most of the menus used are children of the menu manager. So `@onready var menu_manager: MenuManager = $".."` was very usful accessing functions within menu manager when changing menus. The structure of each menu scene has similar formatting with each other. Being some form of vbox container with a set of buttons, each withtheir own signal controlled by a script for that scene. Within each menu, besides the start and quit,
 there is a "back" button which takes the player to last previous menu. Also each menu has an animated background, this was done by using a TextureRect and creating a shader to automatically scroll the texture, giving it an animated look.
 
@@ -234,7 +234,7 @@ there is a "back" button which takes the player to last previous menu. Also each
 
 ![volume/setting menu](ExampleImages/controlsmenu.png)
 
-For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu. The addition of having the players test the movement in the controls menu was both implemented by Jason Zho(Game Logic) and Karim Shami (Movement and Physics). This was done by adding the two players to the scene and adding invisible barriers.
+For the controls menu it has all the keybinds for each player as well as the controller inputs. All the spirtes were contained in a Hbox conainter for easier editing and formatting. The only button that was in the controls menu was back which allowed the player to go to the main menu. The addition of having the players test the movement in the controls menu was both implemented by Jason Zho(Game Logic) and Karim. This was done by adding the two players to the scene and adding invisible barriers.
 
 ### Settings Menu
 
