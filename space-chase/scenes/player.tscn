@@ -9,7 +9,7 @@
 [ext_resource type="Shader" path="res://shaders/player.gdshader" id="4_myf1c"]
 [ext_resource type="AudioStream" uid="uid://bfubov0twa536" path="res://assets/Sound Effects/Player/Jump2.ogg" id="6_jxy51"]
 [ext_resource type="Texture2D" uid="uid://bujxcwxq0nx05" path="res://assets/sprites/player/Astronaut/Astronaut_Spritesheet.png" id="8_5apvt"]
-[ext_resource type="AudioStream" uid="uid://deg5el5u4gxl6" path="res://assets/Sound Effects/Player/dashsfx.mp3" id="11_yfyci"]
+[ext_resource type="AudioStream" uid="uid://c0orn6rvbtuvq" path="res://assets/Sound Effects/Player/dashrecharge.mp3" id="11_o1pwm"]
 [ext_resource type="Script" path="res://scenes/powerups/powerup_label.gd" id="12_k2a54"]
 [ext_resource type="AudioStream" uid="uid://crmrg7y601pdi" path="res://assets/Sound Effects/Player/death.ogg" id="12_q7dcy"]
 [ext_resource type="AudioStream" uid="uid://dxcs5qc5cibuw" path="res://assets/Sound Effects/Player/dash.ogg" id="13_voy3d"]
@@ -1111,9 +1111,9 @@ volume_db = -8.0
 bus = &"SFX"
 
 [node name="DashRefill" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("11_yfyci")
-volume_db = 3.0
-pitch_scale = 1.5
+stream = ExtResource("11_o1pwm")
+volume_db = 1.5
+pitch_scale = 1.84
 bus = &"SFX"
 
 [node name="Respawn" type="AudioStreamPlayer2D" parent="Audio"]
