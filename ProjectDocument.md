@@ -426,23 +426,33 @@ Intro Narrative: Themed in space, 2 astronauts in spaceships encounter a planet.
 
 I implemented this intro into the game through the intro cutscene. I thought about using a similar scheme to exercise 1's cutscene commands, but I decided against it since it wasn't worth the added complexity, especially since our game's intro isn't directly linked to main game. In a separate scene, I used a single animation player to play the intro cutscene by moving around the necessary sprites and animations, heavily relying on rotation, scale, and transparency. I made sure there was no text in the cutscene, which makes the cutscene's story accessible to more people. The menu can enter the intro cutscene. At the end of the cutscene animation, the game leaves the scene and enters the main game scene. The cutscene can be skipped by pressing the escape key or the start button on controllers.
 
+![intro_cutscene](https://github.com/user-attachments/assets/c776e247-a603-4b5b-b64b-d4984e960f45)
+
 ### In-Game Narrative Elements
 
 In-Game Narrative: The planet is infested with a swarm of hungry alien monsters, so the players must run away from the wall of aliens as they navigate the mysterious planet’s platforming challenges and battle it out to see who can collect enough energy and stay above the curve. The goal is to charge their respective spaceship in the final zone of the level.
 
-I incorporated the in-game narrative by collaborating with Raghav to use space-themed assets and to give the planet an alien feel.
+I incorporated the in-game narrative by collaborating with Raghav to use space-themed assets and to give the planet an alien feel. We had trouble finding free use space-themed assets, so we had to mix and match assets from various sources.
 
 Parallax Scrolling: Given the players are traveling the planet through the use of an auto scroll camera, I replaced the static background with 3 layers parallax background scrolling. This increases the immersion of players as it gives more depth as the backgrounds scroll at different speeds.
 
+![image](https://github.com/user-attachments/assets/52b9c872-d0ca-4de7-95ff-9f07500721a9)
+
 Wall of Alien Monsters: Using 3 different aliens (ghost, bat creature, flying eye thing), I created a giant wall that is a hitbox with a vertical world border hitbox. We initially had a static wall of drills chasing the players, but it felt too bland, so I replaced it with a giant swarm of individual monsters. The `wall_of_death.gd` script loops through every monster, allowing each monster to randomly extend outwards to reach the players. Given the randomness element of reaching out, this mechanic makes the wall of death lifelike, almost like a hivemind. Each enemy has an individual hitbox that's able to kill players. To better incorporate the in-game story, when the auto scroll camera stops at the final zone of the level, there's a second wall of alien monsters to the right of the screen. This adds to the narrative as the players now find themselves trapped between 2 walls of alien monsters, leaving them no choice but to gather energy and battle it out as they try to be the first one to charge their ship and escape the planet.
 
+![wall_of_death](https://github.com/user-attachments/assets/72049ccf-d437-4cc7-8ee0-0ae238531fa2)
+
 To make the level feel like a mysterious planet, I used vegetation of unnatural colors (orange), rock formations, and pillar structures. These background assets add to the immersion of the planet while also adding mystery. Life exists on the planet (such as alien monsters and orange plants), but what about the abandoned pillars and entrances? The level's terrain is rocky, with pockets of life throughout.
+
+![image](https://github.com/user-attachments/assets/88ae0152-8f62-4fab-8073-6768c779d33e)
 
 ### End Cutscene
 
 End Narrative: The winning player fixes their spaceship and escapes the planet, leaving the other player to die on the planet as it gets internally consumed by the swarm of monsters, exploding and being crushed into nothingness. With a stroke of luck, the losing player is thrown off the planet and its sent into the depths of space with a broken spaceship.
 
 Just like the intro cutscene, the end cutscene is in its own scene. The key difference is that I had to make sure there were two different animations, 1 for each player winning. I decided to implement 3 animation players. 1 animation players regardless, which is the planet exploding and being crushed into nothingness. The other 2 animation players are specific based on which player 1. The winning player's spaceship quickly escapes the planet and gracefully glides through space as the losing player is knocked off the planet and falls into the depths of space. At the end of the cutscene's animation, a menu appears, displaying the player who won and a back button to return to the main menu. The end cutscene is triggered once a player wins (fully charging their spaceship)
+
+![end_cutscene](https://github.com/user-attachments/assets/12a24117-3e42-448f-9397-d1b1d0dceb26)
 
 ## Audio (Raghav Bajoria)
 
