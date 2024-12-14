@@ -41,10 +41,9 @@ There were two aspects of the game that people were not working on: the power-up
 
 ### Poweru-ps:
 
-#### GetBig: 
+#### GetBig:
 
 ![Recording2024-12-13224827-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c3902754-2400-4d69-8a32-32ff9f131fc0)
-
 
 This power-up grants the player the ability to double in size while gaining a strength boost that allows the player to throw opponents further.
 
@@ -64,7 +63,6 @@ This power-up increases the player's movement speed.
 
 ![image](https://github.com/user-attachments/assets/8cf3edcd-ae67-4046-9783-fea9da55a06d)
 
-
 This power-up boosts jump height and distance.
 
 #### Shield:
@@ -76,7 +74,6 @@ This power-up prevents the opponent from grabbing the player. It is a one-time-u
 #### Energy:
 
 ![image](https://github.com/user-attachments/assets/330b7131-d44a-4ab1-a95d-8957c44c638d)
-
 
 Although not exactly a power-up, it behaves like one. When players collect this, they gain energy points to charge the ship at the end of the game.
 
@@ -301,7 +298,9 @@ _All under License.md_
   player was going to respawn. We also made it so that the player could dash in when they are a ghost. This allows the player to recovoer more
   quickly from a bad spawn.
 
-`text here`
+### Level Design
+
+- The level design was very straight foward with with Raghav's(Animation and Visuals) implementation of the different tilesheets. I wanted to make the level hard yet not frustrating. Futhermore I wanted to add an emphasis of the trade off of using the push box to speed up the camera. So spike traps are randomly placed so that if a player is constantly using the push box why will run into since there is a very short window to react. Also to add more variation throughout the map there are hidden tunnels that led provide strong power-ups or lead you directly into a trap. Karim also helped with level design by providing more detail and decorations throughout the level.
 
 ## Game Feel & Polish (Jason Zhou)
 
