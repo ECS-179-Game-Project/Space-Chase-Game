@@ -193,7 +193,7 @@ Players can be in a stunned state from the various interactions (grab teching, d
 
 **Other**
 
-Given I was in-charge of the players' movement/physics, I wanted to make sure that the game logic and animation roles had the proper tools to implement their parts, so I added a bunch of conditional variables that are updated based on player state. These conditional variables play an essential role in updating the player's animation state tree.
+Given I was in-charge of the players' movement/physics, I wanted to make sure that everyone had the proper tools to implement their parts, so I added a bunch of conditional variables that are updated based on player state. For example, these conditional variables played an essential role in updating the player's animation state tree.
 
 ![image](https://github.com/user-attachments/assets/fe61feff-3457-485d-8b24-0e029c6f19b9)
 
