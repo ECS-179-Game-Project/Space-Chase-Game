@@ -34,24 +34,24 @@
 
 Some of the sounds in this project were created by David McKee (ViRiX) soundcloud.com/virix
 
-# Sprite License
+## Art Licenses
 
-[menu background](https://space-spheremaps.itch.io/pixelart-starfields)
+["Pixelart Starfields"](https://space-spheremaps.itch.io/pixelart-starfields) used for backgrounds by [*Space Spheremaps*](https://space-spheremaps.itch.io/). No license information provided.
 
-[spaceships](https://helianthus-games.itch.io/pixel-art-space-shooter-kit)
+["FREE pixel art space shooter kit"](https://helianthus-games.itch.io/pixel-art-space-shooter-kit) used for spaceships by [*Helianthus Games*](https://helianthus-games.itch.io/). No license information provided.
 
-[planet generator](https://deep-fold.itch.io/pixel-planet-generator)
+["Pixel Planet Generator"](https://deep-fold.itch.io/pixel-planet-generator) by [*Deep-Fold*](https://deep-fold.itch.io/) used to generate planets. No license information provided for generated images. Source code available under MIT License.
 
-[space background generator](https://deep-fold.itch.io/space-background-generator)
+["Space Background Generator"](https://deep-fold.itch.io/space-background-generator) by [*Deep-Fold*](https://deep-fold.itch.io/) used to generate background. No license information provided for generated images. Source code available under MIT License.
 
-[enemies](https://ansimuz.itch.io/super-grotto-escape-pack)
+["Super Grotto Escape Pack"](https://ansimuz.itch.io/super-grotto-escape-pack) used for enemies by [*ansimuz*](https://ansimuz.itch.io/) distributed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed.en). 
 
-[players](https://mattwalkden.itch.io/free-space-runner-pack)
+["Space Runner Asset Pack"](https://mattwalkden.itch.io/free-space-runner-pack) used for players by [*MattWalkden*](https://mattwalkden.itch.io/) distributed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed.en). 
 
-[level background/terrain](https://trixelized.itch.io/starstring-fields)
+["Springstar Fields"](https://trixelized.itch.io/starstring-fields) used for terrain/backgrounds by [*Trixie* (Trixelized)](https://trixelized.itch.io/) distributed under MIT License. Text file containing MIT License copyright information added to original sprite set in "space-chase/assets/sprites/Terrain/springstar fields/License.txt".
 
-[Explosions](https://bdragon1727.itch.io/free-effect-bullet-impact-explosion-32x32)
+["Free Effect Bullet Impact Explosion 32x32"](https://bdragon1727.itch.io/free-effect-bullet-impact-explosion-32x32) (Unused) by [*BDragon1727*](https://bdragon1727.itch.io/). Licensing information provided in source link.
 
-[UI for charging bar](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar)
+["Basic Pixel Heatlth bar and Scroll bar"](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar) (Unused) by [*BDragon1727*](https://bdragon1727.itch.io/). Licensing information provided in source link.
 
-[energy bars ](https://adwitr.itch.io/pixel-health-bar-asset-pack-2?download)
+["Health Bar Asset Pack 2"](https://adwitr.itch.io/pixel-health-bar-asset-pack-2) used for energy and charging bars by [*adwitr*](https://adwitr.itch.io/) distributed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)
