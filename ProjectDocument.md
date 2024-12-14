@@ -15,11 +15,15 @@ serves are a core gameplay mechnaic. Borrowing the omnidirectional dash from Cel
 extra tool for the player to traverse the deadly level and out run their opponent. There are also power
 ups to level the playing field such as a speed boost or shrinking.
 
-## Suggestions
+We suggest bringing a friend to play the game with. Two controllers are recommended. Start off by going to the controls menu to get familiar with the player's abilities. Players have the following abilities:
+- Grab (press key to grab, hold key to hold, release key to thow): Different throw directions if holding up/down/horizontal/diagonal. You can move/jump while holding. You can input mash out if you're being held.
+- Dash: 8-way directional dash. Dashes can stun players.
+- Jump: Can short hop or hold jump
+- Fast fall: Hold down while in the air
 
-We suggest bringing a friend to play the game with. Start off by going to the controls menu to get familiar with the player's abilities. Once both players are ready, play the main game!
+Once both players are ready, go back to the main menu and play the main game!
 
-If you want to test the game's mechanics or experiment, feel free to do it in the playground (a safe non-chaotic environment). You can find it in the extras menu.
+If you want to test the game's mechanics or experiment, feel free to do so in the playground level. You can find it in the extras menu.
 
 Press the escape key if you want to restart/exit the main game or playground.
 
