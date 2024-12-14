@@ -160,33 +160,29 @@ Tilemap Layers
 
 ![The core game design document from the initial plan.](ExampleImages/core_gameplay_design.png)
 
-   As the head of Game Logic, I was in charge of implementing various systems overseeing game states and data and other 
-   backend parts that are required for the game to function. To this end, I designed and implemented the [GameStateManager](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/game_state_manager.gd) 
-   singleton / global script, the [charging stations](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/charging_station.gd),
-   and the [camera](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/autoscroll_camera_controller.gd).
-   
-   
-   Since Game Logic is important to get working sooner rather than later, most of my code on Game Logic was written 
-   in our first week of work, including most of the GameStateManager and most of the camera. The charging station and
-   related logic for charging in the game state were worked on but incomplete until the last week when our game was near completion.
-   
-   
-   While I wrote most of the code in the first week, I continued to update and fix my code according to my team's needs over the span of the project.
-   Details for this will be provided in the following sections. I also continued to consult for my team to make sure they can fulfill their roles
-   when working on systems related to game state, particularly with Patrick, our UI lead. Occasionally, I redesigned game objects to be better
-   integrated with the rest of the game.
-   
-   
-   In this project, I followed no particular design pattern, but tried my best to keep code free from dependencies that might break the game.
-   This is especially important, as the game state is very often accessed by many different objects.
- 
-   
-   I originally planned to also implement menus, cutscene, powerup, and enemy managers as per our initial plan, but:
-   - Menus and level management were implemented by Karim with an add-on with the first build of our project. Most of the menus were made by Patrick and Karim.
-   - Cutscenes were designed and implemented by Karim as the narrative designer.
-   - Carlos, our producer, implemented the powerup manager.
-   - We ran out of time to work on enemies and integrate them into our level.
+As the head of Game Logic, I was in charge of implementing various systems overseeing game states and data and other
+backend parts that are required for the game to function. To this end, I designed and implemented the [GameStateManager](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/game_state_manager.gd)
+singleton / global script, the [charging stations](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/charging_station.gd),
+and the [camera](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/autoscroll_camera_controller.gd).
 
+Since Game Logic is important to get working sooner rather than later, most of my code on Game Logic was written
+in our first week of work, including most of the GameStateManager and most of the camera. The charging station and
+related logic for charging in the game state were worked on but incomplete until the last week when our game was near completion.
+
+While I wrote most of the code in the first week, I continued to update and fix my code according to my team's needs over the span of the project.
+Details for this will be provided in the following sections. I also continued to consult for my team to make sure they can fulfill their roles
+when working on systems related to game state, particularly with Patrick, our UI lead. Occasionally, I redesigned game objects to be better
+integrated with the rest of the game.
+
+In this project, I followed no particular design pattern, but tried my best to keep code free from dependencies that might break the game.
+This is especially important, as the game state is very often accessed by many different objects.
+
+I originally planned to also implement menus, cutscene, powerup, and enemy managers as per our initial plan, but:
+
+- Menus and level management were implemented by Karim with an add-on with the first build of our project. Most of the menus were made by Patrick and Karim.
+- Cutscenes were designed and implemented by Karim as the narrative designer.
+- Carlos, our producer, implemented the powerup manager.
+- We ran out of time to work on enemies and integrate them into our level.
 
 ### Game State Manager
 
@@ -276,7 +272,8 @@ to get the current level progression and the player's energy. The game state man
 function I was able to display the current's level progress on the bar at the top of the camera. While the energy bar of the player used a similar format of using [`get_player_energy`](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cf6b6518055fa3b0b0419af4be64a5942517d500/space-chase/scripts/game_state_manager.gd#L110)
 from the game state manager to display the current energy of each player. The function simply returns the energy of the player ID passed through. Futhermore
 the player would lose a fixed amout of energy upon death and that lost amount would be given to the other player. To implemente this the [instakill](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/cb12d3fa9054d308f30a1e9c84a88861d3687b77/space-chase/scripts/player.gd#L261)
-function inside the `player.gd` was modified so that players who died would have lost energy and the oposing player would have gained some.
+function inside the `player.gd` was modified so that players who died would have lost energy and the oposing player would have gained some. The scene created for both the player energy and progress bar was made in a similar format. Where a TextureRect was used with the progress bar placed inside of it. The TextureRect would be loaded with a
+specific sprite to give the bar more detail.
 
 ### Input Devices
 
@@ -458,25 +455,27 @@ My work on game feel and polish is very varied and range from visuals to physics
 
 ### Visual Polish
 
-   To improve game feel on the visual end:
-   - I implemented [particle effects](https://github.com/ECS-179-Game-Project/Space-Chase-Game/tree/main/space-chase/scenes/particles) in a few parts of the game. These include when players die, when a powerup is picked up, when players are charging their stations,
-   and when the charging stations are activated to indicate charging zones. For energy charging particles, I edited the [particle shader](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scenes/particles/3_energy_particles.tscn) to be able to target
-   a specific point in space to go to.
-   - Intertwined with charging particles, I added the progress bar for the charging stations in the end zone to clarify when players will win.
-   - I wrote [shaders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/shaders/player.gdshader) for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, player characters,
-   - I remade our [player spritesheet](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/player/Astronaut/Astronaut_Spritesheet.png) to be more easily integrated into our animations. In the process, I also redid animations for player actions, adding animations
-   to actions that had previously not had any, and overall making animations slightly smoother.
-   - I reorganized some of the menus to be more even and, in the future, more modifiable.
-   
+To improve game feel on the visual end:
+
+- I implemented [particle effects](https://github.com/ECS-179-Game-Project/Space-Chase-Game/tree/main/space-chase/scenes/particles) in a few parts of the game. These include when players die, when a powerup is picked up, when players are charging their stations,
+  and when the charging stations are activated to indicate charging zones. For energy charging particles, I edited the [particle shader](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scenes/particles/3_energy_particles.tscn) to be able to target
+  a specific point in space to go to.
+- Intertwined with charging particles, I added the progress bar for the charging stations in the end zone to clarify when players will win.
+- I wrote [shaders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/shaders/player.gdshader) for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, player characters,
+- I remade our [player spritesheet](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/player/Astronaut/Astronaut_Spritesheet.png) to be more easily integrated into our animations. In the process, I also redid animations for player actions, adding animations
+  to actions that had previously not had any, and overall making animations slightly smoother.
+- I reorganized some of the menus to be more even and, in the future, more modifiable.
+
 ### Gameplay Polish
 
-   To improve game feel on the gameplay side, I mostly changed the player script:
-   - I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping.
-   - I changed the hold jump gravity change to only apply on the way up.
-   - I changed the player dash so that the player retains some vertical momentum, to keep a sense of speed.
-   - I added terminal velocity to the player, so the player doesn't fall extremely fast when platforming.
-   - Karim did a great job, so I didn't really need to tweak anything else.
-   
+To improve game feel on the gameplay side, I mostly changed the player script:
+
+- I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping.
+- I changed the hold jump gravity change to only apply on the way up.
+- I changed the player dash so that the player retains some vertical momentum, to keep a sense of speed.
+- I added terminal velocity to the player, so the player doesn't fall extremely fast when platforming.
+- Karim did a great job, so I didn't really need to tweak anything else.
+
 ### Audio Polish
 
 To improve game feel on the audio side:
