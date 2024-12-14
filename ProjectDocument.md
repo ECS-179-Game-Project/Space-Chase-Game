@@ -78,6 +78,7 @@ view of the camera at all times when the player pressed pause.
 ### Ending Scene
 
 ![ending scene](ExampleImages/endmenu.png)
+The ending scene was created with the help of Karim who created the cutscene and Jason who help figure out how to display the corrisponding player id of who won the game. The quit button takes the player back to main menu so they can replay the game
 
 ### In-Game UI
 
