@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/ae932fb4-38bc-46c8-a9f5-0fc5648bcea5)# Game Basic Information
+# Game Basic Information
 
 ## Summary
 
@@ -186,7 +186,6 @@ Players can be in a stunned state from the various interactions (grab teching, d
 Given I was in-charge of the players' movement/physics, I wanted to make sure that the game logic and animation roles had the proper tools to implement their parts, so I added a bunch of conditional variables that are updated based on player state. These conditional variables play an essential role in updating the player's animation state tree.
 
 ![image](https://github.com/user-attachments/assets/fe61feff-3457-485d-8b24-0e029c6f19b9)
-
 
 ### Level Terrain & Other Collisions
 
