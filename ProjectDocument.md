@@ -57,6 +57,9 @@ This power-up increases the player's movement speed.
 
 #### Jump:
 
+![image](https://github.com/user-attachments/assets/8cf3edcd-ae67-4046-9783-fea9da55a06d)
+
+
 This power-up boosts jump height and distance.
 
 #### Shield:
