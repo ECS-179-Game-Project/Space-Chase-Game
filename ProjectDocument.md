@@ -123,7 +123,7 @@ Being held makes the player sprite flash yellow, while input mashing makes the p
 **Dashing**
 Given our game is a platformer I had to make sure the dashing felt good but also useful for versus.
 
-In terms of movement I took inspiration from Celeste, one of my most favorite platformers. Dashes last for `dash_time`, where they apply a constant `dash_speed` velocity. Dashes are 8-way, enabling for discrete D-pad-like movement.
+In terms of movement I took inspiration from Celeste, one of my most favorite platformers. Dashes last for `dash_time`, where they apply a constant `dash_speed` velocity. Dashes are 8-way, enabling for discrete D-pad-like movement. At the end of the dash, just like Celeste (at least while in the air), the player's velocity is taken away with a damping effect of 0.4. Jason helped with this as I originally planned to set velocity to 0 rather than multiplying it by a damping effect, which feels much nicer, giving the player more air time.
 
 I incorporated versus into the dash by making it so players can stun the other player by dashing into them. If players dash into each other at the same time then both players are stunned.
 
