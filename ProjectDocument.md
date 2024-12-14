@@ -186,6 +186,8 @@ Tilemap Layers
 - Trap tiles: In the traps collision layer (layer 7). Players are instakilled when colliding with trap tiles. This tilemap layer acts as a hitbox but with tiles.
 - Foreground: No collision layer. Exists on top of everything else and is visual.
 
+![image](https://github.com/user-attachments/assets/b5cc5319-ce7d-46cf-9569-da3dcf8c9cba)
+
 ## Game Logic (Jason Zhou)
 
 ![The core game design document from the initial plan.](ExampleImages/core_gameplay_design.png)
