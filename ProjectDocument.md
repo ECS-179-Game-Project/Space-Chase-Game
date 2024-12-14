@@ -41,7 +41,10 @@ There were two aspects of the game that people were not working on: the power-up
 
 ### Poweru-ps:
 
-#### GetBig:
+#### GetBig: 
+
+![Recording2024-12-13224827-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c3902754-2400-4d69-8a32-32ff9f131fc0)
+
 
 This power-up grants the player the ability to double in size while gaining a strength boost that allows the player to throw opponents further.
 
