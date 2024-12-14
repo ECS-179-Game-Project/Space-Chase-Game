@@ -462,6 +462,10 @@ To make the level feel like a mysterious planet, I used vegetation of unnatural 
 
 ![image](https://github.com/user-attachments/assets/88ae0152-8f62-4fab-8073-6768c779d33e)
 
+Given the importance of the final zone, I put extra effort into making it feel ominous. I did this by utilizing symmetry, which serves as constrast to the disorderly nature of the planet. The platform is made up of unique tiles never previously seen in the level, which adds to the intrigue. Overall, the final zone feels like a fitting battle ground.
+
+![image](https://github.com/user-attachments/assets/c6f82e46-40a2-4101-ad7b-75fdb19176d0)
+
 ### End Cutscene
 
 End Narrative: The winning player fixes their spaceship and escapes the planet, leaving the other player to die on the planet as it gets internally consumed by the swarm of monsters, exploding and being crushed into nothingness. With a stroke of luck, the losing player is thrown off the planet and its sent into the depths of space with a broken spaceship.
