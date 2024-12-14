@@ -108,7 +108,7 @@ Although not exactly a power-up, it behaves like one. When players collect this,
  
    
    I originally planned to also implement menus, cutscene, powerup, and enemy managers as per our initial plan, but:
-   - Menus and level management were implemented by Karim with an add-on with the first build of our project.
+   - Menus and level management were implemented by Karim with an add-on with the first build of our project. Most of the menus were made by Patrick and Karim.
    - Cutscenes were designed and implemented by Karim as the narrative designer.
    - Carlos, our producer, implemented the powerup manager.
    - We ran out of time to work on enemies and integrate them into our level.
@@ -382,19 +382,20 @@ _All under License.md_
    - I implemented [particle effects](https://github.com/ECS-179-Game-Project/Space-Chase-Game/tree/main/space-chase/scenes/particles) in a few parts of the game. These include when players die, when a powerup is picked up, when players are charging their stations,
    and when the charging stations are activated to indicate charging zones. For energy charging particles, I edited the [particle shader](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scenes/particles/3_energy_particles.tscn) to be able to target
    a specific point in space to go to.
+   - Intertwined with charging particles, I added the progress bar for the charging stations in the end zone to clarify when players will win.
    - I wrote [shaders](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/shaders/player.gdshader) for and designed most of the player-specific objects to be differentiable by color, like the player energy bars, charge bars, player characters,
    - I remade our [player spritesheet](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/player/Astronaut/Astronaut_Spritesheet.png) to be more easily integrated into our animations. In the process, I also redid animations for player actions, adding animations
    to actions that had previously not had any, and overall making animations slightly smoother.
    - I reorganized some of the menus to be more even and, in the future, more modifiable.
    
-### Physics Polish
+### Gameplay Polish
 
-   To improve game feel on the physics side, I mostly changed the player script:
+   To improve game feel on the gameplay side, I mostly changed the player script:
    - I implemented [coyote time](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/db485cb862817148040876708b118bfd3fba2749/space-chase/scripts/player.gd#L209) for player jumping.
    - I changed the hold jump gravity change to only apply on the way up.
    - I changed the player dash so that the player retains some vertical momentum, to keep a sense of speed.
    - I added terminal velocity to the player, so the player doesn't fall extremely fast when platforming.
-   - Karim did a great job, so I didn't really need to tweak anything else.
+   - Karim did a great job, so I didn't really need to tweak anything else, though.
    
 ### Audio Polish
 
@@ -420,3 +421,14 @@ _All under License.md_
   are fixed and the only way to change them is through the project settings in godot
 - Also adding network multiplayer would have been a nice thing to add as well since godot does
   have some support with online multiplayer.
+
+## Visual Improvements
+
+- We could definitely have more visual effects in our game like distortions when dashing, dying, etc.
+- An idea that might not be too hard to implement is color selection for players. Most of the player differentiated objects are already colored automatically. This could also help with accessibility, considering we chose red and green for our players which is a common type of colorblindness.
+- Adding lighting could help with visuals.
+
+## Gameplay Improvement
+
+- Increasing variety by adding more levels, perhaps with different color palettes.
+- Adding an additional game mode in the "extras" menu that is just 1v1 Final Destination (some items) in the end zone.
