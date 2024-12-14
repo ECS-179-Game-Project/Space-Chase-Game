@@ -168,16 +168,16 @@ used the arrow keys or IJKL if they didn't have arrow keys Comma was used for th
 
 The player character has a wide variety of animations designed to enhance gameplay and create a dynamic experience. These animations include:
 
-Idle: A static yet engaging pose to signal inactivity.
-Running: Basic running
-Jumping: Basic jump
-Dashing: A streak of orange behind the playe
-Grabbing: Player tilts to the right or left when pressed
-Held/Holding: Player holds the other player on top of their head
-Fast Falling: dash animation downwards
-Ghosting/Respawning (as Ghost/Normal): Player becomes opaque and washed with white
-Stunned: Displays the player's vulnerability when hit or sabotaged.
-Death (Die): Player shrinks when dead
+- Idle: A static yet engaging pose to signal inactivity.
+- Running: Basic running
+- Jumping: Basic jump
+- Dashing: A streak of orange behind the playe
+- Grabbing: Player tilts to the right or left when pressed
+- Held/Holding: Player holds the other player on top of their head
+- Fast Falling: dash animation downwards
+- Ghosting/Respawning (as Ghost/Normal): Player becomes opaque and washed with white
+- Stunned: Displays the player's vulnerability when hit or sabotaged.
+- Death (Die): Player shrinks when dead
 
 These animations, though simple in implementation, contribute to the competitive and high-energy tone of the game. The animations were implemented using a state machine to seamlessly transition between different player actions. Player feedback reported that the animations felt very satisfying.
 
