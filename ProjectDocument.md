@@ -15,11 +15,15 @@ serves are a core gameplay mechnaic. Borrowing the omnidirectional dash from Cel
 extra tool for the player to traverse the deadly level and out run their opponent. There are also power
 ups to level the playing field such as a speed boost or shrinking.
 
-## Suggestions
+We suggest bringing a friend to play the game with. Two controllers are recommended. Start off by going to the controls menu to get familiar with the player's abilities. Players have the following abilities:
+- Grab (press key to grab, hold key to hold, release key to thow): Different throw directions if holding up/down/horizontal/diagonal. You can move/jump while holding. You can input mash out if you're being held.
+- Dash: 8-way directional dash. Dashes can stun players.
+- Jump: Can short hop or hold jump
+- Fast fall: Hold down while in the air
 
-We suggest bringing a friend to play the game with. Start off by going to the controls menu to get familiar with the player's abilities. Once both players are ready, play the main game!
+Once both players are ready, go back to the main menu and play the main game!
 
-If you want to test the game's mechanics or experiment, feel free to do it in the playground (a safe non-chaotic environment). You can find it in the extras menu.
+If you want to test the game's mechanics or experiment, feel free to do so in the playground level. You can find it in the extras menu.
 
 Press the escape key if you want to restart/exit the main game or playground.
 
@@ -145,7 +149,7 @@ While the grab button is held, a player can hold the other player for `HOLD_TIME
 
 **Throwing a Player**
 
-Releasing the grab button throws the held player. If the grab button is tapped (quickly pressed and released), then the throw is done instantly out of grab. After gameplay testing, I figured it would be better to give the player more throw options. Holding up throws the player up, holding down drops the player in front, holding diagonally up throws the player in that same direction, and holding horizontally throws the player in that direction with less height. Each type of throw is configured based on direction and x and y velocities. If no direction is pressed then the throw defaults to horizontal. 
+Releasing the grab button throws the held player. If the grab button is tapped (quickly pressed and released), then the throw is done instantly out of grab. After gameplay testing, I figured it would be better to give the player more throw options. Holding up throws the player up, holding down drops the player in front (grab release), holding diagonally up throws the player in that same direction, and holding horizontally throws the player in that direction with less height. Each type of throw is configured based on direction and x and y velocities. If no direction is pressed then the throw defaults to horizontal. 
 
 ![throwing](https://github.com/user-attachments/assets/82f2890e-50a4-4df2-bdd3-5468778c027d)
 
@@ -177,8 +181,6 @@ Dashes leave a dash trail behind the player.
 
 As discussed with Jason and the rest of the team, our game felt best with no health system. So the player is instakilled by any hitbox (as detected by hurtbox). I implemented the death mechanic since it's a prerequisite for the player's ghost movement. The player is dead for `RESPAWN_TIME` before spawning in as a ghost.
 
-The death particles are implemented by Jason.
-
 ![death](https://github.com/user-attachments/assets/b72104c5-ccdd-4e58-838c-dbcfaa1e704b)
 
 **Ghost Movement**
@@ -195,7 +197,13 @@ Players can be in a stunned state from the various interactions (grab teching, d
 
 **Other**
 
-Given I was in-charge of the players' movement/physics, I wanted to make sure that the game logic and animation roles had the proper tools to implement their parts, so I added a bunch of conditional variables that are updated based on player state. These conditional variables play an essential role in updating the player's animation state tree.
+I wanted to make sure the player has a variety of movement options, including combos. Here are a few combos:
+- Up throw into jump and dash up
+- Diagonal down dash into grab
+- Side throw into side dash
+- Grab release (release grab while holding down) into grab
+
+Given I was in-charge of the players' movement/physics, I wanted to make sure that everyone had the proper tools to implement their parts, so I added a bunch of conditional variables that are updated based on player state. For example, these conditional variables played an essential role in updating the player's animation state tree.
 
 ![image](https://github.com/user-attachments/assets/fe61feff-3457-485d-8b24-0e029c6f19b9)
 
@@ -385,6 +393,8 @@ The player character has a wide variety of animations designed to enhance gamepl
 
 These animations, though simple in implementation, contribute to the competitive and high-energy tone of the game. The animations were implemented using a state machine to seamlessly transition between different player actions. Player feedback reported that the animations felt very satisfying.
 
+![Animation_tree](ExampleImages/animation_tree)
+
 ![image](https://github.com/user-attachments/assets/226d39f0-882c-4753-8223-d046b0372e14)
 
 ### Cutscene Animations
@@ -406,6 +416,8 @@ These included:
 - Environmental Tilesheets: Created the dynamic and visually distinct environments, such as platforms, traps, and backgrounds.
 
 Karim Shami played a key role in helping find and implement assets, ensuring they aligned with the game's fast-paced and competitive aesthetic. Minor modifications were made to some sprites (e.g., grab animation) to better fit the gameplay mechanics.
+
+All assets under [License.md](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/License.md)
 
 ### Challenges
 
@@ -482,7 +494,7 @@ Given the importance of the final zone, I put extra effort into making it feel o
 
 End Narrative: The winning player fixes their spaceship and escapes the planet, leaving the other player to die on the planet as it gets internally consumed by the swarm of monsters, exploding and being crushed into nothingness. With a stroke of luck, the losing player is thrown off the planet and its sent into the depths of space with a broken spaceship.
 
-Just like the intro cutscene, the end cutscene is in its own scene. The key difference is that I had to make sure there were two different animations, 1 for each player winning. I decided to implement 3 animation players. 1 animation players regardless, which is the planet exploding and being crushed into nothingness. The other 2 animation players are specific based on which player 1. The winning player's spaceship quickly escapes the planet and gracefully glides through space as the losing player is knocked off the planet and falls into the depths of space. At the end of the cutscene's animation, a menu appears, displaying the player who won and a back button to return to the main menu. The end cutscene is triggered once a player wins (fully charging their spaceship). The cutscene logic is implemented in [end_cutscene.gd](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/end_cutscene.gd)
+Just like the intro cutscene, the end cutscene is in its own scene. The key difference is that I had to make sure there were two different animations, 1 for each player winning. I decided to implement 3 animation players. 1 animation player plays regardless, which is the planet exploding and being crushed into nothingness. One of the other 2 animation players are specifically chosen based on which player won. The winning player's spaceship quickly escapes the planet and gracefully glides through space as the losing player is knocked off the planet and falls into the depths of space. At the end of the cutscene's animation, a menu appears, displaying the player who won and a back button to return to the main menu (I worked with Patrick to integrate the UI). The end cutscene is triggered once a player wins (fully charging their spaceship). The cutscene logic is implemented in [end_cutscene.gd](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/scripts/end_cutscene.gd).
 
 ![end_cutscene](https://github.com/user-attachments/assets/12a24117-3e42-448f-9397-d1b1d0dceb26)
 
@@ -506,7 +518,7 @@ Just like the intro cutscene, the end cutscene is in its own scene. The key diff
 
 ### Assets used
 
-_All under License.md_
+All under [License.md](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/License.md)
 
 ## Gameplay testing / Level Design (Patrick Le)
 

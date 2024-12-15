@@ -33,3 +33,25 @@
 ## Other
 
 Some of the sounds in this project were created by David McKee (ViRiX) soundcloud.com/virix
+
+## Art Licenses
+
+["Pixelart Starfields"](https://space-spheremaps.itch.io/pixelart-starfields) used for backgrounds by [*Space Spheremaps*](https://space-spheremaps.itch.io/). No license information provided.
+
+["FREE pixel art space shooter kit"](https://helianthus-games.itch.io/pixel-art-space-shooter-kit) used for spaceships by [*Helianthus Games*](https://helianthus-games.itch.io/). No license information provided.
+
+["Pixel Planet Generator"](https://deep-fold.itch.io/pixel-planet-generator) by [*Deep-Fold*](https://deep-fold.itch.io/) used to generate planets. No license information provided for generated images. Source code available under MIT License.
+
+["Space Background Generator"](https://deep-fold.itch.io/space-background-generator) by [*Deep-Fold*](https://deep-fold.itch.io/) used to generate background. No license information provided for generated images. Source code available under MIT License.
+
+["Super Grotto Escape Pack"](https://ansimuz.itch.io/super-grotto-escape-pack) used for enemies by [*ansimuz*](https://ansimuz.itch.io/) distributed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed.en). 
+
+["Space Runner Asset Pack"](https://mattwalkden.itch.io/free-space-runner-pack) used for players by [*MattWalkden*](https://mattwalkden.itch.io/) distributed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed.en). 
+
+["Springstar Fields"](https://trixelized.itch.io/starstring-fields) used for terrain/backgrounds by [*Trixie* (Trixelized)](https://trixelized.itch.io/) distributed under MIT License. Text file containing MIT License copyright information added to original sprite set in ["space-chase/assets/sprites/Terrain/springstar fields/License.txt"](https://github.com/ECS-179-Game-Project/Space-Chase-Game/blob/main/space-chase/assets/sprites/Terrain/stringstar%20fields/License.txt).
+
+["Free Effect Bullet Impact Explosion 32x32"](https://bdragon1727.itch.io/free-effect-bullet-impact-explosion-32x32) (Unused) by [*BDragon1727*](https://bdragon1727.itch.io/). Licensing information provided in source link.
+
+["Basic Pixel Heatlth bar and Scroll bar"](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar) (Unused) by [*BDragon1727*](https://bdragon1727.itch.io/). Licensing information provided in source link.
+
+["Health Bar Asset Pack 2"](https://adwitr.itch.io/pixel-health-bar-asset-pack-2) used for energy and charging bars by [*adwitr*](https://adwitr.itch.io/) distributed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en).
