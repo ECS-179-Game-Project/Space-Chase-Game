@@ -105,6 +105,10 @@ func _ready() -> void:
 	else:
 		print("ERROR: INVALID PLAYER_ID, CANNOT SET CONTROLS")
 	
+	# Swap controls if true
+	if PlayerControls.swap_controls:
+		_swap_controls()
+	
 	# Check for respawn pos
 	if respawn_pos == null:
 		print("ERROR: respawn_pos must be set!")
@@ -358,6 +362,13 @@ func can_charge() -> bool:
 
 
 # -------------------- Private functions --------------------
+
+func _swap_controls() -> void:
+	if player_id == GameStateManager.PlayerID.PLAYER_1:
+		_controls = PlayerControls.get_p2_controls()
+	elif player_id == GameStateManager.PlayerID.PLAYER_2:
+		_controls = PlayerControls.get_p1_controls()
+
 
 # Play powerup collect sound
 func _on_powerup_collected(collector_player_id: GameStateManager.PlayerID) -> void:

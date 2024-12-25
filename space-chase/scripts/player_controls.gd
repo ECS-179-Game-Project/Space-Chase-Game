@@ -19,6 +19,8 @@ static var use_up_as_jump: Dictionary = {
 	GameStateManager.PlayerID.PLAYER_2: false,
 }
 
+static var swap_controls: bool = false
+
 # Use factory pattern to return each player's controls
 
 static func get_p1_controls() -> PlayerControls:
